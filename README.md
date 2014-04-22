@@ -8,32 +8,43 @@ weixin-popular
 ==============
 weixin-poplar 包括微信公众平台基础API与支付API,提供便捷的API调用接口.
 
-参考文档:
+API 列表:
 ==============
-微信公众平台开发者文档 http://mp.weixin.qq.com/wiki/index.php 
+MediaAPI	多媒体上传下载  
+MenuAPI		菜单   
+MessageAPI      信息发送   
+PayAPI		支付订单相关接口   
+QrcodeAPI       二维码   
+SnsAPI          网签授权   
+TokenAPI        token 获取   
+UserAPI         用户管理   
+
+参考资料:
+==============
+微信公众平台开发者文档 http://mp.weixin.qq.com/wiki/index.php    
 微信支付文档 http://mp.weixin.qq.com/cgi-bin/readtemplate?t=business/faq_tmpl&lang=zh_CN
 
 
 消息接收示例代码:
 ==============
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.UnsupportedEncodingException;
-import java.nio.charset.Charset;
+import java.io.IOException;   
+import java.io.OutputStream;   
+import java.io.UnsupportedEncodingException;   
+import java.nio.charset.Charset;   
 
-import javax.servlet.ServletException;
-import javax.servlet.ServletInputStream;
-import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.ServletException;   
+import javax.servlet.ServletInputStream;   
+import javax.servlet.ServletOutputStream;   
+import javax.servlet.http.HttpServlet;   
+import javax.servlet.http.HttpServletRequest;   
+import javax.servlet.http.HttpServletResponse;   
 
-import org.springframework.util.StreamUtils;
+import org.springframework.util.StreamUtils;   
 
-import weixin.popular.bean.EventMessage;
-import weixin.popular.bean.xmlmessage.XMLTextMessage;
-import weixin.popular.util.SignatureUtil;
-import weixin.popular.util.XMLConverUtil;
+import weixin.popular.bean.EventMessage;   
+import weixin.popular.bean.xmlmessage.XMLTextMessage;   
+import weixin.popular.util.SignatureUtil;   
+import weixin.popular.util.XMLConverUtil;   
 
 public class ReceiveServlet extends HttpServlet{
 	

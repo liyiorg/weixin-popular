@@ -84,6 +84,7 @@ public class ReceiveServlet extends HttpServlet{
 					"你好");
 			//回复
 			xmlTextMessage.outputStreamWrite(outputStream);
+			return;
 		}
 		outputStreamWrite(outputStream,"");
 	}

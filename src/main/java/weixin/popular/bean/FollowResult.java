@@ -1,0 +1,64 @@
+package weixin.popular.bean;
+
+/**
+ * 关注者列表
+ * 
+ * @author LiYi
+ * 
+ */
+public class FollowResult extends BaseResult {
+
+	private Integer total;
+
+	private Integer count;
+
+	private String next_openid;
+
+	private Data data;
+
+	public Integer getTotal() {
+		return total;
+	}
+
+	public void setTotal(Integer total) {
+		this.total = total;
+	}
+
+	public Integer getCount() {
+		return count;
+	}
+
+	public void setCount(Integer count) {
+		this.count = count;
+	}
+
+	public String getNext_openid() {
+		return next_openid;
+	}
+
+	public void setNext_openid(String nextOpenid) {
+		next_openid = nextOpenid;
+	}
+
+	public Data getData() {
+		return data;
+	}
+
+	public void setData(Data data) {
+		this.data = data;
+	}
+
+	public static class Data {
+
+		private String[] openid;
+
+		public String[] getOpenid() {
+			return openid;
+		}
+
+		public void setOpenid(String[] openid) {
+			this.openid = openid;
+		}
+
+	}
+}

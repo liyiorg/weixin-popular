@@ -86,7 +86,7 @@ public class PayAPI extends BaseAPI{
 		try {
 			return payDelivernotify(access_token,objectMapper.writeValueAsString(map));
 		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		return null;
@@ -122,7 +122,6 @@ public class PayAPI extends BaseAPI{
 		try {
 			return payOrderquery(access_token,objectMapper.writeValueAsString(map));
 		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;

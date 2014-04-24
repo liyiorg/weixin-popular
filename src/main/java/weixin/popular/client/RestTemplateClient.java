@@ -29,16 +29,12 @@ public class RestTemplateClient {
 				httpClient.getConnectionManager().getSchemeRegistry().register(new Scheme("https",443, sf));
 				restTemplate = new RestTemplate(requestFactory);
 			} catch (KeyManagementException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (UnrecoverableKeyException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (NoSuchAlgorithmException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (KeyStoreException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 	}

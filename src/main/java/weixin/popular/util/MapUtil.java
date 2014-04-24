@@ -71,10 +71,8 @@ public class MapUtil {
 				try {
 					o = f.get(object);
 				} catch (IllegalArgumentException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (IllegalAccessException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				tempMap.put(f.getName(), o==null?"":o.toString());
@@ -100,7 +98,6 @@ public class MapUtil {
 								 .append(valueUrlencode?URLEncoder.encode(map.get(key),"utf-8"):map.get(key))
 								 .append("&");
 				} catch (UnsupportedEncodingException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -122,13 +119,10 @@ public class MapUtil {
 		try {
 			return objectMapper.readValue(reader,LinkedHashMap.class);
 		} catch (JsonParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (JsonMappingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;

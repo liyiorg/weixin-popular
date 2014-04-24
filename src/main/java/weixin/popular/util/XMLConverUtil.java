@@ -67,7 +67,6 @@ public class XMLConverUtil{
 			}
 			return (T)uMap.get(clazz).unmarshal(reader);
 		} catch (JAXBException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
@@ -94,7 +93,6 @@ public class XMLConverUtil{
 			mMap.get(object.getClass()).marshal(object,stringWriter);
 			return stringWriter.getBuffer().toString();
 		} catch (JAXBException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;

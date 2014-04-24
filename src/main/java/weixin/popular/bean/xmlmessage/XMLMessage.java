@@ -40,11 +40,9 @@ public abstract class XMLMessage {
 			outputStream.write(toXML().getBytes("utf-8"));
 			outputStream.flush();
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
 		}

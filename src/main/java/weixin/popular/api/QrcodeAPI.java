@@ -84,10 +84,8 @@ public class QrcodeAPI extends BaseAPI{
 																ByteArrayResource.class,
 																URLEncoder.encode(ticket,"utf-8"));
 		} catch (RestClientException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;

@@ -39,13 +39,10 @@ public class MediaAPI extends BaseAPI{
 			ObjectMapper objectMapper = new ObjectMapper();
 			return objectMapper.readValue(result, Media.class);
 		} catch (JsonParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (JsonMappingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
@@ -84,7 +81,7 @@ public class MediaAPI extends BaseAPI{
 		try {
 			return mediaUpload(access_token,mediaType,new UrlResource(uri));
 		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		return null;

@@ -32,13 +32,10 @@ public class SnsAPI extends BaseAPI{
 		try {
 			return objectMapper.readValue(responseEntity.getBody(),SnsToken.class);
 		} catch (JsonParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (JsonMappingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
@@ -57,13 +54,10 @@ public class SnsAPI extends BaseAPI{
 		try {
 			return objectMapper.readValue(responseEntity.getBody(),SnsToken.class);
 		} catch (JsonParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (JsonMappingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
@@ -84,13 +78,10 @@ public class SnsAPI extends BaseAPI{
 		try {
 			return objectMapper.readValue(new String(responseEntity.getBody().getBytes("iso-8859-1"),"utf-8"),User.class);
 		} catch (JsonParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (JsonMappingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;

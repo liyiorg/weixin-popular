@@ -17,7 +17,14 @@ PayAPI		支付订单相关接口
 QrcodeAPI       二维码   
 SnsAPI          网签授权   
 TokenAPI        token 获取   
-UserAPI         用户管理   
+UserAPI         用户管理  
+
+
+工具类
+==============
+PayUtil         支付工具类，生成JS支付，原生支付
+SignatureUtil   签权生成、验证
+XMLConverUtil   XML 对象转换（JAXB）
 
 参考资料:
 ==============

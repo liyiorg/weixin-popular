@@ -6,7 +6,7 @@ weixin-popular
 
 简介:
 ==============
-weixin-poplar 包括微信公众平台基础API与支付API,提供便捷的API调用接口.
+weixin-popular 包括微信公众平台基础API与支付API,提供便捷的API调用接口.
 
 API 列表:
 ==============

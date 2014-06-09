@@ -6,7 +6,7 @@ https://github.com/liyiorg/weixin-popular
 Changes in version 1.0.2 (2014-06-09)
 -------------------------------------
 
-*added filed unionid to weixin.popular.bean.User
+*added field unionid to weixin.popular.bean.User
 *modified weixin.popular.api.SnsAPI
 *added jackson disable DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES to weixin.popular.client.RestTemplateClient
 *added maven build plugin maven-compiler-plugin 1.6 to pom.xml

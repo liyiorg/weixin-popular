@@ -3,8 +3,17 @@ WEIXIN-POPULAR CHANGELOG
 https://github.com/liyiorg/weixin-popular
 
 
+Changes in version 1.0.2 (2014-06-09)
+-------------------------------------
+
+*added filed unionid to weixin.popular.bean.User
+*modified weixin.popular.api.SnsAPI
+*added jackson disable DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES to weixin.popular.client.RestTemplateClient
+*added maven build plugin maven-compiler-plugin 1.6 to pom.xml
+
+
 Changes in version 1.0.1 (2014-05-06)
 -------------------------------------
 
-*delete dependency jackson-dataformat-xml
+*removed dependency jackson-dataformat-xml
 

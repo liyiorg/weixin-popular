@@ -24,7 +24,7 @@ public class User extends BaseResult{
 
 	private String[] privilege;		//sns 用户特权信息，json 数组，如微信沃卡用户为（chinaunicom）
 
-	private String unionid;			//
+	private String unionid;			//多个公众号之间用户帐号互通UnionID机制
 
 	public Integer getSubscribe() {
 		return subscribe;

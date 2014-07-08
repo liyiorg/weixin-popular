@@ -3,6 +3,14 @@ WEIXIN-POPULAR CHANGELOG
 https://github.com/liyiorg/weixin-popular
 
 
+Changes in version 1.1.0 (2014-07-08)
+-------------------------------------
+*added messageMassSend API to weixin.popular.api.MessageAPI
+*added messageMassSendall API to weixin.popular.api.MessageAPI
+*added mediaUploadnews API to weixin.popular.api.MessageAPI
+*added mediaUploadvideo API to weixin.popular.api.MessageAPI
+*added weixin.popular.bean.massmessage package
+
 Changes in version 1.0.2 (2014-06-09)
 -------------------------------------
 

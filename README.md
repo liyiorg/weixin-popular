@@ -29,8 +29,8 @@ XMLConverUtil   XML 对象转换（JAXB）
 
 参考资料:
 ==============
-微信公众平台开发者文档 http://mp.weixin.qq.com/wiki/index.php
-微信支付文档 http://mp.weixin.qq.com/cgi-bin/readtemplate?t=business/faq_tmpl&lang=zh_CN
+微信公众平台开发者文档 http://mp.weixin.qq.com/wiki/index.php		
+微信支付文档 http://mp.weixin.qq.com/cgi-bin/readtemplate?t=business/faq_tmpl&lang=zh_CN		
 
 
 消息接收示例代码:

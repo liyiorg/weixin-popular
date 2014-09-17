@@ -23,9 +23,9 @@ ShorturlAPI		长链接转成短链接(version 1.2.0)
 
 工具类
 ==============
-PayUtil         支付工具类，生成JS支付，原生支付	
-SignatureUtil   签权生成、验证	
-XMLConverUtil   XML 对象转换（JAXB）	
+PayUtil         支付工具类，生成JS支付，原生支付			
+SignatureUtil   签权生成、验证			
+XMLConverUtil   XML 对象转换（JAXB）			
 
 参考资料:
 ==============

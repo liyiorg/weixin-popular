@@ -5,7 +5,7 @@ public class Delivernotify {
 	private String appid;
 	private String openid;
 	private String transid; // 交易单号
-	private String out_trade_to; // 第三方订单号
+	private String out_trade_no; // 第三方订单号
 	private String deliver_timestamp; // 发货时间簇,linux
 	private String deliver_status; // 发货状态 1 成功 0 失败
 	private String deliver_msg; // 状态信息
@@ -34,12 +34,12 @@ public class Delivernotify {
 		this.transid = transid;
 	}
 
-	public String getOut_trade_to() {
-		return out_trade_to;
+	public String getOut_trade_no() {
+		return out_trade_no;
 	}
 
-	public void setOut_trade_to(String outTradeTo) {
-		out_trade_to = outTradeTo;
+	public void setOut_trade_no(String out_trade_no) {
+		this.out_trade_no = out_trade_no;
 	}
 
 	public String getDeliver_timestamp() {

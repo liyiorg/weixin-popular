@@ -1,6 +1,10 @@
 package weixin.popular.api;
 
+import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.http.client.methods.RequestBuilder;
+
 import weixin.popular.bean.Shorturl;
+import weixin.popular.client.JsonResponseHandler;
 
 public class ShorturlAPI extends BaseAPI{
 
@@ -12,11 +16,13 @@ public class ShorturlAPI extends BaseAPI{
 	 * @return
 	 */
 	public Shorturl shorturl(String access_token,String action,String long_url){
-		return super.restTemplate.postForObject(
-				BASE_URI + "/cgi-bin/shorturl?access_token={access_token}&action={action}&long_url={long_url}",
-				null,
-				Shorturl.class,
-				access_token,action,long_url);
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+				.setUri(BASE_URI + "/cgi-bin/shorturl")
+				.addParameter("access_token", access_token)
+				.addParameter("action", action)
+				.addParameter("long_url", long_url)
+				.build();
+		return localHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(Shorturl.class));
 	}
 
 	/**

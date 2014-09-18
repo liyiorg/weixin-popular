@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.Map;
 
 import org.apache.commons.codec.digest.DigestUtils;
-import org.springframework.util.StringUtils;
 
 import weixin.popular.bean.pay.PayFeedback;
 import weixin.popular.bean.pay.PayNativeInput;
@@ -12,7 +11,7 @@ import weixin.popular.bean.pay.PayNotify;
 import weixin.popular.bean.pay.PayWarn;
 
 public class SignatureUtil {
-	
+
 	/**
 	 * 生成 package 字符串
 	 * @param map
@@ -25,7 +24,7 @@ public class SignatureUtil {
 		String s2 = MapUtil.mapJoin(tmap,false,true);
 		return s2+"&sign="+sign;
 	}
-	
+
 	/**
 	 * 生成sign MD5 加密 toUpperCase
 	 * @param map
@@ -40,7 +39,7 @@ public class SignatureUtil {
 		String str = MapUtil.mapJoin(tmap, false, false);
 		return DigestUtils.md5Hex(str+"&key="+paternerKey).toUpperCase();
 	}
-	
+
 	/**
 	 * 生成 paySign
 	 * @param map
@@ -55,10 +54,10 @@ public class SignatureUtil {
 		String str = MapUtil.mapJoin(tmap,true,false);
 		return DigestUtils.shaHex(str);
 	}
-	
-	
-	
-	
+
+
+
+
 	/**
 	 * 生成事件消息接收签名
 	 * @param token
@@ -72,8 +71,8 @@ public class SignatureUtil {
 		String s = StringUtils.arrayToDelimitedString(array, "");
 		return DigestUtils.shaHex(s);
 	}
-	
-	
+
+
 	/**
 	 * 验证  pay feedback appSignature 签名
 	 * @param payFeedback
@@ -93,8 +92,8 @@ public class SignatureUtil {
 														"extinfo");
 		return payFeedback.getAppsignature().equals(generatePaySign(map,paySignKey));
 	}
-	
-	
+
+
 	/**
 	 * 验证  pay native appSignature 签名
 	 * @param payNativeInput
@@ -106,8 +105,8 @@ public class SignatureUtil {
 		Map<String, String> map = MapUtil.objectToMap(payNativeInput, "appsignature","signmethod");
 		return payNativeInput.getAppsignature().equals(generatePaySign(map,paySignKey));
 	}
-	
-	
+
+
 	/**
 	 * 验证  pay notify appSignature 签名
 	 * @param payNotify
@@ -119,7 +118,7 @@ public class SignatureUtil {
 		Map<String, String> map = MapUtil.objectToMap(payNotify, "appsignature","singmethod");
 		return payNotify.getAppsignature().equals(generatePaySign(map,paySignKey));
 	}
-	
+
 	/**
 	 * 验证  pay warn appSignature 签名
 	 * @param payWarn
@@ -131,5 +130,5 @@ public class SignatureUtil {
 		Map<String, String> map = MapUtil.objectToMap(payWarn, "appsignature","signmethod");
 		return payWarn.getAppsignature().equals(generatePaySign(map,paySignKey));
 	}
-	
+
 }

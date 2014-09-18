@@ -2,19 +2,22 @@ package weixin.popular.api;
 
 import java.nio.charset.Charset;
 
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.apache.http.Header;
+import org.apache.http.HttpHeaders;
+import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.http.client.methods.RequestBuilder;
+import org.apache.http.entity.ContentType;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.message.BasicHeader;
 
 import weixin.popular.bean.BaseResult;
 import weixin.popular.bean.FollowResult;
 import weixin.popular.bean.Group;
 import weixin.popular.bean.User;
+import weixin.popular.client.JsonResponseHandler;
 
 public class UserAPI extends BaseAPI{
-	
+
 	/**
 	 * 获取用户基本信息
 	 * @param access_token
@@ -22,13 +25,15 @@ public class UserAPI extends BaseAPI{
 	 * @return
 	 */
 	public User userInfo(String access_token,String openid){
-		return super.restTemplate.postForObject(
-				BASE_URI+"/cgi-bin/user/info?access_token={access_token}&openid={openid}&lang=zh_CN",
-				null,
-				User.class,
-				access_token,openid);
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+				.setUri(BASE_URI+"/cgi-bin/user/info")
+				.addParameter("access_token",access_token)
+				.addParameter("openid",openid)
+				.addParameter("lang","zh_CN")
+				.build();
+		return localHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(User.class));
 	}
-	
+
 	/**
 	 * 获取关注列表
 	 * @param access_token
@@ -36,13 +41,14 @@ public class UserAPI extends BaseAPI{
 	 * @return
 	 */
 	public FollowResult userGet(String access_token,String next_openid){
-		return super.restTemplate.postForObject(
-				BASE_URI+"/cgi-bin/user/get?access_token={access_token}&next_openid={next_openid}",
-				null,
-				FollowResult.class,
-				access_token,next_openid==null?"":next_openid);
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+				.setUri(BASE_URI+"/cgi-bin/user/get")
+				.addParameter("access_token",access_token)
+				.addParameter("next_openid", next_openid==null?"":next_openid)
+				.build();
+		return localHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(FollowResult.class));
 	}
-	
+
 	/**
 	 * 创建分组
 	 * @param access_token
@@ -50,27 +56,30 @@ public class UserAPI extends BaseAPI{
 	 * @return
 	 */
 	public Group groupsCreate(String access_token,String name){
-		MediaType mediaType = new MediaType("application","json",Charset.forName("UTF-8"));
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(mediaType);
-		HttpEntity<String> httpEntity = new HttpEntity<String>("{\"group\":{\"name\":\""+name+"\"}}",headers);
-		ResponseEntity<Group> responseEntity = super.restTemplate.exchange(BASE_URI+"/cgi-bin/groups/create?access_token={access_token}", HttpMethod.POST,httpEntity,Group.class, access_token);
-		return responseEntity.getBody();
+		String groupJson = "{\"group\":{\"name\":\""+name+"\"}}";
+		Header header = new BasicHeader(HttpHeaders.CONTENT_TYPE,ContentType.APPLICATION_JSON.toString());
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+										.setHeader(header)
+										.setUri(BASE_URI+"/cgi-bin/groups/create")
+										.addParameter("access_token", access_token)
+										.setEntity(new StringEntity(groupJson,Charset.forName("utf-8")))
+										.build();
+		return localHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(Group.class));
 	}
-	
+
 	/**
 	 * 查询所有分组
 	 * @param access_token
 	 * @return
 	 */
 	public Group groupsGet(String access_token){
-		return super.restTemplate.postForObject(
-				BASE_URI+"/cgi-bin/groups/get?access_token={access_token}",
-				null,
-				Group.class,
-				access_token);
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+				.setUri(BASE_URI+"/cgi-bin/groups/get")
+				.addParameter("access_token", access_token)
+				.build();
+		return localHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(Group.class));
 	}
-	
+
 	/**
 	 * 查询用户所在分组
 	 * @param access_token
@@ -78,44 +87,53 @@ public class UserAPI extends BaseAPI{
 	 * @return
 	 */
 	public Group groupsGetid(String access_token,String openid){
-		MediaType mediaType = new MediaType("application","json",Charset.forName("UTF-8"));
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(mediaType);
-		HttpEntity<String> httpEntity = new HttpEntity<String>("{\"openid\":\""+openid+"\"}",headers);
-		ResponseEntity<Group> responseEntity = super.restTemplate.exchange(BASE_URI+"/cgi-bin/groups/getid?access_token={access_token}", HttpMethod.POST,httpEntity,Group.class, access_token);
-		return responseEntity.getBody();
+		String groupJson = "{\"openid\":\""+openid+"\"}";
+		Header header = new BasicHeader(HttpHeaders.CONTENT_TYPE,ContentType.APPLICATION_JSON.toString());
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+										.setHeader(header)
+										.setUri(BASE_URI+"/cgi-bin/groups/getid")
+										.addParameter("access_token", access_token)
+										.setEntity(new StringEntity(groupJson,Charset.forName("utf-8")))
+										.build();
+		return localHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(Group.class));
 	}
-	
+
 	/**
 	 * 修改分组名
 	 * @param access_token
-	 * @param id 分组ID	
+	 * @param id 分组ID
 	 * @param name	分组名
 	 * @return
 	 */
 	public BaseResult groupsUpdate(String access_token,String id,String name){
-		MediaType mediaType = new MediaType("application","json",Charset.forName("UTF-8"));
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(mediaType);
-		HttpEntity<String> httpEntity = new HttpEntity<String>("{\"group\":{\"id\":"+id+",\"name\":\""+name+"\"}}",headers);
-		ResponseEntity<BaseResult> responseEntity = super.restTemplate.exchange(BASE_URI+"/cgi-bin/groups/update?access_token={access_token}", HttpMethod.POST,httpEntity,BaseResult.class, access_token);
-		return responseEntity.getBody();
+		String groupJson = "{\"group\":{\"id\":"+id+",\"name\":\""+name+"\"}}";
+		Header header = new BasicHeader(HttpHeaders.CONTENT_TYPE,ContentType.APPLICATION_JSON.toString());
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+										.setHeader(header)
+										.setUri(BASE_URI+"/cgi-bin/groups/update")
+										.addParameter("access_token", access_token)
+										.setEntity(new StringEntity(groupJson,Charset.forName("utf-8")))
+										.build();
+		return localHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(BaseResult.class));
 	}
-	
+
 	/**
 	 * 移动用户分组
 	 * @param access_token
-	 * @param openid 
+	 * @param openid
 	 * @param to_groupid
 	 * @return
 	 */
 	public BaseResult groupsMembersUpdate(String access_token,String openid,String to_groupid){
-		MediaType mediaType = new MediaType("application","json",Charset.forName("UTF-8"));
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(mediaType);
-		HttpEntity<String> httpEntity = new HttpEntity<String>("{\"openid\":\""+openid+"\",\"to_groupid\":"+to_groupid+"}",headers);
-		ResponseEntity<BaseResult> responseEntity = super.restTemplate.exchange(BASE_URI+"/cgi-bin/groups/menbers/update?access_token={access_token}", HttpMethod.POST,httpEntity,BaseResult.class, access_token);
-		return responseEntity.getBody();
+		String groupJson = "{\"openid\":\""+openid+"\",\"to_groupid\":"+to_groupid+"}";
+		Header header = new BasicHeader(HttpHeaders.CONTENT_TYPE,ContentType.APPLICATION_JSON.toString());
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+										.setHeader(header)
+										.setUri(BASE_URI+"/cgi-bin/groups/menbers/update")
+										.addParameter("access_token", access_token)
+										.setEntity(new StringEntity(groupJson,Charset.forName("utf-8")))
+										.build();
+		return localHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(BaseResult.class));
 	}
-	
+
 }

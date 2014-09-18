@@ -1,9 +1,13 @@
 package weixin.popular.api;
 
+import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.http.client.methods.RequestBuilder;
+
 import weixin.popular.bean.Token;
+import weixin.popular.client.JsonResponseHandler;
 
 public class TokenAPI extends BaseAPI{
-	
+
 	/**
 	 * 获取access_token
 	 * @param appid
@@ -11,11 +15,13 @@ public class TokenAPI extends BaseAPI{
 	 * @return
 	 */
 	public Token token(String appid,String secret){
-		return super.restTemplate.postForObject(
-				BASE_URI + "/cgi-bin/token?grant_type=client_credential&appid={appid}&secret={secret}",
-				null,
-				Token.class,
-				appid,secret);
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+				.setUri(BASE_URI + "/cgi-bin/token")
+				.addParameter("grant_type","client_credential")
+				.addParameter("appid", appid)
+				.addParameter("secret", secret)
+				.build();
+		return localHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(Token.class));
 	}
-	
+
 }

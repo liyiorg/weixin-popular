@@ -2,15 +2,18 @@ package weixin.popular.api;
 
 import java.nio.charset.Charset;
 
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.apache.http.Header;
+import org.apache.http.HttpHeaders;
+import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.http.client.methods.RequestBuilder;
+import org.apache.http.entity.ContentType;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.message.BasicHeader;
 
 import weixin.popular.bean.BaseResult;
 import weixin.popular.bean.Menu;
 import weixin.popular.bean.MenuButtons;
+import weixin.popular.client.JsonResponseHandler;
 
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -26,14 +29,16 @@ public class MenuAPI extends BaseAPI{
 	 * @return
 	 */
 	public BaseResult menuCreate(String access_token,String menuJson){
-		MediaType mediaType = new MediaType("application","json",Charset.forName("UTF-8"));
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(mediaType);
-		HttpEntity<String> httpEntity = new HttpEntity<String>(menuJson,headers);
-		ResponseEntity<BaseResult> responseEntity = super.restTemplate.exchange(BASE_URI+"/cgi-bin/menu/create?access_token={access_token}", HttpMethod.POST,httpEntity,BaseResult.class, access_token);
-		return responseEntity.getBody();
+		Header header = new BasicHeader(HttpHeaders.CONTENT_TYPE,ContentType.APPLICATION_JSON.toString());
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+										.setHeader(header)
+										.setUri(BASE_URI+"/cgi-bin/menu/create")
+										.addParameter("access_token", access_token)
+										.setEntity(new StringEntity(menuJson,Charset.forName("utf-8")))
+										.build();
+		return localHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(BaseResult.class));
 	}
-	
+
 	/**
 	 * 创建菜单
 	 * @param access_token
@@ -52,31 +57,31 @@ public class MenuAPI extends BaseAPI{
 		}
 		return null;
 	}
-	
+
 	/**
 	 * 获取菜单
 	 * @param access_token
 	 * @return
 	 */
 	public Menu menuGet(String access_token){
-		return super.restTemplate.postForObject(
-				BASE_URI+"/cgi-bin/menu/get?access_token={access_token}",
-				null,
-				Menu.class,
-				access_token);
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+					.setUri(BASE_URI+"/cgi-bin/menu/get")
+					.addParameter("access_token", access_token)
+					.build();
+		return localHttpClient.execute(httpUriRequest, JsonResponseHandler.createResponseHandler(Menu.class));
 	}
-	
+
 	/**
 	 * 删除菜单
 	 * @param access_token
 	 * @return
 	 */
 	public BaseResult menuDelete(String access_token){
-		return super.restTemplate.postForObject(
-				BASE_URI+"/cgi-bin/menu/delete?access_token={access_token}",
-				null,
-				BaseResult.class,
-				access_token);
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+				.setUri(BASE_URI+"/cgi-bin/menu/delete")
+				.addParameter("access_token", access_token)
+				.build();
+		return localHttpClient.execute(httpUriRequest, JsonResponseHandler.createResponseHandler(BaseResult.class));
 	}
-	
+
 }

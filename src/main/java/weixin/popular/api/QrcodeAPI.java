@@ -1,18 +1,20 @@
 package weixin.popular.api;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
+import java.io.IOException;
 import java.nio.charset.Charset;
 
-import org.springframework.core.io.ByteArrayResource;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.client.RestClientException;
+import org.apache.http.Header;
+import org.apache.http.HttpHeaders;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.http.client.methods.RequestBuilder;
+import org.apache.http.entity.ContentType;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.message.BasicHeader;
+import org.apache.http.util.EntityUtils;
 
 import weixin.popular.bean.QrcodeTicket;
+import weixin.popular.client.JsonResponseHandler;
 
 /**
  * 二维码API
@@ -21,7 +23,7 @@ import weixin.popular.bean.QrcodeTicket;
  */
 public class QrcodeAPI extends BaseAPI{
 
-	
+
 	/**
 	 * 创建二维码
 	 * @param access_token
@@ -29,14 +31,16 @@ public class QrcodeAPI extends BaseAPI{
 	 * @return
 	 */
 	private QrcodeTicket qrcodeCreate(String access_token,String qrcodeJson){
-		MediaType mediaType = new MediaType("application","json",Charset.forName("UTF-8"));
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(mediaType);
-		HttpEntity<String> httpEntity = new HttpEntity<String>(qrcodeJson,headers);
-		ResponseEntity<QrcodeTicket> responseEntity = super.restTemplate.exchange(BASE_URI+"/cgi-bin/qrcode/create?access_token={access_token}", HttpMethod.POST,httpEntity,QrcodeTicket.class, access_token);
-		return responseEntity.getBody();
+		Header header = new BasicHeader(HttpHeaders.CONTENT_TYPE,ContentType.APPLICATION_JSON.toString());
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+										.setHeader(header)
+										.setUri(BASE_URI+"/cgi-bin/qrcode/create")
+										.addParameter("access_token", access_token)
+										.setEntity(new StringEntity(qrcodeJson,Charset.forName("utf-8")))
+										.build();
+		return localHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(QrcodeTicket.class));
 	}
-	
+
 	/**
 	 * 创建二维码
 	 * @param access_token
@@ -49,7 +53,7 @@ public class QrcodeAPI extends BaseAPI{
 		return qrcodeCreate(access_token,String.format("{"+(expire_seconds==null?"%1$s":"\"expire_seconds\": %1$s, ")+"\"action_name\": \"%2$s\", \"action_info\": {\"scene\": {\"scene_id\": %3$d}}}",
 													expire_seconds==null?"":expire_seconds,action_name,scene_id));
 	}
-	
+
 	/**
 	 * 创建临时二维码
 	 * @param access_token
@@ -60,7 +64,7 @@ public class QrcodeAPI extends BaseAPI{
 	public QrcodeTicket qrcodeCreateTemp(String access_token,int expire_seconds,long scene_id){
 		return qrcodeCreate(access_token,expire_seconds,"QR_SCENE",scene_id);
 	}
-	
+
 	/**
 	 * 创建持久二维码
 	 * @param access_token
@@ -70,25 +74,25 @@ public class QrcodeAPI extends BaseAPI{
 	public QrcodeTicket qrcodeCreateFinal(String access_token,int scene_id){
 		return qrcodeCreate(access_token,null,"QR_LIMIT_SCENE",scene_id);
 	}
-	
+
 	/**
 	 * 下载二维码
 	 * 视频文件不支持下载
 	 * @param ticket  内部自动 UrlEncode
 	 * @return
 	 */
-	public ResponseEntity<ByteArrayResource> showqrcode(String ticket){
+	public byte[] showqrcode(String ticket){
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+				.setUri(QRCODE_DOWNLOAD_URI + "/cgi-bin/showqrcode")
+				.addParameter("ticket", ticket)
+				.build();
+		HttpResponse httpResponse = localHttpClient.execute(httpUriRequest);
 		try {
-			return super.restTemplate.postForEntity(QRCODE_DOWNLOAD_URI + "/cgi-bin/showqrcode?ticket={ticket}",
-																null,
-																ByteArrayResource.class,
-																URLEncoder.encode(ticket,"utf-8"));
-		} catch (RestClientException e) {
-			e.printStackTrace();
-		} catch (UnsupportedEncodingException e) {
+			return EntityUtils.toByteArray(httpResponse.getEntity());
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
-	
+
 }

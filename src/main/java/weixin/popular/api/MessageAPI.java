@@ -3,12 +3,13 @@ package weixin.popular.api;
 import java.nio.charset.Charset;
 import java.util.List;
 
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.client.RestClientException;
+import org.apache.http.Header;
+import org.apache.http.HttpHeaders;
+import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.http.client.methods.RequestBuilder;
+import org.apache.http.entity.ContentType;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.message.BasicHeader;
 
 import weixin.popular.bean.Article;
 import weixin.popular.bean.BaseResult;
@@ -17,6 +18,7 @@ import weixin.popular.bean.MessageSendResult;
 import weixin.popular.bean.Uploadvideo;
 import weixin.popular.bean.massmessage.MassMessage;
 import weixin.popular.bean.message.Message;
+import weixin.popular.client.JsonResponseHandler;
 
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -50,12 +52,14 @@ public class MessageAPI extends BaseAPI{
 	 * @return
 	 */
 	public BaseResult messageCustomSend(String access_token,String messageJson){
-		MediaType mediaType = new MediaType("application","json",Charset.forName("UTF-8"));
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(mediaType);
-		HttpEntity<String> httpEntity = new HttpEntity<String>(messageJson,headers);
-		ResponseEntity<BaseResult> responseEntity = super.restTemplate.exchange(BASE_URI+"/cgi-bin/message/custom/send?access_token={access_token}", HttpMethod.POST,httpEntity,BaseResult.class, access_token);
-		return responseEntity.getBody();
+		Header header = new BasicHeader(HttpHeaders.CONTENT_TYPE,ContentType.APPLICATION_JSON.toString());
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+										.setHeader(header)
+										.setUri(BASE_URI+"/cgi-bin/message/custom/send")
+										.addParameter("access_token", access_token)
+										.setEntity(new StringEntity(messageJson,Charset.forName("utf-8")))
+										.build();
+		return localHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(BaseResult.class));
 	}
 
 	/**
@@ -81,21 +85,21 @@ public class MessageAPI extends BaseAPI{
 	 * @return
 	 */
 	public Media mediaUploadnews(String access_token,List<Article> articles){
+		String messageJson = null;
 		try {
-			MediaType mediaType = new MediaType("application","json",Charset.forName("UTF-8"));
-			HttpHeaders headers = new HttpHeaders();
-			headers.setContentType(mediaType);
 			String str = objectMapper.writeValueAsString(articles);
-			String messageJson = "{\"articles\":"+str+"}";
-			HttpEntity<String> httpEntity = new HttpEntity<String>(messageJson,headers);
-			ResponseEntity<Media> responseEntity = super.restTemplate.exchange(BASE_URI+"/cgi-bin/media/uploadnews?access_token={access_token}", HttpMethod.POST,httpEntity,Media.class, access_token);
-			return responseEntity.getBody();
-		} catch (RestClientException e) {
-			e.printStackTrace();
+			messageJson = "{\"articles\":"+str+"}";
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
-		return null;
+		Header header = new BasicHeader(HttpHeaders.CONTENT_TYPE,ContentType.APPLICATION_JSON.toString());
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+										.setHeader(header)
+										.setUri(BASE_URI+"/cgi-bin/media/uploadnews")
+										.addParameter("access_token", access_token)
+										.setEntity(new StringEntity(messageJson,Charset.forName("utf-8")))
+										.build();
+		return localHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(Media.class));
 	}
 
 	/**
@@ -105,20 +109,20 @@ public class MessageAPI extends BaseAPI{
 	 * @return
 	 */
 	public Media mediaUploadvideo(String access_token,Uploadvideo uploadvideo){
+		String messageJson = null;
 		try {
-			MediaType mediaType = new MediaType("application","json",Charset.forName("UTF-8"));
-			HttpHeaders headers = new HttpHeaders();
-			headers.setContentType(mediaType);
-			String messageJson = objectMapper.writeValueAsString(uploadvideo);
-			HttpEntity<String> httpEntity = new HttpEntity<String>(messageJson,headers);
-			ResponseEntity<Media> responseEntity = super.restTemplate.exchange(MEDIA_URI+"/cgi-bin/media/uploadvideo?access_token={access_token}", HttpMethod.POST,httpEntity,Media.class, access_token);
-			return responseEntity.getBody();
-		} catch (RestClientException e) {
-			e.printStackTrace();
+			messageJson = objectMapper.writeValueAsString(uploadvideo);
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
-		return null;
+		Header header = new BasicHeader(HttpHeaders.CONTENT_TYPE,ContentType.APPLICATION_JSON.toString());
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+										.setHeader(header)
+										.setUri(MEDIA_URI+"/cgi-bin/media/uploadvideo")
+										.addParameter("access_token", access_token)
+										.setEntity(new StringEntity(messageJson,Charset.forName("utf-8")))
+										.build();
+		return localHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(Media.class));
 	}
 
 
@@ -129,12 +133,14 @@ public class MessageAPI extends BaseAPI{
 	 * @return
 	 */
 	public MessageSendResult messageMassSendall(String access_token,String messageJson){
-		MediaType mediaType = new MediaType("application","json",Charset.forName("UTF-8"));
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(mediaType);
-		HttpEntity<String> httpEntity = new HttpEntity<String>(messageJson,headers);
-		ResponseEntity<MessageSendResult> responseEntity = super.restTemplate.exchange(BASE_URI+"/cgi-bin/message/mass/sendall?access_token={access_token}", HttpMethod.POST,httpEntity,MessageSendResult.class, access_token);
-		return responseEntity.getBody();
+		Header header = new BasicHeader(HttpHeaders.CONTENT_TYPE,ContentType.APPLICATION_JSON.toString());
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+										.setHeader(header)
+										.setUri(BASE_URI+"/cgi-bin/message/mass/sendall")
+										.addParameter("access_token", access_token)
+										.setEntity(new StringEntity(messageJson,Charset.forName("utf-8")))
+										.build();
+		return localHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(MessageSendResult.class));
 	}
 
 	/**
@@ -161,12 +167,14 @@ public class MessageAPI extends BaseAPI{
 	 * @return
 	 */
 	public MessageSendResult messageMassSend(String access_token,String messageJson){
-		MediaType mediaType = new MediaType("application","json",Charset.forName("UTF-8"));
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(mediaType);
-		HttpEntity<String> httpEntity = new HttpEntity<String>(messageJson,headers);
-		ResponseEntity<MessageSendResult> responseEntity = super.restTemplate.exchange(BASE_URI+"/cgi-bin/message/mass/send?access_token={access_token}", HttpMethod.POST,httpEntity,MessageSendResult.class, access_token);
-		return responseEntity.getBody();
+		Header header = new BasicHeader(HttpHeaders.CONTENT_TYPE,ContentType.APPLICATION_JSON.toString());
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+										.setHeader(header)
+										.setUri(BASE_URI+"/cgi-bin/message/mass/send")
+										.addParameter("access_token", access_token)
+										.setEntity(new StringEntity(messageJson,Charset.forName("utf-8")))
+										.build();
+		return localHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(MessageSendResult.class));
 	}
 
 	/**
@@ -196,12 +204,15 @@ public class MessageAPI extends BaseAPI{
 	 * @return
 	 */
 	public BaseResult messageMassDelete(String access_token,String msgid){
-		MediaType mediaType = new MediaType("application","json",Charset.forName("UTF-8"));
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(mediaType);
 		String messageJson = "{\"msgid\":" + msgid + "}";
-		HttpEntity<String> httpEntity = new HttpEntity<String>(messageJson,headers);
-		ResponseEntity<BaseResult> responseEntity = super.restTemplate.exchange(BASE_URI+"/cgi-bin/message/mass/delete?access_token={access_token}", HttpMethod.POST,httpEntity,BaseResult.class, access_token);
-		return responseEntity.getBody();
+		Header header = new BasicHeader(HttpHeaders.CONTENT_TYPE,ContentType.APPLICATION_JSON.toString());
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+										.setHeader(header)
+										.setUri(BASE_URI+"/cgi-bin/message/mass/delete")
+										.addParameter("access_token", access_token)
+										.setEntity(new StringEntity(messageJson,Charset.forName("utf-8")))
+										.build();
+		return localHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(BaseResult.class));
 	}
+
 }

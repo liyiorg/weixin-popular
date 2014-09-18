@@ -67,7 +67,7 @@ public class MediaAPI extends BaseAPI{
 		HttpPost httpPost = new HttpPost(MEDIA_URI+"/cgi-bin/media/upload");
         InputStreamBody inputStreamBody = new InputStreamBody(inputStream, mediaType.mimeType(),"temp."+mediaType.fileSuffix());
 		HttpEntity reqEntity = MultipartEntityBuilder.create()
-        		 .addPart(inputStreamBody)
+        		 .addPart("media",inputStreamBody)
                  .addTextBody("access_token", access_token)
                  .addTextBody("type",mediaType.uploadType())
                  .build();
@@ -226,22 +226,5 @@ public class MediaAPI extends BaseAPI{
 
 
 	}
-
-
-	public static void main(String[] args) {
-		String access_token = "Tg1p2R2SBFFITPuB_Pb-y6W0f3adA_4Q6Z5AiED6utOruT0Q4qB-AUL4Z6l2fX_zruFhzmYWAAZCcUczQANuUw";
-		System.out.println(access_token);
-		MediaAPI mediaAPI = new MediaAPI();
-		try {
-			Media media = mediaAPI.mediaUpload(access_token, MediaType.image, new URI("http://www.cnzhenshi.com/public/images/a7/42/2e/67e9c19cbe95eb6d80e5314c8ae0a32381eab7d7.png"));
-			System.out.println(media.getErrcode());
-			System.out.println(media.getErrmsg());
-			System.out.println(media.getMedia_id());
-		} catch (URISyntaxException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
 
 }

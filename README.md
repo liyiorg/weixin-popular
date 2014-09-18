@@ -10,27 +10,27 @@ weixin-popular 包括微信公众平台基础API与支付API,提供便捷的API�
 
 API 列表:
 ==============
-MediaAPI	多媒体上传下载	
-MenuAPI		菜单	
-MessageAPI      信息发送	
-PayAPI		支付订单相关接口	
-QrcodeAPI       二维码		
-SnsAPI          网签授权		
-TokenAPI        token 获取		
-UserAPI         用户管理	
-ShorturlAPI		长链接转成短链接(version 1.2.0)	
+* MediaAPI	                 多媒体上传下载
+* MenuAPI		      菜单
+* MessageAPI      信息发送
+* PayAPI		      支付订单相关接口
+* QrcodeAPI       二维码
+* SnsAPI          网签授权
+* TokenAPI        token 获取
+* UserAPI         用户管理
+* ShorturlAPI	    长链接转成短链接
 
 
 工具类
 ==============
-PayUtil         支付工具类，生成JS支付，原生支付			
-SignatureUtil   签权生成、验证			
-XMLConverUtil   XML 对象转换（JAXB）			
+* PayUtil         支付工具类，生成JS支付，原生支付
+* SignatureUtil   签权生成、验证
+* XMLConverUtil   XML 对象转换（JAXB）
 
 参考资料:
 ==============
-微信公众平台开发者文档 http://mp.weixin.qq.com/wiki/index.php		
-微信支付文档 http://mp.weixin.qq.com/cgi-bin/readtemplate?t=business/faq_tmpl&lang=zh_CN		
+- 微信公众平台开发者文档 http://mp.weixin.qq.com/wiki/index.php
+- 微信支付文档 http://mp.weixin.qq.com/cgi-bin/readtemplate?t=business/faq_tmpl&lang=zh_CN
 
 
 消息接收示例代码:
@@ -46,8 +46,6 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.util.StreamUtils;
 
 import weixin.popular.bean.EventMessage;
 import weixin.popular.bean.xmlmessage.XMLTextMessage;
@@ -81,10 +79,8 @@ public class ReceiveServlet extends HttpServlet{
 		}
 
 		if(inputStream!=null){
-			String xml = StreamUtils.copyToString(inputStream,Charset.forName("utf-8"));
-			System.out.println("xml: "+xml);
 			//转换XML
-			EventMessage eventMessage = XMLConverUtil.convertToObject(EventMessage.class,xml);
+			EventMessage eventMessage = XMLConverUtil.convertToObject(EventMessage.class,inputStream);
 			//创建回复
 			XMLTextMessage xmlTextMessage = new XMLTextMessage(
 					eventMessage.getFromUserName(),

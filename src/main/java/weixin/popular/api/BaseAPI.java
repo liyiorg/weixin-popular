@@ -2,7 +2,7 @@ package weixin.popular.api;
 
 import org.springframework.web.client.RestTemplate;
 
-import weixin.popular.client.RestTemplateClient4_3;
+import weixin.popular.client.RestTemplateClient;
 
 public abstract class BaseAPI {
 	protected static final String BASE_URI = "https://api.weixin.qq.com";
@@ -10,6 +10,6 @@ public abstract class BaseAPI {
 	protected static final String QRCODE_DOWNLOAD_URI = "https://mp.weixin.qq.com";
 
 
-	protected RestTemplate restTemplate = RestTemplateClient4_3.restTemplate();
+	protected RestTemplate restTemplate = RestTemplateClient.restTemplate();
 
 }

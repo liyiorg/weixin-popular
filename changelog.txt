@@ -2,17 +2,10 @@ WEIXIN-POPULAR CHANGELOG
 ===========================
 https://github.com/liyiorg/weixin-popular
 
-Changes in version 1.2.1 (2014-09-17)
--------------------------------------
-*modified issues #3 weixin.popular.bean.Delivernotify field out_trade_no
-
-
-Changes in version 1.2.0 (2014-09-17)
+Changes in version 1.1.1 (2014-09-18)
 -------------------------------------
 *added weixin.popular.api.ShorturlAPI
-*added weixin.popular.client.RestTemplateClient4_3
-*modified pom.xml dependency httpclient version 4.2.5 to 4.3.5
-*modified pom.xml compiler 1.6 to 1.7
+*modified issues #3 weixin.popular.bean.Delivernotify field out_trade_no
 
 
 Changes in version 1.1.0 (2014-07-08)

@@ -13,8 +13,8 @@ public class LocalHttpClient {
 	private static LocalHttpClient localHttpClient;
 	protected HttpClient httpClient;
 
-	private static int maxTotal = 200;
-	private static int maxPerRoute = 20;
+	private static int maxTotal = 100;
+	private static int maxPerRoute = 10;
 	public static void init(int maxTotal,int maxPerRoute){
 		LocalHttpClient.maxTotal = maxTotal;
 		LocalHttpClient.maxPerRoute = maxPerRoute;

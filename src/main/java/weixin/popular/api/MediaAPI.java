@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.nio.charset.UnsupportedCharsetException;
 
 import org.apache.http.HttpEntity;
@@ -16,9 +15,9 @@ import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.client.methods.RequestBuilder;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
-import org.apache.http.entity.mime.content.ByteArrayBody;
 import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.entity.mime.content.InputStreamBody;
+import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
@@ -65,7 +64,8 @@ public class MediaAPI extends BaseAPI{
 	 */
 	public Media mediaUpload(String access_token,MediaType mediaType,InputStream inputStream){
 		HttpPost httpPost = new HttpPost(MEDIA_URI+"/cgi-bin/media/upload");
-        InputStreamBody inputStreamBody = new InputStreamBody(inputStream, mediaType.mimeType(),"temp."+mediaType.fileSuffix());
+        @SuppressWarnings("deprecation")
+		InputStreamBody inputStreamBody = new InputStreamBody(inputStream, mediaType.mimeType(),"temp."+mediaType.fileSuffix());
 		HttpEntity reqEntity = MultipartEntityBuilder.create()
         		 .addPart("media",inputStreamBody)
                  .addTextBody("access_token", access_token)
@@ -90,9 +90,9 @@ public class MediaAPI extends BaseAPI{
 	 */
 	public Media mediaUpload(String access_token,MediaType mediaType,URI uri){
 		HttpPost httpPost = new HttpPost(MEDIA_URI+"/cgi-bin/media/upload");
-		System.out.println(uri.getRawPath());
+		CloseableHttpClient tempHttpClient = HttpClients.createDefault();
 		try {
-			HttpEntity entity = HttpClients.createDefault().execute(RequestBuilder.get().setUri(uri).build()).getEntity();
+			HttpEntity entity = tempHttpClient.execute(RequestBuilder.get().setUri(uri).build()).getEntity();
 			HttpEntity reqEntity = MultipartEntityBuilder.create()
 					 .addBinaryBody("media",EntityUtils.toByteArray(entity),ContentType.get(entity),"temp."+mediaType.fileSuffix())
 			         .addTextBody("access_token", access_token)
@@ -108,6 +108,12 @@ public class MediaAPI extends BaseAPI{
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
+		} finally{
+			try {
+				tempHttpClient.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 		return null;
 	}

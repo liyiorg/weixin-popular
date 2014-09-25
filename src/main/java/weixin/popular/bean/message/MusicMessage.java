@@ -4,9 +4,10 @@ public class MusicMessage extends Message {
 
 	private Music music;
 
-	
-	public MusicMessage(String touser) {
+
+	public MusicMessage(String touser,Music music) {
 		super(touser,"music");
+		this.music = music;
 	}
 
 	public Music getMusic() {
@@ -24,6 +25,18 @@ public class MusicMessage extends Message {
 		private String musicurl;
 		private String hqmusicurl;
 		private String thumb_media_id;
+
+
+
+		public Music(String title, String description, String musicurl,
+				String hqmusicurl, String thumb_media_id) {
+			super();
+			this.title = title;
+			this.description = description;
+			this.musicurl = musicurl;
+			this.hqmusicurl = hqmusicurl;
+			this.thumb_media_id = thumb_media_id;
+		}
 
 		public String getTitle() {
 			return title;

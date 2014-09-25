@@ -1,15 +1,17 @@
 package weixin.popular.bean.message;
 
 /**
- * 语音 
- * 
+ * 语音
+ *
  * @author LiYi
- * 
+ *
  */
 public class VoiceMessage extends Message {
 
-	public VoiceMessage(String touser) {
+	public VoiceMessage(String touser,String mediaId) {
 		super(touser,"voice");
+		this.voice = new Voice();
+		this.voice.setMedia_id(mediaId);
 	}
 
 	public Voice voice;

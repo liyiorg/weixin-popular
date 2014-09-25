@@ -3,15 +3,17 @@ package weixin.popular.bean.message;
 import java.util.List;
 
 /**
- * 图文消息 
+ * 图文消息
  * 图文消息条数限制在10条以内，注意，如果图文数超过10，则将会无响应。
  * @author LiYi
  *
  */
 public class NewsMessage extends Message {
 
-	public NewsMessage(String touser) {
+	public NewsMessage(String touser,List<Article> articles) {
 		super(touser,"news");
+		this.news = new News();
+		this.news.setArticles(articles);
 	}
 
 	private News news;
@@ -42,6 +44,17 @@ public class NewsMessage extends Message {
 		private String description;
 		private String url;
 		private String picurl;
+
+
+
+		public Article(String title, String description, String url,
+				String picurl) {
+			super();
+			this.title = title;
+			this.description = description;
+			this.url = url;
+			this.picurl = picurl;
+		}
 
 		public String getTitle() {
 			return title;

@@ -3,13 +3,9 @@ package weixin.popular.api;
 import java.nio.charset.Charset;
 import java.util.List;
 
-import org.apache.http.Header;
-import org.apache.http.HttpHeaders;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.client.methods.RequestBuilder;
-import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
-import org.apache.http.message.BasicHeader;
 
 import weixin.popular.bean.Article;
 import weixin.popular.bean.BaseResult;
@@ -20,10 +16,7 @@ import weixin.popular.bean.massmessage.MassMessage;
 import weixin.popular.bean.message.Message;
 import weixin.popular.client.JsonResponseHandler;
 
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * 当用户主动发消息给公众号的时候
@@ -38,12 +31,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 public class MessageAPI extends BaseAPI{
 
-	private ObjectMapper objectMapper  = new ObjectMapper();
-
-	{
-		objectMapper.setSerializationInclusion(Include.NON_NULL);
-		objectMapper.configure(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT,false);
-	}
 
 	/**
 	 * 消息发送
@@ -52,9 +39,8 @@ public class MessageAPI extends BaseAPI{
 	 * @return
 	 */
 	public BaseResult messageCustomSend(String access_token,String messageJson){
-		Header header = new BasicHeader(HttpHeaders.CONTENT_TYPE,ContentType.APPLICATION_JSON.toString());
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
-										.setHeader(header)
+										.setHeader(jsonHeader)
 										.setUri(BASE_URI+"/cgi-bin/message/custom/send")
 										.addParameter("access_token", access_token)
 										.setEntity(new StringEntity(messageJson,Charset.forName("utf-8")))
@@ -92,9 +78,8 @@ public class MessageAPI extends BaseAPI{
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
-		Header header = new BasicHeader(HttpHeaders.CONTENT_TYPE,ContentType.APPLICATION_JSON.toString());
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
-										.setHeader(header)
+										.setHeader(jsonHeader)
 										.setUri(BASE_URI+"/cgi-bin/media/uploadnews")
 										.addParameter("access_token", access_token)
 										.setEntity(new StringEntity(messageJson,Charset.forName("utf-8")))
@@ -115,9 +100,8 @@ public class MessageAPI extends BaseAPI{
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
-		Header header = new BasicHeader(HttpHeaders.CONTENT_TYPE,ContentType.APPLICATION_JSON.toString());
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
-										.setHeader(header)
+										.setHeader(jsonHeader)
 										.setUri(MEDIA_URI+"/cgi-bin/media/uploadvideo")
 										.addParameter("access_token", access_token)
 										.setEntity(new StringEntity(messageJson,Charset.forName("utf-8")))
@@ -133,9 +117,8 @@ public class MessageAPI extends BaseAPI{
 	 * @return
 	 */
 	public MessageSendResult messageMassSendall(String access_token,String messageJson){
-		Header header = new BasicHeader(HttpHeaders.CONTENT_TYPE,ContentType.APPLICATION_JSON.toString());
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
-										.setHeader(header)
+										.setHeader(jsonHeader)
 										.setUri(BASE_URI+"/cgi-bin/message/mass/sendall")
 										.addParameter("access_token", access_token)
 										.setEntity(new StringEntity(messageJson,Charset.forName("utf-8")))
@@ -167,9 +150,8 @@ public class MessageAPI extends BaseAPI{
 	 * @return
 	 */
 	public MessageSendResult messageMassSend(String access_token,String messageJson){
-		Header header = new BasicHeader(HttpHeaders.CONTENT_TYPE,ContentType.APPLICATION_JSON.toString());
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
-										.setHeader(header)
+										.setHeader(jsonHeader)
 										.setUri(BASE_URI+"/cgi-bin/message/mass/send")
 										.addParameter("access_token", access_token)
 										.setEntity(new StringEntity(messageJson,Charset.forName("utf-8")))
@@ -205,9 +187,8 @@ public class MessageAPI extends BaseAPI{
 	 */
 	public BaseResult messageMassDelete(String access_token,String msgid){
 		String messageJson = "{\"msgid\":" + msgid + "}";
-		Header header = new BasicHeader(HttpHeaders.CONTENT_TYPE,ContentType.APPLICATION_JSON.toString());
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
-										.setHeader(header)
+										.setHeader(jsonHeader)
 										.setUri(BASE_URI+"/cgi-bin/message/mass/delete")
 										.addParameter("access_token", access_token)
 										.setEntity(new StringEntity(messageJson,Charset.forName("utf-8")))

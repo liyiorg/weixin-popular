@@ -1,5 +1,14 @@
 package weixin.popular.api;
 
+import org.apache.http.Header;
+import org.apache.http.HttpHeaders;
+import org.apache.http.entity.ContentType;
+import org.apache.http.message.BasicHeader;
+
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import weixin.popular.client.LocalHttpClient;
 
 public abstract class BaseAPI {
@@ -10,4 +19,12 @@ public abstract class BaseAPI {
 
 	protected LocalHttpClient localHttpClient = LocalHttpClient.getInstance();
 
+	protected static Header jsonHeader = new BasicHeader(HttpHeaders.CONTENT_TYPE,ContentType.APPLICATION_JSON.toString());
+
+	protected static ObjectMapper objectMapper  = new ObjectMapper();
+
+	static{
+		objectMapper.setSerializationInclusion(Include.NON_NULL);
+		objectMapper.configure(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT,false);
+	}
 }

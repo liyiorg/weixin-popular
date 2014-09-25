@@ -2,23 +2,16 @@ package weixin.popular.api;
 
 import java.nio.charset.Charset;
 
-import org.apache.http.Header;
-import org.apache.http.HttpHeaders;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.client.methods.RequestBuilder;
-import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
-import org.apache.http.message.BasicHeader;
 
 import weixin.popular.bean.BaseResult;
 import weixin.popular.bean.Menu;
 import weixin.popular.bean.MenuButtons;
 import weixin.popular.client.JsonResponseHandler;
 
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class MenuAPI extends BaseAPI{
 
@@ -29,9 +22,8 @@ public class MenuAPI extends BaseAPI{
 	 * @return
 	 */
 	public BaseResult menuCreate(String access_token,String menuJson){
-		Header header = new BasicHeader(HttpHeaders.CONTENT_TYPE,ContentType.APPLICATION_JSON.toString());
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
-										.setHeader(header)
+										.setHeader(jsonHeader)
 										.setUri(BASE_URI+"/cgi-bin/menu/create")
 										.addParameter("access_token", access_token)
 										.setEntity(new StringEntity(menuJson,Charset.forName("utf-8")))
@@ -46,9 +38,6 @@ public class MenuAPI extends BaseAPI{
 	 * @return
 	 */
 	public BaseResult menuCreate(String access_token,MenuButtons menuButtons){
-		ObjectMapper objectMapper  = new ObjectMapper();
-		objectMapper.setSerializationInclusion(Include.NON_NULL);
-		objectMapper.configure(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT,false);
 		try {
 			String str = objectMapper.writeValueAsString(menuButtons);
 			return menuCreate(access_token,str);

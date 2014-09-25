@@ -2,13 +2,9 @@ package weixin.popular.api;
 
 import java.nio.charset.Charset;
 
-import org.apache.http.Header;
-import org.apache.http.HttpHeaders;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.client.methods.RequestBuilder;
-import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
-import org.apache.http.message.BasicHeader;
 
 import weixin.popular.bean.BaseResult;
 import weixin.popular.bean.FollowResult;
@@ -57,9 +53,8 @@ public class UserAPI extends BaseAPI{
 	 */
 	public Group groupsCreate(String access_token,String name){
 		String groupJson = "{\"group\":{\"name\":\""+name+"\"}}";
-		Header header = new BasicHeader(HttpHeaders.CONTENT_TYPE,ContentType.APPLICATION_JSON.toString());
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
-										.setHeader(header)
+										.setHeader(jsonHeader)
 										.setUri(BASE_URI+"/cgi-bin/groups/create")
 										.addParameter("access_token", access_token)
 										.setEntity(new StringEntity(groupJson,Charset.forName("utf-8")))
@@ -88,9 +83,8 @@ public class UserAPI extends BaseAPI{
 	 */
 	public Group groupsGetid(String access_token,String openid){
 		String groupJson = "{\"openid\":\""+openid+"\"}";
-		Header header = new BasicHeader(HttpHeaders.CONTENT_TYPE,ContentType.APPLICATION_JSON.toString());
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
-										.setHeader(header)
+										.setHeader(jsonHeader)
 										.setUri(BASE_URI+"/cgi-bin/groups/getid")
 										.addParameter("access_token", access_token)
 										.setEntity(new StringEntity(groupJson,Charset.forName("utf-8")))
@@ -107,9 +101,8 @@ public class UserAPI extends BaseAPI{
 	 */
 	public BaseResult groupsUpdate(String access_token,String id,String name){
 		String groupJson = "{\"group\":{\"id\":"+id+",\"name\":\""+name+"\"}}";
-		Header header = new BasicHeader(HttpHeaders.CONTENT_TYPE,ContentType.APPLICATION_JSON.toString());
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
-										.setHeader(header)
+										.setHeader(jsonHeader)
 										.setUri(BASE_URI+"/cgi-bin/groups/update")
 										.addParameter("access_token", access_token)
 										.setEntity(new StringEntity(groupJson,Charset.forName("utf-8")))
@@ -126,9 +119,8 @@ public class UserAPI extends BaseAPI{
 	 */
 	public BaseResult groupsMembersUpdate(String access_token,String openid,String to_groupid){
 		String groupJson = "{\"openid\":\""+openid+"\",\"to_groupid\":"+to_groupid+"}";
-		Header header = new BasicHeader(HttpHeaders.CONTENT_TYPE,ContentType.APPLICATION_JSON.toString());
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
-										.setHeader(header)
+										.setHeader(jsonHeader)
 										.setUri(BASE_URI+"/cgi-bin/groups/menbers/update")
 										.addParameter("access_token", access_token)
 										.setEntity(new StringEntity(groupJson,Charset.forName("utf-8")))

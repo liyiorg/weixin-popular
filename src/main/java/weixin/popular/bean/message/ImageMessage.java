@@ -2,8 +2,10 @@ package weixin.popular.bean.message;
 
 public class ImageMessage extends Message {
 
-	public ImageMessage(String touser) {
+	public ImageMessage(String touser,String mediaId) {
 		super(touser,"image");
+		this.image = new Image();
+		this.image.setMedia_id(mediaId);
 	}
 
 	private Image image;

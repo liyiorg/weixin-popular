@@ -3,14 +3,10 @@ package weixin.popular.api;
 import java.io.IOException;
 import java.nio.charset.Charset;
 
-import org.apache.http.Header;
-import org.apache.http.HttpHeaders;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.client.methods.RequestBuilder;
-import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
-import org.apache.http.message.BasicHeader;
 import org.apache.http.util.EntityUtils;
 
 import weixin.popular.bean.QrcodeTicket;
@@ -31,9 +27,8 @@ public class QrcodeAPI extends BaseAPI{
 	 * @return
 	 */
 	private QrcodeTicket qrcodeCreate(String access_token,String qrcodeJson){
-		Header header = new BasicHeader(HttpHeaders.CONTENT_TYPE,ContentType.APPLICATION_JSON.toString());
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
-										.setHeader(header)
+										.setHeader(jsonHeader)
 										.setUri(BASE_URI+"/cgi-bin/qrcode/create")
 										.addParameter("access_token", access_token)
 										.setEntity(new StringEntity(qrcodeJson,Charset.forName("utf-8")))

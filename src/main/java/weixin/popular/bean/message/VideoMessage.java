@@ -2,19 +2,20 @@ package weixin.popular.bean.message;
 
 /**
  * 视频
- * 
+ *
  * @author LiYi
- * 
+ *
  */
 public class VideoMessage extends Message {
 
-	public VideoMessage(String touser) {
+	public VideoMessage(String touser,Video video) {
 		super(touser,"video");
+		this.video = video;
 	}
 
 	public Video video;
 
-	
+
 
 	public Video getVideo() {
 		return video;

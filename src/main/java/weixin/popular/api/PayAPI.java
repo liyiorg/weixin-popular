@@ -5,13 +5,9 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import org.apache.http.Header;
-import org.apache.http.HttpHeaders;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.client.methods.RequestBuilder;
-import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
-import org.apache.http.message.BasicHeader;
 
 import weixin.popular.bean.BaseResult;
 import weixin.popular.bean.Delivernotify;
@@ -33,9 +29,8 @@ public class PayAPI extends BaseAPI{
 	 * @return
 	 */
 	private BaseResult payDelivernotify(String access_token,String delivernotifyJson){
-		Header header = new BasicHeader(HttpHeaders.CONTENT_TYPE,ContentType.APPLICATION_JSON.toString());
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
-										.setHeader(header)
+										.setHeader(jsonHeader)
 										.setUri(BASE_URI + "/pay/delivernotify")
 										.addParameter("access_token", access_token)
 										.setEntity(new StringEntity(delivernotifyJson,Charset.forName("utf-8")))
@@ -70,9 +65,8 @@ public class PayAPI extends BaseAPI{
 	 * @return
 	 */
 	private OrderInfo payOrderquery(String access_token,String orderqueryJson){
-		Header header = new BasicHeader(HttpHeaders.CONTENT_TYPE,ContentType.APPLICATION_JSON.toString());
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
-										.setHeader(header)
+										.setHeader(jsonHeader)
 										.setUri(BASE_URI + "/pay/orderquery")
 										.addParameter("access_token", access_token)
 										.setEntity(new StringEntity(orderqueryJson,Charset.forName("utf-8")))

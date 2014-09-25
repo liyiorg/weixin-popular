@@ -34,6 +34,13 @@ public class VideoMessage extends Message {
 		private String title;
 		private String description;
 
+		public Video(String media_id, String title, String description) {
+			super();
+			this.media_id = media_id;
+			this.title = title;
+			this.description = description;
+		}
+
 		public String getMedia_id() {
 			return media_id;
 		}

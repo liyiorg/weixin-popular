@@ -1,43 +1,43 @@
 package weixin.popular.bean.pay;
 
 public class PayPackage {
-	
-	private String back_type;	//银行通道类型
-	
+
+	private String bank_type;	//银行通道类型
+
 	private String body; 		//商品描述
-	
+
 	private String attach;		//附加数据
-	
+
 	private String partner;		//商户号
-	
+
 	private String out_trade_no;//商户订单号
-	
+
 	private String total_fee;	//订单价格
-	
+
 	private String fee_type;	//支付类型 1 人民币
-	
+
 	private String notify_url;	//返回地址
-	
+
 	private String spbill_create_ip;	//订单生成的客户端IP
-	
+
 	private String time_start;			//交易起始时间
-	
+
 	private String time_expire; 		//交易结束时间
-	
+
 	private String transport_fee;		//物流费用
-	
+
 	private String product_fee;			//商品费用
-	
+
 	private String goods_tag;			//商品标记,优惠卷里可能用到
-	
+
 	private String input_charset; 		//default GBK , UTF-8
 
-	public String getBack_type() {
-		return back_type;
+	public String getBank_type() {
+		return bank_type;
 	}
 
-	public void setBack_type(String backType) {
-		back_type = backType;
+	public void setBank_type(String bank_type) {
+		this.bank_type = bank_type;
 	}
 
 	public String getBody() {
@@ -151,9 +151,9 @@ public class PayPackage {
 	public void setInput_charset(String inputCharset) {
 		input_charset = inputCharset;
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
 }

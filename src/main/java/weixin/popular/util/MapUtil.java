@@ -24,7 +24,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 public class MapUtil {
-	
+
 	/**
 	 * Map key 排序
 	 * @param map
@@ -46,8 +46,8 @@ public class MapUtil {
 		}
 		return tempMap;
 	}
-	
-	
+
+
 	/**
 	 * 转换对象为map
 	 * @param object
@@ -85,7 +85,7 @@ public class MapUtil {
 		}
 		return tempMap;
 	}
-	
+
 	/**
 	 * url 参数串连
 	 * @param map
@@ -98,9 +98,10 @@ public class MapUtil {
 		for(String key :map.keySet()){
 			if(map.get(key)!=null&&!"".equals(map.get(key))){
 				try {
-					stringBuilder.append(keyLower?key.toLowerCase():key)
+					String temp = (key.endsWith("_")&&key.length()>1)?key.substring(0,key.length()-1):key;
+					stringBuilder.append(keyLower?temp.toLowerCase():temp)
 								 .append("=")
-								 .append(valueUrlencode?URLEncoder.encode(map.get(key),"utf-8"):map.get(key))
+								 .append(valueUrlencode?URLEncoder.encode(map.get(key),"utf-8").replace("+", "%20"):map.get(key))
 								 .append("&");
 				} catch (UnsupportedEncodingException e) {
 					e.printStackTrace();
@@ -112,20 +113,20 @@ public class MapUtil {
 		}
 		return stringBuilder.toString();
 	}
-	
+
 	/**
-	 * 简单 xml 转换为 Map 
+	 * 简单 xml 转换为 Map
 	 * @param reader
 	 * @return
 	 */
 	public static Map<String,String> xmlToMap(String xml){
 		try {
 			DocumentBuilder documentBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-			Document document = documentBuilder.parse(new ByteArrayInputStream(xml.getBytes()));  
+			Document document = documentBuilder.parse(new ByteArrayInputStream(xml.getBytes()));
 			Element element = document.getDocumentElement();
 			NodeList nodeList = element.getChildNodes();
 			Map<String, String> map = new LinkedHashMap<String, String>();
-			for(int i=0;i<nodeList.getLength();i++){ 
+			for(int i=0;i<nodeList.getLength();i++){
 				Element e = (Element) nodeList.item(i);
 				map.put(e.getNodeName(),e.getTextContent());
 			}
@@ -141,5 +142,5 @@ public class MapUtil {
 		}
 		return null;
 	}
-	
+
 }

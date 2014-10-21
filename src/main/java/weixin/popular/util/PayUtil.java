@@ -12,7 +12,7 @@ import weixin.popular.bean.pay.PayNativeRequest;
 import weixin.popular.bean.pay.PayPackage;
 
 public class PayUtil {
-	
+
 	/**
 	 * 	生成支付JS请求对象
 	 * @param payPackage
@@ -29,7 +29,7 @@ public class PayUtil {
 		String package_ = SignatureUtil.generatePackage(mapP, paternerKey);
 		PayJsRequest payJsRequest = new PayJsRequest();
 		payJsRequest.setAppId(appId);
-		payJsRequest.setNonceStr(UUID.randomUUID().toString());
+		payJsRequest.setNonceStr(UUID.randomUUID().toString().replaceAll("-", ""));
 		payJsRequest.setPackage_(package_);
 		payJsRequest.setSignType("sha1");
 		payJsRequest.setTimeStamp(System.currentTimeMillis()+"");
@@ -37,9 +37,9 @@ public class PayUtil {
 		String paySign = SignatureUtil.generatePaySign(mapS,paySignkey);
 		payJsRequest.setPaySign(paySign);
 		return payJsRequest;
-		
+
 	}
-	
+
 	/**
 	 * 生成支付JS请求JSON
 	 * @param payPackage
@@ -60,7 +60,7 @@ public class PayUtil {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * 生成支付JS请求JSON
 	 * @param payPackage
@@ -78,7 +78,7 @@ public class PayUtil {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * 生成Native支付JS请求对象
 	 * @param appid
@@ -100,7 +100,7 @@ public class PayUtil {
 		payNativeRequest.setSign(sign);
 		return payNativeRequest;
 	}
-	
+
 	/**
 	 * 生成Native支付JS请求URL
 	 * @param appid
@@ -116,7 +116,7 @@ public class PayUtil {
 		Map<String, String> map = MapUtil.objectToMap(payNativeRequest);
 		return "weixin://wxpay/bizpayurl?" + MapUtil.mapJoin(map, false, false);
 	}
-	
+
 	/**
 	 * 生成Native支付JS请求URL
 	 * @param payNativeRequest
@@ -126,8 +126,8 @@ public class PayUtil {
 		Map<String, String> map = MapUtil.objectToMap(payNativeRequest);
 		return "weixin://wxpay/bizpayurl?" + MapUtil.mapJoin(map, false, false);
 	}
-	
-	
+
+
 	/**
 	 * 生成 native 支付回复对象
 	 * @param payPackage
@@ -157,7 +157,7 @@ public class PayUtil {
 		payNativeReply.setAppsignature(appSignature);
 		return payNativeReply;
 	}
-	
+
 	/**
 	 * 生成 native 支付回复XML
 	 * @param payPackage
@@ -175,7 +175,7 @@ public class PayUtil {
 		PayNativeReply payNativeReply = generatePayNativeReply(payPackage, appId, retCode, retErrMsg, paternerKey);
 		return XMLConverUtil.convertToXML(payNativeReply);
 	}
-	
+
 	/**
 	 * 生成 native 支付回复XML
 	 * @param payNativeReply

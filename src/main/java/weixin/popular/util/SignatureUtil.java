@@ -115,7 +115,7 @@ public class SignatureUtil {
 	 * @return
 	 */
 	public static boolean validateAppSignature(PayNotify payNotify,String paySignKey) {
-		Map<String, String> map = MapUtil.objectToMap(payNotify, "appsignature","singmethod");
+		Map<String, String> map = MapUtil.objectToMap(payNotify, "appsignature","signmethod");
 		return payNotify.getAppsignature().equals(generatePaySign(map,paySignKey));
 	}
 

@@ -29,10 +29,10 @@ public class PayUtil {
 		String package_ = SignatureUtil.generatePackage(mapP, paternerKey);
 		PayJsRequest payJsRequest = new PayJsRequest();
 		payJsRequest.setAppId(appId);
-		payJsRequest.setNonceStr(UUID.randomUUID().toString().replaceAll("-", ""));
+		payJsRequest.setNonceStr(UUID.randomUUID().toString());
 		payJsRequest.setPackage_(package_);
 		payJsRequest.setSignType("sha1");
-		payJsRequest.setTimeStamp(System.currentTimeMillis()+"");
+		payJsRequest.setTimeStamp(System.currentTimeMillis()/1000+"");
 		Map<String, String> mapS = MapUtil.objectToMap(payJsRequest,"signType","paySign");
 		String paySign = SignatureUtil.generatePaySign(mapS,paySignkey);
 		payJsRequest.setPaySign(paySign);
@@ -94,7 +94,7 @@ public class PayUtil {
 		payNativeRequest.setAppid(appid);
 		payNativeRequest.setNoncestr(UUID.randomUUID().toString());
 		payNativeRequest.setProductid(productid);
-		payNativeRequest.setTimestamp(System.currentTimeMillis()+"");
+		payNativeRequest.setTimestamp(System.currentTimeMillis()/1000+"");
 		Map<String, String> mapS = MapUtil.objectToMap(payNativeRequest,"sign");
 		String sign = SignatureUtil.generatePaySign(mapS,paySignkey);
 		payNativeRequest.setSign(sign);

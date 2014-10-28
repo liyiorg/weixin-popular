@@ -22,12 +22,11 @@ import com.sun.xml.internal.bind.marshaller.CharacterEscapeHandler;
  * @author LiYi
  *
  */
-@SuppressWarnings("restriction")
 public class XMLConverUtil{
-	
+
 	private static Map<Class<?>,Unmarshaller> uMap = new HashMap<Class<?>,Unmarshaller>();
 	private static Map<Class<?>,Marshaller> mMap = new HashMap<Class<?>,Marshaller>();
-	
+
 	/**
 	 * XML to Object
 	 * @param <T>
@@ -38,7 +37,7 @@ public class XMLConverUtil{
 	public static <T> T convertToObject(Class<T> clazz,String xml){
 		return convertToObject(clazz,new StringReader(xml));
 	}
-	
+
 	/**
 	 * XML to Object
 	 * @param <T>
@@ -49,7 +48,7 @@ public class XMLConverUtil{
 	public static <T> T convertToObject(Class<T> clazz,InputStream inputStream){
 		return convertToObject(clazz,new InputStreamReader(inputStream));
 	}
-	
+
 	/**
 	 * XML to Object
 	 * @param <T>
@@ -71,7 +70,7 @@ public class XMLConverUtil{
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Object to XML
 	 * @param object
@@ -83,7 +82,7 @@ public class XMLConverUtil{
 				JAXBContext jaxbContext = JAXBContext.newInstance(object.getClass());
 				Marshaller marshaller = jaxbContext.createMarshaller();
 				marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-	            marshaller.setProperty(CharacterEscapeHandler.class.getName(), new CharacterEscapeHandler() { 
+	            marshaller.setProperty(CharacterEscapeHandler.class.getName(), new CharacterEscapeHandler() {
 	                public void escape(char[] ac, int i, int j, boolean flag,Writer writer) throws IOException {
 	                writer.write( ac, i, j ); }
 	            });

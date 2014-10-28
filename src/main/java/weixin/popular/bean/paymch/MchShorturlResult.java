@@ -1,4 +1,4 @@
-package weixin.popular.bean.pay.mch;
+package weixin.popular.bean.paymch;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -14,17 +14,16 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "xml")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class RefundqueryResult extends MchBaseResult{
+public class MchShorturlResult extends MchBaseResult{
 
 	@XmlElement
-	private String device_info;
+	private String short_url;
 
-	public String getDevice_info() {
-		return device_info;
+	public String getShort_url() {
+		return short_url;
 	}
 
-	public void setDevice_info(String device_info) {
-		this.device_info = device_info;
+	public void setShort_url(String short_url) {
+		this.short_url = short_url;
 	}
-
 }

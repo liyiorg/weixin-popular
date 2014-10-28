@@ -14,6 +14,8 @@ import weixin.popular.bean.MessageSendResult;
 import weixin.popular.bean.Uploadvideo;
 import weixin.popular.bean.massmessage.MassMessage;
 import weixin.popular.bean.message.Message;
+import weixin.popular.bean.templatemessage.TemplateMessage;
+import weixin.popular.bean.templatemessage.TemplateMessageResult;
 import weixin.popular.client.JsonResponseHandler;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -194,6 +196,31 @@ public class MessageAPI extends BaseAPI{
 										.setEntity(new StringEntity(messageJson,Charset.forName("utf-8")))
 										.build();
 		return localHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(BaseResult.class));
+	}
+
+
+
+
+	/**
+	 * 模板消息发送
+	 * @param access_token
+	 * @param templateMessage
+	 * @return
+	 */
+	public TemplateMessageResult messageTemplateSend(String access_token,TemplateMessage templateMessage){
+		try {
+			String messageJson = objectMapper.writeValueAsString(templateMessage);
+			HttpUriRequest httpUriRequest = RequestBuilder.post()
+					.setHeader(jsonHeader)
+					.setUri(BASE_URI+"/cgi-bin/message/template/send")
+					.addParameter("access_token", access_token)
+					.setEntity(new StringEntity(messageJson,Charset.forName("utf-8")))
+					.build();
+			return localHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(TemplateMessageResult.class));
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }

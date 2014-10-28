@@ -11,8 +11,9 @@ weixin-popular 包括微信公众平台基础API与支付API,提供便捷的API�
 * [TokenAPI](https://github.com/liyiorg/weixin-popular/wiki/TokenAPI) access_token 获取
 * [MediaAPI](https://github.com/liyiorg/weixin-popular/wiki/MediaAPI) 多媒体上传下载
 * [MenuAPI](https://github.com/liyiorg/weixin-popular/wiki/MenuAPI) 菜单
-* [MessageAPI](https://github.com/liyiorg/weixin-popular/wiki/MessageAPI) 信息发送
+* [MessageAPI](https://github.com/liyiorg/weixin-popular/wiki/MessageAPI) 信息发送（客服消息、群发消息、模板消息）
 * [PayAPI](https://github.com/liyiorg/weixin-popular/wiki/PayAPI) 支付订单相关接口
+* [PayMchAPI](https://github.com/liyiorg/weixin-popular/wiki/PayMchAPI) 支付订单相关接口(商户平台版)
 * [QrcodeAPI](https://github.com/liyiorg/weixin-popular/wiki/QrcodeAPI) 二维码
 * [SnsAPI](https://github.com/liyiorg/weixin-popular/wiki/SnsAPI) 网签授权
 * [UserAPI](https://github.com/liyiorg/weixin-popular/wiki/UserAPI) 用户管理
@@ -27,4 +28,6 @@ weixin-popular 包括微信公众平台基础API与支付API,提供便捷的API�
 
 ## 参考资料
 * [微信公众平台开发者文档](http://mp.weixin.qq.com/wiki/index.php)
-* [微信支付文档](http://mp.weixin.qq.com/cgi-bin/readtemplate?t=business/faq_tmpl&lang=zh_CN)
+* [微信商户服务中心](http://mp.weixin.qq.com/cgi-bin/readtemplate?t=business/faq_tmpl&lang=zh_CN)
+* [微信支付开发教程](https://mp.weixin.qq.com/paymch/readtemplate?t=mp/business/course2_tmpl&lang=zh_CN&token=6056275)
+* [微信支付开发教程(商户平台版)](https://mp.weixin.qq.com/paymch/readtemplate?t=mp/business/course3_tmpl&lang=zh_CN&token=6056275)

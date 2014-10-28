@@ -1,13 +1,16 @@
-package weixin.popular.bean.pay.mch;
+package weixin.popular.bean.paymch;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+import weixin.popular.bean.AdaptorCDATA;
 
 @XmlRootElement(name="xml")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class MchOrderquery {
+public class MchShorturl {
 
 	@XmlElement
 	private String appid;
@@ -16,15 +19,13 @@ public class MchOrderquery {
 	private String mch_id;
 
 	@XmlElement
-	private String transaction_id;
-
-	@XmlElement
-	private String out_trade_no;
+	private String long_url;
 
 	@XmlElement
 	private String nonce_str;
 
 	@XmlElement
+	@XmlJavaTypeAdapter(value = AdaptorCDATA.class)
 	private String sign;
 
 	public String getAppid() {
@@ -43,13 +44,12 @@ public class MchOrderquery {
 		this.mch_id = mch_id;
 	}
 
-
-	public String getOut_trade_no() {
-		return out_trade_no;
+	public String getLong_url() {
+		return long_url;
 	}
 
-	public void setOut_trade_no(String out_trade_no) {
-		this.out_trade_no = out_trade_no;
+	public void setLong_url(String long_url) {
+		this.long_url = long_url;
 	}
 
 	public String getNonce_str() {
@@ -67,14 +67,5 @@ public class MchOrderquery {
 	public void setSign(String sign) {
 		this.sign = sign;
 	}
-
-	public String getTransaction_id() {
-		return transaction_id;
-	}
-
-	public void setTransaction_id(String transaction_id) {
-		this.transaction_id = transaction_id;
-	}
-
 
 }

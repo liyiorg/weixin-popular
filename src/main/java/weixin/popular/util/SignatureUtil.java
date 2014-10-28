@@ -89,7 +89,8 @@ public class SignatureUtil {
 														"transid",
 														"reason",
 														"solution",
-														"extinfo");
+														"extinfo",
+														"picInfo");
 		return payFeedback.getAppsignature().equals(generatePaySign(map,paySignKey));
 	}
 

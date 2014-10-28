@@ -1,16 +1,35 @@
-package weixin.popular.bean.pay.mch;
+package weixin.popular.bean.paymch;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+/**
+ * 退款申请
+ *
+ * @author Yi
+ *
+ */
+
 @XmlRootElement(name = "xml")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class SecapiPayRefundResult extends MchBaseResult{
+public class SecapiPayRefund {
+
+	@XmlElement
+	private String appid;
+
+	@XmlElement
+	private String mch_id;
 
 	@XmlElement
 	private String device_info;
+
+	@XmlElement
+	private String nonce_str;
+
+	@XmlElement
+	private String sign;
 
 	@XmlElement
 	private String transaction_id;
@@ -22,16 +41,29 @@ public class SecapiPayRefundResult extends MchBaseResult{
 	private String out_refund_no;
 
 	@XmlElement
-	private String refund_id;
-
-	@XmlElement
-	private String refund_channel;
+	private Integer total_fee;
 
 	@XmlElement
 	private Integer refund_fee;
 
 	@XmlElement
-	private Integer coupon_refund_fee;
+	private String op_user_id;
+
+	public String getAppid() {
+		return appid;
+	}
+
+	public void setAppid(String appid) {
+		this.appid = appid;
+	}
+
+	public String getMch_id() {
+		return mch_id;
+	}
+
+	public void setMch_id(String mch_id) {
+		this.mch_id = mch_id;
+	}
 
 	public String getDevice_info() {
 		return device_info;
@@ -39,6 +71,22 @@ public class SecapiPayRefundResult extends MchBaseResult{
 
 	public void setDevice_info(String device_info) {
 		this.device_info = device_info;
+	}
+
+	public String getNonce_str() {
+		return nonce_str;
+	}
+
+	public void setNonce_str(String nonce_str) {
+		this.nonce_str = nonce_str;
+	}
+
+	public String getSign() {
+		return sign;
+	}
+
+	public void setSign(String sign) {
+		this.sign = sign;
 	}
 
 	public String getTransaction_id() {
@@ -65,20 +113,12 @@ public class SecapiPayRefundResult extends MchBaseResult{
 		this.out_refund_no = out_refund_no;
 	}
 
-	public String getRefund_id() {
-		return refund_id;
+	public Integer getTotal_fee() {
+		return total_fee;
 	}
 
-	public void setRefund_id(String refund_id) {
-		this.refund_id = refund_id;
-	}
-
-	public String getRefund_channel() {
-		return refund_channel;
-	}
-
-	public void setRefund_channel(String refund_channel) {
-		this.refund_channel = refund_channel;
+	public void setTotal_fee(Integer total_fee) {
+		this.total_fee = total_fee;
 	}
 
 	public Integer getRefund_fee() {
@@ -89,13 +129,12 @@ public class SecapiPayRefundResult extends MchBaseResult{
 		this.refund_fee = refund_fee;
 	}
 
-	public Integer getCoupon_refund_fee() {
-		return coupon_refund_fee;
+	public String getOp_user_id() {
+		return op_user_id;
 	}
 
-	public void setCoupon_refund_fee(Integer coupon_refund_fee) {
-		this.coupon_refund_fee = coupon_refund_fee;
+	public void setOp_user_id(String op_user_id) {
+		this.op_user_id = op_user_id;
 	}
-
 
 }

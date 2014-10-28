@@ -1,34 +1,24 @@
-package weixin.popular.bean.pay.mch;
+package weixin.popular.bean.paymch;
 
-import javax.xml.bind.annotation.XmlElement;
 
 public class MchBaseResult {
 
-	@XmlElement
 	protected String return_code;
 
-	@XmlElement
 	protected String return_msg;
 
-	@XmlElement
 	protected String appid;
 
-	@XmlElement
 	protected String mch_id;
 
-	@XmlElement
 	protected String nonce_str;
 
-	@XmlElement
 	protected String sign;
 
-	@XmlElement
 	protected String result_code;
 
-	@XmlElement
 	protected String err_code;
 
-	@XmlElement
 	protected String err_code_des;
 
 	public String getReturn_code() {

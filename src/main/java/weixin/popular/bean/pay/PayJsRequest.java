@@ -1,6 +1,6 @@
 package weixin.popular.bean.pay;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.alibaba.fastjson.annotation.JSONField;
 
 /**
  * 支付 JS 请求
@@ -10,16 +10,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class PayJsRequest {
 
 	private String appId;
-	
+
 	private String timeStamp;
-	
+
 	private String nonceStr;
-	
-	@JsonProperty(value="package")
+
+	@JSONField(name="package")
 	private String package_;
-	
+
 	private String signType;
-	
+
 	private String paySign;
 
 	public String getAppId() {
@@ -69,8 +69,5 @@ public class PayJsRequest {
 	public void setPaySign(String paySign) {
 		this.paySign = paySign;
 	}
-	
-	
-	
-	
+
 }

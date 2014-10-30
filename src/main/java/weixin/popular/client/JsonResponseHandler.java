@@ -8,8 +8,7 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.util.EntityUtils;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import weixin.popular.util.JsonUtil;
 
 public class JsonResponseHandler{
 
@@ -22,13 +21,10 @@ public class JsonResponseHandler{
                 if (status >= 200 && status < 300) {
                     HttpEntity entity = response.getEntity();
                     String str = EntityUtils.toString(entity);
-                    ObjectMapper objectMapper = new ObjectMapper();
-                    objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
-                    return objectMapper.readValue(new String(str.getBytes("iso-8859-1"),"utf-8"),clazz);
+                    return JsonUtil.parseObject(new String(str.getBytes("iso-8859-1"),"utf-8"), clazz);
                 } else {
                     throw new ClientProtocolException("Unexpected response status: " + status);
                 }
-
 			}
 		};
 	}

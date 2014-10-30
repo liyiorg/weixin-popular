@@ -17,8 +17,7 @@ import weixin.popular.bean.message.Message;
 import weixin.popular.bean.templatemessage.TemplateMessage;
 import weixin.popular.bean.templatemessage.TemplateMessageResult;
 import weixin.popular.client.JsonResponseHandler;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
+import weixin.popular.util.JsonUtil;
 
 /**
  * 当用户主动发消息给公众号的时候
@@ -57,13 +56,8 @@ public class MessageAPI extends BaseAPI{
 	 * @return
 	 */
 	public BaseResult messageCustomSend(String access_token,Message message){
-		try {
-			String str = objectMapper.writeValueAsString(message);
-			return messageCustomSend(access_token,str);
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-		}
-		return null;
+		String str = JsonUtil.toJSONString(message);
+		return messageCustomSend(access_token,str);
 	}
 
 	/**
@@ -73,13 +67,8 @@ public class MessageAPI extends BaseAPI{
 	 * @return
 	 */
 	public Media mediaUploadnews(String access_token,List<Article> articles){
-		String messageJson = null;
-		try {
-			String str = objectMapper.writeValueAsString(articles);
-			messageJson = "{\"articles\":"+str+"}";
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-		}
+		String str = JsonUtil.toJSONString(articles);
+		String messageJson = "{\"articles\":"+str+"}";
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 										.setHeader(jsonHeader)
 										.setUri(BASE_URI+"/cgi-bin/media/uploadnews")
@@ -96,12 +85,7 @@ public class MessageAPI extends BaseAPI{
 	 * @return
 	 */
 	public Media mediaUploadvideo(String access_token,Uploadvideo uploadvideo){
-		String messageJson = null;
-		try {
-			messageJson = objectMapper.writeValueAsString(uploadvideo);
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-		}
+		String messageJson = JsonUtil.toJSONString(uploadvideo);
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 										.setHeader(jsonHeader)
 										.setUri(MEDIA_URI+"/cgi-bin/media/uploadvideo")
@@ -135,13 +119,8 @@ public class MessageAPI extends BaseAPI{
 	 * @return
 	 */
 	public MessageSendResult messageMassSendall(String access_token,MassMessage massMessage){
-		try {
-			String str = objectMapper.writeValueAsString(massMessage);
-			return messageMassSendall(access_token,str);
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-		}
-		return null;
+		String str = JsonUtil.toJSONString(massMessage);
+		return messageMassSendall(access_token,str);
 	}
 
 
@@ -168,13 +147,8 @@ public class MessageAPI extends BaseAPI{
 	 * @return
 	 */
 	public MessageSendResult messageMassSend(String access_token,MassMessage massMessage){
-		try {
-			String str = objectMapper.writeValueAsString(massMessage);
-			return messageMassSend(access_token,str);
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-		}
-		return null;
+		String str = JsonUtil.toJSONString(massMessage);
+		return messageMassSend(access_token,str);
 	}
 
 
@@ -208,19 +182,14 @@ public class MessageAPI extends BaseAPI{
 	 * @return
 	 */
 	public TemplateMessageResult messageTemplateSend(String access_token,TemplateMessage templateMessage){
-		try {
-			String messageJson = objectMapper.writeValueAsString(templateMessage);
-			HttpUriRequest httpUriRequest = RequestBuilder.post()
-					.setHeader(jsonHeader)
-					.setUri(BASE_URI+"/cgi-bin/message/template/send")
-					.addParameter("access_token", access_token)
-					.setEntity(new StringEntity(messageJson,Charset.forName("utf-8")))
-					.build();
-			return localHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(TemplateMessageResult.class));
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-		}
-		return null;
+		String messageJson = JsonUtil.toJSONString(templateMessage);
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+				.setHeader(jsonHeader)
+				.setUri(BASE_URI+"/cgi-bin/message/template/send")
+				.addParameter("access_token", access_token)
+				.setEntity(new StringEntity(messageJson,Charset.forName("utf-8")))
+				.build();
+		return localHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(TemplateMessageResult.class));
 	}
 
 }

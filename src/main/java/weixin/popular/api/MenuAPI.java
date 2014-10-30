@@ -10,8 +10,7 @@ import weixin.popular.bean.BaseResult;
 import weixin.popular.bean.Menu;
 import weixin.popular.bean.MenuButtons;
 import weixin.popular.client.JsonResponseHandler;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
+import weixin.popular.util.JsonUtil;
 
 public class MenuAPI extends BaseAPI{
 
@@ -38,13 +37,8 @@ public class MenuAPI extends BaseAPI{
 	 * @return
 	 */
 	public BaseResult menuCreate(String access_token,MenuButtons menuButtons){
-		try {
-			String str = objectMapper.writeValueAsString(menuButtons);
-			return menuCreate(access_token,str);
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-		}
-		return null;
+		String str = JsonUtil.toJSONString(menuButtons);
+		return menuCreate(access_token,str);
 	}
 
 	/**

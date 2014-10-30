@@ -14,11 +14,9 @@ import weixin.popular.bean.Delivernotify;
 import weixin.popular.bean.pay.OrderInfo;
 import weixin.popular.bean.pay.Orderquery;
 import weixin.popular.client.JsonResponseHandler;
+import weixin.popular.util.JsonUtil;
 import weixin.popular.util.MapUtil;
 import weixin.popular.util.SignatureUtil;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class PayAPI extends BaseAPI{
 
@@ -87,14 +85,7 @@ public class PayAPI extends BaseAPI{
 		String app_signature = SignatureUtil.generatePaySign(map, paySignKey);
 		map.put("app_signature",app_signature);
 		map.put("sign_method", "sha1");
-		ObjectMapper objectMapper = new ObjectMapper();
-		try {
-			return payDelivernotify(access_token,objectMapper.writeValueAsString(map));
-		} catch (JsonProcessingException e) {
-
-			e.printStackTrace();
-		}
-		return null;
+		return payDelivernotify(access_token,JsonUtil.toJSONString(map));
 	}
 
 
@@ -123,12 +114,6 @@ public class PayAPI extends BaseAPI{
 
 		map.put("app_signature",app_signature);
 		map.put("sign_method", "sha1");
-		ObjectMapper objectMapper = new ObjectMapper();
-		try {
-			return payOrderquery(access_token,objectMapper.writeValueAsString(map));
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-		}
-		return null;
+		return payOrderquery(access_token,JsonUtil.toJSONString(map));
 	}
 }

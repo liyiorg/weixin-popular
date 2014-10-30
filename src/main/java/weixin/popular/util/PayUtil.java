@@ -3,9 +3,6 @@ package weixin.popular.util;
 import java.util.Map;
 import java.util.UUID;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import weixin.popular.bean.pay.PayJsRequest;
 import weixin.popular.bean.pay.PayNativeReply;
 import weixin.popular.bean.pay.PayNativeRequest;
@@ -38,14 +35,7 @@ public class PayUtil {
 		Map<String, String> mapS = MapUtil.objectToMap(payJsRequest,"signType","paySign");
 		String paySign = SignatureUtil.generatePaySign(mapS,paySignkey);
 		payJsRequest.setPaySign(paySign);
-
-		ObjectMapper objectMapper = new ObjectMapper();
-		try {
-			return objectMapper.writeValueAsString(payJsRequest);
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-		}
-		return null;
+		return JsonUtil.toJSONString(payJsRequest);
 	}
 
 
@@ -136,15 +126,7 @@ public class PayUtil {
 		Map<String, String> mapS = MapUtil.objectToMap(payJsRequest,"signType","paySign");
 		String paySign = SignatureUtil.generateSign(mapS,key);
 		payJsRequest.setPaySign(paySign);
-
-		ObjectMapper objectMapper = new ObjectMapper();
-		try {
-			return objectMapper.writeValueAsString(payJsRequest);
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-		}
-		return null;
-
+		return JsonUtil.toJSONString(payJsRequest);
 	}
 
 

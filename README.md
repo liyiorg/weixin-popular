@@ -24,8 +24,9 @@ weixin-popular 包括微信公众平台基础API与支付API,提供便捷的API�
 * SignatureUtil   签权生成、验证
 * XMLConverUtil   XML 对象转换（JAXB）
 
-## 服务端
+## example
 * [消息事件接收](https://github.com/liyiorg/weixin-popular/wiki/消息事件接收)
+* [微信支付](https://github.com/liyiorg/weixin-popular/wiki/微信支付)
 
 ## 参考资料
 * [微信公众平台开发者文档](http://mp.weixin.qq.com/wiki/index.php)

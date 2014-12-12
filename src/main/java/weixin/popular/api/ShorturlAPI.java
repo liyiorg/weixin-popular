@@ -1,7 +1,10 @@
 package weixin.popular.api;
 
+import java.nio.charset.Charset;
+
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.client.methods.RequestBuilder;
+import org.apache.http.entity.StringEntity;
 
 import weixin.popular.bean.Shorturl;
 import weixin.popular.client.JsonResponseHandler;
@@ -16,11 +19,12 @@ public class ShorturlAPI extends BaseAPI{
 	 * @return
 	 */
 	public Shorturl shorturl(String access_token,String action,String long_url){
+		String json = "{\"action\":\""+action+"\",\"long_url\":\""+long_url+"\"}";
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
+				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/cgi-bin/shorturl")
 				.addParameter("access_token", access_token)
-				.addParameter("action", action)
-				.addParameter("long_url", long_url)
+				.setEntity(new StringEntity(json,Charset.forName("utf-8")))
 				.build();
 		return localHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(Shorturl.class));
 	}

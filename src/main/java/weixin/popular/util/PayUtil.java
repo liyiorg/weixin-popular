@@ -123,7 +123,9 @@ public class PayUtil {
 		payJsRequest.setPackage_(package_);
 		payJsRequest.setSignType("MD5");
 		payJsRequest.setTimeStamp(System.currentTimeMillis()/1000+"");
-		Map<String, String> mapS = MapUtil.objectToMap(payJsRequest,"signType","paySign");
+		//@fantycool 提交修正bug
+		//Map<String, String> mapS = MapUtil.objectToMap(payJsRequest,"signType","paySign");
+		Map<String, String> mapS = MapUtil.objectToMap(payJsRequest);
 		String paySign = SignatureUtil.generateSign(mapS,key);
 		payJsRequest.setPaySign(paySign);
 		return JsonUtil.toJSONString(payJsRequest);

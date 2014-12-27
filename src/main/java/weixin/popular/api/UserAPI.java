@@ -20,7 +20,7 @@ public class UserAPI extends BaseAPI{
 	 * @param openid
 	 * @return
 	 */
-	public User userInfo(String access_token,String openid){
+	public static User userInfo(String access_token,String openid){
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 				.setUri(BASE_URI+"/cgi-bin/user/info")
 				.addParameter("access_token",access_token)
@@ -36,7 +36,7 @@ public class UserAPI extends BaseAPI{
 	 * @param next_openid 第一次获取使用null
 	 * @return
 	 */
-	public FollowResult userGet(String access_token,String next_openid){
+	public static FollowResult userGet(String access_token,String next_openid){
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 				.setUri(BASE_URI+"/cgi-bin/user/get")
 				.addParameter("access_token",access_token)
@@ -51,7 +51,7 @@ public class UserAPI extends BaseAPI{
 	 * @param name
 	 * @return
 	 */
-	public Group groupsCreate(String access_token,String name){
+	public static Group groupsCreate(String access_token,String name){
 		String groupJson = "{\"group\":{\"name\":\""+name+"\"}}";
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 										.setHeader(jsonHeader)
@@ -67,7 +67,7 @@ public class UserAPI extends BaseAPI{
 	 * @param access_token
 	 * @return
 	 */
-	public Group groupsGet(String access_token){
+	public static Group groupsGet(String access_token){
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 				.setUri(BASE_URI+"/cgi-bin/groups/get")
 				.addParameter("access_token", access_token)
@@ -81,7 +81,7 @@ public class UserAPI extends BaseAPI{
 	 * @param openid
 	 * @return
 	 */
-	public Group groupsGetid(String access_token,String openid){
+	public static Group groupsGetid(String access_token,String openid){
 		String groupJson = "{\"openid\":\""+openid+"\"}";
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 										.setHeader(jsonHeader)
@@ -99,7 +99,7 @@ public class UserAPI extends BaseAPI{
 	 * @param name	分组名
 	 * @return
 	 */
-	public BaseResult groupsUpdate(String access_token,String id,String name){
+	public static BaseResult groupsUpdate(String access_token,String id,String name){
 		String groupJson = "{\"group\":{\"id\":"+id+",\"name\":\""+name+"\"}}";
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 										.setHeader(jsonHeader)
@@ -117,7 +117,7 @@ public class UserAPI extends BaseAPI{
 	 * @param to_groupid
 	 * @return
 	 */
-	public BaseResult groupsMembersUpdate(String access_token,String openid,String to_groupid){
+	public static BaseResult groupsMembersUpdate(String access_token,String openid,String to_groupid){
 		String groupJson = "{\"openid\":\""+openid+"\",\"to_groupid\":"+to_groupid+"}";
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 										.setHeader(jsonHeader)

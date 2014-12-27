@@ -4,6 +4,7 @@ public class Token extends BaseResult {
 
 	private String access_token;
 	private int expires_in;
+	private long genTime;
 
 	public String getAccess_token() {
 		return access_token;
@@ -20,5 +21,14 @@ public class Token extends BaseResult {
 	public void setExpires_in(int expiresIn) {
 		expires_in = expiresIn;
 	}
+
+	public long getGenTime() {
+		return genTime;
+	}
+
+	public void setGenTime(long genTime) {
+		this.genTime = genTime;
+	}
+	
 
 }

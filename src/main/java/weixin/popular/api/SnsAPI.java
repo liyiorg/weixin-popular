@@ -21,7 +21,7 @@ public class SnsAPI extends BaseAPI{
 	 * @param code
 	 * @return
 	 */
-	public SnsToken oauth2AccessToken(String appid,String secret,String code){
+	public static SnsToken oauth2AccessToken(String appid,String secret,String code){
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 				.setUri(BASE_URI + "/sns/oauth2/access_token")
 				.addParameter("appid", appid)
@@ -38,7 +38,7 @@ public class SnsAPI extends BaseAPI{
 	 * @param refresh_token
 	 * @return
 	 */
-	public SnsToken oauth2RefreshToken(String appid,String refresh_token){
+	public static SnsToken oauth2RefreshToken(String appid,String refresh_token){
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 				.setUri(BASE_URI + "/sns/oauth2/refresh_token")
 				.addParameter("appid", appid)
@@ -55,7 +55,7 @@ public class SnsAPI extends BaseAPI{
 	 * @param lang 国家地区语言版本，zh_CN 简体，zh_TW 繁体，en 英语
 	 * @return
 	 */
-	public User userinfo(String access_token,String openid,String lang){
+	public static User userinfo(String access_token,String openid,String lang){
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 				.setUri(BASE_URI + "/sns/userinfo")
 				.addParameter("access_token", access_token)

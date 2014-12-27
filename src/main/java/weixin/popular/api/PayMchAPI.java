@@ -35,7 +35,7 @@ public class PayMchAPI extends BaseAPI{
 	 * @param unifiedorder
 	 * @return
 	 */
-	public UnifiedorderResult payUnifiedorder(Unifiedorder unifiedorder){
+	public static UnifiedorderResult payUnifiedorder(Unifiedorder unifiedorder){
 		String unifiedorderXML = XMLConverUtil.convertToXML(unifiedorder);
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 										.setHeader(xmlHeader)
@@ -53,7 +53,7 @@ public class PayMchAPI extends BaseAPI{
 	 * @param key 商户支付密钥
 	 * @return
 	 */
-	public MchBaseResult payCloseorder(Closeorder closeorder,String key){
+	public static MchBaseResult payCloseorder(Closeorder closeorder,String key){
 		Map<String,String> map = MapUtil.objectToMap(closeorder);
 		String sign = SignatureUtil.generateSign(map,key);
 		closeorder.setSign(sign);
@@ -78,7 +78,7 @@ public class PayMchAPI extends BaseAPI{
 	 * @param key 商户支付密钥
 	 * @return
 	 */
-	public SecapiPayRefundResult secapiPayRefund(SecapiPayRefund secapiPayRefund,String key){
+	public static SecapiPayRefundResult secapiPayRefund(SecapiPayRefund secapiPayRefund,String key){
 		Map<String,String> map = MapUtil.objectToMap( secapiPayRefund);
 		String sign = SignatureUtil.generateSign(map,key);
 		secapiPayRefund.setSign(sign);
@@ -100,7 +100,7 @@ public class PayMchAPI extends BaseAPI{
 	 * @param key 商户支付密钥
 	 * @return
 	 */
-	public RefundqueryResult payRefundquery(Refundquery refundquery,String key){
+	public static RefundqueryResult payRefundquery(Refundquery refundquery,String key){
 		Map<String,String> map = MapUtil.objectToMap(refundquery);
 		String sign = SignatureUtil.generateSign(map,key);
 		refundquery.setSign(sign);
@@ -119,7 +119,7 @@ public class PayMchAPI extends BaseAPI{
 	 * @param key 商户支付密钥
 	 * @return
 	 */
-	public MchShorturlResult toolsShorturl(MchShorturl shorturl,String key){
+	public static MchShorturlResult toolsShorturl(MchShorturl shorturl,String key){
 		Map<String,String> map = MapUtil.objectToMap(shorturl);
 		String sign = SignatureUtil.generateSign(map,key);
 		shorturl.setSign(sign);

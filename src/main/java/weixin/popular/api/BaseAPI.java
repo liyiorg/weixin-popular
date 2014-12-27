@@ -14,7 +14,7 @@ public abstract class BaseAPI {
 	protected static final String MCH_URI = "https://api.mch.weixin.qq.com";
 
 
-	protected LocalHttpClient localHttpClient = LocalHttpClient.getInstance();
+	protected static LocalHttpClient localHttpClient = LocalHttpClient.getInstance();
 
 	protected static Header jsonHeader = new BasicHeader(HttpHeaders.CONTENT_TYPE,ContentType.APPLICATION_JSON.toString());
 	protected static Header xmlHeader = new BasicHeader(HttpHeaders.CONTENT_TYPE,ContentType.APPLICATION_XML.toString());

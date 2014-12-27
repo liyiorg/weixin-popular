@@ -39,7 +39,7 @@ public class MessageAPI extends BaseAPI{
 	 * @param messageJson
 	 * @return
 	 */
-	public BaseResult messageCustomSend(String access_token,String messageJson){
+	public static BaseResult messageCustomSend(String access_token,String messageJson){
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 										.setHeader(jsonHeader)
 										.setUri(BASE_URI+"/cgi-bin/message/custom/send")
@@ -55,7 +55,7 @@ public class MessageAPI extends BaseAPI{
 	 * @param message
 	 * @return
 	 */
-	public BaseResult messageCustomSend(String access_token,Message message){
+	public static BaseResult messageCustomSend(String access_token,Message message){
 		String str = JsonUtil.toJSONString(message);
 		return messageCustomSend(access_token,str);
 	}
@@ -66,7 +66,7 @@ public class MessageAPI extends BaseAPI{
 	 * @param articles 图文信息 1-10 个
 	 * @return
 	 */
-	public Media mediaUploadnews(String access_token,List<Article> articles){
+	public static Media mediaUploadnews(String access_token,List<Article> articles){
 		String str = JsonUtil.toJSONString(articles);
 		String messageJson = "{\"articles\":"+str+"}";
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
@@ -84,7 +84,7 @@ public class MessageAPI extends BaseAPI{
 	 * @param uploadvideo
 	 * @return
 	 */
-	public Media mediaUploadvideo(String access_token,Uploadvideo uploadvideo){
+	public static Media mediaUploadvideo(String access_token,Uploadvideo uploadvideo){
 		String messageJson = JsonUtil.toJSONString(uploadvideo);
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 										.setHeader(jsonHeader)
@@ -102,7 +102,7 @@ public class MessageAPI extends BaseAPI{
 	 * @param messageJson
 	 * @return
 	 */
-	public MessageSendResult messageMassSendall(String access_token,String messageJson){
+	public static MessageSendResult messageMassSendall(String access_token,String messageJson){
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 										.setHeader(jsonHeader)
 										.setUri(BASE_URI+"/cgi-bin/message/mass/sendall")
@@ -118,7 +118,7 @@ public class MessageAPI extends BaseAPI{
 	 * @param massMessage
 	 * @return
 	 */
-	public MessageSendResult messageMassSendall(String access_token,MassMessage massMessage){
+	public  static MessageSendResult messageMassSendall(String access_token,MassMessage massMessage){
 		String str = JsonUtil.toJSONString(massMessage);
 		return messageMassSendall(access_token,str);
 	}
@@ -130,7 +130,7 @@ public class MessageAPI extends BaseAPI{
 	 * @param messageJson
 	 * @return
 	 */
-	public MessageSendResult messageMassSend(String access_token,String messageJson){
+	public static MessageSendResult messageMassSend(String access_token,String messageJson){
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 										.setHeader(jsonHeader)
 										.setUri(BASE_URI+"/cgi-bin/message/mass/send")
@@ -146,7 +146,7 @@ public class MessageAPI extends BaseAPI{
 	 * @param massMessage
 	 * @return
 	 */
-	public MessageSendResult messageMassSend(String access_token,MassMessage massMessage){
+	public static MessageSendResult messageMassSend(String access_token,MassMessage massMessage){
 		String str = JsonUtil.toJSONString(massMessage);
 		return messageMassSend(access_token,str);
 	}
@@ -161,7 +161,7 @@ public class MessageAPI extends BaseAPI{
 	 * @param msgid
 	 * @return
 	 */
-	public BaseResult messageMassDelete(String access_token,String msgid){
+	public static BaseResult messageMassDelete(String access_token,String msgid){
 		String messageJson = "{\"msgid\":" + msgid + "}";
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 										.setHeader(jsonHeader)
@@ -181,7 +181,7 @@ public class MessageAPI extends BaseAPI{
 	 * @param templateMessage
 	 * @return
 	 */
-	public TemplateMessageResult messageTemplateSend(String access_token,TemplateMessage templateMessage){
+	public static TemplateMessageResult messageTemplateSend(String access_token,TemplateMessage templateMessage){
 		String messageJson = JsonUtil.toJSONString(templateMessage);
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 				.setHeader(jsonHeader)

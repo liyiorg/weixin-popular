@@ -26,7 +26,7 @@ public class PayAPI extends BaseAPI{
 	 * @param delivernotifyJson
 	 * @return
 	 */
-	private BaseResult payDelivernotify(String access_token,String delivernotifyJson){
+	private static BaseResult payDelivernotify(String access_token,String delivernotifyJson){
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 										.setHeader(jsonHeader)
 										.setUri(BASE_URI + "/pay/delivernotify")
@@ -45,7 +45,7 @@ public class PayAPI extends BaseAPI{
 	 * @param feedbackid
 	 * @return
 	 */
-	public BaseResult payfeedbackUpdate(String access_token,String openid,String feedbackid){
+	public static BaseResult payfeedbackUpdate(String access_token,String openid,String feedbackid){
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 									.setUri(BASE_URI + "/payfeedback/update")
 									.addParameter("access_token", access_token)
@@ -62,7 +62,7 @@ public class PayAPI extends BaseAPI{
 	 * @param orderqueryJson
 	 * @return
 	 */
-	private OrderInfo payOrderquery(String access_token,String orderqueryJson){
+	private static OrderInfo payOrderquery(String access_token,String orderqueryJson){
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 										.setHeader(jsonHeader)
 										.setUri(BASE_URI + "/pay/orderquery")
@@ -80,7 +80,7 @@ public class PayAPI extends BaseAPI{
 	 * @param paySignKey
 	 * @return
 	 */
-	public BaseResult payDelivernotify(String access_token,Delivernotify delivernotify,String paySignKey){
+	public static BaseResult payDelivernotify(String access_token,Delivernotify delivernotify,String paySignKey){
 		Map<String, String> map = MapUtil.objectToMap(delivernotify);
 		String app_signature = SignatureUtil.generatePaySign(map, paySignKey);
 		map.put("app_signature",app_signature);
@@ -96,7 +96,7 @@ public class PayAPI extends BaseAPI{
 	 * @param paySignKey
 	 * @return
 	 */
-	public OrderInfo payOrderquery(String access_token,Orderquery orderquery,String paySignKey){
+	public static OrderInfo payOrderquery(String access_token,Orderquery orderquery,String paySignKey){
 		//builder package  start
 		Map<String, String> tmap = new LinkedHashMap<String, String>();
 		tmap.put("out_trade_no", orderquery.getOut_trade_no());

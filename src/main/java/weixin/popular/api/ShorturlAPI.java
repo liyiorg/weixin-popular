@@ -18,7 +18,7 @@ public class ShorturlAPI extends BaseAPI{
 	 * @param long_url 需要转换的长链接，支持http://、https://、weixin://wxpay 格式的url
 	 * @return
 	 */
-	public Shorturl shorturl(String access_token,String action,String long_url){
+	public static Shorturl shorturl(String access_token,String action,String long_url){
 		String json = "{\"action\":\""+action+"\",\"long_url\":\""+long_url+"\"}";
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 				.setHeader(jsonHeader)
@@ -35,7 +35,7 @@ public class ShorturlAPI extends BaseAPI{
 	 * @param long_url
 	 * @return
 	 */
-	public Shorturl shorturl(String access_token,String long_url){
+	public static Shorturl shorturl(String access_token,String long_url){
 		return shorturl(access_token,"long2short", long_url);
 	}
 

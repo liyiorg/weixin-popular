@@ -38,7 +38,7 @@ public class MediaAPI extends BaseAPI{
 						缩略图（thumb）：64KB，支持JPG格式
 	 * @return
 	 */
-	public Media mediaUpload(String access_token,MediaType mediaType,File media){
+	public static Media mediaUpload(String access_token,MediaType mediaType,File media){
 		HttpPost httpPost = new HttpPost(MEDIA_URI+"/cgi-bin/media/upload");
 		FileBody bin = new FileBody(media);
         HttpEntity reqEntity = MultipartEntityBuilder.create()
@@ -62,7 +62,7 @@ public class MediaAPI extends BaseAPI{
 						缩略图（thumb）：64KB，支持JPG格式
 	 * @return
 	 */
-	public Media mediaUpload(String access_token,MediaType mediaType,InputStream inputStream){
+	public static Media mediaUpload(String access_token,MediaType mediaType,InputStream inputStream){
 		HttpPost httpPost = new HttpPost(MEDIA_URI+"/cgi-bin/media/upload");
         @SuppressWarnings("deprecation")
 		InputStreamBody inputStreamBody = new InputStreamBody(inputStream, mediaType.mimeType(),"temp."+mediaType.fileSuffix());
@@ -88,7 +88,7 @@ public class MediaAPI extends BaseAPI{
 						缩略图（thumb）：64KB，支持JPG格式
 	 * @return
 	 */
-	public Media mediaUpload(String access_token,MediaType mediaType,URI uri){
+	public static Media mediaUpload(String access_token,MediaType mediaType,URI uri){
 		HttpPost httpPost = new HttpPost(MEDIA_URI+"/cgi-bin/media/upload");
 		CloseableHttpClient tempHttpClient = HttpClients.createDefault();
 		try {
@@ -125,7 +125,7 @@ public class MediaAPI extends BaseAPI{
 	 * @param media_id
 	 * @return
 	 */
-	public byte[] mediaGet(String access_token,String media_id){
+	public static byte[] mediaGet(String access_token,String media_id){
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 					.setUri(MEDIA_URI+"/cgi-bin/media/get")
 					.addParameter("access_token", access_token)

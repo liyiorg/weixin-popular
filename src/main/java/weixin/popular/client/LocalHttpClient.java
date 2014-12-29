@@ -11,7 +11,7 @@ import org.apache.http.client.methods.HttpUriRequest;
 public class LocalHttpClient {
 
 	private static LocalHttpClient localHttpClient;
-	protected HttpClient httpClient;
+	protected static HttpClient httpClient;
 
 	private static int maxTotal = 100;
 	private static int maxPerRoute = 10;
@@ -34,7 +34,7 @@ public class LocalHttpClient {
 		}
 	}
 
-	public HttpResponse execute(HttpUriRequest request){
+	public static HttpResponse execute(HttpUriRequest request){
 		try {
 			return httpClient.execute(request);
 		} catch (ClientProtocolException e) {
@@ -45,7 +45,7 @@ public class LocalHttpClient {
 		return null;
 	}
 
-	public <T> T execute(HttpUriRequest request,ResponseHandler<T> responseHandler){
+	public static <T> T execute(HttpUriRequest request,ResponseHandler<T> responseHandler){
 		try {
 			return httpClient.execute(request, responseHandler);
 		} catch (ClientProtocolException e) {

@@ -10,6 +10,7 @@ import weixin.popular.bean.BaseResult;
 import weixin.popular.bean.Menu;
 import weixin.popular.bean.MenuButtons;
 import weixin.popular.client.JsonResponseHandler;
+import weixin.popular.client.LocalHttpClient;
 import weixin.popular.util.JsonUtil;
 
 public class MenuAPI extends BaseAPI{
@@ -27,7 +28,7 @@ public class MenuAPI extends BaseAPI{
 										.addParameter("access_token", access_token)
 										.setEntity(new StringEntity(menuJson,Charset.forName("utf-8")))
 										.build();
-		return localHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(BaseResult.class));
+		return LocalHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(BaseResult.class));
 	}
 
 	/**
@@ -51,7 +52,7 @@ public class MenuAPI extends BaseAPI{
 					.setUri(BASE_URI+"/cgi-bin/menu/get")
 					.addParameter("access_token", access_token)
 					.build();
-		return localHttpClient.execute(httpUriRequest, JsonResponseHandler.createResponseHandler(Menu.class));
+		return LocalHttpClient.execute(httpUriRequest, JsonResponseHandler.createResponseHandler(Menu.class));
 	}
 
 	/**
@@ -64,7 +65,7 @@ public class MenuAPI extends BaseAPI{
 				.setUri(BASE_URI+"/cgi-bin/menu/delete")
 				.addParameter("access_token", access_token)
 				.build();
-		return localHttpClient.execute(httpUriRequest, JsonResponseHandler.createResponseHandler(BaseResult.class));
+		return LocalHttpClient.execute(httpUriRequest, JsonResponseHandler.createResponseHandler(BaseResult.class));
 	}
 
 }

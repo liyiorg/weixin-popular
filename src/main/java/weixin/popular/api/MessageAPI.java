@@ -17,6 +17,7 @@ import weixin.popular.bean.message.Message;
 import weixin.popular.bean.templatemessage.TemplateMessage;
 import weixin.popular.bean.templatemessage.TemplateMessageResult;
 import weixin.popular.client.JsonResponseHandler;
+import weixin.popular.client.LocalHttpClient;
 import weixin.popular.util.JsonUtil;
 
 /**
@@ -46,7 +47,7 @@ public class MessageAPI extends BaseAPI{
 										.addParameter("access_token", access_token)
 										.setEntity(new StringEntity(messageJson,Charset.forName("utf-8")))
 										.build();
-		return localHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(BaseResult.class));
+		return LocalHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(BaseResult.class));
 	}
 
 	/**
@@ -75,7 +76,7 @@ public class MessageAPI extends BaseAPI{
 										.addParameter("access_token", access_token)
 										.setEntity(new StringEntity(messageJson,Charset.forName("utf-8")))
 										.build();
-		return localHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(Media.class));
+		return LocalHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(Media.class));
 	}
 
 	/**
@@ -92,7 +93,7 @@ public class MessageAPI extends BaseAPI{
 										.addParameter("access_token", access_token)
 										.setEntity(new StringEntity(messageJson,Charset.forName("utf-8")))
 										.build();
-		return localHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(Media.class));
+		return LocalHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(Media.class));
 	}
 
 
@@ -109,7 +110,7 @@ public class MessageAPI extends BaseAPI{
 										.addParameter("access_token", access_token)
 										.setEntity(new StringEntity(messageJson,Charset.forName("utf-8")))
 										.build();
-		return localHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(MessageSendResult.class));
+		return LocalHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(MessageSendResult.class));
 	}
 
 	/**
@@ -137,7 +138,7 @@ public class MessageAPI extends BaseAPI{
 										.addParameter("access_token", access_token)
 										.setEntity(new StringEntity(messageJson,Charset.forName("utf-8")))
 										.build();
-		return localHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(MessageSendResult.class));
+		return LocalHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(MessageSendResult.class));
 	}
 
 	/**
@@ -169,7 +170,7 @@ public class MessageAPI extends BaseAPI{
 										.addParameter("access_token", access_token)
 										.setEntity(new StringEntity(messageJson,Charset.forName("utf-8")))
 										.build();
-		return localHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(BaseResult.class));
+		return LocalHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(BaseResult.class));
 	}
 
 
@@ -189,7 +190,7 @@ public class MessageAPI extends BaseAPI{
 				.addParameter("access_token", access_token)
 				.setEntity(new StringEntity(messageJson,Charset.forName("utf-8")))
 				.build();
-		return localHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(TemplateMessageResult.class));
+		return LocalHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(TemplateMessageResult.class));
 	}
 
 }

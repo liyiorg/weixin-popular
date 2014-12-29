@@ -10,28 +10,10 @@ import org.apache.http.client.methods.HttpUriRequest;
 
 public class LocalHttpClient {
 
-	private static LocalHttpClient localHttpClient;
-	protected static HttpClient httpClient;
+	protected static HttpClient httpClient = HttpClientFactory.createHttpClient(100,10);
 
-	private static int maxTotal = 100;
-	private static int maxPerRoute = 10;
 	public static void init(int maxTotal,int maxPerRoute){
-		LocalHttpClient.maxTotal = maxTotal;
-		LocalHttpClient.maxPerRoute = maxPerRoute;
-	}
-
-	public static LocalHttpClient getInstance(){
-		if(localHttpClient != null){
-			return localHttpClient;
-		}else{
-			localHttpClient = new LocalHttpClient();
-			if(maxTotal > 0){
-				localHttpClient.httpClient = HttpClientFactory.createHttpClient(maxTotal,maxPerRoute);
-			}else{
-				localHttpClient.httpClient = HttpClientFactory.createHttpClient();
-			}
-			return localHttpClient;
-		}
+		httpClient = HttpClientFactory.createHttpClient(maxTotal,maxPerRoute);
 	}
 
 	public static HttpResponse execute(HttpUriRequest request){

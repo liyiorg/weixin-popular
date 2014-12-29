@@ -29,6 +29,9 @@ weixin-popular 包括微信公众平台基础API与支付API,提供便捷的API�
 * [消息事件接收(加密)](https://github.com/liyiorg/weixin-popular/wiki/消息事件接收(加密))
 * [微信支付](https://github.com/liyiorg/weixin-popular/wiki/微信支付)
 
+## 其它
+* [设置API HttpClient 请求池大小](https://github.com/liyiorg/weixin-popular/wiki/设置API HttpClient 请求池大小)
+
 ## 参考资料
 * [微信公众平台开发者文档](http://mp.weixin.qq.com/wiki/index.php)
 * [微信商户服务中心](http://mp.weixin.qq.com/cgi-bin/readtemplate?t=business/faq_tmpl&lang=zh_CN)

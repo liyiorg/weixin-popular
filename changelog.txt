@@ -2,6 +2,12 @@ WEIXIN-POPULAR CHANGELOG
 ===========================
 https://github.com/liyiorg/weixin-popular
 
+Changes in version 2.1.0 (2014-11-10)
+-------------------------------------
+*修改json 包依赖为 fastjson
+*添加消息加密包
+*修改ShorturlAPI bug
+
 Changes in version 2.0.1 (2014-10-21)
 -------------------------------------
 *modified PayUtil generatePayJsRequest bug

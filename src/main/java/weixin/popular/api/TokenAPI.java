@@ -5,6 +5,7 @@ import org.apache.http.client.methods.RequestBuilder;
 
 import weixin.popular.bean.Token;
 import weixin.popular.client.JsonResponseHandler;
+import weixin.popular.client.LocalHttpClient;
 
 public class TokenAPI extends BaseAPI{
 
@@ -21,7 +22,7 @@ public class TokenAPI extends BaseAPI{
 				.addParameter("appid", appid)
 				.addParameter("secret", secret)
 				.build();
-		return localHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(Token.class));
+		return LocalHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(Token.class));
 	}
 
 }

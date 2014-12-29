@@ -11,6 +11,7 @@ import org.apache.http.util.EntityUtils;
 
 import weixin.popular.bean.QrcodeTicket;
 import weixin.popular.client.JsonResponseHandler;
+import weixin.popular.client.LocalHttpClient;
 
 /**
  * 二维码API
@@ -33,7 +34,7 @@ public class QrcodeAPI extends BaseAPI{
 										.addParameter("access_token", access_token)
 										.setEntity(new StringEntity(qrcodeJson,Charset.forName("utf-8")))
 										.build();
-		return localHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(QrcodeTicket.class));
+		return LocalHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(QrcodeTicket.class));
 	}
 
 	/**
@@ -81,7 +82,7 @@ public class QrcodeAPI extends BaseAPI{
 				.setUri(QRCODE_DOWNLOAD_URI + "/cgi-bin/showqrcode")
 				.addParameter("ticket", ticket)
 				.build();
-		HttpResponse httpResponse = localHttpClient.execute(httpUriRequest);
+		HttpResponse httpResponse = LocalHttpClient.execute(httpUriRequest);
 		try {
 			return EntityUtils.toByteArray(httpResponse.getEntity());
 		} catch (IOException e) {

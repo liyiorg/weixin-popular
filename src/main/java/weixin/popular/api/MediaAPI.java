@@ -23,6 +23,7 @@ import org.apache.http.util.EntityUtils;
 
 import weixin.popular.bean.Media;
 import weixin.popular.client.JsonResponseHandler;
+import weixin.popular.client.LocalHttpClient;
 
 public class MediaAPI extends BaseAPI{
 
@@ -47,7 +48,7 @@ public class MediaAPI extends BaseAPI{
                  .addTextBody("type",mediaType.uploadType())
                  .build();
         httpPost.setEntity(reqEntity);
-		return localHttpClient.execute(httpPost,JsonResponseHandler.createResponseHandler(Media.class));
+		return LocalHttpClient.execute(httpPost,JsonResponseHandler.createResponseHandler(Media.class));
 	}
 
 	/**
@@ -72,7 +73,7 @@ public class MediaAPI extends BaseAPI{
                  .addTextBody("type",mediaType.uploadType())
                  .build();
         httpPost.setEntity(reqEntity);
-		return localHttpClient.execute(httpPost,JsonResponseHandler.createResponseHandler(Media.class));
+		return LocalHttpClient.execute(httpPost,JsonResponseHandler.createResponseHandler(Media.class));
 	}
 
 
@@ -99,7 +100,7 @@ public class MediaAPI extends BaseAPI{
 			         .addTextBody("type",mediaType.uploadType())
 			         .build();
 			httpPost.setEntity(reqEntity);
-			return localHttpClient.execute(httpPost,JsonResponseHandler.createResponseHandler(Media.class));
+			return LocalHttpClient.execute(httpPost,JsonResponseHandler.createResponseHandler(Media.class));
 		} catch (UnsupportedCharsetException e) {
 			e.printStackTrace();
 		} catch (ClientProtocolException e) {
@@ -131,7 +132,7 @@ public class MediaAPI extends BaseAPI{
 					.addParameter("access_token", access_token)
 					.addParameter("media_id", media_id)
 					.build();
-		HttpResponse httpResponse = localHttpClient.execute(httpUriRequest);
+		HttpResponse httpResponse = LocalHttpClient.execute(httpUriRequest);
 		try {
 			return EntityUtils.toByteArray(httpResponse.getEntity());
 		} catch (IOException e) {

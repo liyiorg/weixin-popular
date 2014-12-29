@@ -17,6 +17,7 @@ import weixin.popular.bean.paymch.SecapiPayRefund;
 import weixin.popular.bean.paymch.SecapiPayRefundResult;
 import weixin.popular.bean.paymch.Unifiedorder;
 import weixin.popular.bean.paymch.UnifiedorderResult;
+import weixin.popular.client.LocalHttpClient;
 import weixin.popular.client.XmlResponseHandler;
 import weixin.popular.util.MapUtil;
 import weixin.popular.util.SignatureUtil;
@@ -42,7 +43,7 @@ public class PayMchAPI extends BaseAPI{
 										.setUri(MCH_URI + "/pay/unifiedorder")
 										.setEntity(new StringEntity(unifiedorderXML,Charset.forName("utf-8")))
 										.build();
-		return localHttpClient.execute(httpUriRequest,XmlResponseHandler.createResponseHandler(UnifiedorderResult.class));
+		return LocalHttpClient.execute(httpUriRequest,XmlResponseHandler.createResponseHandler(UnifiedorderResult.class));
 	}
 
 
@@ -63,7 +64,7 @@ public class PayMchAPI extends BaseAPI{
 				.setUri(MCH_URI + "/pay/closeorder")
 				.setEntity(new StringEntity(closeorderXML,Charset.forName("utf-8")))
 				.build();
-		return localHttpClient.execute(httpUriRequest,XmlResponseHandler.createResponseHandler(MchBaseResult.class));
+		return LocalHttpClient.execute(httpUriRequest,XmlResponseHandler.createResponseHandler(MchBaseResult.class));
 	}
 
 
@@ -88,7 +89,7 @@ public class PayMchAPI extends BaseAPI{
 				.setUri(MCH_URI + "/secapi/pay/refund")
 				.setEntity(new StringEntity(secapiPayRefundXML,Charset.forName("utf-8")))
 				.build();
-		return localHttpClient.execute(httpUriRequest,XmlResponseHandler.createResponseHandler(SecapiPayRefundResult.class));
+		return LocalHttpClient.execute(httpUriRequest,XmlResponseHandler.createResponseHandler(SecapiPayRefundResult.class));
 	}
 
 	/**
@@ -110,7 +111,7 @@ public class PayMchAPI extends BaseAPI{
 				.setUri(MCH_URI + "/pay/refundqueryd")
 				.setEntity(new StringEntity(refundqueryXML,Charset.forName("utf-8")))
 				.build();
-		return localHttpClient.execute(httpUriRequest,XmlResponseHandler.createResponseHandler(RefundqueryResult.class));
+		return LocalHttpClient.execute(httpUriRequest,XmlResponseHandler.createResponseHandler(RefundqueryResult.class));
 	}
 
 	/**
@@ -129,7 +130,7 @@ public class PayMchAPI extends BaseAPI{
 				.setUri(MCH_URI + "/tools/shorturl")
 				.setEntity(new StringEntity(shorturlXML,Charset.forName("utf-8")))
 				.build();
-		return localHttpClient.execute(httpUriRequest,XmlResponseHandler.createResponseHandler(MchShorturlResult.class));
+		return LocalHttpClient.execute(httpUriRequest,XmlResponseHandler.createResponseHandler(MchShorturlResult.class));
 	}
 
 }

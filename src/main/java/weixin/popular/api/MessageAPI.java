@@ -16,7 +16,6 @@ import weixin.popular.bean.massmessage.MassMessage;
 import weixin.popular.bean.message.Message;
 import weixin.popular.bean.templatemessage.TemplateMessage;
 import weixin.popular.bean.templatemessage.TemplateMessageResult;
-import weixin.popular.client.JsonResponseHandler;
 import weixin.popular.client.LocalHttpClient;
 import weixin.popular.util.JsonUtil;
 
@@ -47,7 +46,7 @@ public class MessageAPI extends BaseAPI{
 										.addParameter("access_token", access_token)
 										.setEntity(new StringEntity(messageJson,Charset.forName("utf-8")))
 										.build();
-		return LocalHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(BaseResult.class));
+		return LocalHttpClient.executeJsonResult(httpUriRequest,BaseResult.class);
 	}
 
 	/**
@@ -76,7 +75,7 @@ public class MessageAPI extends BaseAPI{
 										.addParameter("access_token", access_token)
 										.setEntity(new StringEntity(messageJson,Charset.forName("utf-8")))
 										.build();
-		return LocalHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(Media.class));
+		return LocalHttpClient.executeJsonResult(httpUriRequest,Media.class);
 	}
 
 	/**
@@ -93,7 +92,7 @@ public class MessageAPI extends BaseAPI{
 										.addParameter("access_token", access_token)
 										.setEntity(new StringEntity(messageJson,Charset.forName("utf-8")))
 										.build();
-		return LocalHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(Media.class));
+		return LocalHttpClient.executeJsonResult(httpUriRequest,Media.class);
 	}
 
 
@@ -110,7 +109,7 @@ public class MessageAPI extends BaseAPI{
 										.addParameter("access_token", access_token)
 										.setEntity(new StringEntity(messageJson,Charset.forName("utf-8")))
 										.build();
-		return LocalHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(MessageSendResult.class));
+		return LocalHttpClient.executeJsonResult(httpUriRequest,MessageSendResult.class);
 	}
 
 	/**
@@ -138,7 +137,7 @@ public class MessageAPI extends BaseAPI{
 										.addParameter("access_token", access_token)
 										.setEntity(new StringEntity(messageJson,Charset.forName("utf-8")))
 										.build();
-		return LocalHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(MessageSendResult.class));
+		return LocalHttpClient.executeJsonResult(httpUriRequest,MessageSendResult.class);
 	}
 
 	/**
@@ -170,7 +169,7 @@ public class MessageAPI extends BaseAPI{
 										.addParameter("access_token", access_token)
 										.setEntity(new StringEntity(messageJson,Charset.forName("utf-8")))
 										.build();
-		return LocalHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(BaseResult.class));
+		return LocalHttpClient.executeJsonResult(httpUriRequest,BaseResult.class);
 	}
 
 
@@ -190,7 +189,7 @@ public class MessageAPI extends BaseAPI{
 				.addParameter("access_token", access_token)
 				.setEntity(new StringEntity(messageJson,Charset.forName("utf-8")))
 				.build();
-		return LocalHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(TemplateMessageResult.class));
+		return LocalHttpClient.executeJsonResult(httpUriRequest,TemplateMessageResult.class);
 	}
 
 }

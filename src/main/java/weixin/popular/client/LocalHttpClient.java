@@ -37,4 +37,38 @@ public class LocalHttpClient {
 		}
 		return null;
 	}
+
+	/**
+	 * 数据返回自动JSON对象解析
+	 * @param request
+	 * @param clazz
+	 * @return
+	 */
+	public static <T> T executeJsonResult(HttpUriRequest request,Class<T> clazz){
+		try {
+			return httpClient.execute(request,JsonResponseHandler.createResponseHandler(clazz));
+		} catch (ClientProtocolException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	/**
+	 * 数据返回自动XML对象解析
+	 * @param request
+	 * @param clazz
+	 * @return
+	 */
+	public static <T> T executeXmlResult(HttpUriRequest request,Class<T> clazz){
+		try {
+			return httpClient.execute(request,XmlResponseHandler.createResponseHandler(clazz));
+		} catch (ClientProtocolException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

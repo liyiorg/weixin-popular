@@ -10,7 +10,6 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.util.EntityUtils;
 
 import weixin.popular.bean.QrcodeTicket;
-import weixin.popular.client.JsonResponseHandler;
 import weixin.popular.client.LocalHttpClient;
 
 /**
@@ -34,7 +33,7 @@ public class QrcodeAPI extends BaseAPI{
 										.addParameter("access_token", access_token)
 										.setEntity(new StringEntity(qrcodeJson,Charset.forName("utf-8")))
 										.build();
-		return LocalHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(QrcodeTicket.class));
+		return LocalHttpClient.executeJsonResult(httpUriRequest,QrcodeTicket.class);
 	}
 
 	/**

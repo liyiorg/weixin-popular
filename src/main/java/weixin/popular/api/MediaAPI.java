@@ -22,7 +22,6 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
 import weixin.popular.bean.Media;
-import weixin.popular.client.JsonResponseHandler;
 import weixin.popular.client.LocalHttpClient;
 
 public class MediaAPI extends BaseAPI{
@@ -48,7 +47,7 @@ public class MediaAPI extends BaseAPI{
                  .addTextBody("type",mediaType.uploadType())
                  .build();
         httpPost.setEntity(reqEntity);
-		return LocalHttpClient.execute(httpPost,JsonResponseHandler.createResponseHandler(Media.class));
+		return LocalHttpClient.executeJsonResult(httpPost,Media.class);
 	}
 
 	/**
@@ -73,7 +72,7 @@ public class MediaAPI extends BaseAPI{
                  .addTextBody("type",mediaType.uploadType())
                  .build();
         httpPost.setEntity(reqEntity);
-		return LocalHttpClient.execute(httpPost,JsonResponseHandler.createResponseHandler(Media.class));
+		return LocalHttpClient.executeJsonResult(httpPost,Media.class);
 	}
 
 
@@ -100,7 +99,7 @@ public class MediaAPI extends BaseAPI{
 			         .addTextBody("type",mediaType.uploadType())
 			         .build();
 			httpPost.setEntity(reqEntity);
-			return LocalHttpClient.execute(httpPost,JsonResponseHandler.createResponseHandler(Media.class));
+			return LocalHttpClient.executeJsonResult(httpPost,Media.class);
 		} catch (UnsupportedCharsetException e) {
 			e.printStackTrace();
 		} catch (ClientProtocolException e) {

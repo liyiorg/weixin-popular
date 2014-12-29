@@ -7,7 +7,6 @@ import org.apache.http.client.methods.RequestBuilder;
 import org.apache.http.entity.StringEntity;
 
 import weixin.popular.bean.Shorturl;
-import weixin.popular.client.JsonResponseHandler;
 import weixin.popular.client.LocalHttpClient;
 
 public class ShorturlAPI extends BaseAPI{
@@ -27,7 +26,7 @@ public class ShorturlAPI extends BaseAPI{
 				.addParameter("access_token", access_token)
 				.setEntity(new StringEntity(json,Charset.forName("utf-8")))
 				.build();
-		return LocalHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(Shorturl.class));
+		return LocalHttpClient.executeJsonResult(httpUriRequest,Shorturl.class);
 	}
 
 	/**

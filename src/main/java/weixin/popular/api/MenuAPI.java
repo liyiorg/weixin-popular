@@ -28,7 +28,7 @@ public class MenuAPI extends BaseAPI{
 										.addParameter("access_token", access_token)
 										.setEntity(new StringEntity(menuJson,Charset.forName("utf-8")))
 										.build();
-		return LocalHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(BaseResult.class));
+		return LocalHttpClient.executeJsonResult(httpUriRequest,BaseResult.class);
 	}
 
 	/**
@@ -52,7 +52,7 @@ public class MenuAPI extends BaseAPI{
 					.setUri(BASE_URI+"/cgi-bin/menu/get")
 					.addParameter("access_token", access_token)
 					.build();
-		return LocalHttpClient.execute(httpUriRequest, JsonResponseHandler.createResponseHandler(Menu.class));
+		return LocalHttpClient.executeJsonResult(httpUriRequest,Menu.class);
 	}
 
 	/**
@@ -65,7 +65,7 @@ public class MenuAPI extends BaseAPI{
 				.setUri(BASE_URI+"/cgi-bin/menu/delete")
 				.addParameter("access_token", access_token)
 				.build();
-		return LocalHttpClient.execute(httpUriRequest, JsonResponseHandler.createResponseHandler(BaseResult.class));
+		return LocalHttpClient.executeJsonResult(httpUriRequest,BaseResult.class);
 	}
 
 }

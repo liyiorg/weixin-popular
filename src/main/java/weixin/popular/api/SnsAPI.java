@@ -5,7 +5,6 @@ import org.apache.http.client.methods.RequestBuilder;
 
 import weixin.popular.bean.SnsToken;
 import weixin.popular.bean.User;
-import weixin.popular.client.JsonResponseHandler;
 import weixin.popular.client.LocalHttpClient;
 
 /**
@@ -30,7 +29,7 @@ public class SnsAPI extends BaseAPI{
 				.addParameter("code", code)
 				.addParameter("grant_type", "authorization_code")
 				.build();
-		return LocalHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(SnsToken.class));
+		return LocalHttpClient.executeJsonResult(httpUriRequest,SnsToken.class);
 	}
 
 	/**
@@ -46,7 +45,7 @@ public class SnsAPI extends BaseAPI{
 				.addParameter("refresh_token", refresh_token)
 				.addParameter("grant_type", "refresh_token")
 				.build();
-		return LocalHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(SnsToken.class));
+		return LocalHttpClient.executeJsonResult(httpUriRequest,SnsToken.class);
 	}
 
 	/**
@@ -63,6 +62,6 @@ public class SnsAPI extends BaseAPI{
 				.addParameter("openid", openid)
 				.addParameter("lang", lang)
 				.build();
-		return LocalHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(User.class));
+		return LocalHttpClient.executeJsonResult(httpUriRequest,User.class);
 	}
 }

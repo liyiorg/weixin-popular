@@ -13,7 +13,6 @@ import weixin.popular.bean.BaseResult;
 import weixin.popular.bean.Delivernotify;
 import weixin.popular.bean.pay.OrderInfo;
 import weixin.popular.bean.pay.Orderquery;
-import weixin.popular.client.JsonResponseHandler;
 import weixin.popular.client.LocalHttpClient;
 import weixin.popular.util.JsonUtil;
 import weixin.popular.util.MapUtil;
@@ -34,7 +33,7 @@ public class PayAPI extends BaseAPI{
 										.addParameter("access_token", access_token)
 										.setEntity(new StringEntity(delivernotifyJson,Charset.forName("utf-8")))
 										.build();
-		return LocalHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(BaseResult.class));
+		return LocalHttpClient.executeJsonResult(httpUriRequest,BaseResult.class);
 	}
 
 
@@ -53,7 +52,7 @@ public class PayAPI extends BaseAPI{
 									.addParameter("openid", openid)
 									.addParameter("feedbackid", feedbackid)
 									.build();
-		return LocalHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(BaseResult.class));
+		return LocalHttpClient.executeJsonResult(httpUriRequest,BaseResult.class);
 	}
 
 
@@ -70,7 +69,7 @@ public class PayAPI extends BaseAPI{
 										.addParameter("access_token", access_token)
 										.setEntity(new StringEntity(orderqueryJson,Charset.forName("utf-8")))
 										.build();
-		return LocalHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(OrderInfo.class));
+		return LocalHttpClient.executeJsonResult(httpUriRequest,OrderInfo.class);
 	}
 
 

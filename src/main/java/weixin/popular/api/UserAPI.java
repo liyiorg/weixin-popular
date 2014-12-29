@@ -10,7 +10,6 @@ import weixin.popular.bean.BaseResult;
 import weixin.popular.bean.FollowResult;
 import weixin.popular.bean.Group;
 import weixin.popular.bean.User;
-import weixin.popular.client.JsonResponseHandler;
 import weixin.popular.client.LocalHttpClient;
 
 public class UserAPI extends BaseAPI{
@@ -28,7 +27,7 @@ public class UserAPI extends BaseAPI{
 				.addParameter("openid",openid)
 				.addParameter("lang","zh_CN")
 				.build();
-		return LocalHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(User.class));
+		return LocalHttpClient.executeJsonResult(httpUriRequest,User.class);
 	}
 
 	/**
@@ -43,7 +42,7 @@ public class UserAPI extends BaseAPI{
 				.addParameter("access_token",access_token)
 				.addParameter("next_openid", next_openid==null?"":next_openid)
 				.build();
-		return LocalHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(FollowResult.class));
+		return LocalHttpClient.executeJsonResult(httpUriRequest,FollowResult.class);
 	}
 
 	/**
@@ -60,7 +59,7 @@ public class UserAPI extends BaseAPI{
 										.addParameter("access_token", access_token)
 										.setEntity(new StringEntity(groupJson,Charset.forName("utf-8")))
 										.build();
-		return LocalHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(Group.class));
+		return LocalHttpClient.executeJsonResult(httpUriRequest,Group.class);
 	}
 
 	/**
@@ -73,7 +72,7 @@ public class UserAPI extends BaseAPI{
 				.setUri(BASE_URI+"/cgi-bin/groups/get")
 				.addParameter("access_token", access_token)
 				.build();
-		return LocalHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(Group.class));
+		return LocalHttpClient.executeJsonResult(httpUriRequest,Group.class);
 	}
 
 	/**
@@ -90,7 +89,7 @@ public class UserAPI extends BaseAPI{
 										.addParameter("access_token", access_token)
 										.setEntity(new StringEntity(groupJson,Charset.forName("utf-8")))
 										.build();
-		return LocalHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(Group.class));
+		return LocalHttpClient.executeJsonResult(httpUriRequest,Group.class);
 	}
 
 	/**
@@ -108,7 +107,7 @@ public class UserAPI extends BaseAPI{
 										.addParameter("access_token", access_token)
 										.setEntity(new StringEntity(groupJson,Charset.forName("utf-8")))
 										.build();
-		return LocalHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(BaseResult.class));
+		return LocalHttpClient.executeJsonResult(httpUriRequest,BaseResult.class);
 	}
 
 	/**
@@ -126,7 +125,7 @@ public class UserAPI extends BaseAPI{
 										.addParameter("access_token", access_token)
 										.setEntity(new StringEntity(groupJson,Charset.forName("utf-8")))
 										.build();
-		return LocalHttpClient.execute(httpUriRequest,JsonResponseHandler.createResponseHandler(BaseResult.class));
+		return LocalHttpClient.executeJsonResult(httpUriRequest,BaseResult.class);
 	}
 
 }

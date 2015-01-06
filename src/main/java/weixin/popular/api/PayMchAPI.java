@@ -88,7 +88,7 @@ public class PayMchAPI extends BaseAPI{
 				.setUri(MCH_URI + "/secapi/pay/refund")
 				.setEntity(new StringEntity(secapiPayRefundXML,Charset.forName("utf-8")))
 				.build();
-		return LocalHttpClient.executeXmlResult(httpUriRequest,SecapiPayRefundResult.class);
+		return LocalHttpClient.keyStoreExecuteXmlResult(secapiPayRefund.getMch_id(),httpUriRequest,SecapiPayRefundResult.class);
 	}
 
 	/**

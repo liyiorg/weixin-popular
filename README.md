@@ -30,6 +30,7 @@ weixin-popular 包括微信公众平台基础API与支付API,提供便捷的API�
 * [微信支付](https://github.com/liyiorg/weixin-popular/wiki/微信支付)
 
 ## 其它
+* [TokenManager token 自动刷新](https://github.com/liyiorg/weixin-popular/wiki/ TokenManager token 自动刷新)
 * [设置API HttpClient 请求池大小](https://github.com/liyiorg/weixin-popular/wiki/设置API HttpClient 请求池大小)
 * [设置API MCH KeyStore](https://github.com/liyiorg/weixin-popular/wiki/设置API MCH KeyStore)
 

@@ -2,6 +2,16 @@ WEIXIN-POPULAR CHANGELOG
 ===========================
 https://github.com/liyiorg/weixin-popular
 
+Changes in version 2.3.0 (2015-03-23)
+-------------------------------------
+*修改MediaAPI
+*添加MaterialAPI 永久素材
+
+Changes in version 2.2.0 (2014-12-29)
+-------------------------------------
+*修改API为静态接口
+*添加TicketAPI
+
 Changes in version 2.1.0 (2014-11-10)
 -------------------------------------
 *修改json 包依赖为 fastjson

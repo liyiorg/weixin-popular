@@ -1,5 +1,8 @@
 package weixin.popular.api;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.client.methods.RequestBuilder;
 
@@ -64,4 +67,30 @@ public class SnsAPI extends BaseAPI{
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,User.class);
 	}
+
+	/**
+	 * 生成网页授权 URL
+	 * @param appid
+	 * @param redirect_uri 自动URLEncoder
+	 * @param snsapi_userinfo
+	 * @param state 可以为空
+	 * @return
+	 */
+	public static String connectOauth2Authorize(String appid,String redirect_uri,boolean snsapi_userinfo,String state){
+		try {
+			StringBuilder sb = new StringBuilder();
+			sb.append(OPEN_URI + "/connect/oauth2/authorize?")
+			.append("appid=").append(appid)
+			.append("&redirect_uri=").append(URLEncoder.encode(redirect_uri, "utf-8"))
+			.append("&response_type=code")
+			.append("&scope=").append(snsapi_userinfo?"snsapi_userinfo":"snsapi_base")
+			.append("&state=").append(state==null?"":state)
+			.append("#wechat_redirect");
+			return sb.toString();
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 }

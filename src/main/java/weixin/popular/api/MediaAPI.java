@@ -22,6 +22,7 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
 import weixin.popular.bean.Media;
+import weixin.popular.bean.MediaType;
 import weixin.popular.client.LocalHttpClient;
 
 public class MediaAPI extends BaseAPI{
@@ -127,7 +128,7 @@ public class MediaAPI extends BaseAPI{
 	 */
 	public static byte[] mediaGet(String access_token,String media_id){
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
-					.setUri(MEDIA_URI+"/cgi-bin/media/get")
+					.setUri(BASE_URI+"/cgi-bin/media/get")
 					.addParameter("access_token", access_token)
 					.addParameter("media_id", media_id)
 					.build();
@@ -138,99 +139,6 @@ public class MediaAPI extends BaseAPI{
 			e.printStackTrace();
 		}
 		return null;
-	}
-
-
-	public enum MediaType{
-		image {
-			@Override
-			String mimeType() {
-				return "image/jpeg";
-			}
-
-			@Override
-			String fileSuffix() {
-				return "jpg";
-			}
-
-			@Override
-			String uploadType() {
-				return "image";
-			}
-		},voice_mp3 {
-			@Override
-			String mimeType() {
-				return "audio/mpeg";
-			}
-
-			@Override
-			String fileSuffix() {
-				return "mp3";
-			}
-
-			@Override
-			String uploadType() {
-				return "voice";
-			}
-		},voice_arm {
-			@Override
-			String mimeType() {
-				return "audio/amr";
-			}
-
-			@Override
-			String fileSuffix() {
-				return "amr";
-			}
-
-			@Override
-			String uploadType() {
-				return "voice";
-			}
-		},video {
-			@Override
-			String mimeType() {
-				return "video/mp4";
-			}
-
-			@Override
-			String fileSuffix() {
-				return "mp4";
-			}
-
-			@Override
-			String uploadType() {
-				return "video";
-			}
-		},thumb {
-			@Override
-			String mimeType() {
-				return "image/jpeg";
-			}
-
-			@Override
-			String fileSuffix() {
-				return "jpg";
-			}
-
-			@Override
-			String uploadType() {
-				return "thumb";
-			}
-		};
-
-		abstract String mimeType();
-
-		abstract String fileSuffix();
-
-		/**
-		 * 上传类型
-		 * @return
-		 */
-		abstract String uploadType();
-
-
-
 	}
 
 }

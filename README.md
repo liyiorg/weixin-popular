@@ -9,7 +9,8 @@ weixin-popular 包括微信公众平台基础API与支付API,提供便捷的API�
 
 ## API 列表
 * [TokenAPI](https://github.com/liyiorg/weixin-popular/wiki/TokenAPI) access_token 获取
-* [MediaAPI](https://github.com/liyiorg/weixin-popular/wiki/MediaAPI) 多媒体上传下载
+* [MediaAPI](https://github.com/liyiorg/weixin-popular/wiki/MediaAPI) 多媒体上传下载(临时素材)
+* [MaterialAPI](https://github.com/liyiorg/weixin-popular/wiki/MaterialAPI) 永久素材
 * [MenuAPI](https://github.com/liyiorg/weixin-popular/wiki/MenuAPI) 菜单
 * [MessageAPI](https://github.com/liyiorg/weixin-popular/wiki/MessageAPI) 信息发送（客服消息、群发消息、模板消息）
 * [PayAPI](https://github.com/liyiorg/weixin-popular/wiki/PayAPI) 支付订单相关接口
@@ -19,7 +20,7 @@ weixin-popular 包括微信公众平台基础API与支付API,提供便捷的API�
 * [UserAPI](https://github.com/liyiorg/weixin-popular/wiki/UserAPI) 用户管理
 * [ShorturlAPI](https://github.com/liyiorg/weixin-popular/wiki/ShorturlAPI) 长链接转短链接
 * [TicketAPI](https://github.com/liyiorg/weixin-popular/wiki/TicketAPI) JSAPI ticket
-* [MaterialAPI](https://github.com/liyiorg/weixin-popular/wiki/MaterialAPI) 永久素材
+
 
 ## 工具类
 * PayUtil         支付工具类，生成JS支付，原生支付

@@ -23,7 +23,7 @@ public class QrcodeAPI extends BaseAPI{
 	/**
 	 * 创建二维码
 	 * @param access_token
-	 * @param qrcodeJson json 数据 例如{"expire_seconds": 1800, "action_name": "QR_SCENE", "action_info": {"scene": {"scene_id": 123}}}
+	 * @param qrcodeJson json 数据 例如{"expire_seconds": 604800, "action_name": "QR_SCENE", "action_info": {"scene": {"scene_id": 123}}}
 	 * @return
 	 */
 	private static QrcodeTicket qrcodeCreate(String access_token,String qrcodeJson){
@@ -39,7 +39,7 @@ public class QrcodeAPI extends BaseAPI{
 	/**
 	 * 创建二维码
 	 * @param access_token
-	 * @param expire_seconds 	该二维码有效时间，以秒为单位。 最大不超过1800秒。
+	 * @param expire_seconds 	该二维码有效时间，以秒为单位。 最大不超过604800秒。
 	 * @param action_name		二维码类型，QR_SCENE为临时,QR_LIMIT_SCENE为永久
 	 * @param scene_id			场景值ID，临时二维码时为32位非0整型，永久二维码时最大值为100000（目前参数只支持1--100000）
 	 * @return
@@ -52,7 +52,7 @@ public class QrcodeAPI extends BaseAPI{
 	/**
 	 * 创建临时二维码
 	 * @param access_token
-	 * @param expire_seconds 不超过1800秒
+	 * @param expire_seconds 不超过604800秒
 	 * @param scene_id		  场景值ID，32位非0整型
 	 * @return
 	 */

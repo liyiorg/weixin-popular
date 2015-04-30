@@ -2,7 +2,7 @@ WEIXIN-POPULAR CHANGELOG
 ===========================
 https://github.com/liyiorg/weixin-popular
 
-Changes in version 2.3.0 (2015-03-23)
+Changes in version 2.3.0 (2015-04-29)
 -------------------------------------
 *修改MediaAPI
 *添加MaterialAPI 永久素材

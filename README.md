@@ -20,6 +20,7 @@ weixin-popular 包括微信公众平台基础API与支付API,提供便捷的API�
 * [UserAPI](https://github.com/liyiorg/weixin-popular/wiki/UserAPI) 用户管理
 * [ShorturlAPI](https://github.com/liyiorg/weixin-popular/wiki/ShorturlAPI) 长链接转短链接
 * [TicketAPI](https://github.com/liyiorg/weixin-popular/wiki/TicketAPI) JSAPI ticket
+* [ComponentAPI](https://github.com/liyiorg/weixin-popular/wiki/ComponentAPI) 第三方开发平台
 
 
 ## 工具类

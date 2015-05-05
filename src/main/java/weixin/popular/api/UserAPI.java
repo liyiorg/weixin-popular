@@ -1,6 +1,7 @@
 package weixin.popular.api;
 
 import java.nio.charset.Charset;
+import java.util.List;
 
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.client.methods.RequestBuilder;
@@ -11,6 +12,7 @@ import weixin.popular.bean.FollowResult;
 import weixin.popular.bean.Group;
 import weixin.popular.bean.User;
 import weixin.popular.client.LocalHttpClient;
+import weixin.popular.util.JsonUtil;
 
 public class UserAPI extends BaseAPI{
 
@@ -121,11 +123,29 @@ public class UserAPI extends BaseAPI{
 		String groupJson = "{\"openid\":\""+openid+"\",\"to_groupid\":"+to_groupid+"}";
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 										.setHeader(jsonHeader)
-										.setUri(BASE_URI+"/cgi-bin/groups/menbers/update")
+										.setUri(BASE_URI+"/cgi-bin/groups/members/update")
 										.addParameter("access_token", access_token)
 										.setEntity(new StringEntity(groupJson,Charset.forName("utf-8")))
 										.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,BaseResult.class);
 	}
 
+	/**
+	 * 批量移动用户分组
+	 * @param access_token
+	 * @param openid_list
+	 * @param to_groupid
+	 * @return
+	 */
+	public static BaseResult groupsMembersBatchUpdate(String access_token,List<String> openid_list,String to_groupid){
+		String openidListStr = JsonUtil.toJSONString(openid_list);
+		String groupJson = "{\"openid_list\":"+openidListStr+",\"to_groupid\":"+to_groupid+"}";
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+										.setHeader(jsonHeader)
+										.setUri(BASE_URI+"/cgi-bin/groups/members/batchupdate")
+										.addParameter("access_token", access_token)
+										.setEntity(new StringEntity(groupJson,Charset.forName("utf-8")))
+										.build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest,BaseResult.class);
+	}
 }

@@ -45,3 +45,4 @@ weixin-popular 包括微信公众平台基础API与支付API,提供便捷的API�
 * [微信商户服务中心](http://mp.weixin.qq.com/cgi-bin/readtemplate?t=business/faq_tmpl&lang=zh_CN)
 * [微信支付开发教程](https://mp.weixin.qq.com/paymch/readtemplate?t=mp/business/course2_tmpl&lang=zh_CN&token=6056275)
 * [微信支付开发教程(商户平台版)](https://mp.weixin.qq.com/paymch/readtemplate?t=mp/business/course3_tmpl&lang=zh_CN&token=6056275)
+* [微信开放平台（公众号第三方平台开发）](https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&t=resource/res_list&verify=1&lang=zh_CN)

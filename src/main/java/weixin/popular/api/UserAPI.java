@@ -130,6 +130,7 @@ public class UserAPI extends BaseAPI{
 		return LocalHttpClient.executeJsonResult(httpUriRequest,BaseResult.class);
 	}
 
+
 	/**
 	 * 批量移动用户分组
 	 * @param access_token

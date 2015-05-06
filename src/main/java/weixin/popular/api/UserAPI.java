@@ -48,6 +48,24 @@ public class UserAPI extends BaseAPI{
 	}
 
 	/**
+	 * 设置备注名
+	 * @param access_token
+	 * @param openid
+	 * @param remark
+	 * @return
+	 */
+	public static BaseResult userInfoUpdateremark(String access_token,String openid,String remark){
+		String postJson = String.format("{\"openid\":\"%1$s\",\"remark\":\"%2$s\"}", openid,remark);
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+										.setHeader(jsonHeader)
+										.setUri(BASE_URI+"/cgi-bin/user/info/updateremark")
+										.addParameter("access_token", access_token)
+										.setEntity(new StringEntity(postJson,Charset.forName("utf-8")))
+										.build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest,BaseResult.class);
+	}
+
+	/**
 	 * 创建分组
 	 * @param access_token
 	 * @param name

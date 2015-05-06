@@ -72,7 +72,7 @@ public class UserAPI extends BaseAPI{
 	 * @return
 	 */
 	public static Group groupsCreate(String access_token,String name){
-		String groupJson = "{\"group\":{\"name\":\""+name+"\"}}";
+		String groupJson = String.format("{\"group\":{\"name\":\"%1$s\"}}",name);
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 										.setHeader(jsonHeader)
 										.setUri(BASE_URI+"/cgi-bin/groups/create")
@@ -102,7 +102,7 @@ public class UserAPI extends BaseAPI{
 	 * @return
 	 */
 	public static Group groupsGetid(String access_token,String openid){
-		String groupJson = "{\"openid\":\""+openid+"\"}";
+		String groupJson = String.format("{\"openid\":\"%1$s\"}",openid);
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 										.setHeader(jsonHeader)
 										.setUri(BASE_URI+"/cgi-bin/groups/getid")

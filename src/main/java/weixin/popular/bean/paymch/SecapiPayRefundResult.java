@@ -31,7 +31,25 @@ public class SecapiPayRefundResult extends MchBaseResult{
 	private Integer refund_fee;
 
 	@XmlElement
+	private Integer total_fee;
+
+	@XmlElement
+	private String fee_type;
+
+	@XmlElement
+	private Integer cash_fee;
+
+	@XmlElement
+	private Integer cash_refund_fee;
+
+	@XmlElement
 	private Integer coupon_refund_fee;
+
+	@XmlElement
+	private Integer coupon_refund_count;
+
+	@XmlElement
+	private String coupon_refund_id;
 
 	public String getDevice_info() {
 		return device_info;
@@ -96,6 +114,55 @@ public class SecapiPayRefundResult extends MchBaseResult{
 	public void setCoupon_refund_fee(Integer coupon_refund_fee) {
 		this.coupon_refund_fee = coupon_refund_fee;
 	}
+
+	public Integer getTotal_fee() {
+		return total_fee;
+	}
+
+	public void setTotal_fee(Integer total_fee) {
+		this.total_fee = total_fee;
+	}
+
+	public String getFee_type() {
+		return fee_type;
+	}
+
+	public void setFee_type(String fee_type) {
+		this.fee_type = fee_type;
+	}
+
+	public Integer getCash_fee() {
+		return cash_fee;
+	}
+
+	public void setCash_fee(Integer cash_fee) {
+		this.cash_fee = cash_fee;
+	}
+
+	public Integer getCash_refund_fee() {
+		return cash_refund_fee;
+	}
+
+	public void setCash_refund_fee(Integer cash_refund_fee) {
+		this.cash_refund_fee = cash_refund_fee;
+	}
+
+	public Integer getCoupon_refund_count() {
+		return coupon_refund_count;
+	}
+
+	public void setCoupon_refund_count(Integer coupon_refund_count) {
+		this.coupon_refund_count = coupon_refund_count;
+	}
+
+	public String getCoupon_refund_id() {
+		return coupon_refund_id;
+	}
+
+	public void setCoupon_refund_id(String coupon_refund_id) {
+		this.coupon_refund_id = coupon_refund_id;
+	}
+
 
 
 }

@@ -47,6 +47,9 @@ public class SecapiPayRefund {
 	private Integer refund_fee;
 
 	@XmlElement
+	private String refund_fee_type;
+
+	@XmlElement
 	private String op_user_id;
 
 	public String getAppid() {
@@ -136,5 +139,14 @@ public class SecapiPayRefund {
 	public void setOp_user_id(String op_user_id) {
 		this.op_user_id = op_user_id;
 	}
+
+	public String getRefund_fee_type() {
+		return refund_fee_type;
+	}
+
+	public void setRefund_fee_type(String refund_fee_type) {
+		this.refund_fee_type = refund_fee_type;
+	}
+
 
 }

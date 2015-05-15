@@ -32,7 +32,8 @@ weixin-popular 包括微信公众平台基础API与支付API,提供便捷的API�
 ## example
 * [消息事件接收](https://github.com/liyiorg/weixin-popular/wiki/消息事件接收)
 * [消息事件接收(加密)](https://github.com/liyiorg/weixin-popular/wiki/消息事件接收(加密))
-* [微信支付](https://github.com/liyiorg/weixin-popular/wiki/微信支付)
+* [微信支付（老版本）](https://github.com/liyiorg/weixin-popular/wiki/微信支付)
+* [微信支付MCH](https://github.com/liyiorg/weixin-popular/wiki/微信支付MCH)
 
 ## 其它
 * [TokenManager token 自动刷新](https://github.com/liyiorg/weixin-popular/wiki/TokenManager-token-自动刷新)
@@ -43,6 +44,6 @@ weixin-popular 包括微信公众平台基础API与支付API,提供便捷的API�
 ## 参考资料
 * [微信公众平台开发者文档](http://mp.weixin.qq.com/wiki/index.php)
 * [微信商户服务中心](http://mp.weixin.qq.com/cgi-bin/readtemplate?t=business/faq_tmpl&lang=zh_CN)
-* [微信支付开发教程](https://mp.weixin.qq.com/paymch/readtemplate?t=mp/business/course2_tmpl&lang=zh_CN&token=6056275)
-* [微信支付开发教程(商户平台版)](https://mp.weixin.qq.com/paymch/readtemplate?t=mp/business/course3_tmpl&lang=zh_CN&token=6056275)
+* [微信支付开发教程（老版本）](https://mp.weixin.qq.com/paymch/readtemplate?t=mp/business/course2_tmpl&lang=zh_CN&token=6056275)
+* [微信支付商户平台开发者文档)](http://mch.weixin.qq.com/wiki/doc/api/index.html)
 * [微信开放平台（公众号第三方平台开发）](https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&t=resource/res_list&verify=1&lang=zh_CN)

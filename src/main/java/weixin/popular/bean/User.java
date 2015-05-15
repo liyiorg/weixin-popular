@@ -26,6 +26,8 @@ public class User extends BaseResult{
 
 	private String unionid;			//多个公众号之间用户帐号互通UnionID机制
 
+	private Integer groupid;
+
 	public Integer getSubscribe() {
 		return subscribe;
 	}
@@ -120,6 +122,14 @@ public class User extends BaseResult{
 
 	public void setUnionid(String unionid) {
 		this.unionid = unionid;
+	}
+
+	public Integer getGroupid(){
+		return groupid;
+	}
+
+	public void setGroupid(Integer groupid){
+		this.groupid = groupid;
 	}
 
 }

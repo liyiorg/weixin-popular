@@ -28,7 +28,7 @@ public class TicketManager {
 	 */
 	public static void init(final String appid){
 		if(!timerMap.containsKey(appid)){
-			Timer timer = new Timer(true);
+			Timer timer = new Timer();
 			timer.schedule(new TimerTask() {
 				@Override
 				public void run() {
@@ -38,6 +38,15 @@ public class TicketManager {
 				}
 			},0,1000*60*119);
 			timerMap.put(appid,timer);
+		}
+	}
+
+	/**
+	 * 取消 ticket 刷新
+	 */
+	public static void destroyed(){
+		for(Timer timer : timerMap.values()){
+			timer.cancel();
 		}
 	}
 

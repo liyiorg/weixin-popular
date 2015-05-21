@@ -14,7 +14,7 @@ import weixin.popular.bean.Token;
  * @author LiYi
  *
  */
-public class TokenManager {
+public class TokenManager{
 
 	private static Map<String,String> tokenMap = new LinkedHashMap<String,String>();
 
@@ -30,7 +30,7 @@ public class TokenManager {
 		if(timerMap.containsKey(appid)){
 			timerMap.get(appid).cancel();
 		}
-		Timer timer = new Timer(true);
+		Timer timer = new Timer();
 		timer.schedule(new TimerTask() {
 			@Override
 			public void run() {
@@ -39,6 +39,15 @@ public class TokenManager {
 			}
 		},0,1000*60*118);
 		timerMap.put(appid,timer);
+	}
+
+	/**
+	 * 取消 token 刷新
+	 */
+	public static void destroyed(){
+		for(Timer timer : timerMap.values()){
+			timer.cancel();
+		}
 	}
 
 	/**

@@ -2,6 +2,12 @@ WEIXIN-POPULAR CHANGELOG
 ===========================
 https://github.com/liyiorg/weixin-popular
 
+Changes in version 2.4.0 (2015-06-10)
+-------------------------------------
+*修改TokenManager TicketManager
+*添加ComponentAPI
+*PayMchAPI 添加订单查询、撤销、优惠卷、红包、企业付款接口
+
 Changes in version 2.3.0 (2015-04-29)
 -------------------------------------
 *修改MediaAPI

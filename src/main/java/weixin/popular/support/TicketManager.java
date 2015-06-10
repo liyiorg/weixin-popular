@@ -36,7 +36,7 @@ public class TicketManager {
 					Ticket ticket = TicketAPI.ticketGetticket(access_token);
 					ticketMap.put(appid,ticket.getTicket());
 				}
-			},0,1000*60*119);
+			},1000,1000*60*119);
 			timerMap.put(appid,timer);
 		}
 	}

@@ -2,6 +2,12 @@ WEIXIN-POPULAR CHANGELOG
 ===========================
 https://github.com/liyiorg/weixin-popular
 
+Changes in version 2.4.1 (2015-07-08)
+-------------------------------------
+*修改PayUtil bug
+*UserAPI 添加批量获取用户信息
+*PayMchAPI 添加裂变红包
+
 Changes in version 2.4.0 (2015-06-10)
 -------------------------------------
 *修改TokenManager TicketManager

@@ -14,7 +14,7 @@ weixin-popular 包括微信公众平台基础API与支付API,提供便捷的API�
 * [MenuAPI](https://github.com/liyiorg/weixin-popular/wiki/MenuAPI) 菜单
 * [MessageAPI](https://github.com/liyiorg/weixin-popular/wiki/MessageAPI) 信息发送（客服消息、群发消息、模板消息）
 * [PayAPI](https://github.com/liyiorg/weixin-popular/wiki/PayAPI) 支付订单相关接口
-* [PayMchAPI](https://github.com/liyiorg/weixin-popular/wiki/PayMchAPI) 支付订单相关接口(商户平台版)
+* [PayMchAPI](https://github.com/liyiorg/weixin-popular/wiki/PayMchAPI) 支付订单、红包、企业付款相关接口(商户平台版)
 * [QrcodeAPI](https://github.com/liyiorg/weixin-popular/wiki/QrcodeAPI) 二维码
 * [SnsAPI](https://github.com/liyiorg/weixin-popular/wiki/SnsAPI) 网签授权
 * [UserAPI](https://github.com/liyiorg/weixin-popular/wiki/UserAPI) 用户管理

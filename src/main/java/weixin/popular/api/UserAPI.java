@@ -11,6 +11,7 @@ import weixin.popular.bean.BaseResult;
 import weixin.popular.bean.FollowResult;
 import weixin.popular.bean.Group;
 import weixin.popular.bean.User;
+import weixin.popular.bean.UserInfoList;
 import weixin.popular.client.LocalHttpClient;
 import weixin.popular.util.JsonUtil;
 
@@ -45,6 +46,32 @@ public class UserAPI extends BaseAPI{
 				.addParameter("next_openid", next_openid==null?"":next_openid)
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,FollowResult.class);
+	}
+
+	/**
+	 * 批量获取用户基本信息
+	 * @param access_token
+	 * @param lang	zh-CN
+	 * @param openids 最多支持一次拉取100条
+	 * @return
+	 */
+	public static UserInfoList userInfoBatchget(String access_token,String lang,List<String> openids){
+		StringBuilder sb = new StringBuilder();
+		sb.append("{\"user_list\": [");
+		for(int i = 0;i < openids.size();i++){
+			sb.append("{")
+			  .append("\"openid\": \"").append(openids.get(i)).append("\",")
+			  .append("\"lang\": \"").append(lang).append("\"")
+			  .append("}").append(i==openids.size()-1?"":",");
+		}
+		sb.append("]}");
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+				.setHeader(jsonHeader)
+				.setUri(BASE_URI+"/cgi-bin/user/info/batchget")
+				.addParameter("access_token",access_token)
+				.setEntity(new StringEntity(sb.toString(), Charset.forName("utf-8")))
+				.build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest,UserInfoList.class);
 	}
 
 	/**

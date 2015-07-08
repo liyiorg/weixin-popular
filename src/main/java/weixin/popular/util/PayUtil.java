@@ -1,5 +1,6 @@
 package weixin.popular.util;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.UUID;
 
@@ -7,6 +8,7 @@ import weixin.popular.bean.pay.PayJsRequest;
 import weixin.popular.bean.pay.PayNativeReply;
 import weixin.popular.bean.pay.PayNativeRequest;
 import weixin.popular.bean.pay.PayPackage;
+import weixin.popular.bean.paymch.MchPayApp;
 import weixin.popular.bean.paymch.MchPayNativeReply;
 
 public class PayUtil {
@@ -119,7 +121,7 @@ public class PayUtil {
 		String package_ = "prepay_id="+prepay_id;
 		PayJsRequest payJsRequest = new PayJsRequest();
 		payJsRequest.setAppId(appId);
-		payJsRequest.setNonceStr(UUID.randomUUID().toString());
+		payJsRequest.setNonceStr(UUID.randomUUID().toString().replace("-", ""));
 		payJsRequest.setPackage_(package_);
 		payJsRequest.setSignType("MD5");
 		payJsRequest.setTimeStamp(System.currentTimeMillis()/1000+"");
@@ -133,7 +135,7 @@ public class PayUtil {
 
 
 	/**
-	 * (MCH)生成Native支付JS请求URL
+	 * (MCH)生成Native支付请求URL
 	 * @param appid
 	 * @param mch_id
 	 * @param productid
@@ -148,7 +150,7 @@ public class PayUtil {
 
 		PayNativeRequest payNativeRequest = new PayNativeRequest();
 		payNativeRequest.setAppid(appid);
-		payNativeRequest.setNoncestr(UUID.randomUUID().toString());
+		payNativeRequest.setNoncestr(UUID.randomUUID().toString().replace("-", ""));
 		payNativeRequest.setProductid(productid);
 		payNativeRequest.setTimestamp(System.currentTimeMillis()/1000+"");
 		Map<String, String> mapS = MapUtil.objectToMap(payNativeRequest,"sign");
@@ -171,6 +173,34 @@ public class PayUtil {
 		String sign = SignatureUtil.generateSign(map,key);
 		mchPayNativeReply.setSign(sign);
 		return XMLConverUtil.convertToXML(mchPayNativeReply);
+	}
+
+	/**
+	 * (MCH)生成支付APP请求数据
+	 * @param prepay_id	预支付订单号
+	 * @param appId
+	 * @param partnerid 商户平台号
+	 * @param key 商户支付密钥
+	 * @return
+	 */
+	public static MchPayApp generateMchAppData(String prepay_id,String appId,String partnerid,String key){
+		Map<String, String> wx_map = new LinkedHashMap<String, String>();
+		wx_map.put("appid", appId);
+		wx_map.put("partnerid", partnerid);
+		wx_map.put("prepayid", prepay_id);
+		wx_map.put("package", "Sign=WXPay");
+		wx_map.put("noncestr", UUID.randomUUID().toString().replace("-", ""));
+		wx_map.put("timestamp", System.currentTimeMillis()/1000+"");
+		String sign = SignatureUtil.generateSign(wx_map,key);
+		MchPayApp mchPayApp = new MchPayApp();
+		mchPayApp.setAppid(appId);
+		mchPayApp.setPartnerid(partnerid);
+		mchPayApp.setPrepayid(prepay_id);
+		mchPayApp.setPackage_(wx_map.get("package"));
+		mchPayApp.setNoncestr(wx_map.get("noncestr"));
+		mchPayApp.setTimestamp(wx_map.get("timestamp"));
+		mchPayApp.setSign(sign);
+		return mchPayApp;
 	}
 
 }

@@ -29,6 +29,7 @@ import weixin.popular.bean.paymch.SecapiPayRefund;
 import weixin.popular.bean.paymch.SecapiPayRefundResult;
 import weixin.popular.bean.paymch.SendCoupon;
 import weixin.popular.bean.paymch.SendCouponResult;
+import weixin.popular.bean.paymch.Sendgroupredpack;
 import weixin.popular.bean.paymch.Sendredpack;
 import weixin.popular.bean.paymch.SendredpackResult;
 import weixin.popular.bean.paymch.Transfers;
@@ -345,6 +346,26 @@ public class PayMchAPI extends BaseAPI{
 				.build();
 		return LocalHttpClient.keyStoreExecuteXmlResult(sendredpack.getMch_id(),httpUriRequest,SendredpackResult.class);
 	}
+
+	/**
+	 * 裂变红包
+	 * @param sendgroupredpack
+	 * @param key
+	 * @return
+	 */
+	public static SendredpackResult mmpaymkttransfersSendgroupredpack(Sendgroupredpack sendgroupredpack,String key){
+		Map<String,String> map = MapUtil.objectToMap( sendgroupredpack);
+		String sign = SignatureUtil.generateSign(map,key);
+		sendgroupredpack.setSign(sign);
+		String secapiPayRefundXML = XMLConverUtil.convertToXML( sendgroupredpack);
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+				.setHeader(xmlHeader)
+				.setUri(MCH_URI + "/mmpaymkttransfers/sendgroupredpack")
+				.setEntity(new StringEntity(secapiPayRefundXML,Charset.forName("utf-8")))
+				.build();
+		return LocalHttpClient.keyStoreExecuteXmlResult(sendgroupredpack.getMch_id(),httpUriRequest,SendredpackResult.class);
+	}
+
 
 	/**
 	 * 企业付款

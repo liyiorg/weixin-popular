@@ -9,6 +9,7 @@ import weixin.popular.bean.pay.PayFeedback;
 import weixin.popular.bean.pay.PayNativeInput;
 import weixin.popular.bean.pay.PayNotify;
 import weixin.popular.bean.pay.PayWarn;
+import weixin.popular.bean.paymch.MchPayNotify;
 
 public class SignatureUtil {
 
@@ -130,6 +131,17 @@ public class SignatureUtil {
 	public static boolean validateAppSignature(PayWarn payWarn,String paySignKey) {
 		Map<String, String> map = MapUtil.objectToMap(payWarn, "appsignature","signmethod");
 		return payWarn.getAppsignature().equals(generatePaySign(map,paySignKey));
+	}
+
+	/**
+	 * 验证 mch pay notify sign 签名
+	 * @param mchPayNotify
+	 * @param key mch key
+	 * @return
+	 */
+	public static boolean validateAppSignature(MchPayNotify mchPayNotify,String key) {
+		Map<String, String> map = MapUtil.objectToMap(mchPayNotify);
+		return mchPayNotify.getSign().equals(generateSign(map,key));
 	}
 
 }

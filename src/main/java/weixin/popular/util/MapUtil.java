@@ -6,6 +6,7 @@ import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -56,7 +57,7 @@ public class MapUtil {
 	 */
 	public static Map<String,String> objectToMap(Object object,String... ignore){
 		Map<String,String> tempMap = new LinkedHashMap<String, String>();
-		for(Field f : object.getClass().getDeclaredFields()){
+		for(Field f : getAllFields(object.getClass())){
 			if(!f.isAccessible()){
 				f.setAccessible(true);
 			}
@@ -84,6 +85,24 @@ public class MapUtil {
 			}
 		}
 		return tempMap;
+	}
+
+	/**
+	 * 获取所有Fields,包含父类field
+	 * @param clazz
+	 * @return
+	 */
+	private static List<Field> getAllFields(Class<?> clazz){
+		if(!clazz.equals(Object.class)){
+			List<Field> fields = new ArrayList<Field>(Arrays.asList(clazz.getDeclaredFields()));
+			List<Field> fields2 = getAllFields(clazz.getSuperclass());
+			if(fields2!=null){
+				fields.addAll(fields2);
+			}
+			return fields;
+		}else{
+			return null;
+		}
 	}
 
 	/**

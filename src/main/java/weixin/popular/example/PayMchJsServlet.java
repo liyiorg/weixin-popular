@@ -36,7 +36,7 @@ public class PayMchJsServlet extends HttpServlet{
 		Unifiedorder unifiedorder = new Unifiedorder();
 		unifiedorder.setAppid(appid);
 		unifiedorder.setMch_id(mch_id);
-		unifiedorder.setNonce_str(UUID.randomUUID().toString());
+		unifiedorder.setNonce_str(UUID.randomUUID().toString().replace("-", ""));
 
 		unifiedorder.setBody("商品信息");
 		unifiedorder.setOut_trade_no("123456");

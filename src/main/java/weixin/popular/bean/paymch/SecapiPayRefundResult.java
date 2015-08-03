@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "xml")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class SecapiPayRefundResult extends MchBaseResult{
+public class SecapiPayRefundResult extends MchBase{
 
 	@XmlElement
 	private String device_info;

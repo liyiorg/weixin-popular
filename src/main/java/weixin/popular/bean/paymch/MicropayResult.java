@@ -6,7 +6,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name="xml")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class MicropayResult extends MchBaseResult{
+public class MicropayResult extends MchBase{
 
 	private String openid;
 	private String is_subscribe;

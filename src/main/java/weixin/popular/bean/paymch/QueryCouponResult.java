@@ -6,7 +6,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name="xml")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class QueryCouponResult extends MchBaseResult{
+public class QueryCouponResult extends MchBase{
 
 	private String sub_mch_id;
 

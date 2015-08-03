@@ -12,7 +12,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement(name="xml")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class MchPayNativeReply extends MchBaseResult{
+public class MchPayNativeReply extends MchBase{
 
 	@XmlElement
 	private String prepay_id;

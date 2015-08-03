@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "xml")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class RefundqueryResult extends MchBaseResult{
+public class RefundqueryResult extends MchBase{
 
 	@XmlElement
 	private String device_info;

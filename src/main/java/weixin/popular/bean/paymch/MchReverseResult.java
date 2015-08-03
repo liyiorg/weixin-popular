@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "xml")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class MchReverseResult extends MchBaseResult{
+public class MchReverseResult extends MchBase{
 
 	@XmlElement
 	private String recall;

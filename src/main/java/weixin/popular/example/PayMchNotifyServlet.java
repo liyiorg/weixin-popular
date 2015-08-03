@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import weixin.popular.bean.paymch.MchNotifyXml;
+import weixin.popular.bean.paymch.MchBaseResult;
 import weixin.popular.bean.paymch.MchPayNotify;
 import weixin.popular.util.ExpireSet;
 import weixin.popular.util.SignatureUtil;
@@ -41,12 +41,12 @@ public class PayMchNotifyServlet extends HttpServlet{
 		//签名验证
 		if(SignatureUtil.validateAppSignature(payNotify,key)){
 			expireSet.add(payNotify.getTransaction_id());
-			MchNotifyXml baseResult = new MchNotifyXml();
+			MchBaseResult baseResult = new MchBaseResult();
 			baseResult.setReturn_code("SUCCESS");
 			baseResult.setReturn_msg("OK");
 			response.getOutputStream().write(XMLConverUtil.convertToXML(baseResult).getBytes());
 		}else{
-			MchNotifyXml baseResult = new MchNotifyXml();
+			MchBaseResult baseResult = new MchBaseResult();
 			baseResult.setReturn_code("FAIL");
 			baseResult.setReturn_msg("ERROR");
 			response.getOutputStream().write(XMLConverUtil.convertToXML(baseResult).getBytes());

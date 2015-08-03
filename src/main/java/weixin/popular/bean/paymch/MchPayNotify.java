@@ -6,7 +6,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name="xml")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class MchPayNotify extends MchBaseResult{
+public class MchPayNotify extends MchBase{
 
 	private String device_info;
 

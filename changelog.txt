@@ -2,6 +2,10 @@ WEIXIN-POPULAR CHANGELOG
 ===========================
 https://github.com/liyiorg/weixin-popular
 
+Changes in version 2.4.3 (2015-08-03)
+-------------------------------------
+*issue #17 MchBaseResult XML 转换错误
+
 Changes in version 2.4.2 (2015-07-27)
 -------------------------------------
 *issue #16 MapUtil.objectToMap 不能获取父类成员变量值

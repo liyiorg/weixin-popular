@@ -16,7 +16,7 @@ import weixin.popular.bean.AdaptorCDATA;
 
 @XmlRootElement(name="xml")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class UnifiedorderResult extends MchBaseResult{
+public class UnifiedorderResult extends MchBase{
 
 	@XmlElement
 	@XmlJavaTypeAdapter(value = AdaptorCDATA.class)

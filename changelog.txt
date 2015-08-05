@@ -6,6 +6,8 @@ Changes in version 2.4.4 (2015-08-05)
 -------------------------------------
 *issue #17 对帐单bug修复
 *MediaAPI 添加 mediaUploadimg,上传图文消息内的图片获取URL
+*修改退款申请bug
+*修改 初始化   MCH HttpClient KeyStore 调用方式
 
 Changes in version 2.4.3 (2015-08-03)
 -------------------------------------

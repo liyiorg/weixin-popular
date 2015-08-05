@@ -62,19 +62,12 @@ public class HttpClientFactory{
 	 * @param maxPerRoute
 	 * @return
 	 */
-	public static HttpClient createKeyMaterialHttpClient(KeyStore keystore,String keyPassword,String[] supportedProtocols,int maxTotal,int maxPerRoute) {
+	public static HttpClient createKeyMaterialHttpClient(KeyStore keystore,String keyPassword,String[] supportedProtocols) {
 		try {
-
 			SSLContext sslContext = SSLContexts.custom().useSSL().loadKeyMaterial(keystore, keyPassword.toCharArray()).build();
 			SSLConnectionSocketFactory sf = new SSLConnectionSocketFactory(sslContext,supportedProtocols,
 	                null,SSLConnectionSocketFactory.BROWSER_COMPATIBLE_HOSTNAME_VERIFIER);
-			PoolingHttpClientConnectionManager poolingHttpClientConnectionManager = new PoolingHttpClientConnectionManager();
-			poolingHttpClientConnectionManager.setMaxTotal(maxTotal);
-			poolingHttpClientConnectionManager.setDefaultMaxPerRoute(maxPerRoute);
-			return HttpClientBuilder.create()
-									.setConnectionManager(poolingHttpClientConnectionManager)
-									.setSSLSocketFactory(sf)
-									.build();
+			return HttpClientBuilder.create().setSSLSocketFactory(sf).build();
 		} catch (KeyManagementException e) {
 			e.printStackTrace();
 		} catch (NoSuchAlgorithmException e) {

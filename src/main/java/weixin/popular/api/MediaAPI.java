@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
 import java.nio.charset.UnsupportedCharsetException;
+import java.util.UUID;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -23,6 +24,7 @@ import org.apache.http.util.EntityUtils;
 
 import weixin.popular.bean.Media;
 import weixin.popular.bean.MediaType;
+import weixin.popular.bean.UploadimgResult;
 import weixin.popular.client.LocalHttpClient;
 
 public class MediaAPI extends BaseAPI{
@@ -141,4 +143,76 @@ public class MediaAPI extends BaseAPI{
 		return null;
 	}
 
+	/**
+	 * 上传图文消息内的图片获取URL
+	 * 请注意，本接口所上传的图片不占用公众号的素材库中图片数量的5000个的限制。图片仅支持jpg/png格式，大小必须在1MB以下。
+	 * @param access_token
+	 * @param media
+	 * @return
+	 */
+	public static UploadimgResult mediaUploadimg(String access_token,File media){
+		HttpPost httpPost = new HttpPost(MEDIA_URI+"/cgi-bin/media/uploadimg");
+		FileBody bin = new FileBody(media);
+        HttpEntity reqEntity = MultipartEntityBuilder.create()
+        		 .addPart("media", bin)
+                 .addTextBody("access_token", access_token)
+                 .build();
+        httpPost.setEntity(reqEntity);
+		return LocalHttpClient.executeJsonResult(httpPost,UploadimgResult.class);
+	}
+
+	/**
+	 * 上传图文消息内的图片获取URL
+	 * 请注意，本接口所上传的图片不占用公众号的素材库中图片数量的5000个的限制。图片仅支持jpg/png格式，大小必须在1MB以下。
+	 * @param access_token
+	 * @param inputStream
+	 * @return
+	 */
+	public static UploadimgResult mediaUploadimg(String access_token,InputStream inputStream){
+		HttpPost httpPost = new HttpPost(MEDIA_URI+"/cgi-bin/media/uploadimg");
+		InputStreamBody inputStreamBody =  new InputStreamBody(inputStream, ContentType.MULTIPART_FORM_DATA, UUID.randomUUID().toString()+".jpg");
+		HttpEntity reqEntity = MultipartEntityBuilder.create()
+        		 .addPart("media",inputStreamBody)
+                 .addTextBody("access_token", access_token)
+                 .build();
+        httpPost.setEntity(reqEntity);
+		return LocalHttpClient.executeJsonResult(httpPost,UploadimgResult.class);
+	}
+
+
+	/**
+	 * 上传图文消息内的图片获取URL
+	 * 请注意，本接口所上传的图片不占用公众号的素材库中图片数量的5000个的限制。图片仅支持jpg/png格式，大小必须在1MB以下。
+	 * @param access_token
+	 * @param uri
+	 * @return
+	 */
+	public static UploadimgResult mediaUploadimg(String access_token,URI uri){
+		HttpPost httpPost = new HttpPost(MEDIA_URI+"/cgi-bin/media/uploadimg");
+		CloseableHttpClient tempHttpClient = HttpClients.createDefault();
+		try {
+			HttpEntity entity = tempHttpClient.execute(RequestBuilder.get().setUri(uri).build()).getEntity();
+			HttpEntity reqEntity = MultipartEntityBuilder.create()
+					 .addBinaryBody("media",EntityUtils.toByteArray(entity),ContentType.get(entity),UUID.randomUUID().toString()+".jpg")
+			         .addTextBody("access_token", access_token)
+			         .build();
+			httpPost.setEntity(reqEntity);
+			return LocalHttpClient.executeJsonResult(httpPost,UploadimgResult.class);
+		} catch (UnsupportedCharsetException e) {
+			e.printStackTrace();
+		} catch (ClientProtocolException e) {
+			e.printStackTrace();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally{
+			try {
+				tempHttpClient.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return null;
+	}
 }

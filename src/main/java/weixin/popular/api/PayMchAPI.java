@@ -1,13 +1,20 @@
 package weixin.popular.api;
 
+import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.Map;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.client.methods.RequestBuilder;
 import org.apache.http.entity.StringEntity;
+import org.apache.http.util.EntityUtils;
 
 import weixin.popular.bean.paymch.Closeorder;
+import weixin.popular.bean.paymch.DownloadbillResult;
 import weixin.popular.bean.paymch.MchBaseResult;
 import weixin.popular.bean.paymch.MchDownloadbill;
 import weixin.popular.bean.paymch.MchOrderInfoResult;
@@ -212,7 +219,7 @@ public class PayMchAPI extends BaseAPI{
 	 * @param key
 	 * @return
 	 */
-	public static MchBaseResult payDownloadbill(MchDownloadbill downloadbill,String key){
+	public static DownloadbillResult payDownloadbill(MchDownloadbill downloadbill,String key){
 		Map<String,String> map = MapUtil.objectToMap(downloadbill);
 		String sign = SignatureUtil.generateSign(map,key);
 		downloadbill.setSign(sign);
@@ -222,7 +229,27 @@ public class PayMchAPI extends BaseAPI{
 				.setUri(MCH_URI + "/pay/downloadbill")
 				.setEntity(new StringEntity(closeorderXML,Charset.forName("utf-8")))
 				.build();
-		return LocalHttpClient.executeXmlResult(httpUriRequest,MchBaseResult.class);
+		return LocalHttpClient.execute(httpUriRequest,new ResponseHandler<DownloadbillResult>() {
+
+			@Override
+			public DownloadbillResult handleResponse(HttpResponse response)
+					throws ClientProtocolException, IOException {
+				int status = response.getStatusLine().getStatusCode();
+                if (status >= 200 && status < 300) {
+                    HttpEntity entity = response.getEntity();
+                    String str = EntityUtils.toString(entity,"utf-8");
+                    if(str.startsWith("<xml>")){
+                    	return XMLConverUtil.convertToObject(DownloadbillResult.class,str);
+                    }else{
+                    	DownloadbillResult dr = new DownloadbillResult();
+                    	dr.setData(str);
+                    	return dr;
+                    }
+                } else {
+                    throw new ClientProtocolException("Unexpected response status: " + status);
+                }
+			}
+		});
 	}
 
 	/**

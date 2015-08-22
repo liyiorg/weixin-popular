@@ -212,4 +212,20 @@ public class UserAPI extends BaseAPI{
 		return LocalHttpClient.executeJsonResult(httpUriRequest,BaseResult.class);
 	}
 
+	/**
+	 * 网页授权获取用户基本信息
+	 * @param access_token
+	 * @param openid
+	 * @return
+	 */
+	public static User webUserInfo(String access_token,String openid){
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+				.setUri(BASE_URI+"/sns/userinfo")
+				.addParameter("access_token",access_token)
+				.addParameter("openid",openid)
+				.addParameter("lang","zh_CN")
+				.build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest,User.class);
+	}
+	
 }

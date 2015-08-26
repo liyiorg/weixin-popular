@@ -15,7 +15,7 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
-import com.sun.xml.internal.bind.marshaller.CharacterEscapeHandler;
+import com.sun.xml.bind.marshaller.CharacterEscapeHandler;
 
 /**
  * XML 数据接收对象转换工具类

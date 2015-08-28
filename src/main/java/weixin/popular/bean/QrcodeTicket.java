@@ -11,6 +11,8 @@ public class QrcodeTicket extends BaseResult{
 	
 	private Integer expire_seconds;
 
+	private String url;
+
 	public String getTicket() {
 		return ticket;
 	}
@@ -27,5 +29,12 @@ public class QrcodeTicket extends BaseResult{
 		expire_seconds = expireSeconds;
 	}
 	
-	
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
 }

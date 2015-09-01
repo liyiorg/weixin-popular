@@ -2,28 +2,34 @@ package weixin.popular.bean;
 
 /**
  * 微信请求状态数据
- * @author LiYi
  *
+ * @author LiYi
  */
 public class BaseResult {
 
-	private String errcode;
-	private String errmsg;
+  private static final String SUCCESS_CODE = "0";
 
-	public String getErrcode() {
-		return errcode;
-	}
+  private String errcode;
+  private String errmsg;
 
-	public void setErrcode(String errcode) {
-		this.errcode = errcode;
-	}
+  public String getErrcode() {
+    return errcode;
+  }
 
-	public String getErrmsg() {
-		return errmsg;
-	}
+  public void setErrcode(String errcode) {
+    this.errcode = errcode;
+  }
 
-	public void setErrmsg(String errmsg) {
-		this.errmsg = errmsg;
-	}
+  public String getErrmsg() {
+    return errmsg;
+  }
+
+  public void setErrmsg(String errmsg) {
+    this.errmsg = errmsg;
+  }
+
+  public boolean isSuccess() {
+    return errcode == null || errcode.isEmpty() || errcode.equals(SUCCESS_CODE);
+  }
 
 }

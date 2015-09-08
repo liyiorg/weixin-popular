@@ -1,15 +1,11 @@
 package weixin.popular.api;
 
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
 import java.nio.charset.UnsupportedCharsetException;
 import java.util.UUID;
-
-import javax.imageio.ImageIO;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -132,7 +128,7 @@ public class MediaAPI extends BaseAPI{
 	 * @param media_id
 	 * @return
 	 */
-	public static BufferedImage mediaGet(String access_token,String media_id){
+	public static byte[] mediaGet(String access_token,String media_id){
 		HttpUriRequest httpUriRequest = RequestBuilder.get()
 					.setUri(BASE_URI+"/cgi-bin/media/get")
 					.addParameter("access_token", access_token)
@@ -140,8 +136,7 @@ public class MediaAPI extends BaseAPI{
 					.build();
 		HttpResponse httpResponse = LocalHttpClient.execute(httpUriRequest);
 		try {
-			byte[] bytes = EntityUtils.toByteArray(httpResponse.getEntity());
-			return ImageIO.read(new ByteArrayInputStream(bytes));
+			return EntityUtils.toByteArray(httpResponse.getEntity());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

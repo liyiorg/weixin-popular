@@ -1,7 +1,11 @@
 package weixin.popular.api;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.nio.charset.Charset;
+
+import javax.imageio.ImageIO;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpUriRequest;
@@ -76,14 +80,15 @@ public class QrcodeAPI extends BaseAPI{
 	 * @param ticket  内部自动 UrlEncode
 	 * @return
 	 */
-	public static byte[] showqrcode(String ticket){
-		HttpUriRequest httpUriRequest = RequestBuilder.post()
+	public static BufferedImage showqrcode(String ticket){
+		HttpUriRequest httpUriRequest = RequestBuilder.get()
 				.setUri(QRCODE_DOWNLOAD_URI + "/cgi-bin/showqrcode")
 				.addParameter("ticket", ticket)
 				.build();
 		HttpResponse httpResponse = LocalHttpClient.execute(httpUriRequest);
 		try {
-			return EntityUtils.toByteArray(httpResponse.getEntity());
+			byte[] bytes = EntityUtils.toByteArray(httpResponse.getEntity());
+			return ImageIO.read(new ByteArrayInputStream(bytes));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

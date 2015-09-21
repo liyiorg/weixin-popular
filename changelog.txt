@@ -2,6 +2,11 @@ WEIXIN-POPULAR CHANGELOG
 ===========================
 https://github.com/liyiorg/weixin-popular
 
+Changes in version 2.4.5 (2015-09-08)
+-------------------------------------
+*修改QrcodeAPI 下载二维码bug
+*修改MediaAPI 下载多媒体bug
+
 Changes in version 2.4.4 (2015-08-05)
 -------------------------------------
 *issue #17 对帐单bug修复

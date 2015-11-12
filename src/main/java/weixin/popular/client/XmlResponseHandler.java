@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -29,7 +30,12 @@ public class XmlResponseHandler{
 	                if (status >= 200 && status < 300) {
 	                    HttpEntity entity = response.getEntity();
 	                    String str = EntityUtils.toString(entity);
-	                   return XMLConverUtil.convertToObject(clazz,new String(str.getBytes("iso-8859-1"),"utf-8"));
+	                    Header contentType = response.getEntity().getContentType();
+	                    if(contentType!=null&&contentType.toString().matches(".*[uU][tT][fF]-8$")){
+	                    	return XMLConverUtil.convertToObject(clazz,str);
+	                    }else{
+	                    	return XMLConverUtil.convertToObject(clazz,new String(str.getBytes("iso-8859-1"),"utf-8"));
+	                    }
 	                } else {
 	                    throw new ClientProtocolException("Unexpected response status: " + status);
 	                }

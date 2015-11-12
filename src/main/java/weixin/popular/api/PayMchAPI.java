@@ -207,7 +207,7 @@ public class PayMchAPI extends BaseAPI{
 		String refundqueryXML = XMLConverUtil.convertToXML(refundquery);
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 				.setHeader(xmlHeader)
-				.setUri(MCH_URI + "/pay/refundqueryd")
+				.setUri(MCH_URI + "/pay/refundquery")
 				.setEntity(new StringEntity(refundqueryXML,Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeXmlResult(httpUriRequest,RefundqueryResult.class);

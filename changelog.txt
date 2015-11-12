@@ -2,6 +2,11 @@ WEIXIN-POPULAR CHANGELOG
 ===========================
 https://github.com/liyiorg/weixin-popular
 
+Changes in version 2.4.6 (2015-11-12)
+-------------------------------------
+*修改XmlResponseHandler 解决微信红包接口返回结果中文乱码问题
+*修改PayMchAPI 查询退款uri 地址错误
+
 Changes in version 2.4.5 (2015-09-08)
 -------------------------------------
 *修改QrcodeAPI 下载二维码bug

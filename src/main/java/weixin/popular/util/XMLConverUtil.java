@@ -1,21 +1,14 @@
 package weixin.popular.util;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.io.StringReader;
-import java.io.StringWriter;
-import java.io.Writer;
-import java.util.HashMap;
-import java.util.Map;
+import com.sun.xml.bind.marshaller.CharacterEscapeHandler;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
-
-import com.sun.xml.bind.marshaller.CharacterEscapeHandler;
+import java.io.*;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * XML 数据接收对象转换工具类
@@ -24,8 +17,19 @@ import com.sun.xml.bind.marshaller.CharacterEscapeHandler;
  */
 public class XMLConverUtil{
 
-	private static Map<Class<?>,Unmarshaller> uMap = new HashMap<Class<?>,Unmarshaller>();
-	private static Map<Class<?>,Marshaller> mMap = new HashMap<Class<?>,Marshaller>();
+	private static final ThreadLocal<Map<Class<?>,Marshaller>> mMapLocal = new ThreadLocal<Map<Class<?>,Marshaller>>() {
+		@Override
+		protected Map<Class<?>, Marshaller> initialValue() {
+			return new HashMap<>();
+		}
+	};
+
+	private static final ThreadLocal<Map<Class<?>,Unmarshaller>> uMapLocal = new ThreadLocal<Map<Class<?>,Unmarshaller>>(){
+		@Override
+		protected Map<Class<?>, Unmarshaller> initialValue() {
+			return new HashMap<>();
+		}
+	};
 
 	/**
 	 * XML to Object
@@ -59,12 +63,13 @@ public class XMLConverUtil{
 	@SuppressWarnings("unchecked")
 	public static <T> T convertToObject(Class<T> clazz,Reader reader){
 		try {
+			Map<Class<?>, Unmarshaller> uMap = uMapLocal.get();
 			if(!uMap.containsKey(clazz)){
 				JAXBContext jaxbContext = JAXBContext.newInstance(clazz);
 				Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-				uMap.put(clazz,unmarshaller);
+				uMap.put(clazz, unmarshaller);
 			}
-			return (T)uMap.get(clazz).unmarshal(reader);
+			return (T) uMap.get(clazz).unmarshal(reader);
 		} catch (JAXBException e) {
 			e.printStackTrace();
 		}
@@ -78,6 +83,7 @@ public class XMLConverUtil{
 	 */
 	public static String convertToXML(Object object){
 		try {
+			Map<Class<?>, Marshaller> mMap = mMapLocal.get();
 			if(!mMap.containsKey(object.getClass())){
 				JAXBContext jaxbContext = JAXBContext.newInstance(object.getClass());
 				Marshaller marshaller = jaxbContext.createMarshaller();

@@ -113,7 +113,7 @@ public class XMLConverUtil{
 		return null;
 	}
 
-	private static Pattern pattern = Pattern.compile("<(\\w+)>(?:(?:<!\\[CDATA\\[(.*)\\]\\]>)|(.*))</\\1>");
+	private static Pattern pattern = Pattern.compile("<(\\w+)>\\s*(?:(?:<!\\[CDATA\\[\\s*(.*[\\S])\\s*\\]\\]>)|(.*[\\S]))\\s*</\\1>");
 
 	/**
 	 * 转换简单的xml为map

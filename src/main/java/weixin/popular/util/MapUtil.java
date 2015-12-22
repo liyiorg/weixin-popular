@@ -1,7 +1,5 @@
 package weixin.popular.util;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
 import java.net.URLEncoder;
@@ -13,16 +11,6 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-
-import org.w3c.dom.DOMException;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
 
 public class MapUtil {
 
@@ -131,35 +119,6 @@ public class MapUtil {
 			stringBuilder.deleteCharAt(stringBuilder.length()-1);
 		}
 		return stringBuilder.toString();
-	}
-
-	/**
-	 * 简单 xml 转换为 Map
-	 * @param reader
-	 * @return
-	 */
-	public static Map<String,String> xmlToMap(String xml){
-		try {
-			DocumentBuilder documentBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-			Document document = documentBuilder.parse(new ByteArrayInputStream(xml.getBytes()));
-			Element element = document.getDocumentElement();
-			NodeList nodeList = element.getChildNodes();
-			Map<String, String> map = new LinkedHashMap<String, String>();
-			for(int i=0;i<nodeList.getLength();i++){
-				Element e = (Element) nodeList.item(i);
-				map.put(e.getNodeName(),e.getTextContent());
-			}
-			return map;
-		} catch (DOMException e) {
-			e.printStackTrace();
-		} catch (ParserConfigurationException e) {
-			e.printStackTrace();
-		} catch (SAXException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return null;
 	}
 
 }

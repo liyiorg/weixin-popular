@@ -38,6 +38,10 @@ public class MchPayNotify extends MchBase{
 
 	private String time_end;
 
+	private String contract_id;
+
+	private String trade_state;
+
 	public String getDevice_info() {
 		return device_info;
 	}
@@ -156,6 +160,22 @@ public class MchPayNotify extends MchBase{
 
 	public void setTime_end(String time_end) {
 		this.time_end = time_end;
+	}
+
+	public String getContract_id() {
+		return contract_id;
+	}
+
+	public void setContract_id(String contract_id) {
+		this.contract_id = contract_id;
+	}
+
+	public String getTrade_state() {
+		return trade_state;
+	}
+
+	public void setTrade_state(String trade_state) {
+		this.trade_state = trade_state;
 	}
 
 

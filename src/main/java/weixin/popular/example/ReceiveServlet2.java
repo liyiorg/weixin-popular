@@ -13,9 +13,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import weixin.popular.bean.EventMessage;
+import weixin.popular.bean.message.EventMessage;
 import weixin.popular.bean.xmlmessage.XMLTextMessage;
-import weixin.popular.util.ExpireSet;
+import weixin.popular.support.ExpireKey;
+import weixin.popular.support.expirekey.DefaultExpireKey;
 import weixin.popular.util.SignatureUtil;
 import weixin.popular.util.StreamUtils;
 import weixin.popular.util.XMLConverUtil;
@@ -41,8 +42,8 @@ public class ReceiveServlet2 extends HttpServlet{
 	private String encodingToken = "";		//Token(令牌)   通过微信后台获取
 	private String encodingAesKey = "";		//EncodingAESKey(消息加解密密钥) 通过微信后台获取
 
-    //重复通知过滤  时效60秒
-    private static ExpireSet<String> expireSet = new ExpireSet<String>(60);
+	//重复通知过滤
+    private static ExpireKey expireKey = new DefaultExpireKey();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -109,15 +110,15 @@ public class ReceiveServlet2 extends HttpServlet{
 	        }
         }
 
-        String expireKey = eventMessage.getFromUserName() + "__"
+        String key = eventMessage.getFromUserName() + "__"
 				   + eventMessage.getToUserName() + "__"
 				   + eventMessage.getMsgId() + "__"
 				   + eventMessage.getCreateTime();
-		if(expireSet.contains(expireKey)){
+		if(expireKey.exists(key)){
 			//重复通知不作处理
 			return;
 		}else{
-			expireSet.add(expireKey);
+			expireKey.add(key);
 		}
 
 		//创建回复

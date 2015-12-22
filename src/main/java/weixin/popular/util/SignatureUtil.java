@@ -10,6 +10,7 @@ import weixin.popular.bean.pay.PayNativeInput;
 import weixin.popular.bean.pay.PayNotify;
 import weixin.popular.bean.pay.PayWarn;
 import weixin.popular.bean.paymch.MchPayNotify;
+import weixin.popular.bean.paymch.PapayEntrustwebNotify;
 
 public class SignatureUtil {
 
@@ -135,13 +136,39 @@ public class SignatureUtil {
 
 	/**
 	 * 验证 mch pay notify sign 签名
+	 * 使用更好的 SignatureUtil.validateSign
 	 * @param mchPayNotify
 	 * @param key mch key
 	 * @return
 	 */
+	@Deprecated
 	public static boolean validateAppSignature(MchPayNotify mchPayNotify,String key) {
 		Map<String, String> map = MapUtil.objectToMap(mchPayNotify);
 		return mchPayNotify.getSign().equals(generateSign(map,key));
+	}
+
+	/**
+	 * 验证代扣签约 签名
+	 * 使用更好的 SignatureUtil.validateSign
+	 * @param papayEntrustwebNotify
+	 * @param key mch key
+	 * @return
+	 */
+	@Deprecated
+	public static boolean validateAppSignature(PapayEntrustwebNotify papayEntrustwebNotify,String key) {
+		Map<String, String> map = MapUtil.objectToMap(papayEntrustwebNotify);
+		return papayEntrustwebNotify.getSign().equals(generateSign(map,key));
+	}
+
+	/**
+	 * mch 支付、代扣异步通知签名验证，
+	 * 该方法可以替代 mch 支付、代扣异步通知验证，用以防止官方返回参数与bean不一至而导致签名错误。
+	 * @param map 参与签名的参数
+	 * @param key mch key
+	 * @return
+	 */
+	public static boolean validateSign(Map<String,String> map,String key){
+		return map.get("sign").equals(generateSign(map,key));
 	}
 
 }

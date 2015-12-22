@@ -22,9 +22,9 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
-import weixin.popular.bean.Media;
-import weixin.popular.bean.MediaType;
-import weixin.popular.bean.UploadimgResult;
+import weixin.popular.bean.media.Media;
+import weixin.popular.bean.media.MediaType;
+import weixin.popular.bean.media.UploadimgResult;
 import weixin.popular.client.LocalHttpClient;
 
 public class MediaAPI extends BaseAPI{

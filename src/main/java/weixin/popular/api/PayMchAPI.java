@@ -25,6 +25,14 @@ import weixin.popular.bean.paymch.MchShorturl;
 import weixin.popular.bean.paymch.MchShorturlResult;
 import weixin.popular.bean.paymch.Micropay;
 import weixin.popular.bean.paymch.MicropayResult;
+import weixin.popular.bean.paymch.PapayContractbill;
+import weixin.popular.bean.paymch.PapayContractbillResult;
+import weixin.popular.bean.paymch.PapayDeletecontract;
+import weixin.popular.bean.paymch.PapayDeletecontractResult;
+import weixin.popular.bean.paymch.PapayQuerycontract;
+import weixin.popular.bean.paymch.PapayQuerycontractResult;
+import weixin.popular.bean.paymch.Pappayapply;
+import weixin.popular.bean.paymch.PappayapplyResult;
 import weixin.popular.bean.paymch.QueryCoupon;
 import weixin.popular.bean.paymch.QueryCouponResult;
 import weixin.popular.bean.paymch.QueryCouponStock;
@@ -55,17 +63,6 @@ import weixin.popular.util.XMLConverUtil;
  */
 public class PayMchAPI extends BaseAPI{
 
-	/**
-	 * 统一下单
-	 * 请使用  payUnifiedorder(Unifiedorder unifiedorder,String key),
-	 * 自动生成sign
-	 * @param unifiedorder
-	 * @return
-	 */
-	@Deprecated
-	public static UnifiedorderResult payUnifiedorder(Unifiedorder unifiedorder){
-		return payUnifiedorder(unifiedorder, null);
-	}
 
 	/**
 	 * 统一下单
@@ -411,6 +408,121 @@ public class PayMchAPI extends BaseAPI{
 				.setEntity(new StringEntity(secapiPayRefundXML,Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.keyStoreExecuteXmlResult(transfers.getMchid(),httpUriRequest,TransfersResult.class);
+	}
+
+	/**
+	 * 委托代扣-扣款
+	 * @param pappayapply
+	 * @param key
+	 * @return
+	 */
+	public static PappayapplyResult payPappayapply(Pappayapply pappayapply,String key){
+		Map<String,String> map = MapUtil.objectToMap( pappayapply);
+		String sign = SignatureUtil.generateSign(map,key);
+		pappayapply.setSign(sign);
+		String secapiPayRefundXML = XMLConverUtil.convertToXML( pappayapply);
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+				.setHeader(xmlHeader)
+				.setUri(MCH_URI + "/pay/pappayapply")
+				.setEntity(new StringEntity(secapiPayRefundXML,Charset.forName("utf-8")))
+				.build();
+		return LocalHttpClient.executeXmlResult(httpUriRequest,PappayapplyResult.class);
+	}
+
+	/**
+	 * 委托代扣-订单查询
+	 * @param mchOrderquery
+	 * @param key
+	 * @return
+	 */
+	public static MchOrderInfoResult payPaporderquery(MchOrderquery mchOrderquery,String key){
+		Map<String,String> map = MapUtil.objectToMap(mchOrderquery);
+		String sign = SignatureUtil.generateSign(map,key);
+		mchOrderquery.setSign(sign);
+		String closeorderXML = XMLConverUtil.convertToXML(mchOrderquery);
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+				.setHeader(xmlHeader)
+				.setUri(MCH_URI + "/pay/paporderquery")
+				.setEntity(new StringEntity(closeorderXML,Charset.forName("utf-8")))
+				.build();
+		return LocalHttpClient.executeXmlResult(httpUriRequest,MchOrderInfoResult.class);
+	}
+
+	/**
+	 * 委托代扣-查询签约关系
+	 * @param papayQuerycontract
+	 * @param key
+	 * @return
+	 */
+	public static PapayQuerycontractResult papayQuerycontract(PapayQuerycontract papayQuerycontract,String key){
+		Map<String,String> map = MapUtil.objectToMap(papayQuerycontract);
+		String sign = SignatureUtil.generateSign(map,key);
+		papayQuerycontract.setSign(sign);
+		String closeorderXML = XMLConverUtil.convertToXML(papayQuerycontract);
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+				.setHeader(xmlHeader)
+				.setUri(MCH_URI + "/papay/querycontract")
+				.setEntity(new StringEntity(closeorderXML,Charset.forName("utf-8")))
+				.build();
+		return LocalHttpClient.executeXmlResult(httpUriRequest,PapayQuerycontractResult.class);
+	}
+
+	/**
+	 * 委托代扣-解约
+	 * @param papayDeletecontract
+	 * @param key
+	 * @return
+	 */
+	public static PapayDeletecontractResult papayDeletecontract(PapayDeletecontract papayDeletecontract,String key){
+		Map<String,String> map = MapUtil.objectToMap(papayDeletecontract);
+		String sign = SignatureUtil.generateSign(map,key);
+		papayDeletecontract.setSign(sign);
+		String closeorderXML = XMLConverUtil.convertToXML(papayDeletecontract);
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+				.setHeader(xmlHeader)
+				.setUri(MCH_URI + "/papay/deletecontract")
+				.setEntity(new StringEntity(closeorderXML,Charset.forName("utf-8")))
+				.build();
+		return LocalHttpClient.executeXmlResult(httpUriRequest,PapayDeletecontractResult.class);
+	}
+
+	/**
+	 * 委托代扣-对账单查询
+	 * @param papayContractbill
+	 * @param key
+	 * @return
+	 */
+	public static PapayContractbillResult papayContractbill(PapayContractbill papayContractbill,String key){
+		Map<String,String> map = MapUtil.objectToMap(papayContractbill);
+		String sign = SignatureUtil.generateSign(map,key);
+		papayContractbill.setSign(sign);
+		String closeorderXML = XMLConverUtil.convertToXML(papayContractbill);
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+				.setHeader(xmlHeader)
+				.setUri(MCH_URI + "/papay/contractbill")
+				.setEntity(new StringEntity(closeorderXML,Charset.forName("utf-8")))
+				.build();
+		return LocalHttpClient.execute(httpUriRequest,new ResponseHandler<PapayContractbillResult>() {
+
+			@Override
+			public PapayContractbillResult handleResponse(HttpResponse response)
+					throws ClientProtocolException, IOException {
+				int status = response.getStatusLine().getStatusCode();
+                if (status >= 200 && status < 300) {
+                    HttpEntity entity = response.getEntity();
+                    String str = EntityUtils.toString(entity,"utf-8");
+                    if(str.startsWith("<xml>")){
+                    	return XMLConverUtil.convertToObject(PapayContractbillResult.class,str);
+                    }else{
+                    	PapayContractbillResult dr = new PapayContractbillResult();
+                    	dr.setData(str);
+                    	return dr;
+                    }
+                } else {
+                    throw new ClientProtocolException("Unexpected response status: " + status);
+                }
+			}
+		});
 	}
 
 }

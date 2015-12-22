@@ -10,7 +10,7 @@ import org.apache.http.client.methods.RequestBuilder;
 import org.apache.http.entity.StringEntity;
 
 import weixin.popular.bean.BaseResult;
-import weixin.popular.bean.Delivernotify;
+import weixin.popular.bean.pay.Delivernotify;
 import weixin.popular.bean.pay.OrderInfo;
 import weixin.popular.bean.pay.Orderquery;
 import weixin.popular.client.LocalHttpClient;

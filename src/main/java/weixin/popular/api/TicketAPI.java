@@ -3,7 +3,7 @@ package weixin.popular.api;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.client.methods.RequestBuilder;
 
-import weixin.popular.bean.Ticket;
+import weixin.popular.bean.ticket.Ticket;
 import weixin.popular.client.LocalHttpClient;
 
 /**

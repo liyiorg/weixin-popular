@@ -8,10 +8,10 @@ import org.apache.http.client.methods.RequestBuilder;
 import org.apache.http.entity.StringEntity;
 
 import weixin.popular.bean.BaseResult;
-import weixin.popular.bean.FollowResult;
-import weixin.popular.bean.Group;
-import weixin.popular.bean.User;
-import weixin.popular.bean.UserInfoList;
+import weixin.popular.bean.user.FollowResult;
+import weixin.popular.bean.user.Group;
+import weixin.popular.bean.user.User;
+import weixin.popular.bean.user.UserInfoList;
 import weixin.popular.client.LocalHttpClient;
 import weixin.popular.util.JsonUtil;
 

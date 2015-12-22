@@ -16,7 +16,7 @@ public class SendredpackResult extends MchBase{
 
 	private Integer total_amount;
 
-	private Integer send_time;
+	private String send_time;
 
 	private String send_listid;
 
@@ -52,11 +52,11 @@ public class SendredpackResult extends MchBase{
 		this.total_amount = total_amount;
 	}
 
-	public Integer getSend_time() {
+	public String getSend_time() {
 		return send_time;
 	}
 
-	public void setSend_time(Integer send_time) {
+	public void setSend_time(String send_time) {
 		this.send_time = send_time;
 	}
 

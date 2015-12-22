@@ -1,14 +1,24 @@
 package weixin.popular.util;
 
-import com.sun.xml.bind.marshaller.CharacterEscapeHandler;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.StringReader;
+import java.io.StringWriter;
+import java.io.Writer;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
-import java.io.*;
-import java.util.HashMap;
-import java.util.Map;
+
+import com.sun.xml.bind.marshaller.CharacterEscapeHandler;
 
 /**
  * XML 数据接收对象转换工具类
@@ -102,4 +112,22 @@ public class XMLConverUtil{
 		}
 		return null;
 	}
+
+	private static Pattern pattern = Pattern.compile("<(\\w+)>(?:(?:<!\\[CDATA\\[(.*)\\]\\]>)|(.*))</\\1>");
+
+	/**
+	 * 转换简单的xml为map
+	 * @param xml
+	 * @return
+	 */
+	public static Map<String,String> convertToMap(String xml){
+		Matcher matcher = pattern.matcher(xml);
+		Map<String, String> map = new LinkedHashMap<>();
+		while(matcher.find()){
+			String value = matcher.group(2);
+			map.put(matcher.group(1), value!=null?value:matcher.group(3));
+		}
+		return map;
+	}
+
 }

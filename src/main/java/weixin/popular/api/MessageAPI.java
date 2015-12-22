@@ -7,15 +7,15 @@ import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.client.methods.RequestBuilder;
 import org.apache.http.entity.StringEntity;
 
-import weixin.popular.bean.Article;
 import weixin.popular.bean.BaseResult;
-import weixin.popular.bean.Media;
-import weixin.popular.bean.MessageSendResult;
-import weixin.popular.bean.Uploadvideo;
-import weixin.popular.bean.massmessage.MassMessage;
-import weixin.popular.bean.message.Message;
-import weixin.popular.bean.templatemessage.TemplateMessage;
-import weixin.popular.bean.templatemessage.TemplateMessageResult;
+import weixin.popular.bean.media.Media;
+import weixin.popular.bean.message.Article;
+import weixin.popular.bean.message.MessageSendResult;
+import weixin.popular.bean.message.Uploadvideo;
+import weixin.popular.bean.message.massmessage.MassMessage;
+import weixin.popular.bean.message.message.Message;
+import weixin.popular.bean.message.templatemessage.TemplateMessage;
+import weixin.popular.bean.message.templatemessage.TemplateMessageResult;
 import weixin.popular.client.LocalHttpClient;
 import weixin.popular.util.JsonUtil;
 

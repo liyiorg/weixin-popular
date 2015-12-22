@@ -24,14 +24,14 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
-import weixin.popular.bean.Article;
 import weixin.popular.bean.BaseResult;
-import weixin.popular.bean.Media;
-import weixin.popular.bean.MediaType;
 import weixin.popular.bean.material.Description;
 import weixin.popular.bean.material.MaterialBatchgetResult;
 import weixin.popular.bean.material.MaterialcountResult;
 import weixin.popular.bean.material.NewsItem;
+import weixin.popular.bean.media.Media;
+import weixin.popular.bean.media.MediaType;
+import weixin.popular.bean.message.Article;
 import weixin.popular.client.LocalHttpClient;
 import weixin.popular.util.JsonUtil;
 

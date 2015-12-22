@@ -2,7 +2,7 @@ package weixin.popular.bean.material;
 
 import java.util.List;
 
-import weixin.popular.bean.Article;
+import weixin.popular.bean.message.Article;
 
 public class MaterialBatchgetResultItemContent {
 

@@ -13,7 +13,7 @@ import org.apache.http.client.methods.RequestBuilder;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.util.EntityUtils;
 
-import weixin.popular.bean.QrcodeTicket;
+import weixin.popular.bean.qrcode.QrcodeTicket;
 import weixin.popular.client.LocalHttpClient;
 
 /**
@@ -56,7 +56,7 @@ public class QrcodeAPI extends BaseAPI{
 	/**
 	 * 创建临时二维码
 	 * @param access_token
-	 * @param expire_seconds 不超过604800秒
+	 * @param expire_seconds 最大不超过2592000 秒（即30天）
 	 * @param scene_id		  场景值ID，32位非0整型
 	 * @return
 	 */

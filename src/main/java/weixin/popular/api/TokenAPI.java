@@ -3,7 +3,7 @@ package weixin.popular.api;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.client.methods.RequestBuilder;
 
-import weixin.popular.bean.Token;
+import weixin.popular.bean.token.Token;
 import weixin.popular.client.LocalHttpClient;
 
 public class TokenAPI extends BaseAPI{

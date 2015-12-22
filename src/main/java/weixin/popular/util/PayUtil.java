@@ -10,6 +10,7 @@ import weixin.popular.bean.pay.PayNativeRequest;
 import weixin.popular.bean.pay.PayPackage;
 import weixin.popular.bean.paymch.MchPayApp;
 import weixin.popular.bean.paymch.MchPayNativeReply;
+import weixin.popular.bean.paymch.PapayEntrustweb;
 
 public class PayUtil {
 
@@ -202,5 +203,20 @@ public class PayUtil {
 		mchPayApp.setSign(sign);
 		return mchPayApp;
 	}
+
+	/**
+	 * 生成代扣签约URL
+	 * @param papayEntrustweb
+	 * @param key
+	 * @return
+	 */
+	public static String generatePapayEntrustwebURL(PapayEntrustweb papayEntrustweb,String key){
+		Map<String,String> map = MapUtil.objectToMap( papayEntrustweb);
+		String sign = SignatureUtil.generateSign(map,key);
+		map.put("sign", sign);
+		String params = MapUtil.mapJoin(map, false, true);
+		return "https://api.mch.weixin.qq.com/papay/entrustweb?"+params;
+	}
+
 
 }

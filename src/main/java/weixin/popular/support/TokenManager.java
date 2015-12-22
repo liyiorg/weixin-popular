@@ -3,11 +3,14 @@ package weixin.popular.support;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.TimeUnit;
 
 import weixin.popular.api.TokenAPI;
-import weixin.popular.bean.Token;
+import weixin.popular.bean.token.Token;
 
 /**
  * TokenManager token 自动刷新
@@ -16,9 +19,37 @@ import weixin.popular.bean.Token;
  */
 public class TokenManager{
 
+	private static ScheduledExecutorService scheduledExecutorService;
+
 	private static Map<String,String> tokenMap = new LinkedHashMap<String,String>();
 
-	private static Map<String,Timer> timerMap = new HashMap<String, Timer>();
+	private static Map<String,ScheduledFuture<?>> futureMap = new HashMap<String, ScheduledFuture<?>>();
+
+	private static int poolSize = 2;
+
+	/**
+	 * 初始化 scheduledExecutorService
+	 */
+	private static void initScheduledExecutorService(){
+		//使用守护线程
+		scheduledExecutorService =  Executors.newScheduledThreadPool(poolSize,new ThreadFactory() {
+
+			@Override
+			public Thread newThread(Runnable arg0) {
+				Thread thread = Executors.defaultThreadFactory().newThread(arg0);
+				thread.setDaemon(true);
+				return thread;
+			}
+		});
+	}
+
+	/**
+	 * 设置线程池
+	 * @param poolSize
+	 */
+	public static void setPoolSize(int poolSize){
+		TokenManager.poolSize = poolSize;
+	}
 
 
 	/**
@@ -27,27 +58,27 @@ public class TokenManager{
 	 * @param secret
 	 */
 	public static void init(final String appid,final String secret){
-		if(timerMap.containsKey(appid)){
-			timerMap.get(appid).cancel();
+		if(scheduledExecutorService == null){
+			initScheduledExecutorService();
 		}
-		Timer timer = new Timer();
-		timer.schedule(new TimerTask() {
+		if(futureMap.containsKey(appid)){
+			futureMap.get(appid).cancel(true);
+		}
+		ScheduledFuture<?> scheduledFuture =  scheduledExecutorService.scheduleWithFixedDelay(new Runnable() {
 			@Override
 			public void run() {
 				Token token = TokenAPI.token(appid,secret);
 				tokenMap.put(appid,token.getAccess_token());
 			}
-		},0,1000*60*118);
-		timerMap.put(appid,timer);
+		},0,118,TimeUnit.MINUTES);
+		futureMap.put(appid, scheduledFuture);
 	}
 
 	/**
 	 * 取消 token 刷新
 	 */
 	public static void destroyed(){
-		for(Timer timer : timerMap.values()){
-			timer.cancel();
-		}
+		scheduledExecutorService.shutdownNow();
 	}
 
 	/**

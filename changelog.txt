@@ -2,6 +2,16 @@ WEIXIN-POPULAR CHANGELOG
 ===========================
 https://github.com/liyiorg/weixin-popular
 
+Changes in version 2.5.0 (2015-12-22)
+-------------------------------------
+*weixin.popular.bean 下的类整理分包。
+*添加ExpireKey接口以及实现类，用于处理重复异步通知。
+*weixin.popular.api.PayMchAPI 添加代扣费接口
+*weixin.popular.api.MenuAPI 添加个性化菜单接口
+*修改weixin.popular.support.TokenManager、weixin.popular.support.TicketManager 调度方式由Timer 改为 ScheduledExecutorService。
+*修改支付异步通知的校验方式。
+*删除weixin.popular.util.ExpireSet
+
 Changes in version 2.4.6 (2015-11-12)
 -------------------------------------
 *修改XmlResponseHandler 解决微信红包接口返回结果中文乱码问题

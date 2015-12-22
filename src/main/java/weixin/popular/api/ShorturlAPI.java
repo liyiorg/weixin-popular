@@ -6,7 +6,7 @@ import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.client.methods.RequestBuilder;
 import org.apache.http.entity.StringEntity;
 
-import weixin.popular.bean.Shorturl;
+import weixin.popular.bean.shorturl.Shorturl;
 import weixin.popular.client.LocalHttpClient;
 
 public class ShorturlAPI extends BaseAPI{

@@ -66,15 +66,15 @@ public class MaterialAPI extends BaseAPI{
 	 * @param access_token
 	 * @param mediaType
 	 * @param media  	多媒体文件有格式和大小限制，如下：
-						图片（image）: 128K，支持JPG格式
-						语音（voice）：256K，播放长度不超过60s，支持AMR\MP3格式
-						视频（video）：1MB，支持MP4格式
+						图片（image）: 2M，支持bmp/png/jpeg/jpg/gif格式
+						语音（voice）：5M，播放长度不超过60s，支持AMR\MP3格式
+						视频（video）：10MB，支持MP4格式
 						缩略图（thumb）：64KB，支持JPG格式
 	 * @param description 视频文件类型额外字段，其它类型不用添加
 	 * @return
 	 */
 	public static Media materialAdd_material(String access_token,MediaType mediaType,File media,Description description){
-		HttpPost httpPost = new HttpPost(MEDIA_URI+"/cgi-bin/material/add_material");
+		HttpPost httpPost = new HttpPost(BASE_URI+"/cgi-bin/material/add_material");
 		FileBody bin = new FileBody(media);
 		MultipartEntityBuilder multipartEntityBuilder = MultipartEntityBuilder.create()
         		 			.addPart("media", bin);
@@ -93,17 +93,16 @@ public class MaterialAPI extends BaseAPI{
 	 * @param access_token
 	 * @param mediaType
 	 * @param inputStream  	多媒体文件有格式和大小限制，如下：
-						图片（image）: 128K，支持JPG格式
-						语音（voice）：256K，播放长度不超过60s，支持AMR\MP3格式
-						视频（video）：1MB，支持MP4格式
+						图片（image）: 2M，支持bmp/png/jpeg/jpg/gif格式
+						语音（voice）：5M，播放长度不超过60s，支持AMR\MP3格式
+						视频（video）：10MB，支持MP4格式
 						缩略图（thumb）：64KB，支持JPG格式
 	 * @param description 视频文件类型额外字段，其它类型不用添加
 	 * @return
 	 */
 	public static Media materialAdd_material(String access_token,MediaType mediaType,InputStream inputStream,Description description){
-		HttpPost httpPost = new HttpPost(MEDIA_URI+"/cgi-bin/material/add_material");
-        @SuppressWarnings("deprecation")
-		InputStreamBody inputStreamBody = new InputStreamBody(inputStream, mediaType.mimeType(),"temp."+mediaType.fileSuffix());
+		HttpPost httpPost = new HttpPost(BASE_URI+"/cgi-bin/material/add_material");
+		InputStreamBody inputStreamBody = new InputStreamBody(inputStream, ContentType.DEFAULT_BINARY,"temp."+mediaType.fileSuffix());
         MultipartEntityBuilder multipartEntityBuilder = MultipartEntityBuilder.create()
 	 			.addPart("media", inputStreamBody);
 		if(description != null){
@@ -122,15 +121,15 @@ public class MaterialAPI extends BaseAPI{
 	 * @param access_token
 	 * @param mediaType
 	 * @param uri  	多媒体文件有格式和大小限制，如下：
-						图片（image）: 128K，支持JPG格式
-						语音（voice）：256K，播放长度不超过60s，支持AMR\MP3格式
-						视频（video）：1MB，支持MP4格式
+						图片（image）: 2M，支持bmp/png/jpeg/jpg/gif格式
+						语音（voice）：5M，播放长度不超过60s，支持AMR\MP3格式
+						视频（video）：10MB，支持MP4格式
 						缩略图（thumb）：64KB，支持JPG格式
 	 * @param description 视频文件类型额外字段，其它类型不用添加
 	 * @return
 	 */
 	public static Media materialAdd_material(String access_token,MediaType mediaType,URI uri,Description description){
-		HttpPost httpPost = new HttpPost(MEDIA_URI+"/cgi-bin/material/add_material");
+		HttpPost httpPost = new HttpPost(BASE_URI+"/cgi-bin/material/add_material");
 		CloseableHttpClient tempHttpClient = HttpClients.createDefault();
 		try {
 			HttpEntity entity = tempHttpClient.execute(RequestBuilder.get().setUri(uri).build()).getEntity();

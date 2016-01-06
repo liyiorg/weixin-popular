@@ -2,6 +2,12 @@ WEIXIN-POPULAR CHANGELOG
 ===========================
 https://github.com/liyiorg/weixin-popular
 
+Changes in version 2.5.1 (2016-01-06)
+-------------------------------------
+*修改weixin.popular.api.MaterialAPI，weixin.popular.api.MediaAPI
+  因官方API路径变更，由原来的http://file.api.weixin.qq.com 切换到 https://api.weixin.qq.com
+
+
 Changes in version 2.5.0 (2015-12-22)
 -------------------------------------
 *weixin.popular.bean 下的类整理分包。

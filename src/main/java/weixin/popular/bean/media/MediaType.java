@@ -2,10 +2,6 @@ package weixin.popular.bean.media;
 
 public enum MediaType{
 	image {
-		@Override
-		public String mimeType() {
-			return "image/jpeg";
-		}
 
 		@Override
 		public String fileSuffix() {
@@ -17,10 +13,6 @@ public enum MediaType{
 			return "image";
 		}
 	},voice_mp3 {
-		@Override
-		public String mimeType() {
-			return "audio/mpeg";
-		}
 
 		@Override
 		public String fileSuffix() {
@@ -32,10 +24,6 @@ public enum MediaType{
 			return "voice";
 		}
 	},voice_arm {
-		@Override
-		public String mimeType() {
-			return "audio/amr";
-		}
 
 		@Override
 		public String fileSuffix() {
@@ -48,11 +36,6 @@ public enum MediaType{
 		}
 	},video {
 		@Override
-		public String mimeType() {
-			return "video/mp4";
-		}
-
-		@Override
 		public String fileSuffix() {
 			return "mp4";
 		}
@@ -63,11 +46,6 @@ public enum MediaType{
 		}
 	},thumb {
 		@Override
-		public String mimeType() {
-			return "image/jpeg";
-		}
-
-		@Override
 		public String fileSuffix() {
 			return "jpg";
 		}
@@ -77,8 +55,6 @@ public enum MediaType{
 			return "thumb";
 		}
 	};
-
-	public abstract String mimeType();
 
 	public abstract String fileSuffix();
 

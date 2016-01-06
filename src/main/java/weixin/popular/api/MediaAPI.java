@@ -30,19 +30,19 @@ import weixin.popular.client.LocalHttpClient;
 public class MediaAPI extends BaseAPI{
 
 	/**
-	 * 上传媒体文件
+	 * 新增临时素材
 	 * 媒体文件在后台保存时间为3天，即3天后media_id失效。
 	 * @param access_token
 	 * @param mediaType
 	 * @param media  	多媒体文件有格式和大小限制，如下：
-						图片（image）: 128K，支持JPG格式
-						语音（voice）：256K，播放长度不超过60s，支持AMR\MP3格式
-						视频（video）：1MB，支持MP4格式
+						图片（image）: 2M，支持bmp/png/jpeg/jpg/gif格式
+						语音（voice）：2M，播放长度不超过60s，支持AMR\MP3格式
+						视频（video）：10MB，支持MP4格式
 						缩略图（thumb）：64KB，支持JPG格式
 	 * @return
 	 */
 	public static Media mediaUpload(String access_token,MediaType mediaType,File media){
-		HttpPost httpPost = new HttpPost(MEDIA_URI+"/cgi-bin/media/upload");
+		HttpPost httpPost = new HttpPost(BASE_URI+"/cgi-bin/media/upload");
 		FileBody bin = new FileBody(media);
         HttpEntity reqEntity = MultipartEntityBuilder.create()
         		 .addPart("media", bin)
@@ -54,21 +54,20 @@ public class MediaAPI extends BaseAPI{
 	}
 
 	/**
-	 * 上传媒体文件
+	 * 新增临时素材
 	 * 媒体文件在后台保存时间为3天，即3天后media_id失效。
 	 * @param access_token
 	 * @param mediaType
 	 * @param inputStream  	多媒体文件有格式和大小限制，如下：
-						图片（image）: 128K，支持JPG格式
-						语音（voice）：256K，播放长度不超过60s，支持AMR\MP3格式
-						视频（video）：1MB，支持MP4格式
+						图片（image）: 2M，支持bmp/png/jpeg/jpg/gif格式
+						语音（voice）：2M，播放长度不超过60s，支持AMR\MP3格式
+						视频（video）：10MB，支持MP4格式
 						缩略图（thumb）：64KB，支持JPG格式
 	 * @return
 	 */
 	public static Media mediaUpload(String access_token,MediaType mediaType,InputStream inputStream){
-		HttpPost httpPost = new HttpPost(MEDIA_URI+"/cgi-bin/media/upload");
-        @SuppressWarnings("deprecation")
-		InputStreamBody inputStreamBody = new InputStreamBody(inputStream, mediaType.mimeType(),"temp."+mediaType.fileSuffix());
+		HttpPost httpPost = new HttpPost(BASE_URI+"/cgi-bin/media/upload");
+		InputStreamBody inputStreamBody = new InputStreamBody(inputStream,ContentType.DEFAULT_BINARY,"temp."+mediaType.fileSuffix());
 		HttpEntity reqEntity = MultipartEntityBuilder.create()
         		 .addPart("media",inputStreamBody)
                  .addTextBody("access_token", access_token)
@@ -80,19 +79,19 @@ public class MediaAPI extends BaseAPI{
 
 
 	/**
-	 * 上传媒体文件
+	 * 新增临时素材
 	 * 媒体文件在后台保存时间为3天，即3天后media_id失效。
 	 * @param access_token
 	 * @param mediaType
 	 * @param uri  	多媒体文件有格式和大小限制，如下：
-						图片（image）: 128K，支持JPG格式
-						语音（voice）：256K，播放长度不超过60s，支持AMR\MP3格式
-						视频（video）：1MB，支持MP4格式
+						图片（image）: 2M，支持bmp/png/jpeg/jpg/gif格式
+						语音（voice）：2M，播放长度不超过60s，支持AMR\MP3格式
+						视频（video）：10MB，支持MP4格式
 						缩略图（thumb）：64KB，支持JPG格式
 	 * @return
 	 */
 	public static Media mediaUpload(String access_token,MediaType mediaType,URI uri){
-		HttpPost httpPost = new HttpPost(MEDIA_URI+"/cgi-bin/media/upload");
+		HttpPost httpPost = new HttpPost(BASE_URI+"/cgi-bin/media/upload");
 		CloseableHttpClient tempHttpClient = HttpClients.createDefault();
 		try {
 			HttpEntity entity = tempHttpClient.execute(RequestBuilder.get().setUri(uri).build()).getEntity();
@@ -122,7 +121,7 @@ public class MediaAPI extends BaseAPI{
 	}
 
 	/**
-	 * 下载多媒体
+	 * 获取临时素材
 	 * 视频文件不支持下载
 	 * @param access_token
 	 * @param media_id
@@ -151,7 +150,7 @@ public class MediaAPI extends BaseAPI{
 	 * @return
 	 */
 	public static UploadimgResult mediaUploadimg(String access_token,File media){
-		HttpPost httpPost = new HttpPost(MEDIA_URI+"/cgi-bin/media/uploadimg");
+		HttpPost httpPost = new HttpPost(BASE_URI+"/cgi-bin/media/uploadimg");
 		FileBody bin = new FileBody(media);
         HttpEntity reqEntity = MultipartEntityBuilder.create()
         		 .addPart("media", bin)
@@ -169,7 +168,7 @@ public class MediaAPI extends BaseAPI{
 	 * @return
 	 */
 	public static UploadimgResult mediaUploadimg(String access_token,InputStream inputStream){
-		HttpPost httpPost = new HttpPost(MEDIA_URI+"/cgi-bin/media/uploadimg");
+		HttpPost httpPost = new HttpPost(BASE_URI+"/cgi-bin/media/uploadimg");
 		InputStreamBody inputStreamBody =  new InputStreamBody(inputStream, ContentType.MULTIPART_FORM_DATA, UUID.randomUUID().toString()+".jpg");
 		HttpEntity reqEntity = MultipartEntityBuilder.create()
         		 .addPart("media",inputStreamBody)
@@ -188,7 +187,7 @@ public class MediaAPI extends BaseAPI{
 	 * @return
 	 */
 	public static UploadimgResult mediaUploadimg(String access_token,URI uri){
-		HttpPost httpPost = new HttpPost(MEDIA_URI+"/cgi-bin/media/uploadimg");
+		HttpPost httpPost = new HttpPost(BASE_URI+"/cgi-bin/media/uploadimg");
 		CloseableHttpClient tempHttpClient = HttpClients.createDefault();
 		try {
 			HttpEntity entity = tempHttpClient.execute(RequestBuilder.get().setUri(uri).build()).getEntity();
@@ -215,4 +214,5 @@ public class MediaAPI extends BaseAPI{
 		}
 		return null;
 	}
+	
 }

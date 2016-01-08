@@ -26,6 +26,7 @@ import weixin.popular.bean.media.Media;
 import weixin.popular.bean.media.MediaType;
 import weixin.popular.bean.media.UploadimgResult;
 import weixin.popular.client.LocalHttpClient;
+import weixin.popular.util.StreamUtils;
 
 public class MediaAPI extends BaseAPI{
 
@@ -67,13 +68,18 @@ public class MediaAPI extends BaseAPI{
 	 */
 	public static Media mediaUpload(String access_token,MediaType mediaType,InputStream inputStream){
 		HttpPost httpPost = new HttpPost(BASE_URI+"/cgi-bin/media/upload");
-		InputStreamBody inputStreamBody = new InputStreamBody(inputStream,ContentType.DEFAULT_BINARY,"temp."+mediaType.fileSuffix());
+		byte[] data = null;
+		try {
+			data = StreamUtils.copyToByteArray(inputStream);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		HttpEntity reqEntity = MultipartEntityBuilder.create()
-        		 .addPart("media",inputStreamBody)
+				 .addBinaryBody("media",data,ContentType.DEFAULT_BINARY,"temp."+mediaType.fileSuffix())
                  .addTextBody("access_token", access_token)
                  .addTextBody("type",mediaType.uploadType())
                  .build();
-        httpPost.setEntity(reqEntity);
+		httpPost.setEntity(reqEntity);
 		return LocalHttpClient.executeJsonResult(httpPost,Media.class);
 	}
 

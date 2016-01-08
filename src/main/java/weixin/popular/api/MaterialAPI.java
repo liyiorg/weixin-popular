@@ -19,7 +19,6 @@ import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.entity.mime.content.FileBody;
-import org.apache.http.entity.mime.content.InputStreamBody;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
@@ -34,6 +33,7 @@ import weixin.popular.bean.media.MediaType;
 import weixin.popular.bean.message.Article;
 import weixin.popular.client.LocalHttpClient;
 import weixin.popular.util.JsonUtil;
+import weixin.popular.util.StreamUtils;
 
 /**
  * 永久素材
@@ -102,9 +102,14 @@ public class MaterialAPI extends BaseAPI{
 	 */
 	public static Media materialAdd_material(String access_token,MediaType mediaType,InputStream inputStream,Description description){
 		HttpPost httpPost = new HttpPost(BASE_URI+"/cgi-bin/material/add_material");
-		InputStreamBody inputStreamBody = new InputStreamBody(inputStream, ContentType.DEFAULT_BINARY,"temp."+mediaType.fileSuffix());
+		byte[] data = null;
+		try {
+			data = StreamUtils.copyToByteArray(inputStream);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
         MultipartEntityBuilder multipartEntityBuilder = MultipartEntityBuilder.create()
-	 			.addPart("media", inputStreamBody);
+        		.addBinaryBody("media",data,ContentType.DEFAULT_BINARY,"temp."+mediaType.fileSuffix());
 		if(description != null){
 			multipartEntityBuilder.addTextBody("description", JsonUtil.toJSONString(description));
 		}

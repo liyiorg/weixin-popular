@@ -8,6 +8,44 @@ import java.util.UUID;
 import weixin.popular.bean.pay.PayPackage;
 
 public class JsUtil {
+	
+	//2.5.3
+	public static final String[] ALL_JS_API_LIST = new String[]{
+			"onMenuShareTimeline",
+			"onMenuShareAppMessage",
+			"onMenuShareQQ",
+			"onMenuShareWeibo",
+			"startRecord",
+			"stopRecord",
+			"onVoiceRecordEnd",
+			"playVoice",
+			"pauseVoice",
+			"stopVoice",
+			"onVoicePlayEnd",
+			"uploadVoice",
+			"downloadVoice",
+			"chooseImage",
+			"previewImage",
+			"uploadImage",
+			"downloadImage",
+			"translateVoice",
+			"getNetworkType",
+			"openLocation",
+			"getLocation",
+			"hideOptionMenu",
+			"showOptionMenu",
+			"hideMenuItems",
+			"showMenuItems",
+			"hideAllNonBaseMenuItem",
+			"showAllNonBaseMenuItem",
+			"closeWindow",
+			"scanQRCode",
+			"chooseWXPay",
+			"openProductSpecificView",
+			"addCard",
+			"chooseCard",
+			"openCard"
+	}; 
 
 	/**
 	 * 生成 config接口 signature
@@ -32,7 +70,7 @@ public class JsUtil {
 	 * @param debug
 	 * @param appId
 	 * @param url
-	 * @param jsApiList
+	 * @param jsApiList 可以为空
 	 *  onMenuShareTimeline
 		onMenuShareAppMessage
 		onMenuShareQQ
@@ -80,7 +118,7 @@ public class JsUtil {
 			.append("timestamp:").append(timestamp).append(",")
 			.append("nonceStr:").append("'").append(nonceStr).append("'").append(",")
 			.append("signature:").append("'").append(signature).append("'").append(",")
-			.append("jsApiList:").append(JsonUtil.toJSONString(jsApiList))
+			.append("jsApiList:").append(JsonUtil.toJSONString(jsApiList==null?ALL_JS_API_LIST:jsApiList))
 			.append("}").toString();
 	}
 

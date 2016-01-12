@@ -26,18 +26,20 @@ public class TokenManager{
 	private static Map<String,ScheduledFuture<?>> futureMap = new HashMap<String, ScheduledFuture<?>>();
 
 	private static int poolSize = 2;
+	
+	private static boolean daemon = Boolean.TRUE;
 
 	/**
 	 * 初始化 scheduledExecutorService
 	 */
 	private static void initScheduledExecutorService(){
-		//使用守护线程
 		scheduledExecutorService =  Executors.newScheduledThreadPool(poolSize,new ThreadFactory() {
 
 			@Override
 			public Thread newThread(Runnable arg0) {
 				Thread thread = Executors.defaultThreadFactory().newThread(arg0);
-				thread.setDaemon(true);
+				//设置守护线程
+				thread.setDaemon(daemon);
 				return thread;
 			}
 		});
@@ -50,7 +52,14 @@ public class TokenManager{
 	public static void setPoolSize(int poolSize){
 		TokenManager.poolSize = poolSize;
 	}
-
+	
+	/**
+	 * 设置线程方式
+	 * @param daemon
+	 */
+	public static void setDaemon(boolean daemon) {
+		TokenManager.daemon = daemon;
+	}
 
 	/**
 	 * 初始化token 刷新，每118分钟刷新一次。

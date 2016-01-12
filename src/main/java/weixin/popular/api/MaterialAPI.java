@@ -9,9 +9,9 @@ import java.nio.charset.UnsupportedCharsetException;
 import java.util.List;
 
 import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
 import org.apache.http.ParseException;
 import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.client.methods.RequestBuilder;
@@ -178,11 +178,17 @@ public class MaterialAPI extends BaseAPI{
 					.addParameter("access_token", access_token)
 					.setEntity(new StringEntity("{\"media_id\":\""+media_id+"\"}",Charset.forName("utf-8")))
 					.build();
-		HttpResponse httpResponse = LocalHttpClient.execute(httpUriRequest);
+		CloseableHttpResponse httpResponse = LocalHttpClient.execute(httpUriRequest);
 		try {
 			return EntityUtils.toByteArray(httpResponse.getEntity());
 		} catch (IOException e) {
 			e.printStackTrace();
+		} finally{
+			try {
+				httpResponse.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 		return null;
 	}

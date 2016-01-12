@@ -8,9 +8,9 @@ import java.security.UnrecoverableKeyException;
 
 import javax.net.ssl.SSLContext;
 
-import org.apache.http.client.HttpClient;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.apache.http.conn.ssl.SSLContexts;
+import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 
@@ -20,8 +20,10 @@ import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
  *
  */
 public class HttpClientFactory{
+	
+	private static final String[] supportedProtocols = new String[]{"TLSv1"};
 
-	public static HttpClient createHttpClient() {
+	public static CloseableHttpClient createHttpClient() {
 		try {
 			SSLContext sslContext = SSLContexts.custom().useSSL().build();
 			SSLConnectionSocketFactory sf = new SSLConnectionSocketFactory(sslContext,SSLConnectionSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
@@ -34,7 +36,7 @@ public class HttpClientFactory{
 		return null;
 	}
 
-	public static HttpClient createHttpClient(int maxTotal,int maxPerRoute) {
+	public static CloseableHttpClient createHttpClient(int maxTotal,int maxPerRoute) {
 		try {
 			SSLContext sslContext = SSLContexts.custom().useSSL().build();
 			SSLConnectionSocketFactory sf = new SSLConnectionSocketFactory(sslContext,SSLConnectionSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
@@ -57,12 +59,20 @@ public class HttpClientFactory{
 	 * Key store 类型HttpClient
 	 * @param keystore
 	 * @param keyPassword
-	 * @param supportedProtocols
-	 * @param maxTotal
-	 * @param maxPerRoute
 	 * @return
 	 */
-	public static HttpClient createKeyMaterialHttpClient(KeyStore keystore,String keyPassword,String[] supportedProtocols) {
+	public static CloseableHttpClient createKeyMaterialHttpClient(KeyStore keystore,String keyPassword) {
+		return createKeyMaterialHttpClient(keystore, keyPassword, supportedProtocols);
+	}
+	
+	/**
+	 * Key store 类型HttpClient
+	 * @param keystore
+	 * @param keyPassword
+	 * @param supportedProtocols
+	 * @return
+	 */
+	public static CloseableHttpClient createKeyMaterialHttpClient(KeyStore keystore,String keyPassword,String[] supportedProtocols) {
 		try {
 			SSLContext sslContext = SSLContexts.custom().useSSL().loadKeyMaterial(keystore, keyPassword.toCharArray()).build();
 			SSLConnectionSocketFactory sf = new SSLConnectionSocketFactory(sslContext,supportedProtocols,

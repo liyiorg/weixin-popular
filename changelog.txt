@@ -2,6 +2,13 @@ WEIXIN-POPULAR CHANGELOG
 ===========================
 https://github.com/liyiorg/weixin-popular
 
+Changes in version 2.5.3 (2016-01-12)
+-------------------------------------
+* weixin.popular.client.LocalHttpClient 修改
+* weixin.popular.support.TokenManager、weixin.popular.support.TicketManager 添加setDaemon方法。
+* weixin.popular.api.SnsAPI add connectQrconnect
+* jar包版本变更 httpclient 4.3.6,httpmime 4.3.6,fastjson 1.2.7。
+
 Changes in version 2.5.2 (2016-01-08)
 -------------------------------------
 *bug 修复 weixin.popular.api.MaterialAPI，weixin.popular.api.MediaAPI

@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>weixin</groupId>
 	<artifactId>weixin-popular</artifactId>
-	<version>2.5.2-RELEASE</version>
+	<version>2.5.3-RELEASE</version>
 	<url>https://github.com/liyiorg/weixin-popular</url>
 
 	<dependencies>
@@ -30,17 +30,17 @@
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
-			<version>1.2.0</version>
+			<version>1.2.7</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
-			<version>4.3.5</version>
+			<version>4.3.6</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpmime</artifactId>
-			<version>4.3.4</version>
+			<version>4.3.6</version>
 		</dependency>
 		<dependency>
 			<groupId>com.sun.xml.bind</groupId>

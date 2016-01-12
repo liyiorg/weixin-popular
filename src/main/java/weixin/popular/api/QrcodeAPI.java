@@ -7,7 +7,7 @@ import java.nio.charset.Charset;
 
 import javax.imageio.ImageIO;
 
-import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.client.methods.RequestBuilder;
 import org.apache.http.entity.StringEntity;
@@ -85,12 +85,18 @@ public class QrcodeAPI extends BaseAPI{
 				.setUri(QRCODE_DOWNLOAD_URI + "/cgi-bin/showqrcode")
 				.addParameter("ticket", ticket)
 				.build();
-		HttpResponse httpResponse = LocalHttpClient.execute(httpUriRequest);
+		CloseableHttpResponse httpResponse = LocalHttpClient.execute(httpUriRequest);
 		try {
 			byte[] bytes = EntityUtils.toByteArray(httpResponse.getEntity());
 			return ImageIO.read(new ByteArrayInputStream(bytes));
 		} catch (IOException e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				httpResponse.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 		return null;
 	}

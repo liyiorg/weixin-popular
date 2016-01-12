@@ -11,18 +11,25 @@ import java.security.cert.CertificateException;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
 import org.apache.http.client.ResponseHandler;
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.http.client.protocol.HttpClientContext;
+import org.apache.http.impl.client.CloseableHttpClient;
 
 public class LocalHttpClient {
 
-	protected static HttpClient httpClient = HttpClientFactory.createHttpClient(100,10);
+	protected static CloseableHttpClient httpClient = HttpClientFactory.createHttpClient(100,10);
 
-	private static Map<String,HttpClient> httpClient_mchKeyStore = new HashMap<String, HttpClient>();
+	private static Map<String,CloseableHttpClient> httpClient_mchKeyStore = new HashMap<String, CloseableHttpClient>();
+	
 	public static void init(int maxTotal,int maxPerRoute){
+		try {
+			httpClient.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		httpClient = HttpClientFactory.createHttpClient(maxTotal,maxPerRoute);
 	}
 
@@ -37,7 +44,7 @@ public class LocalHttpClient {
 			 FileInputStream instream = new FileInputStream(new File(keyStoreFilePath));
 			 keyStore.load(instream,mch_id.toCharArray());
 			 instream.close();
-			 HttpClient httpClient = HttpClientFactory.createKeyMaterialHttpClient(keyStore, mch_id, new String[]{"TLSv1"});
+			 CloseableHttpClient httpClient = HttpClientFactory.createKeyMaterialHttpClient(keyStore, mch_id);
 			 httpClient_mchKeyStore.put(mch_id, httpClient);
 		} catch (KeyStoreException e) {
 			e.printStackTrace();
@@ -53,9 +60,9 @@ public class LocalHttpClient {
 	}
 
 
-	public static HttpResponse execute(HttpUriRequest request){
+	public static CloseableHttpResponse execute(HttpUriRequest request){
 		try {
-			return httpClient.execute(request);
+			return httpClient.execute(request,HttpClientContext.create());
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -66,7 +73,7 @@ public class LocalHttpClient {
 
 	public static <T> T execute(HttpUriRequest request,ResponseHandler<T> responseHandler){
 		try {
-			return httpClient.execute(request, responseHandler);
+			return httpClient.execute(request, responseHandler,HttpClientContext.create());
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -104,7 +111,7 @@ public class LocalHttpClient {
 	 */
 	public static <T> T keyStoreExecuteXmlResult(String mch_id,HttpUriRequest request,Class<T> clazz){
 		try {
-			return httpClient_mchKeyStore.get(mch_id).execute(request,XmlResponseHandler.createResponseHandler(clazz));
+			return httpClient_mchKeyStore.get(mch_id).execute(request,XmlResponseHandler.createResponseHandler(clazz),HttpClientContext.create());
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

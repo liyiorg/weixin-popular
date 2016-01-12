@@ -26,18 +26,20 @@ public class TicketManager {
 	private static Map<String,ScheduledFuture<?>> futureMap = new HashMap<String, ScheduledFuture<?>>();
 
 	private static int poolSize = 2;
+	
+	private static boolean daemon = Boolean.TRUE;
 
 	/**
 	 * 初始化 scheduledExecutorService
 	 */
 	private static void initScheduledExecutorService(){
-		//使用守护线程
 		scheduledExecutorService =  Executors.newScheduledThreadPool(poolSize,new ThreadFactory() {
 
 			@Override
 			public Thread newThread(Runnable arg0) {
 				Thread thread = Executors.defaultThreadFactory().newThread(arg0);
-				thread.setDaemon(true);
+				//设置守护线程
+				thread.setDaemon(daemon);
 				return thread;
 			}
 		});
@@ -51,6 +53,14 @@ public class TicketManager {
 		TicketManager.poolSize = poolSize;
 	}
 
+	/**
+	 * 设置线程方式
+	 * @param daemon
+	 */
+	public static void setDaemon(boolean daemon) {
+		TicketManager.daemon = daemon;
+	}
+	
 	/**
 	 * 初始化ticket 刷新，每119分钟刷新一次。
 	 * 依赖TokenManager

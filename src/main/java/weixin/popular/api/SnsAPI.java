@@ -150,5 +150,34 @@ public class SnsAPI extends BaseAPI{
 		}
 		return null;
 	}
+	
+	/**
+	 * 生成网页授权 URL  (网站应用微信登录)
+	 * 2.5.3
+	 * @param appid
+	 * @param redirect_uri 自动URLEncoder
+	 * @param snsapi_userinfo
+	 * @param state 可以为空
+	 * @param component_appid 第三方平台开发，可以为空。
+	 * 			 服务方的appid，在申请创建公众号服务成功后，可在公众号服务详情页找到
+	 * @return
+	 */
+	public static String connectQrconnect(String appid,String redirect_uri,String state){
+		try {
+			StringBuilder sb = new StringBuilder();
+			sb.append(OPEN_URI + "/connect/qrconnect?")
+			.append("appid=").append(appid)
+			.append("&redirect_uri=").append(URLEncoder.encode(redirect_uri, "utf-8"))
+			.append("&response_type=code")
+			.append("&scope=snsapi_login")
+			.append("&state=").append(state==null?"":state)
+			.append("#wechat_redirect");
+			return sb.toString();
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 
 }

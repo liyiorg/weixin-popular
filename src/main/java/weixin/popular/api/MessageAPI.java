@@ -43,7 +43,7 @@ public class MessageAPI extends BaseAPI{
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 										.setHeader(jsonHeader)
 										.setUri(BASE_URI+"/cgi-bin/message/custom/send")
-										.addParameter("access_token", access_token)
+										.addParameter(getATPN(), access_token)
 										.setEntity(new StringEntity(messageJson,Charset.forName("utf-8")))
 										.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,BaseResult.class);
@@ -72,7 +72,7 @@ public class MessageAPI extends BaseAPI{
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 										.setHeader(jsonHeader)
 										.setUri(BASE_URI+"/cgi-bin/media/uploadnews")
-										.addParameter("access_token", access_token)
+										.addParameter(getATPN(), access_token)
 										.setEntity(new StringEntity(messageJson,Charset.forName("utf-8")))
 										.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,Media.class);
@@ -89,7 +89,7 @@ public class MessageAPI extends BaseAPI{
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 										.setHeader(jsonHeader)
 										.setUri(MEDIA_URI+"/cgi-bin/media/uploadvideo")
-										.addParameter("access_token", access_token)
+										.addParameter(getATPN(), access_token)
 										.setEntity(new StringEntity(messageJson,Charset.forName("utf-8")))
 										.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,Media.class);
@@ -106,7 +106,7 @@ public class MessageAPI extends BaseAPI{
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 										.setHeader(jsonHeader)
 										.setUri(BASE_URI+"/cgi-bin/message/mass/sendall")
-										.addParameter("access_token", access_token)
+										.addParameter(getATPN(), access_token)
 										.setEntity(new StringEntity(messageJson,Charset.forName("utf-8")))
 										.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,MessageSendResult.class);
@@ -134,7 +134,7 @@ public class MessageAPI extends BaseAPI{
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 										.setHeader(jsonHeader)
 										.setUri(BASE_URI+"/cgi-bin/message/mass/send")
-										.addParameter("access_token", access_token)
+										.addParameter(getATPN(), access_token)
 										.setEntity(new StringEntity(messageJson,Charset.forName("utf-8")))
 										.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,MessageSendResult.class);
@@ -166,7 +166,7 @@ public class MessageAPI extends BaseAPI{
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 										.setHeader(jsonHeader)
 										.setUri(BASE_URI+"/cgi-bin/message/mass/delete")
-										.addParameter("access_token", access_token)
+										.addParameter(getATPN(), access_token)
 										.setEntity(new StringEntity(messageJson,Charset.forName("utf-8")))
 										.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,BaseResult.class);
@@ -186,7 +186,7 @@ public class MessageAPI extends BaseAPI{
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI+"/cgi-bin/message/template/send")
-				.addParameter("access_token", access_token)
+				.addParameter(getATPN(), access_token)
 				.setEntity(new StringEntity(messageJson,Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,TemplateMessageResult.class);

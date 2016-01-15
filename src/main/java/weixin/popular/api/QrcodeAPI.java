@@ -34,7 +34,7 @@ public class QrcodeAPI extends BaseAPI{
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 										.setHeader(jsonHeader)
 										.setUri(BASE_URI+"/cgi-bin/qrcode/create")
-										.addParameter("access_token", access_token)
+										.addParameter(getATPN(), access_token)
 										.setEntity(new StringEntity(qrcodeJson,Charset.forName("utf-8")))
 										.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,QrcodeTicket.class);

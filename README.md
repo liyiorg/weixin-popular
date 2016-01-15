@@ -5,7 +5,7 @@ weixin-popular
 
 
 ## 介绍
-weixin-popular 包括微信公众平台基础API与支付API,提供便捷的API调用接口.
+weixin-popular 包括微信公众平台、公众号第三方平台基础API与支付API,提供便捷的API调用接口.
 
 ## API 列表
 * [TokenAPI](https://github.com/liyiorg/weixin-popular/wiki/TokenAPI) access_token 获取
@@ -22,6 +22,8 @@ weixin-popular 包括微信公众平台基础API与支付API,提供便捷的API�
 * [TicketAPI](https://github.com/liyiorg/weixin-popular/wiki/TicketAPI) JSAPI ticket
 * [ComponentAPI](https://github.com/liyiorg/weixin-popular/wiki/ComponentAPI) 第三方平台开发
 
+## API 模式切换
+* [API 切换] (https://github.com/liyiorg/weixin-popular/wiki/API 模式切换)
 
 ## 工具类
 * PayUtil         支付工具类，生成JS支付，原生支付
@@ -35,7 +37,7 @@ weixin-popular 包括微信公众平台基础API与支付API,提供便捷的API�
 * [微信支付（老版本）](https://github.com/liyiorg/weixin-popular/wiki/微信支付)
 * [微信支付MCH](https://github.com/liyiorg/weixin-popular/wiki/微信支付MCH)
 
-## 其它
+## support
 * [TokenManager token 自动刷新](https://github.com/liyiorg/weixin-popular/wiki/TokenManager-token-自动刷新)
 * [TicketManager ticket 自动刷新](https://github.com/liyiorg/weixin-popular/wiki/TicketManager-ticket-自动刷新)
 * [设置API HttpClient 请求池大小](https://github.com/liyiorg/weixin-popular/wiki/设置API HttpClient 请求池大小)

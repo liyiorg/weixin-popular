@@ -15,16 +15,16 @@ import weixin.popular.bean.component.PreAuthCode;
 import weixin.popular.client.LocalHttpClient;
 
 /**
- * 第三方平台
+ * 公众号第三方平台
  * @author LiYi
  *
  */
 public class ComponentAPI extends BaseAPI{
 
 	/**
-	 * 获取第三方平台access_token
-	 * @param component_appid	第三方平台appid
-	 * @param component_appsecret	第三方平台appsecret
+	 * 获取公众号第三方平台access_token
+	 * @param component_appid	公众号第三方平台appid
+	 * @param component_appsecret	公众号第三方平台appsecret
 	 * @param component_verify_ticket	微信后台推送的ticket，此ticket会定时推送，具体请见本页末尾的推送说明
 	 * @return
 	 */
@@ -45,7 +45,7 @@ public class ComponentAPI extends BaseAPI{
 	/**
 	 * 获取预授权码
 	 * @param component_access_token
-	 * @param component_appid	第三方平台方appid
+	 * @param component_appid	公众号第三方平台appid
 	 * @return
 	 */
 	public PreAuthCode api_create_preauthcode(String component_access_token,String component_appid){
@@ -63,7 +63,7 @@ public class ComponentAPI extends BaseAPI{
 	/**
 	 * 使用授权码换取公众号的授权信息
 	 * @param component_access_token
-	 * @param component_appid	第三方平台appid
+	 * @param component_appid	公众号第三方平台appid
 	 * @param authorization_code 授权code,会在授权成功时返回给第三方平台，详见第三方平台授权流程说明
 	 * @return
 	 */
@@ -83,7 +83,7 @@ public class ComponentAPI extends BaseAPI{
 	/**
 	 * 获取（刷新）授权公众号的令牌
 	 * @param component_access_token
-	 * @param component_appid	第三方平台appid
+	 * @param component_appid	公众号第三方平台appid
 	 * @param authorizer_appid	授权方appid
 	 * @param authorizer_refresh_token	授权方的刷新令牌，刷新令牌主要用于公众号第三方平台获取和刷新已授权用户的access_token，只会在授权时刻提供，请妥善保存。 一旦丢失，只能让用户重新授权，才能再次拿到新的刷新令牌
 	 * @return
@@ -128,8 +128,8 @@ public class ComponentAPI extends BaseAPI{
 	/**
 	 * 获取授权方的选项设置信息
 	 * @param component_access_token
-	 * @param component_appid 第三方平台appid
-	 * @param authorizer_appid 授权公众号appid
+	 * @param component_appid 公众号第三方平台appid
+	 * @param authorizer_appid 公众号第三方平台appid
 	 * @param option_name 选项名称
 	 * @return
 	 */
@@ -151,7 +151,7 @@ public class ComponentAPI extends BaseAPI{
 	/**
 	 * 设置授权方的选项信息
 	 * @param component_access_token
-	 * @param component_appid 第三方平台appid
+	 * @param component_appid 公众号第三方平台appid
 	 * @param authorizer_appid 授权公众号appid
 	 * @param option_name 选项名称
 	 * @param option_value 设置的选项值

@@ -23,7 +23,7 @@ public class ShorturlAPI extends BaseAPI{
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/cgi-bin/shorturl")
-				.addParameter("access_token", access_token)
+				.addParameter(getATPN(), access_token)
 				.setEntity(new StringEntity(json,Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,Shorturl.class);

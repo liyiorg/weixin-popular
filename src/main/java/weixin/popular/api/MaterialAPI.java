@@ -54,7 +54,7 @@ public class MaterialAPI extends BaseAPI{
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 										.setHeader(jsonHeader)
 										.setUri(BASE_URI+"/cgi-bin/material/add_news")
-										.addParameter("access_token", access_token)
+										.addParameter(getATPN(), access_token)
 										.setEntity(new StringEntity(messageJson,Charset.forName("utf-8")))
 										.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,Media.class);
@@ -81,7 +81,7 @@ public class MaterialAPI extends BaseAPI{
         if(description != null){
         	multipartEntityBuilder.addTextBody("description", JsonUtil.toJSONString(description));
         }
-        HttpEntity reqEntity = multipartEntityBuilder.addTextBody("access_token", access_token)
+        HttpEntity reqEntity = multipartEntityBuilder.addTextBody(getATPN(), access_token)
 			                 .addTextBody("type",mediaType.uploadType())
 			                 .build();
         httpPost.setEntity(reqEntity);
@@ -113,7 +113,7 @@ public class MaterialAPI extends BaseAPI{
 		if(description != null){
 			multipartEntityBuilder.addTextBody("description", JsonUtil.toJSONString(description));
 		}
-		HttpEntity reqEntity = multipartEntityBuilder.addTextBody("access_token", access_token)
+		HttpEntity reqEntity = multipartEntityBuilder.addTextBody(getATPN(), access_token)
 		                 .addTextBody("type",mediaType.uploadType())
 		                 .build();
         httpPost.setEntity(reqEntity);
@@ -143,7 +143,7 @@ public class MaterialAPI extends BaseAPI{
 			 if(description != null){
 				multipartEntityBuilder.addTextBody("description", JsonUtil.toJSONString(description));
 			 }
-			 HttpEntity reqEntity = multipartEntityBuilder.addTextBody("access_token", access_token)
+			 HttpEntity reqEntity = multipartEntityBuilder.addTextBody(getATPN(), access_token)
 			         .addTextBody("type",mediaType.uploadType())
 			         .build();
 			httpPost.setEntity(reqEntity);
@@ -175,7 +175,7 @@ public class MaterialAPI extends BaseAPI{
 	public static byte[] materialGet_material(String access_token,String media_id){
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 					.setUri(BASE_URI+"/cgi-bin/material/get_material")
-					.addParameter("access_token", access_token)
+					.addParameter(getATPN(), access_token)
 					.setEntity(new StringEntity("{\"media_id\":\""+media_id+"\"}",Charset.forName("utf-8")))
 					.build();
 		CloseableHttpResponse httpResponse = LocalHttpClient.execute(httpUriRequest);
@@ -202,7 +202,7 @@ public class MaterialAPI extends BaseAPI{
 	public static NewsItem materialGet_material_newsItem(String access_token,String media_id){
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 					.setUri(BASE_URI+"/cgi-bin/material/get_material")
-					.addParameter("access_token", access_token)
+					.addParameter(getATPN(), access_token)
 					.setEntity(new StringEntity("{\"media_id\":\""+media_id+"\"}",Charset.forName("utf-8")))
 					.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,NewsItem.class);
@@ -217,7 +217,7 @@ public class MaterialAPI extends BaseAPI{
 	public static BaseResult materialDel_material(String access_token,String media_id){
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 					.setUri(BASE_URI+"/cgi-bin/material/del_material")
-					.addParameter("access_token", access_token)
+					.addParameter(getATPN(), access_token)
 					.setEntity(new StringEntity("{\"media_id\":\""+media_id+"\"}",Charset.forName("utf-8")))
 					.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,BaseResult.class);
@@ -237,7 +237,7 @@ public class MaterialAPI extends BaseAPI{
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 										.setHeader(jsonHeader)
 										.setUri(BASE_URI+"/cgi-bin/material/update_news")
-										.addParameter("access_token", access_token)
+										.addParameter(getATPN(), access_token)
 										.setEntity(new StringEntity(messageJson,Charset.forName("utf-8")))
 										.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,BaseResult.class);
@@ -252,7 +252,7 @@ public class MaterialAPI extends BaseAPI{
 	public static MaterialcountResult materialGet_materialcount(String access_token){
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 										.setUri(BASE_URI+"/cgi-bin/material/get_materialcount")
-										.addParameter("access_token", access_token)
+										.addParameter(getATPN(), access_token)
 										.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,MaterialcountResult.class);
 	}
@@ -269,7 +269,7 @@ public class MaterialAPI extends BaseAPI{
 	public static MaterialBatchgetResult materialBatchget_material(String access_token,String type,int offset,int count){
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 					.setUri(BASE_URI+"/cgi-bin/material/batchget_material")
-					.addParameter("access_token", access_token)
+					.addParameter(getATPN(), access_token)
 					.setEntity(new StringEntity("{\"type\":\""+type+"\",\"offset\":"+offset+",\"count\":"+count+"}",Charset.forName("utf-8")))
 					.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,MaterialBatchgetResult.class);

@@ -14,4 +14,21 @@ public abstract class BaseAPI {
 
 	protected static Header jsonHeader = new BasicHeader(HttpHeaders.CONTENT_TYPE,ContentType.APPLICATION_JSON.toString());
 	protected static Header xmlHeader = new BasicHeader(HttpHeaders.CONTENT_TYPE,ContentType.APPLICATION_XML.toString());
+	
+	protected static final String PARAM_ACCESS_TOKEN = "access_token";
+	protected static final String PARAM_AUTHORIZER_ACCESS_TOKEN = "authorizer_access_token";
+	
+	/**
+	 * 获取 access token param name 名称
+	 * 
+	 * 2.6.0
+	 * @return access_token or authorizer_access_token
+	 */
+	protected static String getATPN(){
+		if(API.currentMode() == API.MODE_COMPONENT){ 
+			return PARAM_AUTHORIZER_ACCESS_TOKEN;
+		}else{
+			return PARAM_ACCESS_TOKEN;
+		}
+	}
 }

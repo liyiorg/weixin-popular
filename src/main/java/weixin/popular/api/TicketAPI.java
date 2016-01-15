@@ -21,7 +21,7 @@ public class TicketAPI extends BaseAPI{
 	public static Ticket ticketGetticket(String access_token){
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 				.setUri(BASE_URI + "/cgi-bin/ticket/getticket")
-				.addParameter("access_token",access_token)
+				.addParameter(PARAM_ACCESS_TOKEN,access_token)
 				.addParameter("type", "jsapi")
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,Ticket.class);

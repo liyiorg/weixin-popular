@@ -26,7 +26,7 @@ public class UserAPI extends BaseAPI{
 	public static User userInfo(String access_token,String openid){
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 				.setUri(BASE_URI+"/cgi-bin/user/info")
-				.addParameter("access_token",access_token)
+				.addParameter(getATPN(),access_token)
 				.addParameter("openid",openid)
 				.addParameter("lang","zh_CN")
 				.build();
@@ -42,7 +42,7 @@ public class UserAPI extends BaseAPI{
 	public static FollowResult userGet(String access_token,String next_openid){
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 				.setUri(BASE_URI+"/cgi-bin/user/get")
-				.addParameter("access_token",access_token)
+				.addParameter(getATPN(),access_token)
 				.addParameter("next_openid", next_openid==null?"":next_openid)
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,FollowResult.class);
@@ -68,7 +68,7 @@ public class UserAPI extends BaseAPI{
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI+"/cgi-bin/user/info/batchget")
-				.addParameter("access_token",access_token)
+				.addParameter(getATPN(),access_token)
 				.setEntity(new StringEntity(sb.toString(), Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,UserInfoList.class);
@@ -86,7 +86,7 @@ public class UserAPI extends BaseAPI{
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 										.setHeader(jsonHeader)
 										.setUri(BASE_URI+"/cgi-bin/user/info/updateremark")
-										.addParameter("access_token", access_token)
+										.addParameter(getATPN(), access_token)
 										.setEntity(new StringEntity(postJson,Charset.forName("utf-8")))
 										.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,BaseResult.class);
@@ -103,7 +103,7 @@ public class UserAPI extends BaseAPI{
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 										.setHeader(jsonHeader)
 										.setUri(BASE_URI+"/cgi-bin/groups/create")
-										.addParameter("access_token", access_token)
+										.addParameter(getATPN(), access_token)
 										.setEntity(new StringEntity(groupJson,Charset.forName("utf-8")))
 										.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,Group.class);
@@ -117,7 +117,7 @@ public class UserAPI extends BaseAPI{
 	public static Group groupsGet(String access_token){
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 				.setUri(BASE_URI+"/cgi-bin/groups/get")
-				.addParameter("access_token", access_token)
+				.addParameter(getATPN(), access_token)
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,Group.class);
 	}
@@ -133,7 +133,7 @@ public class UserAPI extends BaseAPI{
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 										.setHeader(jsonHeader)
 										.setUri(BASE_URI+"/cgi-bin/groups/getid")
-										.addParameter("access_token", access_token)
+										.addParameter(getATPN(), access_token)
 										.setEntity(new StringEntity(groupJson,Charset.forName("utf-8")))
 										.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,Group.class);
@@ -151,7 +151,7 @@ public class UserAPI extends BaseAPI{
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 										.setHeader(jsonHeader)
 										.setUri(BASE_URI+"/cgi-bin/groups/update")
-										.addParameter("access_token", access_token)
+										.addParameter(getATPN(), access_token)
 										.setEntity(new StringEntity(groupJson,Charset.forName("utf-8")))
 										.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,BaseResult.class);
@@ -169,7 +169,7 @@ public class UserAPI extends BaseAPI{
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 										.setHeader(jsonHeader)
 										.setUri(BASE_URI+"/cgi-bin/groups/members/update")
-										.addParameter("access_token", access_token)
+										.addParameter(getATPN(), access_token)
 										.setEntity(new StringEntity(groupJson,Charset.forName("utf-8")))
 										.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,BaseResult.class);
@@ -189,7 +189,7 @@ public class UserAPI extends BaseAPI{
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 										.setHeader(jsonHeader)
 										.setUri(BASE_URI+"/cgi-bin/groups/members/batchupdate")
-										.addParameter("access_token", access_token)
+										.addParameter(getATPN(), access_token)
 										.setEntity(new StringEntity(groupJson,Charset.forName("utf-8")))
 										.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,BaseResult.class);
@@ -206,7 +206,7 @@ public class UserAPI extends BaseAPI{
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 										.setHeader(jsonHeader)
 										.setUri(BASE_URI+"/cgi-bin/groups/delete")
-										.addParameter("access_token", access_token)
+										.addParameter(getATPN(), access_token)
 										.setEntity(new StringEntity(groupJson,Charset.forName("utf-8")))
 										.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,BaseResult.class);

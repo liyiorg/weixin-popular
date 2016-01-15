@@ -102,7 +102,7 @@ public class SnsAPI extends BaseAPI{
 	public static User userinfo(String access_token,String openid,String lang){
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 				.setUri(BASE_URI + "/sns/userinfo")
-				.addParameter("access_token", access_token)
+				.addParameter(PARAM_ACCESS_TOKEN, access_token)
 				.addParameter("openid", openid)
 				.addParameter("lang", lang)
 				.build();

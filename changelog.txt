@@ -2,6 +2,10 @@ WEIXIN-POPULAR CHANGELOG
 ===========================
 https://github.com/liyiorg/weixin-popular
 
+Changes in version 2.5.4 (2016-01-15)
+-------------------------------------
+* XMLConverUtil 改进
+
 Changes in version 2.5.3 (2016-01-12)
 -------------------------------------
 * weixin.popular.client.LocalHttpClient 修改

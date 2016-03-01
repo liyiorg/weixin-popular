@@ -2,6 +2,13 @@ WEIXIN-POPULAR CHANGELOG
 ===========================
 https://github.com/liyiorg/weixin-popular
 
+Changes in version 2.6.1 (2016-03-)
+-------------------------------------
+* MessageAPI 添加模板消息管理接口
+* QrcodeAPI 添加永久二维码 字符串场景值接口
+* TicketManager 添加延迟执行方法
+
+
 Changes in version 2.6.0 (2016-01-15)
 -------------------------------------
 * 添加weixin.popular.api.API,切换API调用模式 公众平台模式或公众号第三方平台模式。

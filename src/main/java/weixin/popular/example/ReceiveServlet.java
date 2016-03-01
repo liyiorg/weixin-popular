@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import weixin.popular.bean.message.EventMessage;
+import weixin.popular.bean.xmlmessage.XMLMessage;
 import weixin.popular.bean.xmlmessage.XMLTextMessage;
 import weixin.popular.support.ExpireKey;
 import weixin.popular.support.expirekey.DefaultExpireKey;
@@ -73,7 +74,7 @@ public class ReceiveServlet extends HttpServlet{
             }
 
             //创建回复
-            XMLTextMessage xmlTextMessage = new XMLTextMessage(
+            XMLMessage xmlTextMessage = new XMLTextMessage(
                     eventMessage.getFromUserName(),
                     eventMessage.getToUserName(),
                     "你好");

@@ -67,6 +67,18 @@ public class TicketManager {
 	 * @param appid
 	 */
 	public static void init(final String appid){
+		init(appid,0,60*119);
+	}
+	
+	/**
+	 * 初始化ticket 刷新
+	 * 依赖TokenManager
+	 * @since 2.6.1
+	 * @param appid
+	 * @param initialDelay 首次执行延迟（秒）
+	 * @param delay 执行间隔（秒）
+	 */
+	public static void init(final String appid,int initialDelay,int delay){
 		if(scheduledExecutorService == null){
 			initScheduledExecutorService();
 		}
@@ -80,7 +92,7 @@ public class TicketManager {
 				Ticket ticket = TicketAPI.ticketGetticket(access_token);
 				ticketMap.put(appid,ticket.getTicket());
 			}
-		},0,119,TimeUnit.MINUTES);
+		},initialDelay,delay,TimeUnit.SECONDS);
 		futureMap.put(appid,scheduledFuture);
 	}
 

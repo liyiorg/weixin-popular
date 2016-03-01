@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>weixin</groupId>
 	<artifactId>weixin-popular</artifactId>
-	<version>2.6.0-RELEASE</version>
+	<version>2.6.1-RELEASE</version>
 	<url>https://github.com/liyiorg/weixin-popular</url>
 
 	<dependencies>

@@ -13,16 +13,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.qq.weixin.mp.aes.AesException;
+import com.qq.weixin.mp.aes.WXBizMsgCrypt;
+
 import weixin.popular.bean.message.EventMessage;
+import weixin.popular.bean.xmlmessage.XMLMessage;
 import weixin.popular.bean.xmlmessage.XMLTextMessage;
 import weixin.popular.support.ExpireKey;
 import weixin.popular.support.expirekey.DefaultExpireKey;
 import weixin.popular.util.SignatureUtil;
 import weixin.popular.util.StreamUtils;
 import weixin.popular.util.XMLConverUtil;
-
-import com.qq.weixin.mp.aes.AesException;
-import com.qq.weixin.mp.aes.WXBizMsgCrypt;
 
 /**
  * 服务端事件消息接收  加密模式
@@ -122,7 +123,7 @@ public class ReceiveServlet2 extends HttpServlet{
 		}
 
 		//创建回复
-		XMLTextMessage xmlTextMessage = new XMLTextMessage(
+		XMLMessage xmlTextMessage = new XMLTextMessage(
 		     eventMessage.getFromUserName(),
 		     eventMessage.getToUserName(),
 		     "你好");

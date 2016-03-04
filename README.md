@@ -22,6 +22,17 @@ weixin-popular 包括微信公众平台、公众号第三方平台基础API与�
 * [TicketAPI](https://github.com/liyiorg/weixin-popular/wiki/TicketAPI) JSAPI ticket
 * [ComponentAPI](https://github.com/liyiorg/weixin-popular/wiki/ComponentAPI) 第三方平台开发
 
+### 待开发API
+* [BizwifiAPI](https://github.com/liyiorg/weixin-popular/wiki/BizwifiAPI) 微信连Wi-Fi
+* [CardAPI](https://github.com/liyiorg/weixin-popular/wiki/CardAPI) 微信卡券
+* [CustomserviceAPI](https://github.com/liyiorg/weixin-popular/wiki/CustomserviceAPI) 多客服功能
+* [DatacubeAPI](https://github.com/liyiorg/weixin-popular/wiki/DatacubeAPI) 数据统计
+* [MerchantAPI](https://github.com/liyiorg/weixin-popular/wiki/MerchantAPI) 微信小店
+* [PoiAPI](https://github.com/liyiorg/weixin-popular/wiki/PoiAPI) 微信门店
+* [ScanAPI](https://github.com/liyiorg/weixin-popular/wiki/ScanAPI) 微信扫一扫
+* [SemanticAPI](https://github.com/liyiorg/weixin-popular/wiki/SemanticAPI) 微信智能
+* [ShakearoundAPI](https://github.com/liyiorg/weixin-popular/wiki/ShakearoundAPI) 微信摇一摇周边
+
 ## API 模式切换
 * [API 切换] (https://github.com/liyiorg/weixin-popular/wiki/API 模式切换)
 

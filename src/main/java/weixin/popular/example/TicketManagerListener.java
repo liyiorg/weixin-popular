@@ -12,6 +12,9 @@ public class TicketManagerListener implements ServletContextListener{
 		//WEB容器 初始化时调用
 		//TicketManager 依赖 TokenManager，确保TokenManager.init 先被调用
 		TicketManager.init("appid");
+		
+		//2.6.1 版本新增，延迟5秒执行。
+		TicketManager.init("appid",5,60*119);
 	}
 
 	@Override

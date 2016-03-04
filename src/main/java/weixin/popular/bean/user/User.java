@@ -29,6 +29,8 @@ public class User extends BaseResult{
 	private String unionid;			//多个公众号之间用户帐号互通UnionID机制
 
 	private Integer groupid;
+	
+	private String remark;			//公众号运营者对粉丝的备注，公众号运营者可在微信公众平台用户管理界面对粉丝添加备注
 
 	public Integer getSubscribe() {
 		return subscribe;
@@ -134,4 +136,13 @@ public class User extends BaseResult{
 		this.groupid = groupid;
 	}
 
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
+
+	
 }

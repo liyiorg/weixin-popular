@@ -17,7 +17,6 @@ import org.apache.http.client.methods.RequestBuilder;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.entity.mime.content.FileBody;
-import org.apache.http.entity.mime.content.InputStreamBody;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
@@ -181,9 +180,15 @@ public class MediaAPI extends BaseAPI{
 	 */
 	public static UploadimgResult mediaUploadimg(String access_token,InputStream inputStream){
 		HttpPost httpPost = new HttpPost(BASE_URI+"/cgi-bin/media/uploadimg");
-		InputStreamBody inputStreamBody =  new InputStreamBody(inputStream, ContentType.MULTIPART_FORM_DATA, UUID.randomUUID().toString()+".jpg");
+		//InputStreamBody inputStreamBody =  new InputStreamBody(inputStream, ContentType.DEFAULT_BINARY, UUID.randomUUID().toString()+".jpg");
+		byte[] data = null;
+		try {
+			data = StreamUtils.copyToByteArray(inputStream);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		HttpEntity reqEntity = MultipartEntityBuilder.create()
-        		 .addPart("media",inputStreamBody)
+				 .addBinaryBody("media",data,ContentType.DEFAULT_BINARY,"temp.jpg")
                  .addTextBody(getATPN(), access_token)
                  .build();
         httpPost.setEntity(reqEntity);

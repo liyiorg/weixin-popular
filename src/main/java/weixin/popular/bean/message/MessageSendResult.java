@@ -7,6 +7,8 @@ public class MessageSendResult extends BaseResult{
 	private String type;
 
 	private String msg_id;
+	
+	private String msg_status;
 
 	public String getType() {
 		return type;
@@ -24,5 +26,12 @@ public class MessageSendResult extends BaseResult{
 		this.msg_id = msg_id;
 	}
 
+	public String getMsg_status() {
+		return msg_status;
+	}
+
+	public void setMsg_status(String msg_status) {
+		this.msg_status = msg_status;
+	}
 
 }

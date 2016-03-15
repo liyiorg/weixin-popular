@@ -1,6 +1,8 @@
 package weixin.popular.bean.component;
 
-public class AuthorizerOption {
+import weixin.popular.bean.BaseResult;
+
+public class AuthorizerOption extends BaseResult {
 
 	private String authorizer_appid;
 
@@ -31,6 +33,5 @@ public class AuthorizerOption {
 	public void setOption_value(String option_value) {
 		this.option_value = option_value;
 	}
-
 
 }

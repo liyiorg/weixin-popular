@@ -7,8 +7,9 @@ import org.apache.http.client.methods.RequestBuilder;
 import org.apache.http.entity.StringEntity;
 
 import weixin.popular.bean.BaseResult;
+import weixin.popular.bean.component.ApiGetAuthorizerInfoResult;
+import weixin.popular.bean.component.ApiQueryAuthResult;
 import weixin.popular.bean.component.AuthorizerAccessToken;
-import weixin.popular.bean.component.AuthorizerInfo;
 import weixin.popular.bean.component.AuthorizerOption;
 import weixin.popular.bean.component.ComponentAccessToken;
 import weixin.popular.bean.component.PreAuthCode;
@@ -67,7 +68,7 @@ public class ComponentAPI extends BaseAPI{
 	 * @param authorization_code 授权code,会在授权成功时返回给第三方平台，详见第三方平台授权流程说明
 	 * @return
 	 */
-	public AuthorizerInfo api_query_auth(String component_access_token,String component_appid,String authorization_code){
+	public ApiQueryAuthResult api_query_auth(String component_access_token,String component_appid,String authorization_code){
 		String postJsonData = String.format("{\"component_appid\":\"%1$s\",\"authorization_code\":\"%2$s\"}",
 						component_appid,
 						authorization_code);
@@ -77,7 +78,7 @@ public class ComponentAPI extends BaseAPI{
 				.addParameter("component_access_token", component_access_token)
 				.setEntity(new StringEntity(postJsonData,Charset.forName("utf-8")))
 				.build();
-		return LocalHttpClient.executeJsonResult(httpUriRequest,AuthorizerInfo.class);
+		return LocalHttpClient.executeJsonResult(httpUriRequest,ApiQueryAuthResult.class);
 	}
 
 	/**
@@ -111,7 +112,7 @@ public class ComponentAPI extends BaseAPI{
 	 * @param authorizer_appid	授权方appid
 	 * @return
 	 */
-	public AuthorizerInfo api_get_authorizer_info(String component_access_token,
+	public ApiGetAuthorizerInfoResult api_get_authorizer_info(String component_access_token,
 			String component_appid,
 			String authorizer_appid){
 		String postJsonData = String.format("{\"component_appid\":\"%1$s\",\"authorizer_appid\":\"%2$s\"}",
@@ -122,7 +123,7 @@ public class ComponentAPI extends BaseAPI{
 				.addParameter("component_access_token", component_access_token)
 				.setEntity(new StringEntity(postJsonData,Charset.forName("utf-8")))
 				.build();
-		return LocalHttpClient.executeJsonResult(httpUriRequest,AuthorizerInfo.class);
+		return LocalHttpClient.executeJsonResult(httpUriRequest,ApiGetAuthorizerInfoResult.class);
 	}
 
 	/**

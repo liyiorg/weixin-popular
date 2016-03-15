@@ -1,6 +1,8 @@
 package weixin.popular.bean.component;
 
-public class AuthorizerAccessToken {
+import weixin.popular.bean.BaseResult;
+
+public class AuthorizerAccessToken extends BaseResult {
 
 	private String authorizer_access_token;
 
@@ -31,6 +33,5 @@ public class AuthorizerAccessToken {
 	public void setAuthorizer_refresh_token(String authorizer_refresh_token) {
 		this.authorizer_refresh_token = authorizer_refresh_token;
 	}
-
 
 }

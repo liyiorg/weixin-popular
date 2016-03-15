@@ -1,38 +1,69 @@
 package weixin.popular.bean.component;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * 推送 component_verify_ticket协议 或 取消授权通知 XML 数据
+ * 
  * @author LiYi
  *
  */
-@XmlRootElement(name="xml")
+@XmlRootElement(name = "xml")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class ComponentReceiveXML {
 
-	@XmlElement(name="Appid")
-	private String appid;
+	@XmlElement(name = "AppId")
+	private String appId;
 
-	@XmlElement(name="CreateTime")
-	private Integer createTime ;
+	@XmlElement(name = "CreateTime")
+	private Integer createTime;
 
-	@XmlElement(name="InfoType")
-	private String infoType;
+	@XmlElement(name = "InfoType")
+	private String infoType; // component_verify_ticket
+								// 推送component_verify_ticket协议
+								// unauthorized 取消授权
+								// updateauthorized 更新授权
+								// authorized 授权成功通知
 
-	@XmlElement(name="ComponentVerifyTicket")
+	@XmlElement(name = "ComponentVerifyTicket")
 	private String componentVerifyTicket;
 
-	@XmlElement(name="AuthorizerAppid")
-	private String authorizerAppid;
+	@XmlElement(name = "AuthorizerAppid")
+	private String authorizerAppid; // 公众号
 
-	public String getAppid() {
-		return appid;
+	@XmlElement(name = "AuthorizationCode")
+	private String authorizationCode; // 授权码（code）
+
+	@XmlElement(name = "AuthorizationCodeExpiredTime")
+	private String authorizationCodeExpiredTime; // 过期时间
+
+	public String getAppId() {
+		return appId;
 	}
 
-	public void setAppid(String appid) {
-		this.appid = appid;
+	public void setAppId(String appId) {
+		this.appId = appId;
+	}
+
+	public String getAuthorizationCode() {
+		return authorizationCode;
+	}
+
+	public void setAuthorizationCode(String authorizationCode) {
+		this.authorizationCode = authorizationCode;
+	}
+
+	public String getAuthorizationCodeExpiredTime() {
+		return authorizationCodeExpiredTime;
+	}
+
+	public void setAuthorizationCodeExpiredTime(
+			String authorizationCodeExpiredTime) {
+		this.authorizationCodeExpiredTime = authorizationCodeExpiredTime;
 	}
 
 	public Integer getCreateTime() {
@@ -43,6 +74,14 @@ public class ComponentReceiveXML {
 		this.createTime = createTime;
 	}
 
+	/**
+	 * component_verify_ticket 推送component_verify_ticket协议
+	 * unauthorized 取消授权
+	 * updateauthorized 更新授权 
+	 * authorized 授权成功通知
+	 * 
+	 * @return
+	 */
 	public String getInfoType() {
 		return infoType;
 	}
@@ -66,6 +105,5 @@ public class ComponentReceiveXML {
 	public void setAuthorizerAppid(String authorizerAppid) {
 		this.authorizerAppid = authorizerAppid;
 	}
-
 
 }

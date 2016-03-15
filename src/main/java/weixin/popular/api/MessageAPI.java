@@ -13,12 +13,14 @@ import weixin.popular.bean.BaseResult;
 import weixin.popular.bean.media.Media;
 import weixin.popular.bean.message.ApiAddTemplateResult;
 import weixin.popular.bean.message.Article;
+import weixin.popular.bean.message.CurrentAutoreplyInfo;
 import weixin.popular.bean.message.GetAllPrivateTemplateResult;
 import weixin.popular.bean.message.GetIndustryResult;
 import weixin.popular.bean.message.MessageSendResult;
 import weixin.popular.bean.message.Uploadvideo;
 import weixin.popular.bean.message.massmessage.MassMessage;
 import weixin.popular.bean.message.message.Message;
+import weixin.popular.bean.message.preview.Preview;
 import weixin.popular.bean.message.templatemessage.TemplateMessage;
 import weixin.popular.bean.message.templatemessage.TemplateMessageResult;
 import weixin.popular.client.LocalHttpClient;
@@ -163,11 +165,11 @@ public class MessageAPI extends BaseAPI{
 	 * 已经收到的用户，还是能在其本地看到消息卡片。
 	 * 另外，删除群发消息只能删除图文消息和视频消息，其他类型的消息一经发送，无法删除。
 	 * @param access_token
-	 * @param msgid
+	 * @param msg_id
 	 * @return
 	 */
-	public static BaseResult messageMassDelete(String access_token,String msgid){
-		String messageJson = "{\"msgid\":" + msgid + "}";
+	public static BaseResult messageMassDelete(String access_token,String msg_id){
+		String messageJson = String.format("{\"msg_id\":\"%s\"}",msg_id);
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 										.setHeader(jsonHeader)
 										.setUri(BASE_URI+"/cgi-bin/message/mass/delete")
@@ -177,7 +179,41 @@ public class MessageAPI extends BaseAPI{
 		return LocalHttpClient.executeJsonResult(httpUriRequest,BaseResult.class);
 	}
 
-
+	/**
+	 * 预览接口
+	 * @since 2.6.3
+	 * @param access_token
+	 * @param preview
+	 * @return
+	 */
+	public static MessageSendResult messageMassPreview(String access_token,Preview preview){
+		String previewJson = JsonUtil.toJSONString(preview);
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+										.setHeader(jsonHeader)
+										.setUri(BASE_URI+"/cgi-bin/message/mass/preview")
+										.addParameter(getATPN(), access_token)
+										.setEntity(new StringEntity(previewJson,Charset.forName("utf-8")))
+										.build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest,MessageSendResult.class);
+	}
+	
+	/**
+	 * 查询群发消息发送状态
+	 * @since 2.6.3
+	 * @param access_token
+	 * @param msg_id
+	 * @return
+	 */
+	public static MessageSendResult messageMassGet(String access_token,String msg_id){
+		String messageJson = String.format("{\"msg_id\":\"%s\"}",msg_id);
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+										.setHeader(jsonHeader)
+										.setUri(BASE_URI+"/cgi-bin/message/mass/get")
+										.addParameter(getATPN(), access_token)
+										.setEntity(new StringEntity(messageJson,Charset.forName("utf-8")))
+										.build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest,MessageSendResult.class);
+	}
 
 
 	/**
@@ -326,4 +362,17 @@ public class MessageAPI extends BaseAPI{
 		return LocalHttpClient.executeJsonResult(httpUriRequest,BaseResult.class);
 	}
 	
+	/**
+	 * 获取公众号的自动回复规则
+	 * @since 2.6.3
+	 * @param access_token
+	 * @return
+	 */
+	public static CurrentAutoreplyInfo get_current_autoreply_info(String access_token){
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+				.setUri(BASE_URI+"/cgi-bin/get_current_autoreply_info")
+				.addParameter(getATPN(), access_token)
+				.build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest,CurrentAutoreplyInfo.class);
+	}
 }

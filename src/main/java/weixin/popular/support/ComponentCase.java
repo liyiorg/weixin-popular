@@ -35,7 +35,7 @@ public class ComponentCase {
 	 * @param postData
 	 * @param outputStream
 	 * @param wxBizMsgCrypt
-	 * @return 0 非检测   1-4 检测
+	 * @return 0 非检测   1-3 检测
 	 */
 	public static int doCase(String component_access_token,String component_appid,Map<String,String> postData,OutputStream outputStream,WXBizMsgCrypt wxBizMsgCrypt){
 		
@@ -95,20 +95,19 @@ public class ComponentCase {
 			}
 		}
 		
-		String appid = postData.get("AppId");
-		if(appid != null&&TEST_APPID.equals(appid)){
-			//4、模拟推送component_verify_ticket给开发者，开发者需按要求回复（接收到后必须直接返回字符串success）。
-			if("component_verify_ticket".equals(postData.get("InfoType"))){
-				try {
-					outputStream.write("success".getBytes("utf-8"));
-					return 4;
-				} catch (UnsupportedEncodingException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+		
+		/*//4、模拟推送component_verify_ticket给开发者，开发者需按要求回复（接收到后必须直接返回字符串success）。
+		if("component_verify_ticket".equals(postData.get("InfoType"))){
+			try {
+				outputStream.write("success".getBytes("utf-8"));
+				return 4;
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
-		}
+		}*/
+		
 		return 0;
 	}
 	

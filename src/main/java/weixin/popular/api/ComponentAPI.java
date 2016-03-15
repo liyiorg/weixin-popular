@@ -1,5 +1,7 @@
 package weixin.popular.api;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.nio.charset.Charset;
 
 import org.apache.http.client.methods.HttpUriRequest;
@@ -21,6 +23,27 @@ import weixin.popular.client.LocalHttpClient;
  *
  */
 public class ComponentAPI extends BaseAPI{
+	
+	/**
+	 * 生成授权页 URL 
+	 * @param component_appid
+	 * @param pre_auth_code
+	 * @param redirect_uri
+	 * @return
+	 */
+	public static String componentloginpage(String component_appid,String pre_auth_code,String redirect_uri){
+		try {
+			StringBuilder sb = new StringBuilder();
+			sb.append(BASE_URI + "/cgi-bin/componentloginpage?")
+			.append("component_appid=").append(component_appid)
+			.append("&pre_auth_code=").append(pre_auth_code)
+			.append("&redirect_uri=").append(URLEncoder.encode(redirect_uri, "utf-8"));
+			return sb.toString();
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 	/**
 	 * 获取公众号第三方平台access_token
@@ -29,7 +52,7 @@ public class ComponentAPI extends BaseAPI{
 	 * @param component_verify_ticket	微信后台推送的ticket，此ticket会定时推送，具体请见本页末尾的推送说明
 	 * @return
 	 */
-	public ComponentAccessToken api_component_token(String component_appid,String component_appsecret,String component_verify_ticket){
+	public static ComponentAccessToken api_component_token(String component_appid,String component_appsecret,String component_verify_ticket){
 		String postJsonData = String.format("{\"component_appid\":\"%1$s\" ,\"component_appsecret\": \"%2$s\",\"component_verify_ticket\": \"%3$s\"}",
 						component_appid,
 						component_appsecret,
@@ -49,7 +72,7 @@ public class ComponentAPI extends BaseAPI{
 	 * @param component_appid	公众号第三方平台appid
 	 * @return
 	 */
-	public PreAuthCode api_create_preauthcode(String component_access_token,String component_appid){
+	public static PreAuthCode api_create_preauthcode(String component_access_token,String component_appid){
 		String postJsonData = String.format("{\"component_appid\":\"%1$s\"}",
 						component_appid);
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
@@ -68,7 +91,7 @@ public class ComponentAPI extends BaseAPI{
 	 * @param authorization_code 授权code,会在授权成功时返回给第三方平台，详见第三方平台授权流程说明
 	 * @return
 	 */
-	public ApiQueryAuthResult api_query_auth(String component_access_token,String component_appid,String authorization_code){
+	public static ApiQueryAuthResult api_query_auth(String component_access_token,String component_appid,String authorization_code){
 		String postJsonData = String.format("{\"component_appid\":\"%1$s\",\"authorization_code\":\"%2$s\"}",
 						component_appid,
 						authorization_code);
@@ -89,7 +112,7 @@ public class ComponentAPI extends BaseAPI{
 	 * @param authorizer_refresh_token	授权方的刷新令牌，刷新令牌主要用于公众号第三方平台获取和刷新已授权用户的access_token，只会在授权时刻提供，请妥善保存。 一旦丢失，只能让用户重新授权，才能再次拿到新的刷新令牌
 	 * @return
 	 */
-	public AuthorizerAccessToken api_authorizer_token(String component_access_token,
+	public static AuthorizerAccessToken api_authorizer_token(String component_access_token,
 											String component_appid,
 											String authorizer_appid,
 											String authorizer_refresh_token){
@@ -112,7 +135,7 @@ public class ComponentAPI extends BaseAPI{
 	 * @param authorizer_appid	授权方appid
 	 * @return
 	 */
-	public ApiGetAuthorizerInfoResult api_get_authorizer_info(String component_access_token,
+	public static ApiGetAuthorizerInfoResult api_get_authorizer_info(String component_access_token,
 			String component_appid,
 			String authorizer_appid){
 		String postJsonData = String.format("{\"component_appid\":\"%1$s\",\"authorizer_appid\":\"%2$s\"}",
@@ -134,7 +157,7 @@ public class ComponentAPI extends BaseAPI{
 	 * @param option_name 选项名称
 	 * @return
 	 */
-	public AuthorizerOption api_get_authorizer_option(String component_access_token,
+	public static AuthorizerOption api_get_authorizer_option(String component_access_token,
 			String component_appid,
 			String authorizer_appid,
 			String option_name){
@@ -158,7 +181,7 @@ public class ComponentAPI extends BaseAPI{
 	 * @param option_value 设置的选项值
 	 * @return
 	 */
-	public BaseResult api_set_authorizer_option(String component_access_token,
+	public static BaseResult api_set_authorizer_option(String component_access_token,
 			String component_appid,
 			String authorizer_appid,
 			String option_name,

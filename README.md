@@ -47,6 +47,7 @@ weixin-popular 包括微信公众平台、公众号第三方平台基础API与�
 * [消息事件接收(加密)](https://github.com/liyiorg/weixin-popular/wiki/消息事件接收(加密))
 * [微信支付（老版本）](https://github.com/liyiorg/weixin-popular/wiki/微信支付)
 * [微信支付MCH](https://github.com/liyiorg/weixin-popular/wiki/微信支付MCH)
+* [公众号第三方平台消息事件接收](https://github.com/liyiorg/weixin-popular/wiki/公众号第三方平台消息事件接收)
 
 ## support
 * [TokenManager token 自动刷新](https://github.com/liyiorg/weixin-popular/wiki/TokenManager-token-自动刷新)

@@ -20,6 +20,7 @@ import weixin.popular.bean.component.ComponentReceiveXML;
 import weixin.popular.bean.message.EventMessage;
 import weixin.popular.bean.xmlmessage.XMLMessage;
 import weixin.popular.bean.xmlmessage.XMLTextMessage;
+import weixin.popular.support.ComponentCase;
 import weixin.popular.support.ExpireKey;
 import weixin.popular.support.expirekey.DefaultExpireKey;
 import weixin.popular.util.StreamUtils;
@@ -27,8 +28,8 @@ import weixin.popular.util.XMLConverUtil;
 
 /**
  * 服务端事件消息接收  加密模式  公众号第三方平台
- * @author Yi
- *
+ * @author LiYi
+ * 2016-03-15
  */
 public class ComponentReceiveServlet extends HttpServlet{
 
@@ -37,11 +38,13 @@ public class ComponentReceiveServlet extends HttpServlet{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private String appId = "";				//公众号第三方平台的appid
+	private String component_appid = "";				//公众号第三方平台的appid
 	private String encodingToken = "";		//第三方平台申请时填写的接收消息的校验token
 	private String encodingAesKey = "";		//第三方平台申请时填写的接收消息的加密symmetric_key
 	
-	private boolean test = false; 			//全网发布接入检测
+	private String component_access_token; 	//第三方平台调用凭证
+	
+	
 
 	//重复通知过滤
     private static ExpireKey expireKey = new DefaultExpireKey();
@@ -65,7 +68,7 @@ public class ComponentReceiveServlet extends HttpServlet{
     	boolean isAes = "aes".equals(encrypt_type);
     	if(isAes){
     		try {
-				wxBizMsgCrypt = new WXBizMsgCrypt(encodingToken, encodingAesKey, appId);
+				wxBizMsgCrypt = new WXBizMsgCrypt(encodingToken, encodingAesKey, component_appid);
 				////解密XML 数据
 				postData = wxBizMsgCrypt.decryptMsg(msg_signature, timestamp, nonce, postData);
 			} catch (AesException e) {
@@ -75,6 +78,10 @@ public class ComponentReceiveServlet extends HttpServlet{
     	//获取数据的map 格式
     	Map<String,String> mapData = XMLConverUtil.convertToMap(postData);
     	
+    	//全网发布接入检测
+    	if(ComponentCase.doCase(component_access_token, component_appid, mapData, outputStream, wxBizMsgCrypt)!=0){
+    		return;
+    	}
     	
 		if(mapData.get("InfoType")!=null){
 			//微信服务器发送给服务自身的事件推送

@@ -35,12 +35,12 @@ public class ComponentCase {
 	 * @param postData
 	 * @param outputStream
 	 * @param wxBizMsgCrypt
-	 * @return 0 非检测   1-3 检测
+	 * @return 0 非检测   1-5 检测
 	 */
 	public static int doCase(String component_access_token,String component_appid,Map<String,String> postData,OutputStream outputStream,WXBizMsgCrypt wxBizMsgCrypt){
 		
 		String username = postData.get("ToUserName");
-		if(username != null&&TEST_USERNAME.equals(username)){
+		if(username != null && TEST_USERNAME.equals(username)){
 			/*
 			1、模拟粉丝触发专用测试公众号的事件，并推送事件消息到专用测试公众号，第三方平台方开发者需要提取推送XML信息中的event值，并在5秒内立即返回按照下述要求组装的文本消息给粉丝。
 			1）微信推送给第三方平台方： 事件XML内容（与普通公众号接收到的信息是一样的）
@@ -54,7 +54,7 @@ public class ComponentCase {
 			2、模拟粉丝发送文本消息给专用测试公众号，第三方平台方需根据文本消息的内容进行相应的响应：
 			1）微信模推送给第三方平台方：文本消息，其中Content字段的内容固定为：TESTCOMPONENT_MSG_TYPE_TEXT
 			2）第三方平台方立马回应文本消息并最终触达粉丝：Content必须固定为：TESTCOMPONENT_MSG_TYPE_TEXT_callback*/
-			if("text".equalsIgnoreCase(postData.get("MsgType"))&&"TESTCOMPONENT_MSG_TYPE_TEXT".equals(postData.get("Content"))){
+			if("text".equalsIgnoreCase(postData.get("MsgType")) && "TESTCOMPONENT_MSG_TYPE_TEXT".equals(postData.get("Content"))){
 				XMLTextMessage textMessage = new XMLTextMessage(postData.get("FromUserName"), TEST_USERNAME, "TESTCOMPONENT_MSG_TYPE_TEXT_callback");
 				textMessage.outputStreamWrite(outputStream, wxBizMsgCrypt);
 				return 2;
@@ -96,8 +96,8 @@ public class ComponentCase {
 		}
 		
 		
-		/*//4、模拟推送component_verify_ticket给开发者，开发者需按要求回复（接收到后必须直接返回字符串success）。
-		if("component_verify_ticket".equals(postData.get("InfoType"))){
+		//4、模拟推送component_verify_ticket给开发者，开发者需按要求回复（接收到后必须直接返回字符串success）。
+		/*if("component_verify_ticket".equals(postData.get("InfoType"))){
 			try {
 				outputStream.write("success".getBytes("utf-8"));
 				return 4;
@@ -107,6 +107,17 @@ public class ComponentCase {
 				e.printStackTrace();
 			}
 		}*/
+		
+		if(postData.get("InfoType")!=null && TEST_APPID.equals(postData.get("AuthorizerAppid"))){
+			try {
+				outputStream.write("success".getBytes("utf-8"));
+				return 5;
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 		
 		return 0;
 	}

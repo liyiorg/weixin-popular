@@ -21,6 +21,7 @@ import weixin.popular.bean.message.EventMessage;
 import weixin.popular.bean.xmlmessage.XMLMessage;
 import weixin.popular.bean.xmlmessage.XMLTextMessage;
 import weixin.popular.support.ComponentCase;
+import weixin.popular.support.ComponentTokenManager;
 import weixin.popular.support.ExpireKey;
 import weixin.popular.support.expirekey.DefaultExpireKey;
 import weixin.popular.util.StreamUtils;
@@ -38,11 +39,10 @@ public class ComponentReceiveServlet extends HttpServlet{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private String component_appid = "";				//公众号第三方平台的appid
+	private String component_appid = "";	//公众号第三方平台的appid
+	private String component_appsecret = "";
 	private String encodingToken = "";		//第三方平台申请时填写的接收消息的校验token
 	private String encodingAesKey = "";		//第三方平台申请时填写的接收消息的加密symmetric_key
-	
-	private String component_access_token; 	//第三方平台调用凭证
 	
 	
 
@@ -64,6 +64,8 @@ public class ComponentReceiveServlet extends HttpServlet{
     	WXBizMsgCrypt wxBizMsgCrypt = null;
     	//获取XML数据（含加密参数）
     	String postData = StreamUtils.copyToString(inputStream, Charset.forName("utf-8"));
+    	
+    	
     	//加密方式
     	boolean isAes = "aes".equals(encrypt_type);
     	if(isAes){
@@ -77,9 +79,8 @@ public class ComponentReceiveServlet extends HttpServlet{
     	}
     	//获取数据的map 格式
     	Map<String,String> mapData = XMLConverUtil.convertToMap(postData);
-    	
     	//全网发布接入检测
-    	if(ComponentCase.doCase(component_access_token, component_appid, mapData, outputStream, wxBizMsgCrypt)!=0){
+    	if(ComponentCase.doCase(ComponentTokenManager.getToken(component_appid), component_appid, mapData, outputStream, wxBizMsgCrypt)!=0){
     		return;
     	}
     	
@@ -87,8 +88,13 @@ public class ComponentReceiveServlet extends HttpServlet{
 			//微信服务器发送给服务自身的事件推送
 			ComponentReceiveXML componentReceiveXML = XMLConverUtil.convertToObject(ComponentReceiveXML.class, postData);
 			
-			// TODO 业务处理
-			
+			if("component_verify_ticket".equals(componentReceiveXML.getInfoType())){
+				ComponentTokenManager.refresh(component_appid, component_appsecret, componentReceiveXML.getComponentVerifyTicket());
+			}else if("authorized".equals(componentReceiveXML.getInfoType())||"updateauthorized".equals(componentReceiveXML.getInfoType())){ 
+				ComponentTokenManager.authorized(component_appid, componentReceiveXML.getAuthorizationCode());
+			}else if("unauthorized".equals(componentReceiveXML.getInfoType())){
+				ComponentTokenManager.unauthorized(component_appid, componentReceiveXML.getAuthorizerAppid());
+			}
 			outputStreamWrite(outputStream, "success");
 		}else{
 			//用户发送给公众号的消息（由公众号第三方平台代收）
@@ -140,4 +146,17 @@ public class ComponentReceiveServlet extends HttpServlet{
         }
         return true;
     }
+
+    @Override
+    public void init() throws ServletException {
+    	super.init();
+    	ComponentTokenManager.setStoreFilePath("F://wx_aat.json");
+    }
+    
+	@Override
+	public void destroy() {
+		super.destroy();
+		ComponentTokenManager.destroyed();
+	}
+    
 }

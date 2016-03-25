@@ -2,6 +2,13 @@ WEIXIN-POPULAR CHANGELOG
 ===========================
 https://github.com/liyiorg/weixin-popular
 
+Changes in version 2.6.3 (2016-03-25)
+-------------------------------------
+* weixin.popular.client.HttpClientFactory 修改
+* 增加请求超时设置，默认5秒。
+* 增加异常请求重试，默认失败重试2次。
+
+
 Changes in version 2.6.2 (2016-03-10)
 -------------------------------------
 * weixin.popular.api.MediaAPI bug 修复

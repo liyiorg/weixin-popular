@@ -47,12 +47,12 @@ weixin-popular 包括微信公众平台、公众号第三方平台基础API与�
 * [消息事件接收(加密)](https://github.com/liyiorg/weixin-popular/wiki/消息事件接收(加密))
 * [微信支付（老版本）](https://github.com/liyiorg/weixin-popular/wiki/微信支付)
 * [微信支付MCH](https://github.com/liyiorg/weixin-popular/wiki/微信支付MCH)
-* [公众号第三方平台消息事件接收](https://github.com/liyiorg/weixin-popular/wiki/公众号第三方平台消息事件接收)
 
 ## support
 * [TokenManager token 自动刷新](https://github.com/liyiorg/weixin-popular/wiki/TokenManager-token-自动刷新)
 * [TicketManager ticket 自动刷新](https://github.com/liyiorg/weixin-popular/wiki/TicketManager-ticket-自动刷新)
 * [设置API HttpClient 请求池大小](https://github.com/liyiorg/weixin-popular/wiki/设置API HttpClient 请求池大小)
+* [设置API HttpClient 超时及异常重试](https://github.com/liyiorg/weixin-popular/wiki/超时及异常重试)
 * [设置API MCH KeyStore](https://github.com/liyiorg/weixin-popular/wiki/设置API MCH KeyStore)
 * [排除重复的异步通知](https://github.com/liyiorg/weixin-popular/wiki/排除重复的异步通知)
 

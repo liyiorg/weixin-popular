@@ -19,18 +19,38 @@ import org.apache.http.client.protocol.HttpClientContext;
 import org.apache.http.impl.client.CloseableHttpClient;
 
 public class LocalHttpClient {
+	
+	private static int timeout = 5000;
+	
+	private static int retryExecutionCount = 2;
 
-	protected static CloseableHttpClient httpClient = HttpClientFactory.createHttpClient(100,10);
+	protected static CloseableHttpClient httpClient = HttpClientFactory.createHttpClient(100,10,timeout,retryExecutionCount);
 
 	private static Map<String,CloseableHttpClient> httpClient_mchKeyStore = new HashMap<String, CloseableHttpClient>();
 	
+	/**
+	 * @since 2.7.0
+	 * @param timeout
+	 */
+	public static void setTimeout(int timeout) {
+		LocalHttpClient.timeout = timeout;
+	}
+
+	/**
+	 * @since 2.7.0
+	 * @param retryExecutionCount
+	 */
+	public static void setRetryExecutionCount(int retryExecutionCount) {
+		LocalHttpClient.retryExecutionCount = retryExecutionCount;
+	}
+
 	public static void init(int maxTotal,int maxPerRoute){
 		try {
 			httpClient.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		httpClient = HttpClientFactory.createHttpClient(maxTotal,maxPerRoute);
+		httpClient = HttpClientFactory.createHttpClient(maxTotal,maxPerRoute,timeout,retryExecutionCount);
 	}
 
 	/**
@@ -44,7 +64,7 @@ public class LocalHttpClient {
 			 FileInputStream instream = new FileInputStream(new File(keyStoreFilePath));
 			 keyStore.load(instream,mch_id.toCharArray());
 			 instream.close();
-			 CloseableHttpClient httpClient = HttpClientFactory.createKeyMaterialHttpClient(keyStore, mch_id);
+			 CloseableHttpClient httpClient = HttpClientFactory.createKeyMaterialHttpClient(keyStore, mch_id,timeout,retryExecutionCount);
 			 httpClient_mchKeyStore.put(mch_id, httpClient);
 		} catch (KeyStoreException e) {
 			e.printStackTrace();

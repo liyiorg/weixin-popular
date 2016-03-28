@@ -22,7 +22,6 @@ import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.apache.http.conn.ssl.SSLContexts;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.http.impl.conn.BasicHttpClientConnectionManager;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.protocol.HttpContext;
 
@@ -35,32 +34,19 @@ public class HttpClientFactory{
 	
 	private static final String[] supportedProtocols = new String[]{"TLSv1"};
 	
-	private static int timeout = 5000;				//socket time out (default 5 s)
-	
-	private static int retryExecutionCount = 2;		//HttpClient retry execution count.
-	
-
 	public static CloseableHttpClient createHttpClient() {
-		try {
-			SSLContext sslContext = SSLContexts.custom().useSSL().build();
-			BasicHttpClientConnectionManager connMrg = new BasicHttpClientConnectionManager();
-			SocketConfig socketConfig = SocketConfig.custom().setSoTimeout(timeout).build();
-			connMrg.setSocketConfig(socketConfig);
-			SSLConnectionSocketFactory sf = new SSLConnectionSocketFactory(sslContext,SSLConnectionSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
-			return HttpClientBuilder.create()
-					.setConnectionManager(connMrg)
-					.setSSLSocketFactory(sf)
-					.setRetryHandler(new HttpRequestRetryHandlerImpl())
-					.build();
-		} catch (KeyManagementException e) {
-			e.printStackTrace();
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		}
-		return null;
+		return createHttpClient(100,10,5000,2);
 	}
 
-	public static CloseableHttpClient createHttpClient(int maxTotal,int maxPerRoute) {
+	/**
+	 * 
+	 * @param maxTotal
+	 * @param maxPerRoute
+	 * @param timeout
+	 * @param retryExecutionCount
+	 * @return
+	 */
+	public static CloseableHttpClient createHttpClient(int maxTotal,int maxPerRoute,int timeout,int retryExecutionCount) {
 		try {
 			SSLContext sslContext = SSLContexts.custom().useSSL().build();
 			SSLConnectionSocketFactory sf = new SSLConnectionSocketFactory(sslContext,SSLConnectionSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
@@ -72,7 +58,7 @@ public class HttpClientFactory{
 			return HttpClientBuilder.create()
 									.setConnectionManager(poolingHttpClientConnectionManager)
 									.setSSLSocketFactory(sf)
-									.setRetryHandler(new HttpRequestRetryHandlerImpl())
+									.setRetryHandler(new HttpRequestRetryHandlerImpl(retryExecutionCount))
 									.build();
 		} catch (KeyManagementException e) {
 			e.printStackTrace();
@@ -88,8 +74,8 @@ public class HttpClientFactory{
 	 * @param keyPassword
 	 * @return
 	 */
-	public static CloseableHttpClient createKeyMaterialHttpClient(KeyStore keystore,String keyPassword) {
-		return createKeyMaterialHttpClient(keystore, keyPassword, supportedProtocols);
+	public static CloseableHttpClient createKeyMaterialHttpClient(KeyStore keystore,String keyPassword,int timeout,int retryExecutionCount) {
+		return createKeyMaterialHttpClient(keystore, keyPassword, supportedProtocols,timeout,retryExecutionCount);
 	}
 	
 	/**
@@ -99,7 +85,7 @@ public class HttpClientFactory{
 	 * @param supportedProtocols
 	 * @return
 	 */
-	public static CloseableHttpClient createKeyMaterialHttpClient(KeyStore keystore,String keyPassword,String[] supportedProtocols) {
+	public static CloseableHttpClient createKeyMaterialHttpClient(KeyStore keystore,String keyPassword,String[] supportedProtocols,int timeout,int retryExecutionCount) {
 		try {
 			SSLContext sslContext = SSLContexts.custom().useSSL().loadKeyMaterial(keystore, keyPassword.toCharArray()).build();
 			SSLConnectionSocketFactory sf = new SSLConnectionSocketFactory(sslContext,supportedProtocols,
@@ -108,7 +94,7 @@ public class HttpClientFactory{
 			return HttpClientBuilder.create()
 									.setDefaultSocketConfig(socketConfig)
 									.setSSLSocketFactory(sf)
-									.setRetryHandler(new HttpRequestRetryHandlerImpl())
+									.setRetryHandler(new HttpRequestRetryHandlerImpl(retryExecutionCount))
 									.build();
 		} catch (KeyManagementException e) {
 			e.printStackTrace();
@@ -122,21 +108,18 @@ public class HttpClientFactory{
 		return null;
 	}
 
-	public static void setTimeout(int timeout) {
-		HttpClientFactory.timeout = timeout;
-	}
-
-	public static void setRetryExecutionCount(int retryExecutionCount) {
-		HttpClientFactory.retryExecutionCount = retryExecutionCount;
-	}
-	
-	
 	/**
 	 * 
 	 * HttpClient  超时重试
 	 * @author LiYi
 	 */
 	private static class HttpRequestRetryHandlerImpl implements HttpRequestRetryHandler{
+		
+		private int retryExecutionCount;
+		
+		public HttpRequestRetryHandlerImpl(int retryExecutionCount){
+			this.retryExecutionCount = retryExecutionCount;
+		}
 		
 		@Override
 	    public boolean retryRequest(

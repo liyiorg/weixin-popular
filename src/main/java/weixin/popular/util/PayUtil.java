@@ -148,18 +148,14 @@ public class PayUtil {
 			String mch_id,
 			String productid,
 			String key){
-
-		PayNativeRequest payNativeRequest = new PayNativeRequest();
-		payNativeRequest.setAppid(appid);
-		payNativeRequest.setNoncestr(UUID.randomUUID().toString().replace("-", ""));
-		payNativeRequest.setProductid(productid);
-		payNativeRequest.setTimestamp(System.currentTimeMillis()/1000+"");
-		Map<String, String> mapS = MapUtil.objectToMap(payNativeRequest,"sign");
-		mapS.put("mch_id",mch_id);
-		String sign = SignatureUtil.generatePaySign(mapS,key);
-		payNativeRequest.setSign(sign);
-
-		Map<String, String> map = MapUtil.objectToMap(payNativeRequest);
+		Map<String,String> map = new LinkedHashMap<String,String>();
+		map.put("appid",appid);
+		map.put("mch_id",mch_id);
+		map.put("time_stamp",System.currentTimeMillis()/1000+"");
+		map.put("nonce_str",UUID.randomUUID().toString().replace("-", ""));
+		map.put("product_id",productid);
+		String sign = SignatureUtil.generateSign(map,key);
+		map.put("sign",sign);
 		return "weixin://wxpay/bizpayurl?" + MapUtil.mapJoin(map, false, false);
 	}
 
@@ -217,6 +213,4 @@ public class PayUtil {
 		String params = MapUtil.mapJoin(map, false, true);
 		return "https://api.mch.weixin.qq.com/papay/entrustweb?"+params;
 	}
-
-
 }

@@ -9,9 +9,14 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import weixin.popular.support.ExpireKey;
 
 public class DefaultExpireKey implements ExpireKey{
+	
+	private static final Logger logger = LoggerFactory.getLogger(DefaultExpireKey.class);
 
 	private Map<String,Integer> map = new HashMap<String,Integer>();
 
@@ -50,6 +55,7 @@ public class DefaultExpireKey implements ExpireKey{
 		scheduledExecutorService.scheduleWithFixedDelay(new Runnable() {
 			@Override
 			public void run() {
+				logger.debug("in clean");
 				List<String> removeKey = new ArrayList<>();
 				for(String key : map.keySet()){
 					Integer value = map.get(key);
@@ -60,6 +66,7 @@ public class DefaultExpireKey implements ExpireKey{
 				for(String key : removeKey){
 					map.remove(key);
 				}
+				logger.debug("clean {} keys",removeKey.size());
 			}
 		},10,period,TimeUnit.SECONDS);
 	}

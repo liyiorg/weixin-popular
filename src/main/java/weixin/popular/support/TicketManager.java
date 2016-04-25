@@ -9,6 +9,9 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import weixin.popular.api.TicketAPI;
 import weixin.popular.bean.ticket.Ticket;
 
@@ -18,6 +21,8 @@ import weixin.popular.bean.ticket.Ticket;
  *
  */
 public class TicketManager {
+	
+	private static final Logger logger = LoggerFactory.getLogger(TicketManager.class);
 
 	private static ScheduledExecutorService scheduledExecutorService;
 
@@ -33,6 +38,7 @@ public class TicketManager {
 	 * 初始化 scheduledExecutorService
 	 */
 	private static void initScheduledExecutorService(){
+		logger.info("daemon:{},poolSize:{}",daemon,poolSize);
 		scheduledExecutorService =  Executors.newScheduledThreadPool(poolSize,new ThreadFactory() {
 
 			@Override
@@ -91,6 +97,7 @@ public class TicketManager {
 				String access_token = TokenManager.getToken(appid);
 				Ticket ticket = TicketAPI.ticketGetticket(access_token);
 				ticketMap.put(appid,ticket.getTicket());
+				logger.info("TICKET refurbish with appid:{}",appid);
 			}
 		},initialDelay,delay,TimeUnit.SECONDS);
 		futureMap.put(appid,scheduledFuture);
@@ -101,6 +108,7 @@ public class TicketManager {
 	 */
 	public static void destroyed(){
 		scheduledExecutorService.shutdownNow();
+		logger.info("destroyed");
 	}
 
 	/**

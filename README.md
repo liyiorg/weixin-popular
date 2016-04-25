@@ -36,6 +36,11 @@ weixin-popular 包括微信公众平台、公众号第三方平台基础API与�
 ## API 模式切换
 * [API 切换] (https://github.com/liyiorg/weixin-popular/wiki/API 模式切换)
 
+## 日志记录
+* 2.7.0+ 版本后增加日志记录
+* API 日志记录,info 级别。
+* 日志基于slf4j,请选择依赖合适的slf4j实现包。
+
 ## 工具类
 * PayUtil         支付工具类，生成JS支付，原生支付
 * SignatureUtil   签权生成、验证

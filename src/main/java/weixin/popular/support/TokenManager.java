@@ -9,6 +9,9 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import weixin.popular.api.TokenAPI;
 import weixin.popular.bean.token.Token;
 
@@ -19,6 +22,8 @@ import weixin.popular.bean.token.Token;
  */
 public class TokenManager{
 
+	private static final Logger logger = LoggerFactory.getLogger(TokenManager.class);
+	
 	private static ScheduledExecutorService scheduledExecutorService;
 
 	private static Map<String,String> tokenMap = new LinkedHashMap<String,String>();
@@ -33,6 +38,7 @@ public class TokenManager{
 	 * 初始化 scheduledExecutorService
 	 */
 	private static void initScheduledExecutorService(){
+		logger.info("daemon:{},poolSize:{}",daemon,poolSize);
 		scheduledExecutorService =  Executors.newScheduledThreadPool(poolSize,new ThreadFactory() {
 
 			@Override
@@ -78,9 +84,11 @@ public class TokenManager{
 			public void run() {
 				Token token = TokenAPI.token(appid,secret);
 				tokenMap.put(appid,token.getAccess_token());
+				logger.info("ACCESS_TOKEN refurbish with appid:{}",appid);
 			}
 		},0,118,TimeUnit.MINUTES);
 		futureMap.put(appid, scheduledFuture);
+		logger.info("appid:{}",appid);
 	}
 
 	/**
@@ -88,6 +96,7 @@ public class TokenManager{
 	 */
 	public static void destroyed(){
 		scheduledExecutorService.shutdownNow();
+		logger.info("destroyed");
 	}
 
 	/**

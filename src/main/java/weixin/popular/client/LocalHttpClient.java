@@ -11,14 +11,21 @@ import java.security.cert.CertificateException;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.http.client.ClientProtocolException;
+import org.apache.http.HttpEntity;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpEntityEnclosingRequestBase;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.client.protocol.HttpClientContext;
+import org.apache.http.entity.ContentType;
 import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.util.EntityUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class LocalHttpClient {
+	
+	private static final Logger logger = LoggerFactory.getLogger(LocalHttpClient.class);
 	
 	private static int timeout = 5000;
 	
@@ -81,23 +88,23 @@ public class LocalHttpClient {
 
 
 	public static CloseableHttpResponse execute(HttpUriRequest request){
+		loggerCatch(request);
 		try {
 			return httpClient.execute(request,HttpClientContext.create());
-		} catch (ClientProtocolException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		return null;
 	}
 
 	public static <T> T execute(HttpUriRequest request,ResponseHandler<T> responseHandler){
+		loggerCatch(request);
 		try {
 			return httpClient.execute(request, responseHandler,HttpClientContext.create());
-		} catch (ClientProtocolException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		return null;
 	}
@@ -130,13 +137,44 @@ public class LocalHttpClient {
 	 * @return
 	 */
 	public static <T> T keyStoreExecuteXmlResult(String mch_id,HttpUriRequest request,Class<T> clazz){
+		loggerCatch(request);
 		try {
 			return httpClient_mchKeyStore.get(mch_id).execute(request,XmlResponseHandler.createResponseHandler(clazz),HttpClientContext.create());
-		} catch (ClientProtocolException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		return null;
 	}
+	
+	/**
+	 * 日志记录
+	 * @param request
+	 */
+	private static void loggerCatch(HttpUriRequest request){
+		if((logger.isInfoEnabled()||logger.isDebugEnabled())){
+			if(request instanceof HttpEntityEnclosingRequestBase){
+				HttpEntityEnclosingRequestBase request_base = (HttpEntityEnclosingRequestBase)request;
+				HttpEntity entity = request_base.getEntity();
+				String content = null;
+				//MULTIPART_FORM_DATA 请求类型判断
+				if(entity.getContentType().toString().indexOf(ContentType.MULTIPART_FORM_DATA.getMimeType()) == -1){
+					try {
+						content = EntityUtils.toString(entity);
+					} catch (Exception e) {
+						e.printStackTrace();
+						logger.error(e.getMessage());
+					}
+				}
+				logger.info("URI:{} {} ContentLength:{} Content:{}",
+				request.getURI().toString(),
+				entity.getContentType(),
+				entity.getContentLength(),
+				content == null?"multipart_form_data":content);
+			}else{
+				logger.info("URI:{}",request.getURI().toString());
+			}
+		}
+	}
+	
 }

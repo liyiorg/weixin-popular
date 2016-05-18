@@ -46,6 +46,9 @@ public class Unifiedorder {
 	private String out_trade_no;
 
 	@XmlElement
+	private String fee_type;
+
+	@XmlElement
 	private String total_fee;
 
 	@XmlElement
@@ -67,10 +70,14 @@ public class Unifiedorder {
 	private String trade_type;
 
 	@XmlElement
-	private String openid;
+	private String product_id;
 
 	@XmlElement
-	private String product_id;
+	private String limit_pay;
+
+	@XmlElement
+	private String openid;
+
 
 	public String getAppid() {
 		return appid;
@@ -208,5 +215,12 @@ public class Unifiedorder {
 		this.product_id = product_id;
 	}
 
+	public String getLimit_pay() {
+		return limit_pay;
+	}
+
+	public void setLimit_pay(String limit_pay) {
+		this.limit_pay = limit_pay;
+	}
 
 }

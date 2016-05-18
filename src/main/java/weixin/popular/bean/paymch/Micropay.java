@@ -20,9 +20,8 @@ public class Micropay {
 	private Integer total_fee;
 	private String fee_type;
 	private String spbill_create_ip;
-	private String time_start;
-	private String time_expire;
 	private String goods_tag;
+	private String limit_pay;			//指定支付方式 no_credit 指定不能使用信用卡支付
 	private String auth_code;
 
 	public String getAppid() {
@@ -97,18 +96,6 @@ public class Micropay {
 	public void setSpbill_create_ip(String spbill_create_ip) {
 		this.spbill_create_ip = spbill_create_ip;
 	}
-	public String getTime_start() {
-		return time_start;
-	}
-	public void setTime_start(String time_start) {
-		this.time_start = time_start;
-	}
-	public String getTime_expire() {
-		return time_expire;
-	}
-	public void setTime_expire(String time_expire) {
-		this.time_expire = time_expire;
-	}
 	public String getGoods_tag() {
 		return goods_tag;
 	}
@@ -120,5 +107,11 @@ public class Micropay {
 	}
 	public void setAuth_code(String auth_code) {
 		this.auth_code = auth_code;
+	}
+	public String getLimit_pay() {
+		return limit_pay;
+	}
+	public void setLimit_pay(String limit_pay) {
+		this.limit_pay = limit_pay;
 	}
 }

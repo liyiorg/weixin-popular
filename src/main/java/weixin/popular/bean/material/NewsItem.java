@@ -2,9 +2,10 @@ package weixin.popular.bean.material;
 
 import java.util.List;
 
+import weixin.popular.bean.BaseResult;
 import weixin.popular.bean.message.Article;
 
-public class NewsItem {
+public class NewsItem extends BaseResult{
 
 	private List<Article> news_item;
 

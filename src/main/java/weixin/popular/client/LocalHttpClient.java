@@ -10,6 +10,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.client.ResponseHandler;
@@ -88,7 +89,7 @@ public class LocalHttpClient {
 
 
 	public static CloseableHttpResponse execute(HttpUriRequest request){
-		loggerCatch(request);
+		loggerRequest(request);
 		try {
 			return httpClient.execute(request,HttpClientContext.create());
 		} catch (Exception e) {
@@ -99,7 +100,11 @@ public class LocalHttpClient {
 	}
 
 	public static <T> T execute(HttpUriRequest request,ResponseHandler<T> responseHandler){
-		loggerCatch(request);
+		String uriId = loggerRequest(request);
+		if(responseHandler instanceof LocalResponseHandler){
+			LocalResponseHandler lrh = (LocalResponseHandler) responseHandler;
+			lrh.setUriId(uriId);
+		}
 		try {
 			return httpClient.execute(request, responseHandler,HttpClientContext.create());
 		} catch (Exception e) {
@@ -137,9 +142,14 @@ public class LocalHttpClient {
 	 * @return
 	 */
 	public static <T> T keyStoreExecuteXmlResult(String mch_id,HttpUriRequest request,Class<T> clazz){
-		loggerCatch(request);
+		String uriId = loggerRequest(request);
+		ResponseHandler<T> responseHandler = XmlResponseHandler.createResponseHandler(clazz);
+		if(responseHandler instanceof LocalResponseHandler){
+			LocalResponseHandler lrh = (LocalResponseHandler) responseHandler;
+			lrh.setUriId(uriId);
+		}
 		try {
-			return httpClient_mchKeyStore.get(mch_id).execute(request,XmlResponseHandler.createResponseHandler(clazz),HttpClientContext.create());
+			return httpClient_mchKeyStore.get(mch_id).execute(request,responseHandler,HttpClientContext.create());
 		} catch (Exception e) {
 			e.printStackTrace();
 			logger.error(e.getMessage());
@@ -151,8 +161,9 @@ public class LocalHttpClient {
 	 * 日志记录
 	 * @param request
 	 */
-	private static void loggerCatch(HttpUriRequest request){
-		if((logger.isInfoEnabled()||logger.isDebugEnabled())){
+	private static String loggerRequest(HttpUriRequest request){
+		String id = UUID.randomUUID().toString();
+		if(logger.isInfoEnabled()||logger.isDebugEnabled()){
 			if(request instanceof HttpEntityEnclosingRequestBase){
 				HttpEntityEnclosingRequestBase request_base = (HttpEntityEnclosingRequestBase)request;
 				HttpEntity entity = request_base.getEntity();
@@ -166,15 +177,17 @@ public class LocalHttpClient {
 						logger.error(e.getMessage());
 					}
 				}
-				logger.info("URI:{} {} ContentLength:{} Content:{}",
+				logger.info("URI[{}] {} {} ContentLength:{} Content:{}",
+			    id,
 				request.getURI().toString(),
 				entity.getContentType(),
 				entity.getContentLength(),
 				content == null?"multipart_form_data":content);
 			}else{
-				logger.info("URI:{}",request.getURI().toString());
+				logger.info("URI[{}] {}",id,request.getURI().toString());
 			}
 		}
+		return id;
 	}
 	
 }

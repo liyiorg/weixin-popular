@@ -95,6 +95,17 @@ public class MenuAPI extends BaseAPI{
 	 */
 	public static BaseResult menuAddconditional(String access_token,MenuButtons menuButtons){
 		String menuJson = JsonUtil.toJSONString(menuButtons);
+		return menuAddconditional(access_token,menuJson);
+	}
+	
+	/**
+	 * 创建个性化菜单
+	 * @since 2.7.1
+	 * @param access_token
+	 * @param menuJson
+	 * @return
+	 */
+	public static BaseResult menuAddconditional(String access_token,String menuJson){
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI+"/cgi-bin/menu/addconditional")

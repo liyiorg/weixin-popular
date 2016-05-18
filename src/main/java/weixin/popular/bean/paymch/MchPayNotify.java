@@ -19,6 +19,8 @@ public class MchPayNotify extends MchBase{
 	private String bank_type;
 
 	private Integer total_fee;
+	
+	private Integer settlement_total_fee;
 
 	private String fee_type;
 
@@ -178,6 +180,12 @@ public class MchPayNotify extends MchBase{
 		this.trade_state = trade_state;
 	}
 
+	public Integer getSettlement_total_fee() {
+		return settlement_total_fee;
+	}
 
+	public void setSettlement_total_fee(Integer settlement_total_fee) {
+		this.settlement_total_fee = settlement_total_fee;
+	}
 
 }

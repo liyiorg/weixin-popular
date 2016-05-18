@@ -9,6 +9,7 @@ import org.apache.http.client.methods.RequestBuilder;
 import weixin.popular.bean.sns.SnsToken;
 import weixin.popular.bean.user.User;
 import weixin.popular.client.LocalHttpClient;
+import weixin.popular.util.EmojiUtil;
 
 /**
  * 网页授权
@@ -94,19 +95,42 @@ public class SnsAPI extends BaseAPI{
 
 	/**
 	 * 拉取用户信息(需scope为 snsapi_userinfo)
+	 * @since 2.7.1
 	 * @param access_token
 	 * @param openid
 	 * @param lang 国家地区语言版本，zh_CN 简体，zh_TW 繁体，en 英语
+	 * @param emoji 表情解析方式<br>
+	 * 0 		  不设置 <br>
+	 * 1 HtmlHex 格式<br>
+	 * 2 HtmlTag 格式<br>
+	 * 3 Alias  格式<br>
+	 * 4 HtmlDec 格式<br>
+	 * 5 PureText 纯文本<br>
 	 * @return
 	 */
-	public static User userinfo(String access_token,String openid,String lang){
+	public static User userinfo(String access_token,String openid,String lang,int emoji){
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 				.setUri(BASE_URI + "/sns/userinfo")
 				.addParameter(PARAM_ACCESS_TOKEN, access_token)
 				.addParameter("openid", openid)
 				.addParameter("lang", lang)
 				.build();
-		return LocalHttpClient.executeJsonResult(httpUriRequest,User.class);
+		User user = LocalHttpClient.executeJsonResult(httpUriRequest,User.class);
+		if(emoji != 0 && user != null && user.getNickname() != null){
+			user.setNickname_emoji(EmojiUtil.parse(user.getNickname(), emoji));
+		}
+		return user;
+	}
+	
+	/**
+	 * 拉取用户信息(需scope为 snsapi_userinfo)
+	 * @param access_token
+	 * @param openid
+	 * @param lang 国家地区语言版本，zh_CN 简体，zh_TW 繁体，en 英语
+	 * @return
+	 */
+	public static User userinfo(String access_token,String openid,String lang){
+		return userinfo(access_token, openid, lang,0);
 	}
 
 	/**

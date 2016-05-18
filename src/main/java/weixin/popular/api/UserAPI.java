@@ -13,10 +13,39 @@ import weixin.popular.bean.user.Group;
 import weixin.popular.bean.user.User;
 import weixin.popular.bean.user.UserInfoList;
 import weixin.popular.client.LocalHttpClient;
+import weixin.popular.util.EmojiUtil;
 import weixin.popular.util.JsonUtil;
 
 public class UserAPI extends BaseAPI{
 
+	/**
+	 * 获取用户基本信息
+	 * @since 2.7.1
+	 * @param access_token
+	 * @param openid
+	 * @param emoji 表情解析方式<br>
+	 * 0 		  不设置 <br>
+	 * 1 HtmlHex 格式<br>
+	 * 2 HtmlTag 格式<br>
+	 * 3 Alias  格式<br>
+	 * 4 HtmlDec 格式<br>
+	 * 5 PureText 纯文本<br>
+	 * @return
+	 */
+	public static User userInfo(String access_token,String openid,int emoji){
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+				.setUri(BASE_URI+"/cgi-bin/user/info")
+				.addParameter(getATPN(),access_token)
+				.addParameter("openid",openid)
+				.addParameter("lang","zh_CN")
+				.build();
+		User user = LocalHttpClient.executeJsonResult(httpUriRequest,User.class);
+		if(emoji != 0 && user != null && user.getNickname() != null){
+			user.setNickname_emoji(EmojiUtil.parse(user.getNickname(), emoji));
+		}
+		return user;
+	}
+	
 	/**
 	 * 获取用户基本信息
 	 * @param access_token
@@ -24,13 +53,7 @@ public class UserAPI extends BaseAPI{
 	 * @return
 	 */
 	public static User userInfo(String access_token,String openid){
-		HttpUriRequest httpUriRequest = RequestBuilder.post()
-				.setUri(BASE_URI+"/cgi-bin/user/info")
-				.addParameter(getATPN(),access_token)
-				.addParameter("openid",openid)
-				.addParameter("lang","zh_CN")
-				.build();
-		return LocalHttpClient.executeJsonResult(httpUriRequest,User.class);
+		return userInfo(access_token, openid, 0);
 	}
 
 	/**
@@ -50,12 +73,20 @@ public class UserAPI extends BaseAPI{
 
 	/**
 	 * 批量获取用户基本信息
+	 * @since 2.7.1
 	 * @param access_token
 	 * @param lang	zh-CN
 	 * @param openids 最多支持一次拉取100条
+	 * @param emoji 表情解析方式<br>
+	 * 0 		  不设置 <br>
+	 * 1 HtmlHex 格式<br>
+	 * 2 HtmlTag 格式<br>
+	 * 3 Alias  格式<br>
+	 * 4 HtmlDec 格式<br>
+	 * 5 PureText 纯文本<br>
 	 * @return
 	 */
-	public static UserInfoList userInfoBatchget(String access_token,String lang,List<String> openids){
+	public static UserInfoList userInfoBatchget(String access_token,String lang,List<String> openids,int emoji){
 		StringBuilder sb = new StringBuilder();
 		sb.append("{\"user_list\": [");
 		for(int i = 0;i < openids.size();i++){
@@ -71,7 +102,26 @@ public class UserAPI extends BaseAPI{
 				.addParameter(getATPN(),access_token)
 				.setEntity(new StringEntity(sb.toString(), Charset.forName("utf-8")))
 				.build();
-		return LocalHttpClient.executeJsonResult(httpUriRequest,UserInfoList.class);
+		UserInfoList userInfoList = LocalHttpClient.executeJsonResult(httpUriRequest,UserInfoList.class);
+		if(emoji != 0 && userInfoList != null && userInfoList.getUser_info_list() != null){
+			for(User user : userInfoList.getUser_info_list()){
+				if(user.getNickname() != null){
+					user.setNickname_emoji(EmojiUtil.parse(user.getNickname(), emoji));
+				}
+			}
+		}
+		return userInfoList;
+	}
+	
+	/**
+	 * 批量获取用户基本信息
+	 * @param access_token
+	 * @param lang	zh-CN
+	 * @param openids 最多支持一次拉取100条
+	 * @return
+	 */
+	public static UserInfoList userInfoBatchget(String access_token,String lang,List<String> openids){
+		return userInfoBatchget(access_token, lang, openids,0);
 	}
 
 	/**

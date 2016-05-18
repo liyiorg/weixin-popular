@@ -13,6 +13,8 @@ import org.apache.http.client.methods.RequestBuilder;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.util.EntityUtils;
 
+import weixin.popular.bean.paymch.Authcodetoopenid;
+import weixin.popular.bean.paymch.AuthcodetoopenidResult;
 import weixin.popular.bean.paymch.Closeorder;
 import weixin.popular.bean.paymch.DownloadbillResult;
 import weixin.popular.bean.paymch.MchBaseResult;
@@ -266,6 +268,25 @@ public class PayMchAPI extends BaseAPI{
 				.setEntity(new StringEntity(shorturlXML,Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeXmlResult(httpUriRequest,MchShorturlResult.class);
+	}
+	
+	/**
+	 * 刷卡支付 授权码查询OPENID接口
+	 * @param authcodetoopenid
+	 * @param key
+	 * @return
+	 */
+	public static AuthcodetoopenidResult toolsAuthcodetoopenid(Authcodetoopenid authcodetoopenid,String key){
+		Map<String,String> map = MapUtil.objectToMap(authcodetoopenid);
+		String sign = SignatureUtil.generateSign(map,key);
+		authcodetoopenid.setSign(sign);
+		String shorturlXML = XMLConverUtil.convertToXML(authcodetoopenid);
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+				.setHeader(xmlHeader)
+				.setUri(MCH_URI + "/tools/authcodetoopenid")
+				.setEntity(new StringEntity(shorturlXML,Charset.forName("utf-8")))
+				.build();
+		return LocalHttpClient.executeXmlResult(httpUriRequest,AuthcodetoopenidResult.class);
 	}
 
 	/**

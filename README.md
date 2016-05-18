@@ -21,6 +21,8 @@ weixin-popular 包括微信公众平台、公众号第三方平台基础API与�
 * [ShorturlAPI](https://github.com/liyiorg/weixin-popular/wiki/ShorturlAPI) 长链接转短链接
 * [TicketAPI](https://github.com/liyiorg/weixin-popular/wiki/TicketAPI) JSAPI ticket
 * [ComponentAPI](https://github.com/liyiorg/weixin-popular/wiki/ComponentAPI) 第三方平台开发
+* [CallbackipAPI](https://github.com/liyiorg/weixin-popular/wiki/CallbackipAPI) 获取微信服务器IP地址
+* [ClearQuotaAPI](https://github.com/liyiorg/weixin-popular/wiki/ClearQuotaAPI) 接口调用频次清零
 
 ### 待开发API
 * [BizwifiAPI](https://github.com/liyiorg/weixin-popular/wiki/BizwifiAPI) 微信连Wi-Fi
@@ -35,6 +37,11 @@ weixin-popular 包括微信公众平台、公众号第三方平台基础API与�
 
 ## API 模式切换
 * [API 切换] (https://github.com/liyiorg/weixin-popular/wiki/API 模式切换)
+
+## EMOJI 表情
+* :four_leaf_clover: [API 使用](https://github.com/liyiorg/weixin-popular/wiki/emoji_api)
+* :palm_tree: [页面 使用](https://github.com/liyiorg/weixin-popular/wiki/emoji_web)
+* :tiger: [EmojiUtil](https://github.com/liyiorg/weixin-popular/wiki/emoji_tool)
 
 ## 日志记录
 * 2.7.0+ 版本后增加日志记录

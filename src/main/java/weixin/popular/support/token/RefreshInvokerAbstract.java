@@ -71,11 +71,10 @@ public abstract class RefreshInvokerAbstract<T extends RefreshInfo, E extends To
 			} catch (InterruptedException ie) {
 				logger.debug("access_token refresh interrupted:");
 			}
-			run();
 		} catch (Exception e) {
 			logger.error("access_token refresh error:", e);
-			doing = false;
 		}
+		run();
 		
 	}
 

@@ -47,12 +47,13 @@ public class DefaultComponentStorage implements TokenStorage {
 		// 模拟查表，获取下一个最快要到期的令牌的时间
 		List<RowData> list = latestTwo();
 		long nextTime = -1;
-		if (list.size() > 1) {
-			nextTime = list.get(1).getOverdueTime();
+		if (list.size() > 0) {
+			nextTime = list.get(0).getOverdueTime();
 		}
 		long curTime = new Date().getTime();
 		if (nextTime < curTime) {
-			nextTime = curTime + 6600;// 默认每间隔1小时50分检查一次是否有令牌需要刷新
+			// 默认每间隔10分检查一次是否有令牌需要刷新，保证刷新线程持续正常进行
+			nextTime = curTime + 600000;
 		}
 		return nextTime;
 	}
@@ -66,7 +67,7 @@ public class DefaultComponentStorage implements TokenStorage {
 		row.setAccessToken(info.getAccessToken());
 		row.setAppId(old.getAppId());
 		row.setAppSecret(old.getAppSecret());
-		row.setOverdueTime(new Date().getTime() + info.getExpiresIn() * 1000);// 根据有效时长计算过期日期
+		row.setOverdueTime(new Date().getTime() + (info.getExpiresIn()-600) * 1000);// 根据有效时长计算过期日期, 比微信服务端提前10分钟
 		row.setVerifyTicket(old.getVerifyTicket());
 		map.put(old.getAppId(), row);
 
@@ -84,21 +85,19 @@ public class DefaultComponentStorage implements TokenStorage {
 	}
 
 	/**
-	 * 模拟查表，获取最快要到期的"两个"token
+	 * 模拟查表，获取最快要到期的"1个"token
 	 * 
 	 * @return
 	 */
 	private List<RowData> latestTwo() {
-		List<RowData> list = new ArrayList<RowData>(2);
+		List<RowData> list = new ArrayList<RowData>(1);
+		list.add(null);
 		long nextTime = -1;
 		RowData row;
 		for (Map.Entry<String, RowData> entry : map.entrySet()) {
 			row = entry.getValue();
 			if (row.getOverdueTime() < nextTime || nextTime == -1) {
-				if (list.size() > 0) {
-					list.add(1, list.get(0));
-				}
-				list.add(0, entry.getValue());
+				list.set(0, entry.getValue());
 				nextTime = row.getOverdueTime();
 			}
 		}

@@ -1,5 +1,8 @@
 package weixin.popular.support.token;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import weixin.popular.api.ComponentAPI;
 import weixin.popular.bean.component.ComponentAccessToken;
 
@@ -11,6 +14,8 @@ import weixin.popular.bean.component.ComponentAccessToken;
  */
 public class ComponentRefreshInvoker extends RefreshInvokerAbstract<ComponentRefreshInfo, ComponentTokenInfo> {
 
+	private static final Logger logger = LoggerFactory.getLogger(ComponentRefreshInvoker.class);
+	
 	private static ComponentRefreshInvoker instance = new ComponentRefreshInvoker();
 
 	private ComponentRefreshInvoker() {
@@ -33,12 +38,18 @@ public class ComponentRefreshInvoker extends RefreshInvokerAbstract<ComponentRef
 		ComponentRefreshInfo cri = (ComponentRefreshInfo) refreshInfo;
 		ComponentAccessToken cat = ComponentAPI.api_component_token(
 				cri.getAppId(), cri.getAppSecret(), cri.getVerifyTicket());
-		ComponentTokenInfo ati = new ComponentTokenInfo();
-		ati.setAccessToken(cat.getComponent_access_token());
-		ati.setAppId(cri.getAppId());
-		ati.setExpiresIn(cat.getExpires_in());
-		ati.setType(TokenType.COMPONENT);
-		return ati;
+		
+		if (!cat.isSuccess()) {
+			logger.warn("第三方平台应用授权令牌刷新失败：appId={},code={},msg={}", 
+					new Object[]{cri.getAppId(), cat.getErrcode(), cat.getErrmsg()});
+		}
+		
+		ComponentTokenInfo cti = new ComponentTokenInfo();
+		cti.setAccessToken(cat.getComponent_access_token());
+		cti.setAppId(cri.getAppId());
+		cti.setExpiresIn(cat.isSuccess() ? cat.getExpires_in():0);
+		cti.setType(TokenType.COMPONENT);
+		return cti;
 	}
 
 	@Override

@@ -53,26 +53,32 @@ public abstract class RefreshInvokerAbstract<T extends RefreshInfo, E extends To
 	
 	@Override
 	public void run() {
+		long nextTime = 0;
+		doing = true;
 		try {
-			doing = true;
 			TokenStorage tokenStorage = getTokenStorage();
 			@SuppressWarnings("unchecked")
 			T t = (T) tokenStorage.getOverdue();
-			E e = (E) execute(t);
-			tokenStorage.update(e);
-			long curTime = new Date().getTime();
-			long nextTime = tokenStorage.nextTime();
-			if (curTime > nextTime) {
-				nextTime = curTime + 10000; //6600000;// 默认1小时50分刷新一次，比微信令牌默认有效时间小10分钟
+			if (null != t) {
+				E e = (E) execute(t);
+				tokenStorage.update(e);
 			}
-			doing = false;
-			try {
-				Thread.sleep(nextTime - curTime);
-			} catch (InterruptedException ie) {
-				logger.debug("access_token refresh interrupted:");
-			}
+			nextTime = tokenStorage.nextTime();
 		} catch (Exception e) {
 			logger.error("access_token refresh error:", e);
+		}
+		doing = false;
+		long curTime = new Date().getTime();
+		if (curTime > nextTime) {
+			// 默认10分刷新一次，保证刷新线程持续正常进行
+			nextTime = curTime + 600000; 
+		}
+		logger.debug("thread{}: curTime={}, nextTime={}, delay={}", 
+				new Object[]{thread.getId(), curTime, nextTime, nextTime - curTime});
+		try {
+			Thread.sleep(nextTime - curTime);
+		} catch (InterruptedException ie) {
+			logger.debug("access_token refresh interrupted:");
 		}
 		run();
 		

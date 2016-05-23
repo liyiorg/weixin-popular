@@ -10,18 +10,18 @@ import org.slf4j.LoggerFactory;
  * @author Moyq5
  *
  */
-public abstract class RefreshInvokerAbstract<T extends RefreshInfo, E extends TokenInfo>  extends Thread implements RefreshInvoker {
+public abstract class RefreshInvokerAbstract<T extends RefreshInfo, E extends TokenInfo> implements RefreshInvoker, Runnable {
 	
 	private static final Logger logger = LoggerFactory.getLogger(RefreshInvokerAbstract.class);
 	
 	/**
-	 * 刷新线程的运行状态
+	 * 刷新线程
+	 */
+	private Thread thread;
+	/**
+	 * 刷新线程的活动状态
 	 */
 	private boolean doing = false;
-	
-	public RefreshInvokerAbstract() {
-		this.setDaemon(true);
-	}
 	
 	/**
 	 * 刷新授权令牌
@@ -40,12 +40,15 @@ public abstract class RefreshInvokerAbstract<T extends RefreshInfo, E extends To
 	public void startRefresh() {
 		if (doing) {
 			return;			
-		} 
-		if (isAlive()) {
-			interrupt();
-		} else {
-			start();
 		}
+		if (null == thread || !thread.isAlive()) {
+			thread = new Thread(this);
+			thread.setDaemon(true);
+			thread.start();
+		} else {
+			thread.interrupt();
+		}
+		
 	}
 	
 	@Override

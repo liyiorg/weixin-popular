@@ -16,9 +16,9 @@ public class SignatureUtil {
 
 	/**
 	 * 生成 package 字符串
-	 * @param map
-	 * @param paternerKey
-	 * @return
+	 * @param map map
+	 * @param paternerKey paternerKey
+	 * @return package_str
 	 */
 	public static String generatePackage(Map<String, String> map,String paternerKey){
 		String sign = generateSign(map,paternerKey);
@@ -29,9 +29,9 @@ public class SignatureUtil {
 
 	/**
 	 * 生成sign MD5 加密 toUpperCase
-	 * @param map
-	 * @param paternerKey
-	 * @return
+	 * @param map map
+	 * @param paternerKey paternerKey
+	 * @return sign
 	 */
 	public static String generateSign(Map<String, String> map,String paternerKey){
 		Map<String, String> tmap = MapUtil.order(map);
@@ -44,9 +44,9 @@ public class SignatureUtil {
 
 	/**
 	 * 生成 paySign
-	 * @param map
-	 * @param paternerKey
-	 * @return
+	 * @param map map
+	 * @param paySignKey paySignKey
+	 * @return pay sign
 	 */
 	public static String generatePaySign(Map<String, String> map,String paySignKey){
 		if(paySignKey!=null){
@@ -62,10 +62,10 @@ public class SignatureUtil {
 
 	/**
 	 * 生成事件消息接收签名
-	 * @param token
-	 * @param timestamp
-	 * @param nonce
-	 * @return
+	 * @param token token
+	 * @param timestamp timestamp
+	 * @param nonce nonce
+	 * @return str
 	 */
 	public static String generateEventMessageSignature(String token, String timestamp,String nonce) {
 		String[] array = new String[]{token,timestamp,nonce};
@@ -77,10 +77,10 @@ public class SignatureUtil {
 
 	/**
 	 * 验证  pay feedback appSignature 签名
-	 * @param payFeedback
+	 * @param payFeedback payFeedback
 	 * @param paySignKey 公众号支付请求中用于加密的密钥Key,
 	 * 					  可验证商户唯一身份,对应于支付场景中的 appKey 值
-	 * @return
+	 * @return boolean
 	 */
 	public static boolean validateAppSignature(PayFeedback payFeedback,String paySignKey) {
 		Map<String, String> map = MapUtil.objectToMap(payFeedback,
@@ -99,10 +99,10 @@ public class SignatureUtil {
 
 	/**
 	 * 验证  pay native appSignature 签名
-	 * @param payNativeInput
+	 * @param payNativeInput payNativeInput
 	 * @param paySignKey 公众号支付请求中用于加密的密钥Key,
 	 * 					  可验证商户唯一身份,对应于支付场景中的 appKey 值
-	 * @return
+	 * @return boolean
 	 */
 	public static boolean validateAppSignature(PayNativeInput payNativeInput,String paySignKey) {
 		Map<String, String> map = MapUtil.objectToMap(payNativeInput, "appsignature","signmethod");
@@ -112,10 +112,10 @@ public class SignatureUtil {
 
 	/**
 	 * 验证  pay notify appSignature 签名
-	 * @param payNotify
+	 * @param payNotify payNotify
 	 * @param paySignKey 公众号支付请求中用于加密的密钥Key,
 	 * 					  可验证商户唯一身份,对应于支付场景中的 appKey 值
-	 * @return
+	 * @return boolean
 	 */
 	public static boolean validateAppSignature(PayNotify payNotify,String paySignKey) {
 		Map<String, String> map = MapUtil.objectToMap(payNotify, "appsignature","signmethod");
@@ -124,10 +124,10 @@ public class SignatureUtil {
 
 	/**
 	 * 验证  pay warn appSignature 签名
-	 * @param payWarn
+	 * @param payWarn payWarn
 	 * @param paySignKey 公众号支付请求中用于加密的密钥Key,
 	 * 					  可验证商户唯一身份,对应于支付场景中的 appKey 值
-	 * @return
+	 * @return boolean
 	 */
 	public static boolean validateAppSignature(PayWarn payWarn,String paySignKey) {
 		Map<String, String> map = MapUtil.objectToMap(payWarn, "appsignature","signmethod");
@@ -137,9 +137,9 @@ public class SignatureUtil {
 	/**
 	 * 验证 mch pay notify sign 签名
 	 * 使用更好的 SignatureUtil.validateSign
-	 * @param mchPayNotify
+	 * @param mchPayNotify mchPayNotify
 	 * @param key mch key
-	 * @return
+	 * @return boolean
 	 */
 	@Deprecated
 	public static boolean validateAppSignature(MchPayNotify mchPayNotify,String key) {
@@ -150,9 +150,9 @@ public class SignatureUtil {
 	/**
 	 * 验证代扣签约 签名
 	 * 使用更好的 SignatureUtil.validateSign
-	 * @param papayEntrustwebNotify
+	 * @param papayEntrustwebNotify papayEntrustwebNotify
 	 * @param key mch key
-	 * @return
+	 * @return boolean
 	 */
 	@Deprecated
 	public static boolean validateAppSignature(PapayEntrustwebNotify papayEntrustwebNotify,String key) {
@@ -165,7 +165,7 @@ public class SignatureUtil {
 	 * 该方法可以替代 mch 支付、代扣异步通知验证，用以防止官方返回参数与bean不一至而导致签名错误。
 	 * @param map 参与签名的参数
 	 * @param key mch key
-	 * @return
+	 * @return boolean
 	 */
 	public static boolean validateSign(Map<String,String> map,String key){
 		return map.get("sign").equals(generateSign(map,key));

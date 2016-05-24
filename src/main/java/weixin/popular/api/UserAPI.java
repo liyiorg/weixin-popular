@@ -16,13 +16,18 @@ import weixin.popular.client.LocalHttpClient;
 import weixin.popular.util.EmojiUtil;
 import weixin.popular.util.JsonUtil;
 
+/**
+ * User API
+ * @author Administrator
+ *
+ */
 public class UserAPI extends BaseAPI{
 
 	/**
 	 * 获取用户基本信息
 	 * @since 2.7.1
-	 * @param access_token
-	 * @param openid
+	 * @param access_token access_token
+	 * @param openid openid
 	 * @param emoji 表情解析方式<br>
 	 * 0 		  不设置 <br>
 	 * 1 HtmlHex 格式<br>
@@ -30,7 +35,7 @@ public class UserAPI extends BaseAPI{
 	 * 3 Alias  格式<br>
 	 * 4 HtmlDec 格式<br>
 	 * 5 PureText 纯文本<br>
-	 * @return
+	 * @return User
 	 */
 	public static User userInfo(String access_token,String openid,int emoji){
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
@@ -48,9 +53,9 @@ public class UserAPI extends BaseAPI{
 	
 	/**
 	 * 获取用户基本信息
-	 * @param access_token
-	 * @param openid
-	 * @return
+	 * @param access_token access_token
+	 * @param openid openid
+	 * @return User
 	 */
 	public static User userInfo(String access_token,String openid){
 		return userInfo(access_token, openid, 0);
@@ -58,9 +63,9 @@ public class UserAPI extends BaseAPI{
 
 	/**
 	 * 获取关注列表
-	 * @param access_token
+	 * @param access_token access_token
 	 * @param next_openid 第一次获取使用null
-	 * @return
+	 * @return FollowResult
 	 */
 	public static FollowResult userGet(String access_token,String next_openid){
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
@@ -74,7 +79,7 @@ public class UserAPI extends BaseAPI{
 	/**
 	 * 批量获取用户基本信息
 	 * @since 2.7.1
-	 * @param access_token
+	 * @param access_token access_token
 	 * @param lang	zh-CN
 	 * @param openids 最多支持一次拉取100条
 	 * @param emoji 表情解析方式<br>
@@ -84,7 +89,7 @@ public class UserAPI extends BaseAPI{
 	 * 3 Alias  格式<br>
 	 * 4 HtmlDec 格式<br>
 	 * 5 PureText 纯文本<br>
-	 * @return
+	 * @return UserInfoList
 	 */
 	public static UserInfoList userInfoBatchget(String access_token,String lang,List<String> openids,int emoji){
 		StringBuilder sb = new StringBuilder();
@@ -115,10 +120,10 @@ public class UserAPI extends BaseAPI{
 	
 	/**
 	 * 批量获取用户基本信息
-	 * @param access_token
+	 * @param access_token access_token
 	 * @param lang	zh-CN
 	 * @param openids 最多支持一次拉取100条
-	 * @return
+	 * @return UserInfoList
 	 */
 	public static UserInfoList userInfoBatchget(String access_token,String lang,List<String> openids){
 		return userInfoBatchget(access_token, lang, openids,0);
@@ -126,10 +131,10 @@ public class UserAPI extends BaseAPI{
 
 	/**
 	 * 设置备注名
-	 * @param access_token
-	 * @param openid
-	 * @param remark
-	 * @return
+	 * @param access_token access_token
+	 * @param openid openid
+	 * @param remark remark
+	 * @return BaseResult
 	 */
 	public static BaseResult userInfoUpdateremark(String access_token,String openid,String remark){
 		String postJson = String.format("{\"openid\":\"%1$s\",\"remark\":\"%2$s\"}", openid,remark);
@@ -144,9 +149,9 @@ public class UserAPI extends BaseAPI{
 
 	/**
 	 * 创建分组
-	 * @param access_token
-	 * @param name
-	 * @return
+	 * @param access_token access_token
+	 * @param name name
+	 * @return Group
 	 */
 	public static Group groupsCreate(String access_token,String name){
 		String groupJson = String.format("{\"group\":{\"name\":\"%1$s\"}}",name);
@@ -161,8 +166,8 @@ public class UserAPI extends BaseAPI{
 
 	/**
 	 * 查询所有分组
-	 * @param access_token
-	 * @return
+	 * @param access_token access_token
+	 * @return Group
 	 */
 	public static Group groupsGet(String access_token){
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
@@ -174,9 +179,9 @@ public class UserAPI extends BaseAPI{
 
 	/**
 	 * 查询用户所在分组
-	 * @param access_token
-	 * @param openid
-	 * @return
+	 * @param access_token access_token
+	 * @param openid openid
+	 * @return Group
 	 */
 	public static Group groupsGetid(String access_token,String openid){
 		String groupJson = String.format("{\"openid\":\"%1$s\"}",openid);
@@ -191,10 +196,10 @@ public class UserAPI extends BaseAPI{
 
 	/**
 	 * 修改分组名
-	 * @param access_token
+	 * @param access_token access_token
 	 * @param id 分组ID
 	 * @param name	分组名
-	 * @return
+	 * @return BaseResult
 	 */
 	public static BaseResult groupsUpdate(String access_token,String id,String name){
 		String groupJson = "{\"group\":{\"id\":"+id+",\"name\":\""+name+"\"}}";
@@ -209,10 +214,10 @@ public class UserAPI extends BaseAPI{
 
 	/**
 	 * 移动用户分组
-	 * @param access_token
-	 * @param openid
-	 * @param to_groupid
-	 * @return
+	 * @param access_token access_token
+	 * @param openid openid
+	 * @param to_groupid to_groupid
+	 * @return BaseResult
 	 */
 	public static BaseResult groupsMembersUpdate(String access_token,String openid,String to_groupid){
 		String groupJson = "{\"openid\":\""+openid+"\",\"to_groupid\":"+to_groupid+"}";
@@ -228,10 +233,10 @@ public class UserAPI extends BaseAPI{
 
 	/**
 	 * 批量移动用户分组
-	 * @param access_token
-	 * @param openid_list
-	 * @param to_groupid
-	 * @return
+	 * @param access_token access_token
+	 * @param openid_list openid_list
+	 * @param to_groupid to_groupid
+	 * @return BaseResult
 	 */
 	public static BaseResult groupsMembersBatchUpdate(String access_token,List<String> openid_list,String to_groupid){
 		String openidListStr = JsonUtil.toJSONString(openid_list);
@@ -247,9 +252,9 @@ public class UserAPI extends BaseAPI{
 
 	/**
 	 * 删除分组
-	 * @param access_token
-	 * @param id
-	 * @return
+	 * @param access_token access_token
+	 * @param id id
+	 * @return BaseResult
 	 */
 	public static BaseResult groupsDelete(String access_token,String id){
 		String groupJson = String.format("{\"group\":{\"id\":%1$s}}",id);

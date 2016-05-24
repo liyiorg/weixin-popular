@@ -11,10 +11,6 @@ public class MassVideoMessage extends MassMessage{
 
 	private Uploadvideo video;
 
-	/**
-	 *
-	 * @param media_id  MessageAPI mediaUploadvideo 返回的media_id
-	 */
 	public MassVideoMessage(Uploadvideo uploadvideo) {
 		super();
 		video = uploadvideo;

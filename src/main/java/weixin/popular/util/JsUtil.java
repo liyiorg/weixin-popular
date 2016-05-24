@@ -49,11 +49,11 @@ public class JsUtil {
 
 	/**
 	 * 生成 config接口 signature
-	 * @param noncestr
-	 * @param jsapi_ticket
-	 * @param timestamp
-	 * @param url
-	 * @return
+	 * @param noncestr noncestr
+	 * @param jsapi_ticket jsapi_ticket
+	 * @param timestamp timestamp
+	 * @param url url
+	 * @return sign
 	 */
 	public static String generateConfigSignature(String noncestr,String jsapi_ticket,String timestamp,String url){
 		Map<String, String> map = new HashMap<String, String>();
@@ -66,46 +66,46 @@ public class JsUtil {
 
 	/**
 	 * 生成 config接口注入权限验证 JSON
-	 * @param jsapi_ticket
-	 * @param debug
-	 * @param appId
-	 * @param url
+	 * @param jsapi_ticket jsapi_ticket
+	 * @param debug debug
+	 * @param appId appId
+	 * @param url url
 	 * @param jsApiList 可以为空
-	 *  onMenuShareTimeline
-		onMenuShareAppMessage
-		onMenuShareQQ
-		onMenuShareWeibo
-		startRecord
-		stopRecord
-		onVoiceRecordEnd
-		playVoice
-		pauseVoice
-		stopVoice
-		onVoicePlayEnd
-		uploadVoice
-		downloadVoice
-		chooseImage
-		previewImage
-		uploadImage
-		downloadImage
-		translateVoice
-		getNetworkType
-		openLocation
-		getLocation
-		hideOptionMenu
-		showOptionMenu
-		hideMenuItems
-		showMenuItems
-		hideAllNonBaseMenuItem
-		showAllNonBaseMenuItem
-		closeWindow
-		scanQRCode
-		chooseWXPay
-		openProductSpecificView
-		addCard
-		chooseCard
-		openCard
-	 * @return
+	 *  onMenuShareTimeline <br>
+		onMenuShareAppMessage <br>
+		onMenuShareQQ <br>
+		onMenuShareWeibo <br>
+		startRecord <br>
+		stopRecord <br>
+		onVoiceRecordEnd <br>
+		playVoice <br>
+		pauseVoice <br>
+		stopVoice <br>
+		onVoicePlayEnd <br>
+		uploadVoice <br>
+		downloadVoice <br>
+		chooseImage <br>
+		previewImage <br>
+		uploadImage <br>
+		downloadImage <br>
+		translateVoice <br>
+		getNetworkType <br>
+		openLocation <br>
+		getLocation <br>
+		hideOptionMenu <br>
+		showOptionMenu <br>
+		hideMenuItems <br>
+		showMenuItems <br>
+		hideAllNonBaseMenuItem <br>
+		showAllNonBaseMenuItem <br>
+		closeWindow <br>
+		scanQRCode <br>
+		chooseWXPay <br>
+		openProductSpecificView <br>
+		addCard <br>
+		chooseCard <br>
+		openCard <br>
+	 * @return json
 	 */
 	public static String generateConfigJson(String jsapi_ticket,boolean debug,String appId,String url,String... jsApiList){
 		long timestamp = System.currentTimeMillis()/1000;
@@ -124,11 +124,11 @@ public class JsUtil {
 
 	/**
 	 * 生成微信支付JSON
-	 * @param payPackage
-	 * @param appid
-	 * @param paternerKey
-	 * @param paySignkey
-	 * @return
+	 * @param payPackage payPackage
+	 * @param appid appid
+	 * @param paternerKey paternerKey
+	 * @param paySignkey paySignkey
+	 * @return json
 	 */
 	public static String generateChooseWXPayJson(PayPackage payPackage,
 			String appid,

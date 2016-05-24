@@ -2,7 +2,6 @@ package weixin.popular.api;
 
 /**
  * 微信连Wi-Fi
- * @author
  *
  */
 public class BizwifiAPI extends BaseAPI{

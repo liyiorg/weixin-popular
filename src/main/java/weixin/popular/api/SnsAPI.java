@@ -20,10 +20,10 @@ public class SnsAPI extends BaseAPI{
 
 	/**
 	 * 通过code换取网页授权access_token
-	 * @param appid
-	 * @param secret
-	 * @param code
-	 * @return
+	 * @param appid appid
+	 * @param secret secret
+	 * @param code code
+	 * @return SnsToken
 	 */
 	public static SnsToken oauth2AccessToken(String appid,String secret,String code){
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
@@ -38,11 +38,11 @@ public class SnsAPI extends BaseAPI{
 
 	/**
 	 * 通过code换取网页授权access_token (第三方平台开发)
-	 * @param appid
-	 * @param code
+	 * @param appid appid
+	 * @param code code
 	 * @param component_appid 服务开发方的appid
 	 * @param component_access_token 服务开发方的access_token
-	 * @return
+	 * @return SnsToken
 	 */
 	public static SnsToken oauth2ComponentAccessToken(String appid,String code,String component_appid,String component_access_token ){
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
@@ -59,9 +59,9 @@ public class SnsAPI extends BaseAPI{
 
 	/**
 	 * 刷新access_token
-	 * @param appid
-	 * @param refresh_token
-	 * @return
+	 * @param appid appid
+	 * @param refresh_token refresh_token
+	 * @return SnsToken
 	 */
 	public static SnsToken oauth2RefreshToken(String appid,String refresh_token){
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
@@ -75,11 +75,11 @@ public class SnsAPI extends BaseAPI{
 
 	/**
 	 * 刷新access_token (第三方平台开发)
-	 * @param appid
-	 * @param refresh_token
+	 * @param appid appid
+	 * @param refresh_token refresh_token
 	 * @param component_appid 服务开发商的appid
 	 * @param component_access_token 服务开发方的access_token
-	 * @return
+	 * @return SnsToken
 	 */
 	public static SnsToken oauth2ComponentRefreshToken(String appid,String refresh_token,String component_appid,String component_access_token){
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
@@ -96,8 +96,8 @@ public class SnsAPI extends BaseAPI{
 	/**
 	 * 拉取用户信息(需scope为 snsapi_userinfo)
 	 * @since 2.7.1
-	 * @param access_token
-	 * @param openid
+	 * @param access_token access_token
+	 * @param openid openid
 	 * @param lang 国家地区语言版本，zh_CN 简体，zh_TW 繁体，en 英语
 	 * @param emoji 表情解析方式<br>
 	 * 0 		  不设置 <br>
@@ -106,7 +106,7 @@ public class SnsAPI extends BaseAPI{
 	 * 3 Alias  格式<br>
 	 * 4 HtmlDec 格式<br>
 	 * 5 PureText 纯文本<br>
-	 * @return
+	 * @return User
 	 */
 	public static User userinfo(String access_token,String openid,String lang,int emoji){
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
@@ -124,10 +124,10 @@ public class SnsAPI extends BaseAPI{
 	
 	/**
 	 * 拉取用户信息(需scope为 snsapi_userinfo)
-	 * @param access_token
-	 * @param openid
+	 * @param access_token access_token
+	 * @param openid openid
 	 * @param lang 国家地区语言版本，zh_CN 简体，zh_TW 繁体，en 英语
-	 * @return
+	 * @return User
 	 */
 	public static User userinfo(String access_token,String openid,String lang){
 		return userinfo(access_token, openid, lang,0);
@@ -135,11 +135,11 @@ public class SnsAPI extends BaseAPI{
 
 	/**
 	 * 生成网页授权 URL
-	 * @param appid
+	 * @param appid appid
 	 * @param redirect_uri 自动URLEncoder
-	 * @param snsapi_userinfo
+	 * @param snsapi_userinfo snsapi_userinfo
 	 * @param state 可以为空
-	 * @return
+	 * @return url
 	 */
 	public static String connectOauth2Authorize(String appid,String redirect_uri,boolean snsapi_userinfo,String state){
 		return connectOauth2Authorize(appid, redirect_uri, snsapi_userinfo, state, null);
@@ -147,13 +147,13 @@ public class SnsAPI extends BaseAPI{
 
 	/**
 	 * 生成网页授权 URL  (第三方平台开发)
-	 * @param appid
+	 * @param appid appid
 	 * @param redirect_uri 自动URLEncoder
-	 * @param snsapi_userinfo
+	 * @param snsapi_userinfo snsapi_userinfo
 	 * @param state 可以为空
 	 * @param component_appid 第三方平台开发，可以为空。
 	 * 			 服务方的appid，在申请创建公众号服务成功后，可在公众号服务详情页找到
-	 * @return
+	 * @return url
 	 */
 	public static String connectOauth2Authorize(String appid,String redirect_uri,boolean snsapi_userinfo,String state,String component_appid){
 		try {
@@ -178,13 +178,10 @@ public class SnsAPI extends BaseAPI{
 	/**
 	 * 生成网页授权 URL  (网站应用微信登录)
 	 * 2.5.3
-	 * @param appid
+	 * @param appid appid
 	 * @param redirect_uri 自动URLEncoder
-	 * @param snsapi_userinfo
 	 * @param state 可以为空
-	 * @param component_appid 第三方平台开发，可以为空。
-	 * 			 服务方的appid，在申请创建公众号服务成功后，可在公众号服务详情页找到
-	 * @return
+	 * @return url
 	 */
 	public static String connectQrconnect(String appid,String redirect_uri,String state){
 		try {

@@ -2,6 +2,13 @@ WEIXIN-POPULAR CHANGELOG
 ===========================
 https://github.com/liyiorg/weixin-popular
 
+Changes in version 2.8.0 (2016-05-24)
+-------------------------------------
+* 发布到maven 中央仓库
+* MaterialAPI、MediaAPI 下载素材接口优化
+* MaterialAPI 接口方法名称缩减，将方法开头material 移除。
+* [issue #35] weixin.popular.bean.menu.selfmenu.Button 修复
+
 Changes in version 2.7.1 (2016-05-18)
 -------------------------------------
 * 日志输出改进

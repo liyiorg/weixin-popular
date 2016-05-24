@@ -38,7 +38,7 @@ public class LocalHttpClient {
 	
 	/**
 	 * @since 2.7.0
-	 * @param timeout
+	 * @param timeout timeout
 	 */
 	public static void setTimeout(int timeout) {
 		LocalHttpClient.timeout = timeout;
@@ -46,12 +46,17 @@ public class LocalHttpClient {
 
 	/**
 	 * @since 2.7.0
-	 * @param retryExecutionCount
+	 * @param retryExecutionCount retryExecutionCount
 	 */
 	public static void setRetryExecutionCount(int retryExecutionCount) {
 		LocalHttpClient.retryExecutionCount = retryExecutionCount;
 	}
 
+	/**
+	 * 
+	 * @param maxTotal maxTotal
+	 * @param maxPerRoute maxPerRoute
+	 */
 	public static void init(int maxTotal,int maxPerRoute){
 		try {
 			httpClient.close();
@@ -63,8 +68,8 @@ public class LocalHttpClient {
 
 	/**
 	 * 初始化   MCH HttpClient KeyStore
-	 * @param mch_id
-	 * @param keyStoreFilePath
+	 * @param mch_id mch_id
+	 * @param keyStoreFilePath keyStoreFilePath
 	 */
 	public static void initMchKeyStore(String mch_id,String keyStoreFilePath){
 		try {
@@ -116,9 +121,9 @@ public class LocalHttpClient {
 
 	/**
 	 * 数据返回自动JSON对象解析
-	 * @param request
-	 * @param clazz
-	 * @return
+	 * @param request request
+	 * @param clazz clazz
+	 * @return result
 	 */
 	public static <T> T executeJsonResult(HttpUriRequest request,Class<T> clazz){
 		return execute(request,JsonResponseHandler.createResponseHandler(clazz));
@@ -126,9 +131,9 @@ public class LocalHttpClient {
 
 	/**
 	 * 数据返回自动XML对象解析
-	 * @param request
-	 * @param clazz
-	 * @return
+	 * @param request request
+	 * @param clazz clazz
+	 * @return result
 	 */
 	public static <T> T executeXmlResult(HttpUriRequest request,Class<T> clazz){
 		return execute(request,XmlResponseHandler.createResponseHandler(clazz));
@@ -136,10 +141,10 @@ public class LocalHttpClient {
 
 	/**
 	 * MCH keyStore 请求 数据返回自动XML对象解析
-	 * @param mch_id
-	 * @param request
-	 * @param clazz
-	 * @return
+	 * @param mch_id mch_id
+	 * @param request request
+	 * @param clazz clazz
+	 * @return result
 	 */
 	public static <T> T keyStoreExecuteXmlResult(String mch_id,HttpUriRequest request,Class<T> clazz){
 		String uriId = loggerRequest(request);
@@ -159,7 +164,8 @@ public class LocalHttpClient {
 	
 	/**
 	 * 日志记录
-	 * @param request
+	 * @param request request
+	 * @return log request id
 	 */
 	private static String loggerRequest(HttpUriRequest request){
 		String id = UUID.randomUUID().toString();

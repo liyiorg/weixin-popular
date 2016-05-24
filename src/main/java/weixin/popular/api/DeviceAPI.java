@@ -1,11 +1,11 @@
 package weixin.popular.api;
 
 /**
- * 微信卡券
+ * 设备功能
  * @author nobody
  *
  */
-public class CardAPI extends BaseAPI{
+public class DeviceAPI extends BaseAPI{
 
 	/**
 	 * 这里一片空白，开源贡献动起手来！

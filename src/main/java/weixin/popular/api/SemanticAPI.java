@@ -2,7 +2,7 @@ package weixin.popular.api;
 
 /**
  * 微信智能
- * @author
+ * @author nobody
  *
  */
 public class SemanticAPI extends BaseAPI{

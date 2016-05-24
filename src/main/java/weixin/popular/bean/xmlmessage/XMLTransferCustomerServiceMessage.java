@@ -12,8 +12,8 @@ public class XMLTransferCustomerServiceMessage extends XMLMessage{
 	
 	/**
 	 * 消息转发到多客服
-	 * @param toUserName
-	 * @param fromUserName
+	 * @param toUserName toUserName
+	 * @param fromUserName fromUserName
 	 * @param kfAccount 可以为空
 	 */
 	public XMLTransferCustomerServiceMessage(String toUserName, String fromUserName,String kfAccount) {

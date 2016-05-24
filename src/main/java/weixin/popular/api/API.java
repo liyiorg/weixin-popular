@@ -33,7 +33,7 @@ public class API {
 	/**
 	 * 设置API模式
 	 * 
-	 * @param component
+	 * @param mode 模式，可选值 1 or 2
 	 */
 	public static void mode(int mode) {
 		threadLocal.set(mode);
@@ -41,7 +41,7 @@ public class API {
 
 	/**
 	 * 获取当前API模式
-	 * @return
+	 * @return 当前状态
 	 */
 	public static int currentMode() {
 		if (mode == null && threadLocal.get() == null) {

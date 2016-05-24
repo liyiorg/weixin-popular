@@ -1,11 +1,23 @@
 weixin-popular
 ==============
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.liyiorg/weixin-popular/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.liyiorg/weixin-popular/)
+[![GitHub release](https://img.shields.io/github/release/liyiorg/weixin-popular.svg)](https://github.com/liyiorg/weixin-popular/releases)
+[![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
 
 微信公众平台Java SDK
 
-
-## 介绍
+==============
 weixin-popular 包括微信公众平台、公众号第三方平台基础API与支付API,提供便捷的API调用接口.
+
+## maven
+```xml
+<dependency>
+  <groupId>com.github.liyiorg</groupId>
+  <artifactId>weixin-popular</artifactId>
+  <version>2.8.0</version>
+</dependency>
+```
+* [升级注意事项](https://github.com/liyiorg/weixin-popular/wiki/jar_update)
 
 ## API 列表
 * [TokenAPI](https://github.com/liyiorg/weixin-popular/wiki/TokenAPI) access_token 获取
@@ -34,6 +46,7 @@ weixin-popular 包括微信公众平台、公众号第三方平台基础API与�
 * [ScanAPI](https://github.com/liyiorg/weixin-popular/wiki/ScanAPI) 微信扫一扫
 * [SemanticAPI](https://github.com/liyiorg/weixin-popular/wiki/SemanticAPI) 微信智能
 * [ShakearoundAPI](https://github.com/liyiorg/weixin-popular/wiki/ShakearoundAPI) 微信摇一摇周边
+* [DeviceAPI](https://github.com/liyiorg/weixin-popular/wiki/DeviceAPI) 设备功能
 
 ## API 模式切换
 * [API 切换] (https://github.com/liyiorg/weixin-popular/wiki/API 模式切换)
@@ -74,6 +87,3 @@ weixin-popular 包括微信公众平台、公众号第三方平台基础API与�
 * [微信支付开发教程（老版本）](https://mp.weixin.qq.com/paymch/readtemplate?t=mp/business/course2_tmpl&lang=zh_CN&token=6056275)
 * [微信支付商户平台开发者文档](http://mch.weixin.qq.com/wiki/doc/api/index.html)
 * [微信开放平台（公众号第三方平台开发）](https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&t=resource/res_list&verify=1&lang=zh_CN)
-
-## QQ交流群
-  369381797

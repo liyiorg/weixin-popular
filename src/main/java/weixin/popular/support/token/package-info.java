@@ -8,8 +8,8 @@
  * <br>TokenUtils.setComponentTokenStorage(TokenStorage tokenStorage)
  * <br>TokenUtils.setAuthorizerTokenStorage(TokenStorage tokenStorage)
  * <br>如果不实现TokenStorage接口，则默认分别使用DefaultAuthorizerStorage和DefaultComponentStorage
- * 自定义TokenStorage接口实现时可参数他们。 <br>
- * 特别说明，当使用DefaultComponentStorage时，需要手动添加相应的第三平台应用信息（因为实际场景中
+ * 自定义TokenStorage接口实现时可参考他们。 
+ * <br>特别说明，当使用DefaultComponentStorage时，需要手动添加相应的第三平台应用信息（因为实际场景中
  * 这类信息一般是来自配置文件或者数据库的），DefaultAuthorizerStorage则不需要这么做，如： 
  * <br>
  * <br>// 自己的第三方应用信息

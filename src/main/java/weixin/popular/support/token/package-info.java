@@ -15,7 +15,7 @@
  * <br>// 自己的第三方应用信息
  * <br>ComponentConfig myCfg = ComponentConfig.getInstance();
  * <br>
- * <br>// 将自己的应用信息添加到DefaultComponentStorage
+ * <br>// 初始化时，将自己的应用信息添加到DefaultComponentStorage
  * <br>RowData row = new RowData();
  * <br>row.setAccessToken(null);
  * <br>row.setAppId(myCfg.getAppId());
@@ -26,6 +26,10 @@
  * <br>map.put(myCfg.getAppId(), row);
  * <br>DefaultComponentStorage.map = map;
  * <br>
+ * <br>// 并且，需要在接受微信verifyTicket推送的地方执行下面的语句：
+ * <br>DefaultComponentStorage.map.get(myCfg.getAppId()).setVerifyTicket(verifyTicket);
+ * <br>
+ * <br>
  * <br>// 获取并存储公众号授权第三方平台信息如下：
  * <br>
  * <br>// 第三方平台授权令牌
@@ -35,7 +39,7 @@
  * <br>ApiQueryAuthResult authResult = ComponentAPI.api_query_auth(accessToken, myCfg.getAppId(), authCode);
  * <br>Authorization_info authInfo = authResult.getAuthorization_info();
  * <br>
- * <br>// 将授权令牌信息保存到数据库
+ * <br>// 保存公众号授权令牌信息
  * <br>AuthorizerTokenInfo tokenInfo = new AuthorizerTokenInfo();
  * <br>tokenInfo.setAccessToken(authInfo.getAuthorizer_access_token());
  * <br>tokenInfo.setAppId(authInfo.getAuthorizer_appid());

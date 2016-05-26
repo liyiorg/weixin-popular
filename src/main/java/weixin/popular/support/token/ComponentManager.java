@@ -1,7 +1,5 @@
 package weixin.popular.support.token;
 
-import java.util.HashMap;
-
 
 /**
  * 第三方平台授权令牌管理类

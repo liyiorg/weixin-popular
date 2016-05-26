@@ -28,7 +28,8 @@ public abstract class TokenUtils {
 	}
 
 	/**
-	 * 指定第三方平台“应用”token信息存储实现
+	 * 指定第三方平台“应用”token信息存储实现，
+	 * 默认使用DefaultComponentStorage
 	 * @param tokenStorage
 	 * @see DefaultComponentStorage
 	 */
@@ -37,7 +38,8 @@ public abstract class TokenUtils {
 	}
 
 	/**
-	 * 指定第三方平台“公众号”token信息存储实现
+	 * 指定第三方平台“公众号”token信息存储实现，
+	 * 默认使用DefaultAuthorizerStorage
 	 * @param tokenStorage
 	 * @see DefaultAuthorizerStorage
 	 */

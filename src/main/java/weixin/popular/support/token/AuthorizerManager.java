@@ -15,7 +15,7 @@ public class AuthorizerManager extends AuthorizerTokenManager {
 
 	static {
 		TokenContext context = new TokenContext();
-		context.setRefreshScheduler(AuthorizerRefreshInvoker.getInstance());
+		context.setRefreshScheduler(AuthorizerRefreshScheduler.getInstance());
 		context.setTokenStorage(tokenStorage);
 		context.setType(TokenType.AUTHORIZER);
 		manager = new AuthorizerManager(context);

@@ -60,13 +60,13 @@ public class RefreshRunnable<T extends RefreshInfo, E extends TokenInfo> impleme
 			Date date = new Date();
 			date.setTime(nextTime);
 			logger.debug("next access_token expiration check time： {}",
-					new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(date));
+					new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date));
 		} else {
 
 			Date date = new Date();
 			date.setTime(nextTime);
 			logger.debug("next access_token expiration time： {}",
-					new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(date));
+					new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date));
 		}
 	}
 

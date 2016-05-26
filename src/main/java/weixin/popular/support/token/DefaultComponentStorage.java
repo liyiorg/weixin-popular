@@ -20,11 +20,6 @@ public class DefaultComponentStorage implements TokenStorage {
 	// 模拟数据库表对象，每个元素为条记录
 	public static Map<String, RowData> map = new HashMap<String, RowData>();
 	
-	public DefaultComponentStorage(Map<String, RowData> map) {
-		// 模拟初始化列数据，即表中添加有多个第三个平台应用信息
-		DefaultComponentStorage.map = map;
-	}
-	
 	@Override
 	public RefreshInfo getOverdue() {
 		// 模拟查询表，获取最近一个需要刷的刷新令牌信息

@@ -13,7 +13,7 @@ public class ComponentManager extends ComponentTokenManager {
 
 	private static ComponentTokenManager manager;
 
-	private static TokenStorage tokenStorage = new DefaultComponentStorage(new HashMap<String, DefaultComponentStorage.RowData>());
+	private static TokenStorage tokenStorage = new DefaultComponentStorage();
 
 	static {
 		TokenContext context = new TokenContext();

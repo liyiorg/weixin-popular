@@ -18,7 +18,7 @@ public class DefaultComponentStorage implements TokenStorage {
 	private static final Logger logger = LoggerFactory.getLogger(DefaultComponentStorage.class);
 
 	// 模拟数据库表对象，每个元素为条记录
-	private static Map<String, RowData> map = new HashMap<String, RowData>();
+	public static Map<String, RowData> map = new HashMap<String, RowData>();
 	
 	@Override
 	public RefreshInfo getOverdue() {

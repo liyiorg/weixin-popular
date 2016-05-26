@@ -1,9 +1,7 @@
 package weixin.popular.support.token;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -30,11 +28,10 @@ public class DefaultComponentStorage implements TokenStorage {
 	@Override
 	public RefreshInfo getOverdue() {
 		// 模拟查询表，获取最近一个需要刷的刷新令牌信息
-		List<RowData> list = latestTwo();
-		if (list.size() == 0) {
+		RowData row = latest();
+		if (null == row) {
 			return null;
 		}
-		RowData row = list.get(0);
 		ComponentRefreshInfo refresh = new ComponentRefreshInfo();
 		refresh.setAppId(row.getAppId());
 		refresh.setAppSecret(row.getAppSecret());
@@ -44,11 +41,11 @@ public class DefaultComponentStorage implements TokenStorage {
 
 	@Override
 	public long nextTime() {
-		// 模拟查表，获取下一个最快要到期的令牌的时间
-		List<RowData> list = latestTwo();
 		long nextTime = -1;
-		if (list.size() > 0) {
-			nextTime = list.get(0).getOverdueTime();
+		// 模拟查表，获取下一个最快要到期的令牌的时间
+		RowData row = latest();
+		if (null != row) {
+			nextTime = row.getOverdueTime();
 		}
 		long curTime = new Date().getTime();
 		if (nextTime < curTime) {
@@ -89,19 +86,16 @@ public class DefaultComponentStorage implements TokenStorage {
 	 * 
 	 * @return
 	 */
-	private List<RowData> latestTwo() {
-		List<RowData> list = new ArrayList<RowData>(1);
-		list.add(null);
+	private RowData latest() {
 		long nextTime = -1;
-		RowData row;
+		RowData row = null;
 		for (Map.Entry<String, RowData> entry : map.entrySet()) {
-			row = entry.getValue();
-			if (row.getOverdueTime() < nextTime || nextTime == -1) {
-				list.set(0, entry.getValue());
+			if (entry.getValue().getOverdueTime() < nextTime || nextTime == -1) {
+				row = entry.getValue();
 				nextTime = row.getOverdueTime();
 			}
 		}
-		return list;
+		return row;
 	}
 
 	/**

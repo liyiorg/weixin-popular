@@ -17,7 +17,7 @@ public class ComponentManager extends ComponentTokenManager {
 
 	static {
 		TokenContext context = new TokenContext();
-		context.setRefreshInvoker(ComponentRefreshInvoker.getInstance());
+		context.setRefreshScheduler(ComponentRefreshInvoker.getInstance());
 		context.setTokenStorage(tokenStorage);
 		context.setType(TokenType.COMPONENT);
 		manager = new ComponentManager(context);

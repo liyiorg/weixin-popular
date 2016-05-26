@@ -15,7 +15,7 @@ public abstract class TokenManager<T extends TokenInfo> {
 	}
 
 	public synchronized void refreshOverdue() {
-		context.getRefreshInvoker().startRefresh();
+		context.getRefreshScheduler().execute();
 	}
 
 	public void addTokenInfo(T tokenInfo) {

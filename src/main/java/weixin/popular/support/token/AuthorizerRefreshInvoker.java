@@ -12,7 +12,7 @@ import weixin.popular.bean.component.AuthorizerAccessToken;
  * @author Moyq5
  *
  */
-public class AuthorizerRefreshInvoker extends RefreshInvokerAbstract<AuthorizerRefreshInfo, AuthorizerTokenInfo> {
+public class AuthorizerRefreshInvoker extends RefreshSchedulerAbstract<AuthorizerRefreshInfo, AuthorizerTokenInfo> {
 	
 	private static final Logger logger = LoggerFactory.getLogger(AuthorizerRefreshInvoker.class);
 	

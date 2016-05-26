@@ -12,7 +12,7 @@ import weixin.popular.bean.component.ComponentAccessToken;
  * @author Moyq5
  *
  */
-public class ComponentRefreshInvoker extends RefreshInvokerAbstract<ComponentRefreshInfo, ComponentTokenInfo> {
+public class ComponentRefreshInvoker extends RefreshSchedulerAbstract<ComponentRefreshInfo, ComponentTokenInfo> {
 
 	private static final Logger logger = LoggerFactory.getLogger(ComponentRefreshInvoker.class);
 	

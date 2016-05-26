@@ -8,18 +8,18 @@ package weixin.popular.support.token;
  */
 public class TokenContext {
 
-	private RefreshInvoker refreshInvoker;
+	private RefreshScheduler refreshScheduler;
 
 	private TokenStorage tokenStorage;
 
 	private TokenType type;
 
-	public RefreshInvoker getRefreshInvoker() {
-		return refreshInvoker;
+	public RefreshScheduler getRefreshScheduler() {
+		return refreshScheduler;
 	}
 
-	public void setRefreshInvoker(RefreshInvoker refreshInvoker) {
-		this.refreshInvoker = refreshInvoker;
+	public void setRefreshScheduler(RefreshScheduler refreshScheduler) {
+		this.refreshScheduler = refreshScheduler;
 	}
 
 	public TokenStorage getTokenStorage() {

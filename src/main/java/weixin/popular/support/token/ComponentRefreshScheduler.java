@@ -34,8 +34,7 @@ public class ComponentRefreshScheduler extends RefreshSchedulerAbstract<Componen
 	 * 刷新并返回新授权令牌
 	 */
 	@Override
-	public ComponentTokenInfo execute(ComponentRefreshInfo refreshInfo) {
-		ComponentRefreshInfo cri = (ComponentRefreshInfo) refreshInfo;
+	public ComponentTokenInfo execute(ComponentRefreshInfo cri) {
 		ComponentAccessToken cat = ComponentAPI.api_component_token(
 				cri.getAppId(), cri.getAppSecret(), cri.getVerifyTicket());
 		

@@ -59,7 +59,7 @@ public class DefaultAuthorizerStorage implements TokenStorage {
 		RowData row = new RowData();
 		row.setAccessToken(info.getAccessToken());
 		row.setAppId(info.getAppId());
-		row.setComponentAppId(row.getComponentAppId());
+		row.setComponentAppId(info.getComponentAppId());
 		row.setOverdueTime(new Date().getTime() + (info.getExpiresIn()-600) * 1000);// 根据有效时长计算过期日期, 比微信服务端提前10分钟
 		row.setRefreshToken(info.getRefreshToken());
 		map.put(row.getComponentAppId() + info.getAppId(), row);

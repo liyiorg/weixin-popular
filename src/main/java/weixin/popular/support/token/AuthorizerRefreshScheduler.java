@@ -34,8 +34,7 @@ public class AuthorizerRefreshScheduler extends RefreshSchedulerAbstract<Authori
 	 * 刷新并返回新授权令牌
 	 */
 	@Override
-	protected AuthorizerTokenInfo execute(AuthorizerRefreshInfo refreshInfo) {
-		AuthorizerRefreshInfo ari = (AuthorizerRefreshInfo) refreshInfo;
+	protected AuthorizerTokenInfo execute(AuthorizerRefreshInfo ari) {
 		AuthorizerAccessToken aat = ComponentAPI.api_authorizer_token(
 				ari.getComponentAccessToken(), ari.getComponentAppId(),
 				ari.getAuthorizerAppId(), ari.getAuthorizerRefreshToken());

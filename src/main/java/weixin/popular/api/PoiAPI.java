@@ -8,7 +8,7 @@ package weixin.popular.api;
 public class PoiAPI extends BaseAPI{
 
 	/**
-	 * Moyq5　进行中...
+	 * Moyq5　进行中...github.comgithub.com
 	 * 
 	 */
 }

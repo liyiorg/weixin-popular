@@ -15,8 +15,8 @@ public class CallbackipAPI extends BaseAPI{
 
 	/**
 	 * 获取微信服务器IP地址
-	 * @param access_token
-	 * @return
+	 * @param access_token access_token
+	 * @return Callbackip
 	 */
 	public static Callbackip getcallbackip(String access_token){
 		HttpUriRequest httpUriRequest = RequestBuilder.get()

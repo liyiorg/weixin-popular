@@ -10,6 +10,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.client.ResponseHandler;
@@ -37,7 +38,7 @@ public class LocalHttpClient {
 	
 	/**
 	 * @since 2.7.0
-	 * @param timeout
+	 * @param timeout timeout
 	 */
 	public static void setTimeout(int timeout) {
 		LocalHttpClient.timeout = timeout;
@@ -45,12 +46,17 @@ public class LocalHttpClient {
 
 	/**
 	 * @since 2.7.0
-	 * @param retryExecutionCount
+	 * @param retryExecutionCount retryExecutionCount
 	 */
 	public static void setRetryExecutionCount(int retryExecutionCount) {
 		LocalHttpClient.retryExecutionCount = retryExecutionCount;
 	}
 
+	/**
+	 * 
+	 * @param maxTotal maxTotal
+	 * @param maxPerRoute maxPerRoute
+	 */
 	public static void init(int maxTotal,int maxPerRoute){
 		try {
 			httpClient.close();
@@ -62,8 +68,8 @@ public class LocalHttpClient {
 
 	/**
 	 * 初始化   MCH HttpClient KeyStore
-	 * @param mch_id
-	 * @param keyStoreFilePath
+	 * @param mch_id mch_id
+	 * @param keyStoreFilePath keyStoreFilePath
 	 */
 	public static void initMchKeyStore(String mch_id,String keyStoreFilePath){
 		try {
@@ -88,7 +94,7 @@ public class LocalHttpClient {
 
 
 	public static CloseableHttpResponse execute(HttpUriRequest request){
-		loggerCatch(request);
+		loggerRequest(request);
 		try {
 			return httpClient.execute(request,HttpClientContext.create());
 		} catch (Exception e) {
@@ -99,7 +105,11 @@ public class LocalHttpClient {
 	}
 
 	public static <T> T execute(HttpUriRequest request,ResponseHandler<T> responseHandler){
-		loggerCatch(request);
+		String uriId = loggerRequest(request);
+		if(responseHandler instanceof LocalResponseHandler){
+			LocalResponseHandler lrh = (LocalResponseHandler) responseHandler;
+			lrh.setUriId(uriId);
+		}
 		try {
 			return httpClient.execute(request, responseHandler,HttpClientContext.create());
 		} catch (Exception e) {
@@ -111,9 +121,9 @@ public class LocalHttpClient {
 
 	/**
 	 * 数据返回自动JSON对象解析
-	 * @param request
-	 * @param clazz
-	 * @return
+	 * @param request request
+	 * @param clazz clazz
+	 * @return result
 	 */
 	public static <T> T executeJsonResult(HttpUriRequest request,Class<T> clazz){
 		return execute(request,JsonResponseHandler.createResponseHandler(clazz));
@@ -121,9 +131,9 @@ public class LocalHttpClient {
 
 	/**
 	 * 数据返回自动XML对象解析
-	 * @param request
-	 * @param clazz
-	 * @return
+	 * @param request request
+	 * @param clazz clazz
+	 * @return result
 	 */
 	public static <T> T executeXmlResult(HttpUriRequest request,Class<T> clazz){
 		return execute(request,XmlResponseHandler.createResponseHandler(clazz));
@@ -131,15 +141,20 @@ public class LocalHttpClient {
 
 	/**
 	 * MCH keyStore 请求 数据返回自动XML对象解析
-	 * @param mch_id
-	 * @param request
-	 * @param clazz
-	 * @return
+	 * @param mch_id mch_id
+	 * @param request request
+	 * @param clazz clazz
+	 * @return result
 	 */
 	public static <T> T keyStoreExecuteXmlResult(String mch_id,HttpUriRequest request,Class<T> clazz){
-		loggerCatch(request);
+		String uriId = loggerRequest(request);
+		ResponseHandler<T> responseHandler = XmlResponseHandler.createResponseHandler(clazz);
+		if(responseHandler instanceof LocalResponseHandler){
+			LocalResponseHandler lrh = (LocalResponseHandler) responseHandler;
+			lrh.setUriId(uriId);
+		}
 		try {
-			return httpClient_mchKeyStore.get(mch_id).execute(request,XmlResponseHandler.createResponseHandler(clazz),HttpClientContext.create());
+			return httpClient_mchKeyStore.get(mch_id).execute(request,responseHandler,HttpClientContext.create());
 		} catch (Exception e) {
 			e.printStackTrace();
 			logger.error(e.getMessage());
@@ -149,10 +164,12 @@ public class LocalHttpClient {
 	
 	/**
 	 * 日志记录
-	 * @param request
+	 * @param request request
+	 * @return log request id
 	 */
-	private static void loggerCatch(HttpUriRequest request){
-		if((logger.isInfoEnabled()||logger.isDebugEnabled())){
+	private static String loggerRequest(HttpUriRequest request){
+		String id = UUID.randomUUID().toString();
+		if(logger.isInfoEnabled()||logger.isDebugEnabled()){
 			if(request instanceof HttpEntityEnclosingRequestBase){
 				HttpEntityEnclosingRequestBase request_base = (HttpEntityEnclosingRequestBase)request;
 				HttpEntity entity = request_base.getEntity();
@@ -166,15 +183,17 @@ public class LocalHttpClient {
 						logger.error(e.getMessage());
 					}
 				}
-				logger.info("URI:{} {} ContentLength:{} Content:{}",
+				logger.info("URI[{}] {} {} ContentLength:{} Content:{}",
+			    id,
 				request.getURI().toString(),
 				entity.getContentType(),
 				entity.getContentLength(),
 				content == null?"multipart_form_data":content);
 			}else{
-				logger.info("URI:{}",request.getURI().toString());
+				logger.info("URI[{}] {}",id,request.getURI().toString());
 			}
 		}
+		return id;
 	}
 	
 }

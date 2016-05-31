@@ -52,10 +52,10 @@ public class XMLConverUtil{
 
 	/**
 	 * XML to Object
-	 * @param <T>
-	 * @param clazz
-	 * @param xml
-	 * @return
+	 * @param <T> T
+	 * @param clazz clazz
+	 * @param xml xml
+	 * @return T
 	 */
 	public static <T> T convertToObject(Class<T> clazz,String xml){
 		return convertToObject(clazz,new StringReader(xml));
@@ -63,10 +63,10 @@ public class XMLConverUtil{
 
 	/**
 	 * XML to Object
-	 * @param <T>
-	 * @param clazz
-	 * @param inputStream
-	 * @return
+	 * @param <T> T
+	 * @param clazz clazz
+	 * @param inputStream  inputStream
+	 * @return T
 	 */
 	public static <T> T convertToObject(Class<T> clazz,InputStream inputStream){
 		return convertToObject(clazz,new InputStreamReader(inputStream));
@@ -74,10 +74,10 @@ public class XMLConverUtil{
 
 	/**
 	 * XML to Object
-	 * @param <T>
-	 * @param clazz
-	 * @param reader
-	 * @return
+	 * @param <T> T
+	 * @param clazz clazz
+	 * @param reader reader
+	 * @return T
 	 */
 	@SuppressWarnings("unchecked")
 	public static <T> T convertToObject(Class<T> clazz,Reader reader){
@@ -97,8 +97,8 @@ public class XMLConverUtil{
 
 	/**
 	 * Object to XML
-	 * @param object
-	 * @return
+	 * @param object object
+	 * @return xml
 	 */
 	public static String convertToXML(Object object){
 		try {
@@ -124,8 +124,8 @@ public class XMLConverUtil{
 
 	/**
 	 * 转换简单的xml to map
-	 * @param xml
-	 * @return
+	 * @param xml xml
+	 * @return map
 	 */
 	public static Map<String,String> convertToMap(String xml){
 		Map<String, String> map = new LinkedHashMap<>();

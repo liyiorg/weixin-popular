@@ -13,6 +13,8 @@ import org.apache.http.client.methods.RequestBuilder;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.util.EntityUtils;
 
+import weixin.popular.bean.paymch.Authcodetoopenid;
+import weixin.popular.bean.paymch.AuthcodetoopenidResult;
 import weixin.popular.bean.paymch.Closeorder;
 import weixin.popular.bean.paymch.DownloadbillResult;
 import weixin.popular.bean.paymch.MchBaseResult;
@@ -58,7 +60,7 @@ import weixin.popular.util.XMLConverUtil;
 
 /**
  * 微信支付 基于V3.X 版本
- * @author Yi
+ * @author LiYi
  *
  */
 public class PayMchAPI extends BaseAPI{
@@ -66,9 +68,9 @@ public class PayMchAPI extends BaseAPI{
 
 	/**
 	 * 统一下单
-	 * @param unifiedorder
-	 * @param key
-	 * @return
+	 * @param unifiedorder unifiedorder
+	 * @param key key
+	 * @return UnifiedorderResult
 	 */
 	public static UnifiedorderResult payUnifiedorder(Unifiedorder unifiedorder,String key){
 		Map<String,String> map = MapUtil.objectToMap(unifiedorder);
@@ -87,9 +89,9 @@ public class PayMchAPI extends BaseAPI{
 
 	/**
 	 * 刷卡支付  提交被扫支付API
-	 * @param micropay
-	 * @param key
-	 * @return
+	 * @param micropay micropay
+	 * @param key key
+	 * @return MicropayResult
 	 */
 	public static MicropayResult payMicropay(Micropay micropay,String key){
 		Map<String,String> map = MapUtil.objectToMap(micropay);
@@ -106,9 +108,9 @@ public class PayMchAPI extends BaseAPI{
 
 	/**
 	 * 查询订单
-	 * @param mchOrderquery
-	 * @param key
-	 * @return
+	 * @param mchOrderquery mchOrderquery
+	 * @param key key
+	 * @return MchOrderInfoResult
 	 */
 	public static MchOrderInfoResult payOrderquery(MchOrderquery mchOrderquery,String key){
 		Map<String,String> map = MapUtil.objectToMap(mchOrderquery);
@@ -127,9 +129,9 @@ public class PayMchAPI extends BaseAPI{
 
 	/**
 	 * 关闭订单
-	 * @param closeorder
+	 * @param closeorder closeorder
 	 * @param key 商户支付密钥
-	 * @return
+	 * @return MchBaseResult
 	 */
 	public static MchBaseResult payCloseorder(Closeorder closeorder,String key){
 		Map<String,String> map = MapUtil.objectToMap(closeorder);
@@ -151,9 +153,9 @@ public class PayMchAPI extends BaseAPI{
 	 * 注意：
 	 *	1.交易时间超过半年的订单无法提交退款；
 	 *	2.微信支付退款支持单笔交易分多次退款，多次退款需要提交原支付订单的商户订单号和设置不同的退款单号。一笔退款失败后重新提交，要采用原来的退款单号。总退款金额不能超过用户实际支付金额。
-	 * @param secapiPayRefund
+	 * @param secapiPayRefund secapiPayRefund
 	 * @param key 商户支付密钥
-	 * @return
+	 * @return SecapiPayRefundResult
 	 */
 	public static SecapiPayRefundResult secapiPayRefund(SecapiPayRefund secapiPayRefund,String key){
 		Map<String,String> map = MapUtil.objectToMap( secapiPayRefund);
@@ -171,9 +173,9 @@ public class PayMchAPI extends BaseAPI{
 	/**
 	 * 撤销订单
 	 * 7天以内的交易单可调用撤销，其他正常支付的单如需实现相同功能请调用申请退款API。提交支付交易后调用【查询订单API】，没有明确的支付结果再调用【撤销订单API】。
-	 * @param mchReverse
-	 * @param key
-	 * @return
+	 * @param mchReverse mchReverse
+	 * @param key key
+	 * @return MchReverseResult
 	 */
 	public static MchReverseResult secapiPayReverse(MchReverse mchReverse,String key){
 		Map<String,String> map = MapUtil.objectToMap( mchReverse);
@@ -193,9 +195,9 @@ public class PayMchAPI extends BaseAPI{
 	 *
 	 * 提交退款申请后，通过调用该接口查询退款状态。退款有一定延时，用零钱支付的退款
 	 * 20 分钟内到账，银行卡支付的退款3 个工作日后重新查询退款状态。
-	 * @param refundquery
+	 * @param refundquery refundquery
 	 * @param key 商户支付密钥
-	 * @return
+	 * @return RefundqueryResult
 	 */
 	public static RefundqueryResult payRefundquery(Refundquery refundquery,String key){
 		Map<String,String> map = MapUtil.objectToMap(refundquery);
@@ -212,9 +214,9 @@ public class PayMchAPI extends BaseAPI{
 
 	/**
 	 * 下载对账单
-	 * @param downloadbill
-	 * @param key
-	 * @return
+	 * @param downloadbill downloadbill
+	 * @param key key
+	 * @return DownloadbillResult
 	 */
 	public static DownloadbillResult payDownloadbill(MchDownloadbill downloadbill,String key){
 		Map<String,String> map = MapUtil.objectToMap(downloadbill);
@@ -251,9 +253,9 @@ public class PayMchAPI extends BaseAPI{
 
 	/**
 	 * 短链接转换
-	 * @param shorturl
+	 * @param shorturl shorturl
 	 * @param key 商户支付密钥
-	 * @return
+	 * @return MchShorturlResult
 	 */
 	public static MchShorturlResult toolsShorturl(MchShorturl shorturl,String key){
 		Map<String,String> map = MapUtil.objectToMap(shorturl);
@@ -267,12 +269,31 @@ public class PayMchAPI extends BaseAPI{
 				.build();
 		return LocalHttpClient.executeXmlResult(httpUriRequest,MchShorturlResult.class);
 	}
+	
+	/**
+	 * 刷卡支付 授权码查询OPENID接口
+	 * @param authcodetoopenid authcodetoopenid
+	 * @param key key
+	 * @return AuthcodetoopenidResult
+	 */
+	public static AuthcodetoopenidResult toolsAuthcodetoopenid(Authcodetoopenid authcodetoopenid,String key){
+		Map<String,String> map = MapUtil.objectToMap(authcodetoopenid);
+		String sign = SignatureUtil.generateSign(map,key);
+		authcodetoopenid.setSign(sign);
+		String shorturlXML = XMLConverUtil.convertToXML(authcodetoopenid);
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+				.setHeader(xmlHeader)
+				.setUri(MCH_URI + "/tools/authcodetoopenid")
+				.setEntity(new StringEntity(shorturlXML,Charset.forName("utf-8")))
+				.build();
+		return LocalHttpClient.executeXmlResult(httpUriRequest,AuthcodetoopenidResult.class);
+	}
 
 	/**
 	 * 测速上报
-	 * @param report
-	 * @param key
-	 * @return
+	 * @param report report
+	 * @param key key
+	 * @return MchBaseResult
 	 */
 	public static MchBaseResult payitilReport(Report report,String key){
 		Map<String,String> map = MapUtil.objectToMap(report);
@@ -289,9 +310,9 @@ public class PayMchAPI extends BaseAPI{
 
 	/**
 	 * 发放代金券
-	 * @param sendCoupon
-	 * @param key
-	 * @return
+	 * @param sendCoupon sendCoupon
+	 * @param key key
+	 * @return SendCouponResult
 	 */
 	public static SendCouponResult mmpaymkttransfersSend_coupon(SendCoupon sendCoupon,String key){
 		Map<String,String> map = MapUtil.objectToMap( sendCoupon);
@@ -308,9 +329,9 @@ public class PayMchAPI extends BaseAPI{
 
 	/**
 	 * 查询代金券批次
-	 * @param queryCouponStock
-	 * @param key
-	 * @return
+	 * @param queryCouponStock queryCouponStock
+	 * @param key key
+	 * @return QueryCouponStockResult
 	 */
 	public static QueryCouponStockResult mmpaymkttransfersQuery_coupon_stock(QueryCouponStock queryCouponStock,String key){
 		Map<String,String> map = MapUtil.objectToMap( queryCouponStock);
@@ -327,9 +348,9 @@ public class PayMchAPI extends BaseAPI{
 
 	/**
 	 * 查询代金券信息
-	 * @param queryCoupon
-	 * @param key
-	 * @return
+	 * @param queryCoupon queryCoupon
+	 * @param key key
+	 * @return QueryCouponResult
 	 */
 	public static QueryCouponResult promotionQuery_coupon(QueryCoupon queryCoupon,String key){
 		Map<String,String> map = MapUtil.objectToMap( queryCoupon);
@@ -347,16 +368,16 @@ public class PayMchAPI extends BaseAPI{
 	/**
 	 * 现金红包
 	 *
-	 * 微信红包发送规则
+	 * 微信红包发送规则<br>
 	 * 1. 发送频率规则
 　	 *	每分钟发送红包数量不得超过1800个；
-　	 *	北京时间0：00-8：00不触发红包赠送；（如果以上规则不满足您的需求，请发邮件至wxhongbao@tencent.com获取升级指引）
+　	 *	北京时间0：00-8：00不触发红包赠送；（如果以上规则不满足您的需求，请发邮件至wxhongbao@tencent.com获取升级指引）<br>
 	 *	2. 红包规则
-	 *	单个红包金额介于[1.00元，200.00元]之间；
+	 *	单个红包金额介于[1.00元，200.00元]之间；<br>
 	 *	同一个红包只能发送给一个用户；（如果以上规则不满足您的需求，请发邮件至wxhongbao@tencent.com获取升级指引）
-	 * @param sendredpack
-	 * @param key
-	 * @return
+	 * @param sendredpack sendredpack
+	 * @param key key
+	 * @return SendredpackResult
 	 */
 	public static SendredpackResult mmpaymkttransfersSendredpack(Sendredpack sendredpack,String key){
 		Map<String,String> map = MapUtil.objectToMap( sendredpack);
@@ -373,9 +394,9 @@ public class PayMchAPI extends BaseAPI{
 
 	/**
 	 * 裂变红包
-	 * @param sendgroupredpack
-	 * @param key
-	 * @return
+	 * @param sendgroupredpack sendgroupredpack
+	 * @param key key
+	 * @return SendredpackResult
 	 */
 	public static SendredpackResult mmpaymkttransfersSendgroupredpack(Sendgroupredpack sendgroupredpack,String key){
 		Map<String,String> map = MapUtil.objectToMap( sendgroupredpack);
@@ -393,9 +414,9 @@ public class PayMchAPI extends BaseAPI{
 
 	/**
 	 * 企业付款
-	 * @param transfers
-	 * @param key
-	 * @return
+	 * @param transfers transfers
+	 * @param key key
+	 * @return TransfersResult
 	 */
 	public static TransfersResult mmpaymkttransfersPromotionTransfers(Transfers transfers,String key){
 		Map<String,String> map = MapUtil.objectToMap( transfers);
@@ -412,9 +433,9 @@ public class PayMchAPI extends BaseAPI{
 
 	/**
 	 * 委托代扣-扣款
-	 * @param pappayapply
-	 * @param key
-	 * @return
+	 * @param pappayapply pappayapply
+	 * @param key key
+	 * @return PappayapplyResult
 	 */
 	public static PappayapplyResult payPappayapply(Pappayapply pappayapply,String key){
 		Map<String,String> map = MapUtil.objectToMap( pappayapply);
@@ -431,9 +452,9 @@ public class PayMchAPI extends BaseAPI{
 
 	/**
 	 * 委托代扣-订单查询
-	 * @param mchOrderquery
-	 * @param key
-	 * @return
+	 * @param mchOrderquery mchOrderquery
+	 * @param key key
+	 * @return MchOrderInfoResult
 	 */
 	public static MchOrderInfoResult payPaporderquery(MchOrderquery mchOrderquery,String key){
 		Map<String,String> map = MapUtil.objectToMap(mchOrderquery);
@@ -450,9 +471,9 @@ public class PayMchAPI extends BaseAPI{
 
 	/**
 	 * 委托代扣-查询签约关系
-	 * @param papayQuerycontract
-	 * @param key
-	 * @return
+	 * @param papayQuerycontract papayQuerycontract
+	 * @param key key
+	 * @return PapayQuerycontractResult
 	 */
 	public static PapayQuerycontractResult papayQuerycontract(PapayQuerycontract papayQuerycontract,String key){
 		Map<String,String> map = MapUtil.objectToMap(papayQuerycontract);
@@ -469,9 +490,9 @@ public class PayMchAPI extends BaseAPI{
 
 	/**
 	 * 委托代扣-解约
-	 * @param papayDeletecontract
-	 * @param key
-	 * @return
+	 * @param papayDeletecontract papayDeletecontract
+	 * @param key key
+	 * @return PapayDeletecontractResult
 	 */
 	public static PapayDeletecontractResult papayDeletecontract(PapayDeletecontract papayDeletecontract,String key){
 		Map<String,String> map = MapUtil.objectToMap(papayDeletecontract);
@@ -488,9 +509,9 @@ public class PayMchAPI extends BaseAPI{
 
 	/**
 	 * 委托代扣-对账单查询
-	 * @param papayContractbill
-	 * @param key
-	 * @return
+	 * @param papayContractbill papayContractbill
+	 * @param key key
+	 * @return PapayContractbillResult
 	 */
 	public static PapayContractbillResult papayContractbill(PapayContractbill papayContractbill,String key){
 		Map<String,String> map = MapUtil.objectToMap(papayContractbill);

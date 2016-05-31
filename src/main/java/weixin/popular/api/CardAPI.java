@@ -2,7 +2,7 @@ package weixin.popular.api;
 
 /**
  * 微信卡券
- * @author
+ * @author nobody
  *
  */
 public class CardAPI extends BaseAPI{

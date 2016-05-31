@@ -1,5 +1,7 @@
 package weixin.popular.bean.message;
 
+import java.util.List;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -138,7 +140,119 @@ public class EventMessage {
 	private Integer errorCount;//发送失败的粉丝数
 	
 	//群发消息通知------------------------------------ END
+	
+	
+	
+	
+	
+	
+	//微信认证事件推送-------------------------------- START
+	
+	@XmlElement(name="ExpiredTime")
+	private Integer expiredTime;   //有效期 (整形)，指的是时间戳
+	
+	@XmlElement(name="FailTime")
+	private Integer failTime;   //失败发生时间 (整形)，时间戳
+	
+	@XmlElement(name="FailReason")
+	private String failReason;   //认证失败的原因
+	
+	//微信认证事件推送-------------------------------- END
+	
+	
+	
+	
+	//微信门店审核事件推送-------------------------------- START
+	
+	@XmlElement(name="UniqId")
+	private String uniqId;   //商户自己内部ID，即字段中的sid
+	
+	@XmlElement(name="PoiId")
+	private String poiId;   //微信的门店ID，微信内门店唯一标示ID
+	
+	@XmlElement(name="Result")
+	private String result;   //审核结果，成功succ 或失败fail
+	
+	@XmlElement(name="Msg")
+	private String msg;   //成功的通知信息，或审核失败的驳回理由	
+	
+	//微信门店审核事件推送-------------------------------- END
+	
+	
+	
+	//摇一摇周边事件通知-------------------------------- START
+	@XmlElement(name="ChosenBeacon")
+	private ChosenBeacon chosenBeacon;   //审核结果，成功succ 或失败fail
+	
+	@XmlElement(name="AroundBeacons")
+	private List<AroundBeacon> aroundBeacons;   //审核结果，成功succ 或失败fail
+	
+	//摇一摇 周边事件通知-------------------------------- END
+	
+	
+	//摇一摇 红包绑定用户事件通知-------------------------------- START
+	@XmlElement(name="LotteryId")
+	private String lotteryId;
+	
+	@XmlElement(name="Money")
+	private Integer money;
+	
+	@XmlElement(name="BindTime")
+	private Integer bindTime;
+	
+	//摇一摇 红包绑定用户事件通知-------------------------------- END
+	
+	
+	//WIFI连网后下发消息-------------------------------- START
+	@XmlElement(name="ConnectTime")
+	private Integer connectTime;		//连网时间
+	
+	@XmlElement(name="ExpireTime")
+	private Integer expireTime;			//系统保留字段，固定值
+	
+	@XmlElement(name="VendorId")
+	private String vendorId;			//系统保留字段，固定值
+	
+	@XmlElement(name="ShopId")
+	private String shopId;				//门店ID，即shop_id
+	
+	@XmlElement(name="DeviceNo")
+	private String deviceNo;			//连网的设备无线mac地址，对应bssid
+	
+	//WIFI连网后下发消息-------------------------------- END
 
+	
+	//扫一扫事件推送-------------------------------- START
+	@XmlElement(name="KeyStandard")
+	private String keyStandard;		//商品编码标准
+	
+	@XmlElement(name="KeyStr")
+	private String keyStr;			//商品编码内容
+	
+	@XmlElement(name="Country")
+	private String country;			//用户在微信内设置的国家
+	
+	@XmlElement(name="Province")
+	private String province;		//用户在微信内设置的省份
+	
+	@XmlElement(name="City")
+	private String city;			//用户在微信内设置的城市
+	
+	@XmlElement(name="Sex")
+	private Integer sex;			//用户的性别，1为男性，2为女性，0代表未知
+	
+	@XmlElement(name="Scene")
+	private Integer scene;			//打开商品主页的场景，1为扫码，2为其他打开场景（如会话、收藏或朋友圈）
+	
+	@XmlElement(name="RegionCode")
+	private String regionCode;		//用户的实时地理位置信息（目前只精确到省一级），可在国家统计局网站查到对应明细：http://www.stats.gov.cn/tjsj/tjbz/xzqhdm/201504/t20150415_712722.html
+	
+	@XmlElement(name="ReasonMsg")
+	private Integer reasonMsg;		//审核未通过的原因。
+	
+	//扫一扫事件推送-------------------------------- END
+	
+	
 	public String getToUserName() {
 		return toUserName;
 	}
@@ -371,4 +485,212 @@ public class EventMessage {
 		this.errorCount = errorCount;
 	}
 
+	public Integer getExpiredTime() {
+		return expiredTime;
+	}
+
+	public void setExpiredTime(Integer expiredTime) {
+		this.expiredTime = expiredTime;
+	}
+
+	public Integer getFailTime() {
+		return failTime;
+	}
+
+	public void setFailTime(Integer failTime) {
+		this.failTime = failTime;
+	}
+
+	public String getFailReason() {
+		return failReason;
+	}
+
+	public void setFailReason(String failReason) {
+		this.failReason = failReason;
+	}
+
+	public String getUniqId() {
+		return uniqId;
+	}
+
+	public void setUniqId(String uniqId) {
+		this.uniqId = uniqId;
+	}
+
+	public String getPoiId() {
+		return poiId;
+	}
+
+	public void setPoiId(String poiId) {
+		this.poiId = poiId;
+	}
+
+	public String getResult() {
+		return result;
+	}
+
+	public void setResult(String result) {
+		this.result = result;
+	}
+
+	public String getMsg() {
+		return msg;
+	}
+
+	public void setMsg(String msg) {
+		this.msg = msg;
+	}
+
+	public ChosenBeacon getChosenBeacon() {
+		return chosenBeacon;
+	}
+
+	public void setChosenBeacon(ChosenBeacon chosenBeacon) {
+		this.chosenBeacon = chosenBeacon;
+	}
+
+	public List<AroundBeacon> getAroundBeacons() {
+		return aroundBeacons;
+	}
+
+	public void setAroundBeacons(List<AroundBeacon> aroundBeacons) {
+		this.aroundBeacons = aroundBeacons;
+	}
+
+	public String getLotteryId() {
+		return lotteryId;
+	}
+
+	public void setLotteryId(String lotteryId) {
+		this.lotteryId = lotteryId;
+	}
+
+	public Integer getMoney() {
+		return money;
+	}
+
+	public void setMoney(Integer money) {
+		this.money = money;
+	}
+
+	public Integer getBindTime() {
+		return bindTime;
+	}
+
+	public void setBindTime(Integer bindTime) {
+		this.bindTime = bindTime;
+	}
+
+	public Integer getConnectTime() {
+		return connectTime;
+	}
+
+	public void setConnectTime(Integer connectTime) {
+		this.connectTime = connectTime;
+	}
+
+	public Integer getExpireTime() {
+		return expireTime;
+	}
+
+	public void setExpireTime(Integer expireTime) {
+		this.expireTime = expireTime;
+	}
+
+	public String getVendorId() {
+		return vendorId;
+	}
+
+	public void setVendorId(String vendorId) {
+		this.vendorId = vendorId;
+	}
+
+	public String getShopId() {
+		return shopId;
+	}
+
+	public void setShopId(String shopId) {
+		this.shopId = shopId;
+	}
+
+	public String getDeviceNo() {
+		return deviceNo;
+	}
+
+	public void setDeviceNo(String deviceNo) {
+		this.deviceNo = deviceNo;
+	}
+
+	public String getKeyStandard() {
+		return keyStandard;
+	}
+
+	public void setKeyStandard(String keyStandard) {
+		this.keyStandard = keyStandard;
+	}
+
+	public String getKeyStr() {
+		return keyStr;
+	}
+
+	public void setKeyStr(String keyStr) {
+		this.keyStr = keyStr;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public String getProvince() {
+		return province;
+	}
+
+	public void setProvince(String province) {
+		this.province = province;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public Integer getSex() {
+		return sex;
+	}
+
+	public void setSex(Integer sex) {
+		this.sex = sex;
+	}
+
+	public Integer getScene() {
+		return scene;
+	}
+
+	public void setScene(Integer scene) {
+		this.scene = scene;
+	}
+
+	public String getRegionCode() {
+		return regionCode;
+	}
+
+	public void setRegionCode(String regionCode) {
+		this.regionCode = regionCode;
+	}
+
+	public Integer getReasonMsg() {
+		return reasonMsg;
+	}
+
+	public void setReasonMsg(Integer reasonMsg) {
+		this.reasonMsg = reasonMsg;
+	}
+	
 }

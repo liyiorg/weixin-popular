@@ -15,8 +15,8 @@ public class TicketAPI extends BaseAPI{
 
 	/**
 	 * 获取 jsapi_ticket
-	 * @param access_token
-	 * @return
+	 * @param access_token access_token
+	 * @return Ticket
 	 */
 	public static Ticket ticketGetticket(String access_token){
 		HttpUriRequest httpUriRequest = RequestBuilder.post()

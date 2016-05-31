@@ -2,7 +2,7 @@ package weixin.popular.api;
 
 /**
  * 微信摇一摇周边
- * @author
+ * @author nobody
  *
  */
 public class ShakearoundAPI extends BaseAPI{

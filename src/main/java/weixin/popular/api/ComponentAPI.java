@@ -26,10 +26,10 @@ public class ComponentAPI extends BaseAPI{
 	
 	/**
 	 * 生成授权页 URL 
-	 * @param component_appid
-	 * @param pre_auth_code
-	 * @param redirect_uri
-	 * @return
+	 * @param component_appid 第三方平台ID
+	 * @param pre_auth_code 预授权码
+	 * @param redirect_uri 重定向URI
+	 * @return URL
 	 */
 	public static String componentloginpage(String component_appid,String pre_auth_code,String redirect_uri){
 		try {
@@ -50,7 +50,7 @@ public class ComponentAPI extends BaseAPI{
 	 * @param component_appid	公众号第三方平台appid
 	 * @param component_appsecret	公众号第三方平台appsecret
 	 * @param component_verify_ticket	微信后台推送的ticket，此ticket会定时推送，具体请见本页末尾的推送说明
-	 * @return
+	 * @return 公众号第三方平台access_token
 	 */
 	public static ComponentAccessToken api_component_token(String component_appid,String component_appsecret,String component_verify_ticket){
 		String postJsonData = String.format("{\"component_appid\":\"%1$s\" ,\"component_appsecret\": \"%2$s\",\"component_verify_ticket\": \"%3$s\"}",
@@ -68,9 +68,9 @@ public class ComponentAPI extends BaseAPI{
 
 	/**
 	 * 获取预授权码
-	 * @param component_access_token
+	 * @param component_access_token component_access_token
 	 * @param component_appid	公众号第三方平台appid
-	 * @return
+	 * @return 预授权码
 	 */
 	public static PreAuthCode api_create_preauthcode(String component_access_token,String component_appid){
 		String postJsonData = String.format("{\"component_appid\":\"%1$s\"}",
@@ -86,10 +86,10 @@ public class ComponentAPI extends BaseAPI{
 
 	/**
 	 * 使用授权码换取公众号的授权信息
-	 * @param component_access_token
+	 * @param component_access_token component_access_token
 	 * @param component_appid	公众号第三方平台appid
 	 * @param authorization_code 授权code,会在授权成功时返回给第三方平台，详见第三方平台授权流程说明
-	 * @return
+	 * @return 公众号的授权信息
 	 */
 	public static ApiQueryAuthResult api_query_auth(String component_access_token,String component_appid,String authorization_code){
 		String postJsonData = String.format("{\"component_appid\":\"%1$s\",\"authorization_code\":\"%2$s\"}",
@@ -106,11 +106,11 @@ public class ComponentAPI extends BaseAPI{
 
 	/**
 	 * 获取（刷新）授权公众号的令牌
-	 * @param component_access_token
+	 * @param component_access_token component_access_token
 	 * @param component_appid	公众号第三方平台appid
 	 * @param authorizer_appid	授权方appid
 	 * @param authorizer_refresh_token	授权方的刷新令牌，刷新令牌主要用于公众号第三方平台获取和刷新已授权用户的access_token，只会在授权时刻提供，请妥善保存。 一旦丢失，只能让用户重新授权，才能再次拿到新的刷新令牌
-	 * @return
+	 * @return 授权公众号的令牌
 	 */
 	public static AuthorizerAccessToken api_authorizer_token(String component_access_token,
 											String component_appid,
@@ -130,10 +130,10 @@ public class ComponentAPI extends BaseAPI{
 
 	/**
 	 * 获取授权方的账户信息
-	 * @param component_access_token
+	 * @param component_access_token component_access_token
 	 * @param component_appid	服务appid
 	 * @param authorizer_appid	授权方appid
-	 * @return
+	 * @return 授权方的账户信息
 	 */
 	public static ApiGetAuthorizerInfoResult api_get_authorizer_info(String component_access_token,
 			String component_appid,
@@ -151,11 +151,11 @@ public class ComponentAPI extends BaseAPI{
 
 	/**
 	 * 获取授权方的选项设置信息
-	 * @param component_access_token
+	 * @param component_access_token component_access_token
 	 * @param component_appid 公众号第三方平台appid
 	 * @param authorizer_appid 公众号第三方平台appid
 	 * @param option_name 选项名称
-	 * @return
+	 * @return AuthorizerOption
 	 */
 	public static AuthorizerOption api_get_authorizer_option(String component_access_token,
 			String component_appid,
@@ -174,12 +174,12 @@ public class ComponentAPI extends BaseAPI{
 
 	/**
 	 * 设置授权方的选项信息
-	 * @param component_access_token
+	 * @param component_access_token component_access_token
 	 * @param component_appid 公众号第三方平台appid
 	 * @param authorizer_appid 授权公众号appid
 	 * @param option_name 选项名称
 	 * @param option_value 设置的选项值
-	 * @return
+	 * @return BaseResult
 	 */
 	public static BaseResult api_set_authorizer_option(String component_access_token,
 			String component_appid,

@@ -26,9 +26,9 @@ public class PayAPI extends BaseAPI{
 
 	/**
 	 * 发货通知
-	 * @param access_token
-	 * @param delivernotifyJson
-	 * @return
+	 * @param access_token access_token
+	 * @param delivernotifyJson delivernotifyJson
+	 * @return BaseResult
 	 */
 	private static BaseResult payDelivernotify(String access_token,String delivernotifyJson){
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
@@ -44,10 +44,10 @@ public class PayAPI extends BaseAPI{
 
 	/**
 	 * 标记客户的投诉处理状态
-	 * @param access_token
-	 * @param openid
-	 * @param feedbackid
-	 * @return
+	 * @param access_token access_token
+	 * @param openid openid
+	 * @param feedbackid feedbackid
+	 * @return BaseResult
 	 */
 	public static BaseResult payfeedbackUpdate(String access_token,String openid,String feedbackid){
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
@@ -62,9 +62,9 @@ public class PayAPI extends BaseAPI{
 
 	/**
 	 * 订单查询
-	 * @param access_token
-	 * @param orderqueryJson
-	 * @return
+	 * @param access_token access_token
+	 * @param orderqueryJson orderqueryJson
+	 * @return OrderInfo
 	 */
 	private static OrderInfo payOrderquery(String access_token,String orderqueryJson){
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
@@ -79,10 +79,10 @@ public class PayAPI extends BaseAPI{
 
 	/**
 	 * 发货通知
-	 * @param access_token
-	 * @param delivernotify
-	 * @param paySignKey
-	 * @return
+	 * @param access_token access_token
+	 * @param delivernotify delivernotify
+	 * @param paySignKey paySignKey
+	 * @return BaseResult
 	 */
 	public static BaseResult payDelivernotify(String access_token,Delivernotify delivernotify,String paySignKey){
 		Map<String, String> map = MapUtil.objectToMap(delivernotify);
@@ -95,10 +95,10 @@ public class PayAPI extends BaseAPI{
 
 	/**
 	 * 订单查询
-	 * @param access_token
-	 * @param orderquery
-	 * @param paySignKey
-	 * @return
+	 * @param access_token access_token
+	 * @param orderquery orderquery
+	 * @param paySignKey paySignKey
+	 * @return OrderInfo
 	 */
 	public static OrderInfo payOrderquery(String access_token,Orderquery orderquery,String paySignKey){
 		//builder package  start

@@ -12,23 +12,23 @@ public interface ExpireKey {
 
 	/**
 	 * 添加key
-	 * @param key
+	 * @param key key
 	 * @param expire 有效时间（秒）
-	 * @return
+	 * @return boolean
 	 */
 	public boolean add(String key,int expire);
 
 	/**
 	 * 添加key
-	 * @param key
-	 * @return
+	 * @param key key
+	 * @return boolean
 	 */
 	public boolean add(String key);
 
 	/**
 	 * 判断key是否存在
-	 * @param key
-	 * @return
+	 * @param key key
+	 * @return boolean
 	 */
 	public boolean exists(String key);
 

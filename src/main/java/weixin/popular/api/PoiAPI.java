@@ -7,6 +7,7 @@ import org.apache.http.client.methods.RequestBuilder;
 import org.apache.http.entity.StringEntity;
 
 import weixin.popular.bean.BaseResult;
+import weixin.popular.bean.poi.CategoryListResult;
 import weixin.popular.bean.poi.Poi;
 import weixin.popular.bean.poi.PoiListResult;
 import weixin.popular.bean.poi.PoiResult;
@@ -15,6 +16,7 @@ import weixin.popular.util.JsonUtil;
 
 /**
  * 微信门店
+ * 
  * @author Moyq5
  *
  */
@@ -48,8 +50,7 @@ public class PoiAPI extends BaseAPI{
 	 * @return
 	 */
 	public static BaseResult addpoi(String access_token,Poi poi){
-		String str = JsonUtil.toJSONString(poi);
-		return addpoi(access_token,str);
+		return addpoi(access_token,JsonUtil.toJSONString(poi));
 	}
 
 	/**
@@ -71,7 +72,7 @@ public class PoiAPI extends BaseAPI{
 	/**
 	 * 查询门店信息
 	 * @param access_token
-	 * @param poi_id
+	 * @param poi_id 门店ID
 	 * @return
 	 */
 	public static PoiResult getpoiByPoiId(String access_token, String poi_id){
@@ -103,5 +104,70 @@ public class PoiAPI extends BaseAPI{
 	 */
 	public static PoiListResult getpoilist(String access_token, int begin, int limit){
 		return getpoilist(access_token,String.format("{\"begin\":%d, \"limit\": %d}", begin, limit));
+	}
+	
+	/**
+	 * 修改门店服务信息
+	 * @param access_token
+	 * @param requestJson post完整的json
+	 * @return
+	 */
+	public static BaseResult updatepoi(String access_token,String requestJson){
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+										.setHeader(jsonHeader)
+										.setUri(BASE_URI+"/cgi-bin/poi/updatepoi")
+										.addParameter(getATPN(), access_token)
+										.setEntity(new StringEntity(requestJson,Charset.forName("utf-8")))
+										.build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest,BaseResult.class);
+	}
+	
+	/**
+	 * 修改门店服务信息
+	 * @param access_token
+	 * @param poi
+	 * @return
+	 */
+	public static BaseResult updatepoi(String access_token,Poi poi){
+		return updatepoi(access_token, JsonUtil.toJSONString(poi));
+	}
+	
+	/**
+	 * 删除门店
+	 * @param access_token
+	 * @param requestJson post完整的json
+	 * @return
+	 */
+	public static BaseResult delpoi(String access_token,String requestJson){
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+										.setHeader(jsonHeader)
+										.setUri(BASE_URI+"/cgi-bin/poi/delpoi")
+										.addParameter(getATPN(), access_token)
+										.setEntity(new StringEntity(requestJson,Charset.forName("utf-8")))
+										.build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest,BaseResult.class);
+	}
+	
+	/**
+	 * 删除门店
+	 * @param access_token
+	 * @param poi_id 门店ID
+	 * @return
+	 */
+	public static BaseResult delpoiByPoiId(String access_token, String poi_id){
+		return delpoi(access_token,String.format("{\"poi_id\": \"%s\"}", poi_id));
+	}
+	
+	/**
+	 * 获取门店类目表
+	 * @param access_token
+	 * @return
+	 */
+	public static CategoryListResult getwxcategory(String access_token){
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+										.setUri(BASE_URI+"/cgi-bin/poi/getwxcategory")
+										.addParameter(getATPN(), access_token)
+										.build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest,CategoryListResult.class);
 	}
 }

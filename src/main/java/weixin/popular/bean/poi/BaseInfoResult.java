@@ -9,8 +9,6 @@ import com.alibaba.fastjson.annotation.JSONField;
  *
  */
 public class BaseInfoResult extends BaseInfo {
-	@JSONField(name = "poi_id")
-	private String poiId;
 	/**
 	 * 门店是否可用状态。1 表示系统错误、2 表示审核中、3 审核通过、4 审核驳回。当该字段为1、2、4 状态时，poi_id 为空
 	 */
@@ -21,14 +19,6 @@ public class BaseInfoResult extends BaseInfo {
 	 */
 	@JSONField(name = "update_status")
 	private Integer updateStatus;
-
-	public String getPoiId() {
-		return poiId;
-	}
-
-	public void setPoiId(String poiId) {
-		this.poiId = poiId;
-	}
 
 	public Integer getAvailableState() {
 		return availableState;

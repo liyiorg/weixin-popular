@@ -10,6 +10,11 @@ import com.alibaba.fastjson.annotation.JSONField;
  */
 public class BaseInfo {
 	/**
+	 * 门店ID，修改服务信息是需要指定
+	 */
+	@JSONField(name = "poi_id")
+	private String poiId;
+	/**
 	 * 商户自己的id，用于后续审核通过收到poi_id 的通知时，做对应关系。请商户自己保证唯一识别性<br>
 	 * 必填：否
 	 */
@@ -107,148 +112,119 @@ public class BaseInfo {
 	 */
 	@JSONField(name = "avg_price")
 	private Float avgPrice;
-
+	public String getPoiId() {
+		return poiId;
+	}
+	public void setPoiId(String poiId) {
+		this.poiId = poiId;
+	}
 	public String getSid() {
 		return sid;
 	}
-
 	public void setSid(String sid) {
 		this.sid = sid;
 	}
-
 	public String getBusinessName() {
 		return businessName;
 	}
-
 	public void setBusinessName(String businessName) {
 		this.businessName = businessName;
 	}
-
 	public String getBranchName() {
 		return branchName;
 	}
-
 	public void setBranchName(String branchName) {
 		this.branchName = branchName;
 	}
-
 	public String getProvince() {
 		return province;
 	}
-
 	public void setProvince(String province) {
 		this.province = province;
 	}
-
 	public String getCity() {
 		return city;
 	}
-
 	public void setCity(String city) {
 		this.city = city;
 	}
-
 	public String getDistrict() {
 		return district;
 	}
-
 	public void setDistrict(String district) {
 		this.district = district;
 	}
-
 	public String getAddress() {
 		return address;
 	}
-
 	public void setAddress(String address) {
 		this.address = address;
 	}
-
 	public String getTelephone() {
 		return telephone;
 	}
-
 	public void setTelephone(String telephone) {
 		this.telephone = telephone;
 	}
-
 	public String[] getCategories() {
 		return categories;
 	}
-
 	public void setCategories(String[] categories) {
 		this.categories = categories;
 	}
-
 	public Integer getOffsetType() {
 		return offsetType;
 	}
-
 	public void setOffsetType(Integer offsetType) {
 		this.offsetType = offsetType;
 	}
-
 	public Double getLongitude() {
 		return longitude;
 	}
-
 	public void setLongitude(Double longitude) {
 		this.longitude = longitude;
 	}
-
 	public Double getLatitude() {
 		return latitude;
 	}
-
 	public void setLatitude(Double latitude) {
 		this.latitude = latitude;
 	}
-
 	public Photo[] getPhotoList() {
 		return photoList;
 	}
-
 	public void setPhotoList(Photo[] photoList) {
 		this.photoList = photoList;
 	}
-
 	public String getRecommend() {
 		return recommend;
 	}
-
 	public void setRecommend(String recommend) {
 		this.recommend = recommend;
 	}
-
 	public String getSpecial() {
 		return special;
 	}
-
 	public void setSpecial(String special) {
 		this.special = special;
 	}
-
 	public String getIntroduction() {
 		return introduction;
 	}
-
 	public void setIntroduction(String introduction) {
 		this.introduction = introduction;
 	}
-
 	public String getOpenTime() {
 		return openTime;
 	}
-
 	public void setOpenTime(String openTime) {
 		this.openTime = openTime;
 	}
-
 	public Float getAvgPrice() {
 		return avgPrice;
 	}
-
 	public void setAvgPrice(Float avgPrice) {
 		this.avgPrice = avgPrice;
 	}
+
 }

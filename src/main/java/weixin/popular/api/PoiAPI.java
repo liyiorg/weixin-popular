@@ -23,11 +23,6 @@ import weixin.popular.util.JsonUtil;
 public class PoiAPI extends BaseAPI{
 
 	/**
-	 * Moyq5　进行中...github.comgithub.com
-	 * 
-	 */
-	
-	/**
 	 * 创建门店
 	 * @param access_token
 	 * @param requestJson post完整的json

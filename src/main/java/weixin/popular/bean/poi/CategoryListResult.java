@@ -1,7 +1,5 @@
 package weixin.popular.bean.poi;
 
-import weixin.popular.bean.BaseResult;
-
 import com.alibaba.fastjson.annotation.JSONField;
 
 /**

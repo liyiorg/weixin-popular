@@ -5,7 +5,6 @@ import java.util.Random;
 import org.junit.Test;
 
 import weixin.popular.api.PoiAPI;
-import weixin.popular.api.TokenAPI;
 import weixin.popular.bean.BaseResult;
 import weixin.popular.bean.poi.BaseInfo;
 import weixin.popular.bean.poi.Business;
@@ -13,17 +12,8 @@ import weixin.popular.bean.poi.CategoryListResult;
 import weixin.popular.bean.poi.Poi;
 import weixin.popular.bean.poi.PoiListResult;
 import weixin.popular.bean.poi.PoiResult;
-import weixin.popular.bean.token.Token;
 
-public class PoiTest {
-
-	private static final String accessToken = "HHlwv2R0rxruWcsWjdHA2q7_TCwUIC1ef5vYraIAa-35_yLDaR1YCZWIBz2vKXJ9KddwSgJ_ktwVBf9WpkujT6RR3TlTm3enV52Sw327hgsS_iGxcjl3jtMZKwvVJPg_FFZdAIAZZT";
-	
-	@Test
-	public void getToken() {
-		Token token = TokenAPI.token("XXXXX", "XXXXX");
-		System.out.println(token.getAccess_token());
-	}
+public class PoiTest extends TokenTest {
 	
 	/**
 	 * 创建门店

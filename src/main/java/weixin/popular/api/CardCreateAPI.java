@@ -7,14 +7,14 @@ import org.apache.http.client.methods.RequestBuilder;
 import org.apache.http.entity.StringEntity;
 
 import weixin.popular.bean.BaseResult;
-import weixin.popular.bean.card.Card;
-import weixin.popular.bean.card.CardCash;
-import weixin.popular.bean.card.CardDiscount;
-import weixin.popular.bean.card.CardGeneralCoupon;
-import weixin.popular.bean.card.CardGift;
-import weixin.popular.bean.card.CardGroupon;
-import weixin.popular.bean.card.CardResult;
-import weixin.popular.bean.card.CardSet;
+import weixin.popular.bean.card.create.Card;
+import weixin.popular.bean.card.create.CardCash;
+import weixin.popular.bean.card.create.CardDiscount;
+import weixin.popular.bean.card.create.CardGeneralCoupon;
+import weixin.popular.bean.card.create.CardGift;
+import weixin.popular.bean.card.create.CardGroupon;
+import weixin.popular.bean.card.create.CardResult;
+import weixin.popular.bean.card.create.CardSet;
 import weixin.popular.client.LocalHttpClient;
 import weixin.popular.util.JsonUtil;
 

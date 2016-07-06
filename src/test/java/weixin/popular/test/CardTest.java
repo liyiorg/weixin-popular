@@ -8,21 +8,47 @@ import org.junit.Test;
 
 import weixin.popular.api.CardAPI;
 import weixin.popular.bean.BaseResult;
-import weixin.popular.bean.card.AbstractInfo;
-import weixin.popular.bean.card.AdvancedInfo;
-import weixin.popular.bean.card.BaseInfo;
-import weixin.popular.bean.card.CardCash;
-import weixin.popular.bean.card.CardResult;
-import weixin.popular.bean.card.CardSet;
-import weixin.popular.bean.card.Cash;
-import weixin.popular.bean.card.DateInfo;
-import weixin.popular.bean.card.Sku;
-import weixin.popular.bean.card.TextImage;
-import weixin.popular.bean.card.TimeLimit;
-import weixin.popular.bean.card.UseCondition;
+import weixin.popular.bean.card.CardType;
+import weixin.popular.bean.card.consume.CodeConsume;
+import weixin.popular.bean.card.consume.CodeConsumeResult;
+import weixin.popular.bean.card.consume.CodeDecrypt;
+import weixin.popular.bean.card.consume.CodeDecryptResult;
+import weixin.popular.bean.card.consume.CodeGet;
+import weixin.popular.bean.card.consume.CodeGetResult;
+import weixin.popular.bean.card.create.AbstractInfo;
+import weixin.popular.bean.card.create.AdvancedInfo;
+import weixin.popular.bean.card.create.BaseInfo;
+import weixin.popular.bean.card.create.CardCash;
+import weixin.popular.bean.card.create.CardResult;
+import weixin.popular.bean.card.create.CardSet;
+import weixin.popular.bean.card.create.Cash;
+import weixin.popular.bean.card.create.DateInfo;
+import weixin.popular.bean.card.create.Sku;
+import weixin.popular.bean.card.create.TextImage;
+import weixin.popular.bean.card.create.TimeLimit;
+import weixin.popular.bean.card.create.UseCondition;
+import weixin.popular.bean.card.datacube.BizuinCube;
+import weixin.popular.bean.card.datacube.BizuinResult;
+import weixin.popular.bean.card.datacube.FreeCardCube;
+import weixin.popular.bean.card.datacube.FreeCardResult;
+import weixin.popular.bean.card.datacube.MemberCardCube;
+import weixin.popular.bean.card.datacube.MemberCardResult;
+import weixin.popular.bean.card.get.CashResult;
+import weixin.popular.bean.card.get.DiscountResult;
+import weixin.popular.bean.card.get.GeneralCouponResult;
+import weixin.popular.bean.card.get.GrouponResult;
+import weixin.popular.bean.card.manage.BatchGet;
+import weixin.popular.bean.card.manage.BatchGetResult;
+import weixin.popular.bean.card.manage.CodeUnavailable;
+import weixin.popular.bean.card.manage.CodeUpdate;
+import weixin.popular.bean.card.manage.ModifyStock;
+import weixin.popular.bean.card.manage.UserGetCardList;
+import weixin.popular.bean.card.manage.UserGetCardListResult;
 import weixin.popular.bean.card.putin.LandingCard;
 import weixin.popular.bean.card.putin.LandingPage;
 import weixin.popular.bean.card.putin.LandingResult;
+import weixin.popular.bean.card.putin.Mpnews;
+import weixin.popular.bean.card.putin.MpnewsResult;
 import weixin.popular.bean.card.putin.QrAction;
 import weixin.popular.bean.card.putin.QrActionInfo;
 import weixin.popular.bean.card.putin.QrCardItem;
@@ -31,6 +57,7 @@ import weixin.popular.bean.card.putin.QrMultipleActionInfo;
 import weixin.popular.bean.card.putin.QrMultipleCard;
 import weixin.popular.bean.card.putin.QrMultipleCardItem;
 import weixin.popular.bean.card.putin.QrResult;
+import weixin.popular.bean.card.putin.TestWhiteList;
 
 /**
  * 卡券测试类
@@ -241,6 +268,209 @@ public class CardTest extends TokenTest {
 		cardList.add(card2);
 		
 		LandingResult result = CardAPI.PutInAPI.landingpageCreate(accessToken, landingPage);
+		System.out.print(result.getErrmsg());
+	}
+	
+	/**
+	 * 获取图文消息群发卡券的content
+	 */
+	@Test
+	public void mpnewsGethtml() {
+		Mpnews mpnews = new Mpnews();
+		mpnews.setCardId("pkMP8vwCai4ipiriDAf6_XyDnGyg");
+		MpnewsResult result = CardAPI.PutInAPI.mpnewsGethtml(accessToken, mpnews);
+		System.out.print(result.getErrmsg());
+	}
+	
+	/**
+	 * 设置测试白名单
+	 */
+	@Test
+	public void testwhitelistSet() {
+		TestWhiteList whiteList = new TestWhiteList();
+		whiteList.setOpenid(null);
+		whiteList.setUsername(new String[]{"mo_yq5"});
+		BaseResult result = CardAPI.PutInAPI.testwhitelistSet(accessToken, whiteList);
+		System.out.print(result.getErrmsg());
+	}
+	
+	/**
+	 * 核销卡券－查询Code接口
+	 */
+	@Test
+	public void codeGet() {
+		CodeGet codeGet = new CodeGet();
+		codeGet.setCardId("pkMP8vwCai4ipiriDAf6_XyDnGyg");
+		codeGet.setCheckConsume(true);
+		codeGet.setCode("12343");
+		CodeGetResult result = CardAPI.ConsumeAPI.codeGet(accessToken, codeGet);
+		System.out.print(result.getErrmsg());
+	}
+	
+	/**
+	 * 核销卡券－核销Code接口
+	 */
+	@Test
+	public void codeConsume() {
+		CodeConsume codeConsume = new CodeConsume();
+		codeConsume.setCardId("pkMP8vwCai4ipiriDAf6_XyDnGyg");
+		codeConsume.setCode("12343");
+		CodeConsumeResult result = CardAPI.ConsumeAPI.codeConsume(accessToken, codeConsume);
+		System.out.print(result.getErrmsg());
+	}
+	
+	/**
+	 * 核销卡券－Code解码接口
+	 */
+	@Test
+	public void codeDecrypt() {
+		CodeDecrypt codeDecrypt = new CodeDecrypt();
+		codeDecrypt.setEncryptCode("XXIzTtMqCxwOaawoE91+VJdsFmv7b8g0VZIZkqf4GWA60Fzpc8ksZ/5ZZ0DVkXdE");
+		CodeDecryptResult result = CardAPI.ConsumeAPI.codeDecrypt(accessToken, codeDecrypt);
+		System.out.print(result.getErrmsg());
+	}
+	
+	/**
+	 * 管理卡券－获取用户已领取卡券
+	 */
+	@Test
+	public void userGetcardlist() {
+		UserGetCardList userGetCardList = new UserGetCardList();
+		userGetCardList.setCardId(null);
+		userGetCardList.setOpenid("okMP8v297b2i8Q5I7_qcwrvizDPM");
+		UserGetCardListResult result = CardAPI.userGetcardlist(accessToken, userGetCardList);
+		System.out.print(result.getErrmsg());
+	}
+	
+	/**
+	 * 查看卡券详情
+	 */
+	@Test
+	public void get() {
+		
+		weixin.popular.bean.card.get.CardResult<?> result = CardAPI.getByCardId(accessToken, "pkMP8vwCai4ipiriDAf6_XyDnGyg");
+		System.out.print(result.getErrmsg());
+		if (!result.isSuccess()) {
+			return;
+		}
+		CardType cardType = CardType.valueOf(result.getCard().getCardType().toUpperCase());
+		switch (cardType) {
+		 case CASH:
+			 CashResult cashResult = (CashResult)result;
+			 break;
+		 case DISCOUNT:
+			 DiscountResult discountResult = (DiscountResult)result;
+			 break;
+		 case GENERAL_COUPON:
+			 GeneralCouponResult couponResult = (GeneralCouponResult)result;
+			 break;
+		 case GROUPON:
+			 GrouponResult grouponResult = (GrouponResult)result;
+			 break;
+			 // ...其它卡券类型
+		default:
+			break;
+		}
+		
+	}
+	
+	/**
+	 * 批量查询卡券列表
+	 */
+	@Test
+	public void batchget() {
+		BatchGet batchget = new BatchGet();
+		batchget.setCount(10);
+		batchget.setOffset(0);
+		batchget.setStatusList(null);
+		BatchGetResult result = CardAPI.batchget(accessToken, batchget);
+		System.out.print(result.getErrmsg());
+	}
+	
+	/**
+	 * 修改库存
+	 */
+	@Test
+	public void modifystock() {
+		ModifyStock modifystock = new ModifyStock();
+		modifystock.setCardId("pkMP8vwCai4ipiriDAf6_XyDnGyg");
+		modifystock.setIncreaseStockValue(10);
+		modifystock.setReduceStockValue(5);
+		BaseResult result = CardAPI.modifystock(accessToken, modifystock);
+		System.out.print(result.getErrmsg());
+	}
+	
+	/**
+	 * 更改Code
+	 */
+	@Test
+	public void codeUpdate() {
+		CodeUpdate codeUpdate = new CodeUpdate();
+		codeUpdate.setCardId("pkMP8vwCai4ipiriDAf6_XyDnGyg");
+		codeUpdate.setCode("123456");
+		codeUpdate.setNewCode("678901");
+		BaseResult result = CardAPI.codeUpdate(accessToken, codeUpdate);
+		System.out.print(result.getErrmsg());
+	}
+	
+	/**
+	 * 删除卡券
+	 */
+	@Test
+	public void delete() {
+		BaseResult result = CardAPI.deleteByCardId(accessToken, "pkMP8vzXtVHX2UYPh_DtRypc_hK0");
+		System.out.print(result.getErrmsg());
+	}
+	
+	/**
+	 * 设置卡券失效
+	 */
+	@Test
+	public void codeUnavailable() {
+		CodeUnavailable codeUnavailable = new CodeUnavailable();
+		codeUnavailable.setCardId("pFS7Fjg8kV1IdDz01r4SQwMkuCKc");
+		codeUnavailable.setCode("12312313");
+		BaseResult result = CardAPI.codeUnavailable(accessToken, codeUnavailable);
+		System.out.print(result.getErrmsg());
+	}
+	
+	/**
+	 * 拉取卡券概况数据 
+	 */
+	@Test
+	public void bizuinInfo() {
+		BizuinCube bizuinCube = new BizuinCube();
+		bizuinCube.setBeginDate("2016-05-01");
+		bizuinCube.setCondSource(1);
+		bizuinCube.setEndDate("2016-05-30");
+		BizuinResult result = CardAPI.DataCubeAPI.bizuinInfo(accessToken, bizuinCube);
+		System.out.print(result.getErrmsg());
+	}
+	
+	/**
+	 * 获取免费券数据
+	 */
+	@Test
+	public void freeCardCube() {
+		FreeCardCube freeCardCube = new FreeCardCube();
+		freeCardCube.setBeginDate("2016-05-01");
+		freeCardCube.setCardId("pFS7Fjg8kV1IdDz01r4SQwMkuCKc");
+		freeCardCube.setCondSource(1);
+		freeCardCube.setEndDate("2016-05-30");
+		FreeCardResult result = CardAPI.DataCubeAPI.freeCardInfo(accessToken, freeCardCube);
+		System.out.print(result.getErrmsg());
+	}
+	
+	/**
+	 * 拉取会员卡数据
+	 */
+	@Test
+	public void memberCardInfo() {
+		MemberCardCube memberCardCube = new MemberCardCube();
+		memberCardCube.setBeginDate("2016-05-01");
+		memberCardCube.setCondSource(1);
+		memberCardCube.setEndDate("2016-05-30");
+		MemberCardResult result = CardAPI.DataCubeAPI.memberCardInfo(accessToken, memberCardCube);
 		System.out.print(result.getErrmsg());
 	}
 }

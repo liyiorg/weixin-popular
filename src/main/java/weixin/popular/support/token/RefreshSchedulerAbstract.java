@@ -20,10 +20,21 @@ public abstract class RefreshSchedulerAbstract<T extends RefreshInfo, E extends 
 	private int scheduleDelay = 60;
 
 	private ScheduledExecutorService service;
+	private Runnable command;
 
 	public RefreshSchedulerAbstract() {
-		create();
-		startup();
+		command = new RefreshRunnable<T, E>(this);
+		service = Executors.newSingleThreadScheduledExecutor(new ThreadFactory() {
+
+					@Override
+					public Thread newThread(Runnable r) {
+						// 设置守护线程
+						Thread thread = Executors.defaultThreadFactory().newThread(r);
+						thread.setDaemon(true);
+						return thread;
+					}
+				});
+		service.scheduleWithFixedDelay(command, 0, scheduleDelay, TimeUnit.SECONDS);
 	}
 
 	/**
@@ -44,40 +55,8 @@ public abstract class RefreshSchedulerAbstract<T extends RefreshInfo, E extends 
 
 	@Override
 	public void execute() {
-		restart();
+		service.execute(command);
 	}
-
-	/**
-	 * 创建守护线程
-	 */
-	private void create() {
-		service = Executors.newSingleThreadScheduledExecutor(new ThreadFactory() {
-
-					@Override
-					public Thread newThread(Runnable r) {
-						// 设置守护线程
-						Thread thread = Executors.defaultThreadFactory().newThread(r);
-						thread.setDaemon(true);
-						return thread;
-					}
-				});
-
-	}
-	
-	private void restart() {
-		shutdown();
-		startup();
-	}
-
-	private void startup() {
-		service.scheduleWithFixedDelay(new RefreshRunnable<T, E>(this), 0,
-				scheduleDelay, TimeUnit.SECONDS);
-	}
-
-	private void shutdown() {
-		service.shutdown();
-	}
-
 
 	/**
 	 * 获取当前刷新线程启动频繁（单位：秒）

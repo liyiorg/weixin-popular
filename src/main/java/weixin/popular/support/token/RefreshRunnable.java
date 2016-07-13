@@ -45,7 +45,9 @@ public class RefreshRunnable<T extends RefreshInfo, E extends TokenInfo> impleme
 			T t = (T) tokenStorage.getOverdue();
 			if (null != t) {
 				E e = (E) invoker.execute(t);
-				tokenStorage.update(e);
+				if (null != e) {
+					tokenStorage.update(e);
+				}
 			}
 			nextTime = tokenStorage.nextTime();
 		} catch (Exception e) {

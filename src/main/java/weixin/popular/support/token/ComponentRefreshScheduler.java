@@ -41,6 +41,7 @@ public class ComponentRefreshScheduler extends RefreshSchedulerAbstract<Componen
 		if (!cat.isSuccess()) {
 			logger.warn("第三方平台应用授权令牌刷新失败：appId={},code={},msg={}", 
 					new Object[]{cri.getAppId(), cat.getErrcode(), cat.getErrmsg()});
+			return null;
 		}
 		
 		ComponentTokenInfo cti = new ComponentTokenInfo();

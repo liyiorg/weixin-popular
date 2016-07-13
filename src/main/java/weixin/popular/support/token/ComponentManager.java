@@ -11,12 +11,10 @@ public class ComponentManager extends ComponentTokenManager {
 
 	private static ComponentTokenManager manager;
 
-	private static TokenStorage tokenStorage = new DefaultComponentStorage();
-
 	static {
 		TokenContext context = new TokenContext();
 		context.setRefreshScheduler(ComponentRefreshScheduler.getInstance());
-		context.setTokenStorage(tokenStorage);
+		context.setTokenStorage(new DefaultComponentStorage());
 		context.setType(TokenType.COMPONENT);
 		manager = new ComponentManager(context);
 	}
@@ -40,7 +38,7 @@ public class ComponentManager extends ComponentTokenManager {
 	 * @return
 	 */
 	public static TokenStorage getTokenStorage() {
-		return tokenStorage;
+		return manager.context.getTokenStorage();
 	}
 
 	/**
@@ -49,7 +47,7 @@ public class ComponentManager extends ComponentTokenManager {
 	 * @param tokenStorage
 	 */
 	public static void setTokenStorage(TokenStorage tokenStorage) {
-		ComponentManager.tokenStorage = tokenStorage;
+		manager.context.setTokenStorage(tokenStorage);
 	}
 	
 }

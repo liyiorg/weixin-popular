@@ -42,6 +42,7 @@ public class AuthorizerRefreshScheduler extends RefreshSchedulerAbstract<Authori
 		if (!aat.isSuccess()) {
 			logger.warn("第三方平台公众号授权令牌刷新失败：componentAppId={},appId={},code={},msg={}", 
 					new Object[]{ari.getComponentAppId(), ari.getAuthorizerAppId(), aat.getErrcode(), aat.getErrmsg()});
+			return null;
 		}
 		
 		AuthorizerTokenInfo ati = new AuthorizerTokenInfo();

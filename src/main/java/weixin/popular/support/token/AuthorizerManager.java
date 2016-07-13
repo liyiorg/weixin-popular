@@ -11,12 +11,10 @@ public class AuthorizerManager extends AuthorizerTokenManager {
 
 	private static AuthorizerTokenManager manager;
 
-	private static TokenStorage tokenStorage = new DefaultAuthorizerStorage();
-
 	static {
 		TokenContext context = new TokenContext();
 		context.setRefreshScheduler(AuthorizerRefreshScheduler.getInstance());
-		context.setTokenStorage(tokenStorage);
+		context.setTokenStorage(new DefaultAuthorizerStorage());
 		context.setType(TokenType.AUTHORIZER);
 		manager = new AuthorizerManager(context);
 	}
@@ -40,7 +38,7 @@ public class AuthorizerManager extends AuthorizerTokenManager {
 	 * @return
 	 */
 	public static TokenStorage getTokenStorage() {
-		return tokenStorage;
+		return manager.context.getTokenStorage();
 	}
 
 	/**
@@ -49,7 +47,7 @@ public class AuthorizerManager extends AuthorizerTokenManager {
 	 * @param tokenStorage
 	 */
 	public static void setTokenStorage(TokenStorage tokenStorage) {
-		AuthorizerManager.tokenStorage = tokenStorage;
+		manager.context.setTokenStorage(tokenStorage);
 	}
 
 }

@@ -8,6 +8,7 @@ Changes in version 2.8.1-SNAPSHOT (2016-07-22)
 * 添加PoiAPI 门店接口
 * 添加CardAPI 卡卷接口
 * 更新 JsUtil.generateChooseWXPayJson 生成JS支付JSON数据
+* MaterialAPI issue #38 修复
 
 Changes in version 2.8.0 (2016-05-24)
 -------------------------------------

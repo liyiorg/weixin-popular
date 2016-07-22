@@ -1,11 +1,8 @@
 package weixin.popular.util;
 
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.UUID;
-
-import weixin.popular.bean.pay.PayPackage;
 
 public class JsUtil {
 	
@@ -124,29 +121,17 @@ public class JsUtil {
 
 	/**
 	 * 生成微信支付JSON
-	 * @param payPackage payPackage
-	 * @param appid appid
-	 * @param paternerKey paternerKey
-	 * @param paySignkey paySignkey
+	 * @since 2.8.1
+	 * @param prepay_id	预支付订单号
+	 * @param appId appId
+	 * @param key 商户支付密钥
 	 * @return json
 	 */
-	public static String generateChooseWXPayJson(PayPackage payPackage,
-			String appid,
-			String paternerKey,
-			String paySignkey){
-		Map<String, String> mapP = MapUtil.objectToMap(payPackage);
-		String package_ = SignatureUtil.generatePackage(mapP, paternerKey);
-		Map<String, String> map = new LinkedHashMap<String, String>();
-		long timestamp = System.currentTimeMillis()/1000;
-		String noncestr = UUID.randomUUID().toString();
-		map.put("timestamp", timestamp+"");
-		map.put("noncestr",noncestr);
-		map.put("package",package_);
-		map.put("appid",appid);
-		String paySign = SignatureUtil.generatePaySign(map,paySignkey);
-		map.put("paySign", paySign);
-		map.remove("appid");
-		return JsonUtil.toJSONString(map);
+	public static String generateChooseWXPayJson(String prepay_id,String appId,String key){
+		String json = PayUtil.generateMchPayJsRequestJson(prepay_id, appId, key);
+		json = json.replaceAll("\"timeStamp\"","\"timestamp\"")
+				   .replaceAll(",?\"appId\":\"[^\"]*\",?","");
+		return json;
 	}
-
+	
 }

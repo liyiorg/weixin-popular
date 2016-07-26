@@ -56,7 +56,7 @@ public class DefaultExpireKey implements ExpireKey{
 			@Override
 			public void run() {
 				logger.debug("in clean");
-				List<String> removeKey = new ArrayList<>();
+				List<String> removeKey = new ArrayList<String>();
 				for(String key : map.keySet()){
 					Integer value = map.get(key);
 					if(value!=null&&value <= System.currentTimeMillis()/1000){

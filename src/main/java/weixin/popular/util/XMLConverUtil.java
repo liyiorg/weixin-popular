@@ -39,14 +39,14 @@ public class XMLConverUtil{
 	private static final ThreadLocal<Map<Class<?>,Marshaller>> mMapLocal = new ThreadLocal<Map<Class<?>,Marshaller>>() {
 		@Override
 		protected Map<Class<?>, Marshaller> initialValue() {
-			return new HashMap<>();
+			return new HashMap<Class<?>, Marshaller>();
 		}
 	};
 
 	private static final ThreadLocal<Map<Class<?>,Unmarshaller>> uMapLocal = new ThreadLocal<Map<Class<?>,Unmarshaller>>(){
 		@Override
 		protected Map<Class<?>, Unmarshaller> initialValue() {
-			return new HashMap<>();
+			return new HashMap<Class<?>, Unmarshaller>();
 		}
 	};
 
@@ -128,7 +128,7 @@ public class XMLConverUtil{
 	 * @return
 	 */
 	public static Map<String,String> convertToMap(String xml){
-		Map<String, String> map = new LinkedHashMap<>();
+		Map<String, String> map = new LinkedHashMap<String,String>();
 		try {
 			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 			DocumentBuilder db = dbf.newDocumentBuilder();

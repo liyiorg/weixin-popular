@@ -43,6 +43,9 @@ class XMLParse {
 			Element root = document.getDocumentElement();
 			NodeList nodelist1 = root.getElementsByTagName("Encrypt");
 			NodeList nodelist2 = root.getElementsByTagName("ToUserName");
+			if(nodelist2 == null || nodelist2.item(0) == null){
+				nodelist2 = root.getElementsByTagName("AppId");
+			}
 			result[0] = 0;
 			result[1] = nodelist1.item(0).getTextContent();
 			result[2] = nodelist2.item(0).getTextContent();

@@ -29,6 +29,7 @@ public class JedisExpireKey implements ExpireKey{
 
 	@Override
 	public boolean add(String key, int expire) {
+		/*
 		try(Jedis jedis = pool.getResource()){
 			jedis.set(perfix+key, DEFAULT_VALUE);
 			jedis.expire(perfix+key, expire);
@@ -37,6 +38,15 @@ public class JedisExpireKey implements ExpireKey{
 			e.printStackTrace();
 			return false;
 		}
+		*/
+		Jedis jedis = pool.getResource();
+		if (null != jedis) {
+			jedis.set(perfix+key, DEFAULT_VALUE);
+			jedis.expire(perfix+key, expire);
+			return true;
+		}
+		return false;
+		
 	}
 
 	@Override
@@ -46,12 +56,19 @@ public class JedisExpireKey implements ExpireKey{
 
 	@Override
 	public boolean exists(String key) {
+		/*
 		try(Jedis jedis = pool.getResource()){
 			return jedis.exists(perfix+key);
 		}catch (Exception e) {
 			e.printStackTrace();
 			return false;
 		}
+		*/
+		Jedis jedis = pool.getResource();
+		if (null != jedis) {
+			return jedis.exists(perfix+key);
+		}
+		return false;
 	}
 
 }

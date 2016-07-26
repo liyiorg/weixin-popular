@@ -76,6 +76,16 @@ public class MessageAPI extends BaseAPI{
 	public static Media mediaUploadnews(String access_token,List<Article> articles){
 		String str = JsonUtil.toJSONString(articles);
 		String messageJson = "{\"articles\":"+str+"}";
+		return mediaUploadnews(access_token, messageJson);
+	}
+	
+	/**
+	 * 高级群发 构成 MassMPnewsMessage 对象的前置请求接口
+	 * @param access_token
+	 * @param messageJson
+	 * @return
+	 */
+	public static Media mediaUploadnews(String access_token,String messageJson){
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 										.setHeader(jsonHeader)
 										.setUri(BASE_URI+"/cgi-bin/media/uploadnews")

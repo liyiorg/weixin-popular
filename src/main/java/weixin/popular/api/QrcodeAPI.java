@@ -81,7 +81,7 @@ public class QrcodeAPI extends BaseAPI{
 	 */
 	public static BufferedImage showqrcode(String ticket){
 		HttpUriRequest httpUriRequest = RequestBuilder.get()
-				.setUri(QRCODE_DOWNLOAD_URI + "/cgi-bin/showqrcode")
+				.setUri(MP_URI + "/cgi-bin/showqrcode")
 				.addParameter("ticket", ticket)
 				.build();
 		CloseableHttpResponse httpResponse = LocalHttpClient.execute(httpUriRequest);

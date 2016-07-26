@@ -80,7 +80,7 @@ public class ComponentReceiveXML {
 	 * updateauthorized 更新授权 
 	 * authorized 授权成功通知
 	 * 
-	 * @return
+	 * @return infoType
 	 */
 	public String getInfoType() {
 		return infoType;

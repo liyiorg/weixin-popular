@@ -7,9 +7,9 @@ public class XMLNewsMessage extends XMLMessage {
 	private List<Article> articles;
 
 	/**
-	 * @param toUserName
-	 * @param fromUserName
-	 * @param articles
+	 * @param toUserName toUserName
+	 * @param fromUserName fromUserName
+	 * @param articles articles
 	 */
 	public XMLNewsMessage(String toUserName, String fromUserName,
 			List<Article> articles) {

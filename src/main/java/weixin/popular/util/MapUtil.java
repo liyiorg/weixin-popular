@@ -16,8 +16,8 @@ public class MapUtil {
 
 	/**
 	 * Map key 排序
-	 * @param map
-	 * @return
+	 * @param map map
+	 * @return map
 	 */
 	public static Map<String,String> order(Map<String, String> map){
 		HashMap<String, String> tempMap = new LinkedHashMap<String, String>();
@@ -39,9 +39,9 @@ public class MapUtil {
 
 	/**
 	 * 转换对象为map
-	 * @param object
-	 * @param ignore
-	 * @return
+	 * @param object object
+	 * @param ignore ignore
+	 * @return map
 	 */
 	public static Map<String,String> objectToMap(Object object,String... ignore){
 		Map<String,String> tempMap = new LinkedHashMap<String, String>();
@@ -77,8 +77,8 @@ public class MapUtil {
 
 	/**
 	 * 获取所有Fields,包含父类field
-	 * @param clazz
-	 * @return
+	 * @param clazz clazz
+	 * @return list
 	 */
 	private static List<Field> getAllFields(Class<?> clazz){
 		if(!clazz.equals(Object.class)){
@@ -95,10 +95,10 @@ public class MapUtil {
 
 	/**
 	 * url 参数串连
-	 * @param map
-	 * @param keyLower
-	 * @param valueUrlencode
-	 * @return
+	 * @param map map
+	 * @param keyLower keyLower
+	 * @param valueUrlencode valueUrlencode
+	 * @return string
 	 */
 	public static String mapJoin(Map<String, String> map,boolean keyLower,boolean valueUrlencode){
 		StringBuilder stringBuilder = new StringBuilder();

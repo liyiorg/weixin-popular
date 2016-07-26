@@ -40,10 +40,10 @@ public class HttpClientFactory{
 
 	/**
 	 * 
-	 * @param maxTotal
-	 * @param maxPerRoute
-	 * @param timeout
-	 * @param retryExecutionCount
+	 * @param maxTotal maxTotal
+	 * @param maxPerRoute maxPerRoute
+	 * @param timeout timeout
+	 * @param retryExecutionCount retryExecutionCount
 	 * @return
 	 */
 	public static CloseableHttpClient createHttpClient(int maxTotal,int maxPerRoute,int timeout,int retryExecutionCount) {
@@ -70,9 +70,11 @@ public class HttpClientFactory{
 
 	/**
 	 * Key store 类型HttpClient
-	 * @param keystore
-	 * @param keyPassword
-	 * @return
+	 * @param keystore keystore
+	 * @param keyPassword keyPassword
+	 * @param timeout timeout
+	 * @param retryExecutionCount retryExecutionCount
+	 * @return CloseableHttpClient
 	 */
 	public static CloseableHttpClient createKeyMaterialHttpClient(KeyStore keystore,String keyPassword,int timeout,int retryExecutionCount) {
 		return createKeyMaterialHttpClient(keystore, keyPassword, supportedProtocols,timeout,retryExecutionCount);
@@ -80,10 +82,12 @@ public class HttpClientFactory{
 	
 	/**
 	 * Key store 类型HttpClient
-	 * @param keystore
-	 * @param keyPassword
-	 * @param supportedProtocols
-	 * @return
+	 * @param keystore keystore
+	 * @param keyPassword keyPassword
+	 * @param supportedProtocols supportedProtocols
+	 * @param timeout timeout
+	 * @param retryExecutionCount retryExecutionCount
+	 * @return CloseableHttpClient
 	 */
 	public static CloseableHttpClient createKeyMaterialHttpClient(KeyStore keystore,String keyPassword,String[] supportedProtocols,int timeout,int retryExecutionCount) {
 		try {

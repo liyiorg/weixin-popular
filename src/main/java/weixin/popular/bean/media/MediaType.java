@@ -60,7 +60,7 @@ public enum MediaType{
 
 	/**
 	 * 上传类型
-	 * @return
+	 * @return uploadType
 	 */
 	public abstract String uploadType();
 

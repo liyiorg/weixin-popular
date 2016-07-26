@@ -14,8 +14,8 @@ public class XMLMusicMessage extends XMLMessage{
 
 	/**
 	 * 
-	 * @param toUserName
-	 * @param fromUserName
+	 * @param toUserName toUserName
+	 * @param fromUserName fromUserName
 	 * @param title			[可以为空]
 	 * @param description	[可以为空]
 	 * @param musicUrl		[可以为空] 音乐链接

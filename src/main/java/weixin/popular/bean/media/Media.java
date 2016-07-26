@@ -9,6 +9,8 @@ public class Media extends BaseResult{
 	private String media_id;
 	
 	private Integer created_at;
+	
+	private String url;
 
 	public String getType() {
 		return type;
@@ -33,6 +35,13 @@ public class Media extends BaseResult{
 	public void setCreated_at(Integer createdAt) {
 		created_at = createdAt;
 	}
-	
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
 	
 }

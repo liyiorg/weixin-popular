@@ -2,7 +2,7 @@ package weixin.popular.api;
 
 /**
  * 多客服功能
- * @author
+ * @author nobody
  *
  */
 public class CustomserviceAPI extends BaseAPI{

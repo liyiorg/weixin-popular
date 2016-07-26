@@ -7,19 +7,29 @@ package weixin.popular.bean.message;
  */
 public class Article {
 
-	private String thumb_media_id;//图文消息缩略图的media_id，可以在基础支持-上传多媒体文件接口中获得
+	private String title;
+
+	private String thumb_media_id;//图文消息的封面图片素材id（必须是永久mediaID）
+
+	private String show_cover_pic;//是否显示封面，0为false，即不显示，1为true，即显示
 
 	private String author;
 
-	private String title;
+	private String digest;//图文消息的摘要，仅有单图文消息才有摘要，多图文此处为空
 
-	private String content_source_url;//在图文消息页面点击“阅读原文”后的页面
+	private String content;//图文消息的具体内容，支持HTML标签，必须少于2万字符，小于1M，且此处会去除JS
+	
+	private String url;	//图文页的URL
+	
+	private String content_source_url; 	//图文消息的原文地址，即点击“阅读原文”后的URL
 
-	private String content;//图文消息页面的内容，支持HTML标签
+	public String getTitle() {
+		return title;
+	}
 
-	private String digest;//图文消息的描述
-
-	private String show_cover_pic;//是否显示封面，1为显示，0为不显示
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
 	public String getThumb_media_id() {
 		return thumb_media_id;
@@ -27,6 +37,14 @@ public class Article {
 
 	public void setThumb_media_id(String thumb_media_id) {
 		this.thumb_media_id = thumb_media_id;
+	}
+
+	public String getShow_cover_pic() {
+		return show_cover_pic;
+	}
+
+	public void setShow_cover_pic(String show_cover_pic) {
+		this.show_cover_pic = show_cover_pic;
 	}
 
 	public String getAuthor() {
@@ -37,20 +55,12 @@ public class Article {
 		this.author = author;
 	}
 
-	public String getTitle() {
-		return title;
+	public String getDigest() {
+		return digest;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public String getContent_source_url() {
-		return content_source_url;
-	}
-
-	public void setContent_source_url(String content_source_url) {
-		this.content_source_url = content_source_url;
+	public void setDigest(String digest) {
+		this.digest = digest;
 	}
 
 	public String getContent() {
@@ -61,20 +71,20 @@ public class Article {
 		this.content = content;
 	}
 
-	public String getDigest() {
-		return digest;
+	public String getUrl() {
+		return url;
 	}
 
-	public void setDigest(String digest) {
-		this.digest = digest;
+	public void setUrl(String url) {
+		this.url = url;
 	}
 
-	public String getShow_cover_pic() {
-		return show_cover_pic;
+	public String getContent_source_url() {
+		return content_source_url;
 	}
 
-	public void setShow_cover_pic(String show_cover_pic) {
-		this.show_cover_pic = show_cover_pic;
+	public void setContent_source_url(String content_source_url) {
+		this.content_source_url = content_source_url;
 	}
 
 }

@@ -53,7 +53,7 @@ public class TokenManager{
 
 	/**
 	 * 设置线程池
-	 * @param poolSize
+	 * @param poolSize poolSize
 	 */
 	public static void setPoolSize(int poolSize){
 		TokenManager.poolSize = poolSize;
@@ -61,7 +61,7 @@ public class TokenManager{
 	
 	/**
 	 * 设置线程方式
-	 * @param daemon
+	 * @param daemon daemon
 	 */
 	public static void setDaemon(boolean daemon) {
 		TokenManager.daemon = daemon;
@@ -69,8 +69,8 @@ public class TokenManager{
 
 	/**
 	 * 初始化token 刷新，每118分钟刷新一次。
-	 * @param appid
-	 * @param secret
+	 * @param appid appid
+	 * @param secret secret
 	 */
 	public static void init(final String appid,final String secret){
 		if(scheduledExecutorService == null){
@@ -101,8 +101,8 @@ public class TokenManager{
 
 	/**
 	 * 获取 access_token
-	 * @param appid
-	 * @return
+	 * @param appid appid
+	 * @return token
 	 */
 	public static String getToken(String appid){
 		return tokenMap.get(appid);
@@ -111,8 +111,7 @@ public class TokenManager{
 	/**
 	 * 获取第一个appid 的 access_token
 	 * 适用于单一微信号
-	 * @param appid
-	 * @return
+	 * @return token
 	 */
 	public static String getDefaultToken(){
 		Object[] objs = tokenMap.values().toArray();

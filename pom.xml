@@ -1,11 +1,40 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>weixin</groupId>
+	
+	<groupId>com.github.liyiorg</groupId>
 	<artifactId>weixin-popular</artifactId>
-	<version>2.7.0-RELEASE</version>
-	<url>https://github.com/liyiorg/weixin-popular</url>
+	<version>2.8.1-SNAPSHOT</version>
+	
+	<name>weixin-popular</name>
+    <description>The weixin-popular is a JAVA SDK for weixin. Weixin web url is https://mp.weixin.qq.com.</description>
+    <url>https://github.com/liyiorg/weixin-popular</url>
 
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Yi Li</name>
+            <email>liuemc@msn.com</email>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git@github.com:liyiorg/weixin-popular.git</connection>
+        <developerConnection>scm:git:git@github.com:liyiorg/weixin-popular.git</developerConnection>
+        <url>git@github.com:liyiorg/weixin-popular.git</url>
+    </scm>
+	
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    	<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+	</properties>
+	
 	<dependencies>
 		<dependency>
             <groupId>javax.servlet</groupId>
@@ -13,7 +42,6 @@
             <version>2.5</version>
             <scope>provided</scope>
         </dependency>
-
         <dependency>
 		    <groupId>redis.clients</groupId>
 		    <artifactId>jedis</artifactId>
@@ -26,7 +54,6 @@
 			<version>2.3</version>
 			<scope>provided</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
@@ -64,7 +91,13 @@
 			<version>1.7.19</version>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+		  <groupId>com.vdurmont</groupId>
+		  <artifactId>emoji-java</artifactId>
+		  <version>3.1.1</version>
+		</dependency>
 	</dependencies>
+	
 	<build>
 		<plugins>
 			<plugin>
@@ -79,4 +112,85 @@
 			</plugin>
 		</plugins>
 	</build>
+	
+	<profiles>
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>2.3</version>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>2.10.4</version>
+                        <configuration>
+                            <charset>utf-8</charset>
+                            <encoding>utf-8</encoding>
+                            <docencoding>utf-8</docencoding>
+              				<locale>zh_CN</locale>
+                            <show>public</show>
+                            <!-- <excludePackageNames>weixin.popular.bean.*</excludePackageNames> -->
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.5</version>
+                        <executions>
+                            <execution>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.sonatype.plugins</groupId>
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <version>1.6.4</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <serverId>oss</serverId>
+                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                            <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>oss</id>
+            <name>Sonatype Nexus Snapshots</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>oss</id>
+            <name>Nexus Release Repository</name>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
 </project>

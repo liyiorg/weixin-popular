@@ -26,9 +26,9 @@ public class QrcodeAPI extends BaseAPI{
 
 	/**
 	 * 创建二维码
-	 * @param access_token
+	 * @param access_token access_token
 	 * @param qrcodeJson json 数据
-	 * @return
+	 * @return QrcodeTicket
 	 */
 	private static QrcodeTicket qrcodeCreate(String access_token,String qrcodeJson){
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
@@ -42,10 +42,10 @@ public class QrcodeAPI extends BaseAPI{
 
 	/**
 	 * 创建临时二维码
-	 * @param access_token
+	 * @param access_token access_token
 	 * @param expire_seconds 最大不超过604800秒（即30天）
 	 * @param scene_id		  场景值ID，32位非0整型  最多10万个
-	 * @return
+	 * @return QrcodeTicket
 	 */
 	public static QrcodeTicket qrcodeCreateTemp(String access_token,int expire_seconds,long scene_id){
 		String json = String.format("{\"expire_seconds\": %d, \"action_name\": \"QR_SCENE\", \"action_info\": {\"scene\": {\"scene_id\": %d}}}",expire_seconds,scene_id);
@@ -54,9 +54,9 @@ public class QrcodeAPI extends BaseAPI{
 
 	/**
 	 * 创建持久二维码
-	 * @param access_token
+	 * @param access_token access_token
 	 * @param scene_id	场景值ID 1-100000
-	 * @return
+	 * @return QrcodeTicket
 	 */
 	public static QrcodeTicket qrcodeCreateFinal(String access_token,int scene_id){
 		String json = String.format("{\"action_name\": \"QR_LIMIT_SCENE\", \"action_info\": {\"scene\": {\"scene_id\":%d}}}", scene_id);
@@ -65,9 +65,9 @@ public class QrcodeAPI extends BaseAPI{
 	
 	/**
 	 * 创建持久二维码
-	 * @param access_token
+	 * @param access_token access_token
 	 * @param scene_str	场景值ID（字符串形式的ID），字符串类型，长度限制为1到64
-	 * @return
+	 * @return QrcodeTicket
 	 */
 	public static QrcodeTicket qrcodeCreateFinal(String access_token,String scene_str){
 		String json = String.format("{\"action_name\": \"QR_LIMIT_STR_SCENE\", \"action_info\": {\"scene\": {\"scene_str\": \"%s\"}}}", scene_str);
@@ -77,7 +77,7 @@ public class QrcodeAPI extends BaseAPI{
 	/**
 	 * 下载二维码
 	 * @param ticket  内部自动 UrlEncode
-	 * @return
+	 * @return BufferedImage
 	 */
 	public static BufferedImage showqrcode(String ticket){
 		HttpUriRequest httpUriRequest = RequestBuilder.get()
@@ -86,8 +86,11 @@ public class QrcodeAPI extends BaseAPI{
 				.build();
 		CloseableHttpResponse httpResponse = LocalHttpClient.execute(httpUriRequest);
 		try {
-			byte[] bytes = EntityUtils.toByteArray(httpResponse.getEntity());
-			return ImageIO.read(new ByteArrayInputStream(bytes));
+			int status = httpResponse.getStatusLine().getStatusCode();
+            if (status == 200) {
+				byte[] bytes = EntityUtils.toByteArray(httpResponse.getEntity());
+				return ImageIO.read(new ByteArrayInputStream(bytes));
+            }
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {

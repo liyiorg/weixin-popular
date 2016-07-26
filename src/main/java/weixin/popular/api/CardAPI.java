@@ -62,9 +62,9 @@ public class CardAPI extends BaseAPI {
 	
 	/**
 	 * 获取用户已领取卡券
-	 * @param access_token
+	 * @param access_token access_token
 	 * @param requestJson post完整的json
-	 * @return
+	 * @return UserGetCardListResult
 	 */
 	public static UserGetCardListResult userGetcardlist(String access_token, String requestJson) {
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
@@ -78,9 +78,9 @@ public class CardAPI extends BaseAPI {
 	
 	/**
 	 * 获取用户已领取卡券
-	 * @param access_token
-	 * @param userGetCardList
-	 * @return
+	 * @param access_token access_token
+	 * @param userGetCardList userGetCardList
+	 * @return UserGetCardListResult
 	 */
 	public static UserGetCardListResult userGetcardlist(String access_token, UserGetCardList userGetCardList) {
 		return userGetcardlist(access_token, JsonUtil.toJSONString(userGetCardList));
@@ -88,9 +88,9 @@ public class CardAPI extends BaseAPI {
 	
 	/**
 	 * 查看卡券详情
-	 * @param access_token
+	 * @param access_token access_token
 	 * @param requestJson post完整的json
-	 * @return
+	 * @return CardResult
 	 */
 	public static CardResult<?> get(String access_token, String requestJson) {
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
@@ -132,9 +132,9 @@ public class CardAPI extends BaseAPI {
 	
 	/**
 	 * 查看卡券详情
-	 * @param access_token
-	 * @param cardId
-	 * @return
+	 * @param access_token access_token
+	 * @param cardId cardId
+	 * @return CardResult
 	 */
 	public static CardResult<?> getByCardId(String access_token, String cardId) {
 		return get(access_token, String.format("{\"card_id\": \"%s\"}", cardId));

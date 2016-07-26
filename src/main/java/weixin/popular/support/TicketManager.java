@@ -53,7 +53,7 @@ public class TicketManager {
 
 	/**
 	 * 设置线程池
-	 * @param poolSize
+	 * @param poolSize poolSize
 	 */
 	public static void setPoolSize(int poolSize){
 		TicketManager.poolSize = poolSize;
@@ -61,7 +61,7 @@ public class TicketManager {
 
 	/**
 	 * 设置线程方式
-	 * @param daemon
+	 * @param daemon daemon
 	 */
 	public static void setDaemon(boolean daemon) {
 		TicketManager.daemon = daemon;
@@ -70,7 +70,7 @@ public class TicketManager {
 	/**
 	 * 初始化ticket 刷新，每119分钟刷新一次。
 	 * 依赖TokenManager
-	 * @param appid
+	 * @param appid appid
 	 */
 	public static void init(final String appid){
 		init(appid,0,60*119);
@@ -80,7 +80,7 @@ public class TicketManager {
 	 * 初始化ticket 刷新
 	 * 依赖TokenManager
 	 * @since 2.6.1
-	 * @param appid
+	 * @param appid appid
 	 * @param initialDelay 首次执行延迟（秒）
 	 * @param delay 执行间隔（秒）
 	 */
@@ -113,8 +113,8 @@ public class TicketManager {
 
 	/**
 	 * 获取 jsapi ticket
-	 * @param appid
-	 * @return
+	 * @param appid appid
+	 * @return ticket
 	 */
 	public static String getTicket(final String appid){
 		return ticketMap.get(appid);
@@ -123,8 +123,7 @@ public class TicketManager {
 	/**
 	 * 获取第一个appid 的  jsapi ticket
 	 * 适用于单一微信号
-	 * @param appid
-	 * @return
+	 * @return ticket
 	 */
 	public static String getDefaultTicket(){
 		Object[] objs = ticketMap.values().toArray();

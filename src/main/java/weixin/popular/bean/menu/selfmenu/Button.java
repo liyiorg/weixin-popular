@@ -16,7 +16,7 @@ public class Button {
 	private List<Button> list;
 
 
-	private List<Button> sub_button;
+	private Button sub_button;
 
 
 	public String getName() {
@@ -68,13 +68,12 @@ public class Button {
 		this.list = list;
 	}
 
-
-	public List<Button> getSub_button() {
+	public Button getSub_button() {
 		return sub_button;
 	}
 
 
-	public void setSub_button(List<Button> sub_button) {
+	public void setSub_button(Button sub_button) {
 		this.sub_button = sub_button;
 	}
 

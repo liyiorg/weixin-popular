@@ -2,7 +2,7 @@ package weixin.popular.api;
 
 /**
  * 数据统计
- * @author
+ * @author nobody
  *
  */
 public class DatacubeAPI extends BaseAPI{

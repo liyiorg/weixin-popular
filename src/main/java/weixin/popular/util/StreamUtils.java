@@ -33,6 +33,7 @@ public class StreamUtils {
 	 * Copy the contents of the given InputStream into a String.
 	 * Leaves the stream open when done.
 	 * @param in the InputStream to copy from
+	 * @param charset charset
 	 * @return the String that has been copied to
 	 * @throws IOException in case of I/O errors
 	 */

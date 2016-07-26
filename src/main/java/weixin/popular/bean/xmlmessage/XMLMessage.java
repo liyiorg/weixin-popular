@@ -23,7 +23,7 @@ public abstract class XMLMessage {
 
 	/**
 	 * 子类自定义XML
-	 * @return
+	 * @return XML
 	 */
 	public abstract String subXML();
 

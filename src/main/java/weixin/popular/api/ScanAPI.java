@@ -2,7 +2,7 @@ package weixin.popular.api;
 
 /**
  * 微信扫一扫
- * @author
+ * @author nobody
  *
  */
 public class ScanAPI extends BaseAPI{

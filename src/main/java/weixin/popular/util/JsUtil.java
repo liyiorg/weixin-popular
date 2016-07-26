@@ -1,11 +1,8 @@
 package weixin.popular.util;
 
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.UUID;
-
-import weixin.popular.bean.pay.PayPackage;
 
 public class JsUtil {
 	
@@ -49,11 +46,11 @@ public class JsUtil {
 
 	/**
 	 * 生成 config接口 signature
-	 * @param noncestr
-	 * @param jsapi_ticket
-	 * @param timestamp
-	 * @param url
-	 * @return
+	 * @param noncestr noncestr
+	 * @param jsapi_ticket jsapi_ticket
+	 * @param timestamp timestamp
+	 * @param url url
+	 * @return sign
 	 */
 	public static String generateConfigSignature(String noncestr,String jsapi_ticket,String timestamp,String url){
 		Map<String, String> map = new HashMap<String, String>();
@@ -66,46 +63,46 @@ public class JsUtil {
 
 	/**
 	 * 生成 config接口注入权限验证 JSON
-	 * @param jsapi_ticket
-	 * @param debug
-	 * @param appId
-	 * @param url
+	 * @param jsapi_ticket jsapi_ticket
+	 * @param debug debug
+	 * @param appId appId
+	 * @param url url
 	 * @param jsApiList 可以为空
-	 *  onMenuShareTimeline
-		onMenuShareAppMessage
-		onMenuShareQQ
-		onMenuShareWeibo
-		startRecord
-		stopRecord
-		onVoiceRecordEnd
-		playVoice
-		pauseVoice
-		stopVoice
-		onVoicePlayEnd
-		uploadVoice
-		downloadVoice
-		chooseImage
-		previewImage
-		uploadImage
-		downloadImage
-		translateVoice
-		getNetworkType
-		openLocation
-		getLocation
-		hideOptionMenu
-		showOptionMenu
-		hideMenuItems
-		showMenuItems
-		hideAllNonBaseMenuItem
-		showAllNonBaseMenuItem
-		closeWindow
-		scanQRCode
-		chooseWXPay
-		openProductSpecificView
-		addCard
-		chooseCard
-		openCard
-	 * @return
+	 *  onMenuShareTimeline <br>
+		onMenuShareAppMessage <br>
+		onMenuShareQQ <br>
+		onMenuShareWeibo <br>
+		startRecord <br>
+		stopRecord <br>
+		onVoiceRecordEnd <br>
+		playVoice <br>
+		pauseVoice <br>
+		stopVoice <br>
+		onVoicePlayEnd <br>
+		uploadVoice <br>
+		downloadVoice <br>
+		chooseImage <br>
+		previewImage <br>
+		uploadImage <br>
+		downloadImage <br>
+		translateVoice <br>
+		getNetworkType <br>
+		openLocation <br>
+		getLocation <br>
+		hideOptionMenu <br>
+		showOptionMenu <br>
+		hideMenuItems <br>
+		showMenuItems <br>
+		hideAllNonBaseMenuItem <br>
+		showAllNonBaseMenuItem <br>
+		closeWindow <br>
+		scanQRCode <br>
+		chooseWXPay <br>
+		openProductSpecificView <br>
+		addCard <br>
+		chooseCard <br>
+		openCard <br>
+	 * @return json
 	 */
 	public static String generateConfigJson(String jsapi_ticket,boolean debug,String appId,String url,String... jsApiList){
 		long timestamp = System.currentTimeMillis()/1000;
@@ -124,29 +121,17 @@ public class JsUtil {
 
 	/**
 	 * 生成微信支付JSON
-	 * @param payPackage
-	 * @param appid
-	 * @param paternerKey
-	 * @param paySignkey
-	 * @return
+	 * @since 2.8.1
+	 * @param prepay_id	预支付订单号
+	 * @param appId appId
+	 * @param key 商户支付密钥
+	 * @return json
 	 */
-	public static String generateChooseWXPayJson(PayPackage payPackage,
-			String appid,
-			String paternerKey,
-			String paySignkey){
-		Map<String, String> mapP = MapUtil.objectToMap(payPackage);
-		String package_ = SignatureUtil.generatePackage(mapP, paternerKey);
-		Map<String, String> map = new LinkedHashMap<String, String>();
-		long timestamp = System.currentTimeMillis()/1000;
-		String noncestr = UUID.randomUUID().toString();
-		map.put("timestamp", timestamp+"");
-		map.put("noncestr",noncestr);
-		map.put("package",package_);
-		map.put("appid",appid);
-		String paySign = SignatureUtil.generatePaySign(map,paySignkey);
-		map.put("paySign", paySign);
-		map.remove("appid");
-		return JsonUtil.toJSONString(map);
+	public static String generateChooseWXPayJson(String prepay_id,String appId,String key){
+		String json = PayUtil.generateMchPayJsRequestJson(prepay_id, appId, key);
+		json = json.replaceAll("\"timeStamp\"","\"timestamp\"")
+				   .replaceAll(",?\"appId\":\"[^\"]*\",?","");
+		return json;
 	}
-
+	
 }

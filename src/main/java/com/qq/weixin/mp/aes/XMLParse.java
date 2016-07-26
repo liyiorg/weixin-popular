@@ -43,6 +43,7 @@ class XMLParse {
 			Element root = document.getDocumentElement();
 			NodeList nodelist1 = root.getElementsByTagName("Encrypt");
 			NodeList nodelist2 = root.getElementsByTagName("ToUserName");
+			//公众平台使用ToUserName，第三方平台使用 AppId
 			if(nodelist2 == null || nodelist2.item(0) == null){
 				nodelist2 = root.getElementsByTagName("AppId");
 			}

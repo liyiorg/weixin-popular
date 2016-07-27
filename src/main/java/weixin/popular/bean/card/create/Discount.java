@@ -6,7 +6,7 @@ package weixin.popular.bean.card.create;
  * @author Moyq5
  *
  */
-public class Discount extends CardInfo {
+public class Discount extends AbstractCardInfo {
 
 	/**
 	 * 表示打折额度（百分比）。填30就是七折。<br>

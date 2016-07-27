@@ -6,7 +6,7 @@ package weixin.popular.bean.card.create;
  * @author Moyq5
  *
  */
-public class Gift extends CardInfo {
+public class Gift extends AbstractCardInfo {
 
 	/**
 	 * 填写兑换内容的名称。<br>

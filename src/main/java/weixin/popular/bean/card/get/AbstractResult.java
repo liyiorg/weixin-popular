@@ -1,16 +1,16 @@
 package weixin.popular.bean.card.get;
 
-import weixin.popular.bean.card.create.CardAbstract;
+import weixin.popular.bean.card.create.AbstractCardCreate;
 
-public class AbstractResult  extends CardResult<CardAbstract> {
+public class AbstractResult  extends GetResult<AbstractCardCreate> {
 
-	private CardAbstract card;
+	private AbstractCardCreate card;
 
-	public CardAbstract getCard() {
+	public AbstractCardCreate getCard() {
 		return card;
 	}
 
-	public void setCard(CardAbstract card) {
+	public void setCard(AbstractCardCreate card) {
 		this.card = card;
 	}
 }

@@ -20,41 +20,41 @@ public class AdvancedInfo extends weixin.popular.bean.card.create.AdvancedInfo {
 	 * 必填：否
 	 */
 	@JSONField(name = "use_condition")
-	private UseCondition useCondition;
+	private AdvancedInfoUseCondition useCondition;
 	
 	/**
 	 * 封面摘要 <br>
 	 * 必填：是
 	 */
 	@JSONField(name = "abstract")
-	private AbstractInfo abstractInfo;
+	private AdvancedInfoAbstract abstractInfo;
 	
 	/**
 	 * 图文列表，显示在详情内页，优惠券券开发者须至少传入一组图文列表 <br>
 	 * 必填：是
 	 */
 	@JSONField(name = "text_image_list")
-	private List<TextImage> textImageList_;
+	private List<AdvancedInfoTextImage> textImageList_;
 	
 	/**
 	 * 使用时段限制<br>
 	 * 必填：否
 	 */
 	@JSONField(name = "time_limit")
-	private List<TimeLimit> timeLimit_;
+	private List<AdvancedInfoTimeLimit> timeLimit_;
 
 	/**
 	 * 本方法始终返回null，请使用getTextImageList_()替代
 	 */
 	@Override
 	@Deprecated
-	public List<weixin.popular.bean.card.create.TextImage> getTextImageList() {
+	public List<weixin.popular.bean.card.create.AdvancedInfoTextImage> getTextImageList() {
 		return super.getTextImageList();
 	}
 
 	@Override
 	@Deprecated
-	public void setTextImageList(List<weixin.popular.bean.card.create.TextImage> textImageList) {
+	public void setTextImageList(List<weixin.popular.bean.card.create.AdvancedInfoTextImage> textImageList) {
 		super.setTextImageList(textImageList);
 	}
 
@@ -63,13 +63,13 @@ public class AdvancedInfo extends weixin.popular.bean.card.create.AdvancedInfo {
 	 */
 	@Override
 	@Deprecated
-	public List<weixin.popular.bean.card.create.TimeLimit> getTimeLimit() {
+	public List<weixin.popular.bean.card.create.AdvancedInfoTimeLimit> getTimeLimit() {
 		return super.getTimeLimit();
 	}
 
 	@Override
 	@Deprecated
-	public void setTimeLimit(List<weixin.popular.bean.card.create.TimeLimit> timeLimit) {
+	public void setTimeLimit(List<weixin.popular.bean.card.create.AdvancedInfoTimeLimit> timeLimit) {
 		super.setTimeLimit(timeLimit);
 	}
 
@@ -77,7 +77,7 @@ public class AdvancedInfo extends weixin.popular.bean.card.create.AdvancedInfo {
 	 * 图文列表，显示在详情内页，优惠券券开发者须至少传入一组图文列表 <br>
 	 * 必填：是
 	 */
-	public List<TextImage> getTextImageList_() {
+	public List<AdvancedInfoTextImage> getTextImageList_() {
 		return textImageList_;
 	}
 
@@ -85,7 +85,7 @@ public class AdvancedInfo extends weixin.popular.bean.card.create.AdvancedInfo {
 	 * 图文列表，显示在详情内页，优惠券券开发者须至少传入一组图文列表 <br>
 	 * 必填：是
 	 */
-	public void setTextImageList_(List<TextImage> textImageList_) {
+	public void setTextImageList_(List<AdvancedInfoTextImage> textImageList_) {
 		this.textImageList_ = textImageList_;
 	}
 
@@ -93,7 +93,7 @@ public class AdvancedInfo extends weixin.popular.bean.card.create.AdvancedInfo {
 	 * 使用时段限制<br>
 	 * 必填：否
 	 */
-	public List<TimeLimit> getTimeLimit_() {
+	public List<AdvancedInfoTimeLimit> getTimeLimit_() {
 		return timeLimit_;
 	}
 
@@ -101,23 +101,23 @@ public class AdvancedInfo extends weixin.popular.bean.card.create.AdvancedInfo {
 	 * 使用时段限制<br>
 	 * 必填：否
 	 */
-	public void setTimeLimit_(List<TimeLimit> timeLimit_) {
+	public void setTimeLimit_(List<AdvancedInfoTimeLimit> timeLimit_) {
 		this.timeLimit_ = timeLimit_;
 	}
 
-	public UseCondition getUseCondition() {
+	public AdvancedInfoUseCondition getUseCondition() {
 		return useCondition;
 	}
 
-	public void setUseCondition(UseCondition useCondition) {
+	public void setUseCondition(AdvancedInfoUseCondition useCondition) {
 		this.useCondition = useCondition;
 	}
 
-	public AbstractInfo getAbstractInfo() {
+	public AdvancedInfoAbstract getAbstractInfo() {
 		return abstractInfo;
 	}
 
-	public void setAbstractInfo(AbstractInfo abstractInfo) {
+	public void setAbstractInfo(AdvancedInfoAbstract abstractInfo) {
 		this.abstractInfo = abstractInfo;
 	}
 

@@ -20,28 +20,28 @@ public class AdvancedInfo {
 	 * 必填：否
 	 */
 	@JSONField(name = "use_condition")
-	private UseCondition useCondition;
+	private AdvancedInfoUseCondition useCondition;
 
 	/**
 	 * 封面摘要 <br>
 	 * 必填：是
 	 */
 	@JSONField(name = "abstract")
-	private AbstractInfo abstractInfo;
+	private AdvancedInfoAbstract abstractInfo;
 
 	/**
 	 * 图文列表，显示在详情内页，优惠券券开发者须至少传入一组图文列表 <br>
 	 * 必填：是
 	 */
 	@JSONField(name = "text_image_list")
-	private List<TextImage> textImageList;
+	private List<AdvancedInfoTextImage> textImageList;
 
 	/**
 	 * 使用时段限制<br>
 	 * 必填：否
 	 */
 	@JSONField(name = "time_limit")
-	private List<TimeLimit> timeLimit;
+	private List<AdvancedInfoTimeLimit> timeLimit;
 
 	/**
 	 * 商家服务类型：<br>
@@ -57,7 +57,7 @@ public class AdvancedInfo {
 	/**
 	 * 使用门槛（条件）字段
 	 */
-	public UseCondition getUseCondition() {
+	public AdvancedInfoUseCondition getUseCondition() {
 		return useCondition;
 	}
 
@@ -67,14 +67,14 @@ public class AdvancedInfo {
 	 * 并在使用说明显示：可与其他优惠共享<br>
 	 * 必填：否
 	 */
-	public void setUseCondition(UseCondition useCondition) {
+	public void setUseCondition(AdvancedInfoUseCondition useCondition) {
 		this.useCondition = useCondition;
 	}
 
 	/**
 	 * 封面摘要
 	 */
-	public AbstractInfo getAbstractInfo() {
+	public AdvancedInfoAbstract getAbstractInfo() {
 		return abstractInfo;
 	}
 
@@ -82,7 +82,7 @@ public class AdvancedInfo {
 	 * 封面摘要 <br>
 	 * 必填：是
 	 */
-	public void setAbstractInfo(AbstractInfo abstractInfo) {
+	public void setAbstractInfo(AdvancedInfoAbstract abstractInfo) {
 		this.abstractInfo = abstractInfo;
 	}
 
@@ -91,7 +91,7 @@ public class AdvancedInfo {
 	 * 
 	 * @return
 	 */
-	public List<TextImage> getTextImageList() {
+	public List<AdvancedInfoTextImage> getTextImageList() {
 		return textImageList;
 	}
 
@@ -99,14 +99,14 @@ public class AdvancedInfo {
 	 * 图文列表，显示在详情内页，优惠券券开发者须至少传入一组图文列表 <br>
 	 * 必填：是
 	 */
-	public void setTextImageList(List<TextImage> textImageList) {
+	public void setTextImageList(List<AdvancedInfoTextImage> textImageList) {
 		this.textImageList = textImageList;
 	}
 
 	/**
 	 * 使用时段限制
 	 */
-	public List<TimeLimit> getTimeLimit() {
+	public List<AdvancedInfoTimeLimit> getTimeLimit() {
 		return timeLimit;
 	}
 
@@ -114,7 +114,7 @@ public class AdvancedInfo {
 	 * 使用时段限制<br>
 	 * 必填：否
 	 */
-	public void setTimeLimit(List<TimeLimit> timeLimit) {
+	public void setTimeLimit(List<AdvancedInfoTimeLimit> timeLimit) {
 		this.timeLimit = timeLimit;
 	}
 

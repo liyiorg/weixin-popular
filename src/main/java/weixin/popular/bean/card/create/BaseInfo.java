@@ -80,13 +80,13 @@ public class BaseInfo {
 	 * 必填：是
 	 */
 	@JSONField(name = "date_info")
-	private DateInfo dateInfo;
+	private BaseInfoDateInfo dateInfo;
 
 	/**
 	 * 商品信息。<br>
 	 * 必填：是
 	 */
-	private Sku sku;
+	private BaseInfoSku sku;
 
 	/**
 	 * 每人可领券的数量限制,不填写默认为50。<br>
@@ -350,7 +350,7 @@ public class BaseInfo {
 	/**
 	 * 使用日期，有效期的信息。
 	 */
-	public DateInfo getDateInfo() {
+	public BaseInfoDateInfo getDateInfo() {
 		return dateInfo;
 	}
 
@@ -358,14 +358,14 @@ public class BaseInfo {
 	 * 使用日期，有效期的信息。<br>
 	 * 必填：是
 	 */
-	public void setDateInfo(DateInfo dateInfo) {
+	public void setDateInfo(BaseInfoDateInfo dateInfo) {
 		this.dateInfo = dateInfo;
 	}
 
 	/**
 	 * 商品信息。
 	 */
-	public Sku getSku() {
+	public BaseInfoSku getSku() {
 		return sku;
 	}
 
@@ -373,7 +373,7 @@ public class BaseInfo {
 	 * 商品信息。<br>
 	 * 必填：是
 	 */
-	public void setSku(Sku sku) {
+	public void setSku(BaseInfoSku sku) {
 		this.sku = sku;
 	}
 

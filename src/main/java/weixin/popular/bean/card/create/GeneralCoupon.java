@@ -8,7 +8,7 @@ import com.alibaba.fastjson.annotation.JSONField;
  * @author Moyq5
  *
  */
-public class GeneralCoupon extends CardInfo {
+public class GeneralCoupon extends AbstractCardInfo {
 
 	/**
 	 * 填写优惠详情。<br>

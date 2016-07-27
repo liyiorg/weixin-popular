@@ -8,7 +8,7 @@ import com.alibaba.fastjson.annotation.JSONField;
  * @author Moyq5
  *
  */
-public class Cash extends CardInfo {
+public class Cash extends AbstractCardInfo {
 
 	/**
 	 * 表示起用金额（单位为分）,如果无起用门槛则填0。<br>

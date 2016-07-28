@@ -11,23 +11,23 @@ import com.alibaba.fastjson.annotation.JSONField;
 public class BaseInfo extends weixin.popular.bean.card.create.BaseInfo {
 
 	@JSONField(name = "date_info")
-	private DateInfo dateInfo;
+	private BaseInfoDateInfo dateInfo;
 	
-	private Sku sku;
+	private BaseInfoSku sku;
 
-	public DateInfo getDateInfo() {
+	public BaseInfoDateInfo getDateInfo() {
 		return dateInfo;
 	}
 
-	public void setDateInfo(DateInfo dateInfo) {
+	public void setDateInfo(BaseInfoDateInfo dateInfo) {
 		this.dateInfo = dateInfo;
 	}
 
-	public Sku getSku() {
+	public BaseInfoSku getSku() {
 		return sku;
 	}
 
-	public void setSku(Sku sku) {
+	public void setSku(BaseInfoSku sku) {
 		this.sku = sku;
 	}
 }

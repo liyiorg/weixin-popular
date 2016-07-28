@@ -7,57 +7,59 @@ import java.util.List;
 import org.junit.Test;
 
 import weixin.popular.api.CardAPI;
+import weixin.popular.api.DataCubeAPI;
 import weixin.popular.bean.BaseResult;
 import weixin.popular.bean.card.CardType;
-import weixin.popular.bean.card.consume.CodeConsume;
-import weixin.popular.bean.card.consume.CodeConsumeResult;
-import weixin.popular.bean.card.consume.CodeDecrypt;
-import weixin.popular.bean.card.consume.CodeDecryptResult;
-import weixin.popular.bean.card.consume.CodeGet;
-import weixin.popular.bean.card.consume.CodeGetResult;
-import weixin.popular.bean.card.create.AbstractInfo;
+import weixin.popular.bean.card.batchget.BatchGet;
+import weixin.popular.bean.card.batchget.BatchGetResult;
+import weixin.popular.bean.card.code.consume.CodeConsume;
+import weixin.popular.bean.card.code.consume.CodeConsumeResult;
+import weixin.popular.bean.card.code.decrypt.CodeDecrypt;
+import weixin.popular.bean.card.code.decrypt.CodeDecryptResult;
+import weixin.popular.bean.card.code.get.CodeGet;
+import weixin.popular.bean.card.code.get.CodeGetResult;
+import weixin.popular.bean.card.code.unavailable.CodeUnavailable;
+import weixin.popular.bean.card.code.update.CodeUpdate;
 import weixin.popular.bean.card.create.AdvancedInfo;
+import weixin.popular.bean.card.create.AdvancedInfoAbstract;
+import weixin.popular.bean.card.create.AdvancedInfoTextImage;
+import weixin.popular.bean.card.create.AdvancedInfoTimeLimit;
+import weixin.popular.bean.card.create.AdvancedInfoUseCondition;
 import weixin.popular.bean.card.create.BaseInfo;
-import weixin.popular.bean.card.create.CardCash;
-import weixin.popular.bean.card.create.CardResult;
-import weixin.popular.bean.card.create.CardSet;
+import weixin.popular.bean.card.create.BaseInfoDateInfo;
+import weixin.popular.bean.card.create.BaseInfoSku;
+import weixin.popular.bean.card.create.CreateCash;
+import weixin.popular.bean.card.create.CreateResult;
 import weixin.popular.bean.card.create.Cash;
-import weixin.popular.bean.card.create.DateInfo;
-import weixin.popular.bean.card.create.Sku;
-import weixin.popular.bean.card.create.TextImage;
-import weixin.popular.bean.card.create.TimeLimit;
-import weixin.popular.bean.card.create.UseCondition;
-import weixin.popular.bean.card.datacube.BizuinCube;
-import weixin.popular.bean.card.datacube.BizuinResult;
-import weixin.popular.bean.card.datacube.FreeCardCube;
-import weixin.popular.bean.card.datacube.FreeCardResult;
-import weixin.popular.bean.card.datacube.MemberCardCube;
-import weixin.popular.bean.card.datacube.MemberCardResult;
-import weixin.popular.bean.card.get.CashResult;
-import weixin.popular.bean.card.get.DiscountResult;
-import weixin.popular.bean.card.get.GeneralCouponResult;
-import weixin.popular.bean.card.get.GrouponResult;
-import weixin.popular.bean.card.manage.BatchGet;
-import weixin.popular.bean.card.manage.BatchGetResult;
-import weixin.popular.bean.card.manage.CodeUnavailable;
-import weixin.popular.bean.card.manage.CodeUpdate;
-import weixin.popular.bean.card.manage.ModifyStock;
-import weixin.popular.bean.card.manage.UserGetCardList;
-import weixin.popular.bean.card.manage.UserGetCardListResult;
-import weixin.popular.bean.card.putin.LandingCard;
-import weixin.popular.bean.card.putin.LandingPage;
-import weixin.popular.bean.card.putin.LandingResult;
-import weixin.popular.bean.card.putin.Mpnews;
-import weixin.popular.bean.card.putin.MpnewsResult;
-import weixin.popular.bean.card.putin.QrAction;
-import weixin.popular.bean.card.putin.QrActionInfo;
-import weixin.popular.bean.card.putin.QrCardItem;
-import weixin.popular.bean.card.putin.QrMultipleAction;
-import weixin.popular.bean.card.putin.QrMultipleActionInfo;
-import weixin.popular.bean.card.putin.QrMultipleCard;
-import weixin.popular.bean.card.putin.QrMultipleCardItem;
-import weixin.popular.bean.card.putin.QrResult;
-import weixin.popular.bean.card.putin.TestWhiteList;
+import weixin.popular.bean.card.get.GetCashResult;
+import weixin.popular.bean.card.get.GetDiscountResult;
+import weixin.popular.bean.card.get.GetGeneralCouponResult;
+import weixin.popular.bean.card.get.GetGrouponResult;
+import weixin.popular.bean.card.landingpage.create.LandingPageCreate;
+import weixin.popular.bean.card.landingpage.create.LandingPageCreateCard;
+import weixin.popular.bean.card.landingpage.create.LandingPageCreateResult;
+import weixin.popular.bean.card.modifystock.ModifyStock;
+import weixin.popular.bean.card.mpnews.gethtml.MpNewsGetHtml;
+import weixin.popular.bean.card.mpnews.gethtml.MpNewsGetHtmlResult;
+import weixin.popular.bean.card.paycell.set.PaySellSet;
+import weixin.popular.bean.card.qrcode.create.ActionInfo;
+import weixin.popular.bean.card.qrcode.create.ActionInfoCard;
+import weixin.popular.bean.card.qrcode.create.ActionInfoMultiple;
+import weixin.popular.bean.card.qrcode.create.ActionInfoMultipleCard;
+import weixin.popular.bean.card.qrcode.create.ActionInfoMultipleCardItem;
+import weixin.popular.bean.card.qrcode.create.QrCodeCreate;
+import weixin.popular.bean.card.qrcode.create.QrCodeCreateMultiple;
+import weixin.popular.bean.card.qrcode.create.QrCodeCreateResult;
+import weixin.popular.bean.card.selfconsumecelll.set.SelfConsumeCellSet;
+import weixin.popular.bean.card.testwhitelist.set.TestWhiteListSet;
+import weixin.popular.bean.card.user.getcardlist.UserGetCardList;
+import weixin.popular.bean.card.user.getcardlist.UserGetCardListResult;
+import weixin.popular.bean.datacube.getcardbizuininfo.BizuinInfo;
+import weixin.popular.bean.datacube.getcardbizuininfo.BizuinInfoResult;
+import weixin.popular.bean.datacube.getcardcardinfo.CardInfo;
+import weixin.popular.bean.datacube.getcardcardinfo.CardInfoResult;
+import weixin.popular.bean.datacube.getcardmembercardinfo.MemberCardInfo;
+import weixin.popular.bean.datacube.getcardmembercardinfo.MemberCardInfoResult;
 
 /**
  * 卡券测试类
@@ -72,18 +74,18 @@ public class CardTest extends TokenTest {
 	 */
 	@Test
 	public void create() {
-		CardCash cardCash = new CardCash();
+		CreateCash cardCash = new CreateCash();
 		// Cash（代金券） Discount（折扣券）、GeneralCoupon（优惠券）、
 		// Gift（兑换券）、Groupon（团购券）
 		Cash cash = new Cash(); 
 		AdvancedInfo advancedInfo = new AdvancedInfo();
 		BaseInfo baseInfo = new BaseInfo();
-		AbstractInfo abstractInfo = new AbstractInfo();
-		List<TextImage> textImageList = new ArrayList<TextImage>();
-		List<TimeLimit> timeLimit = new ArrayList<TimeLimit>();
-		UseCondition useCondition = new UseCondition();
-		DateInfo dateInfo = new DateInfo();
-		Sku sku = new Sku();
+		AdvancedInfoAbstract abstractInfo = new AdvancedInfoAbstract();
+		List<AdvancedInfoTextImage> textImageList = new ArrayList<AdvancedInfoTextImage>();
+		List<AdvancedInfoTimeLimit> timeLimit = new ArrayList<AdvancedInfoTimeLimit>();
+		AdvancedInfoUseCondition useCondition = new AdvancedInfoUseCondition();
+		BaseInfoDateInfo dateInfo = new BaseInfoDateInfo();
+		BaseInfoSku sku = new BaseInfoSku();
 
 		cardCash.setCash(cash);
 
@@ -99,14 +101,14 @@ public class CardTest extends TokenTest {
 		advancedInfo.setUseCondition(useCondition);
 
 		for (int i = 0; i < 1; i++) {
-			TextImage textImage = new TextImage();
+			AdvancedInfoTextImage textImage = new AdvancedInfoTextImage();
 			textImage.setImageUrl("http://mmbiz.qpic.cn/mmbiz/hYkZGWmGqRPpIDiatjgB6rowtU0q9HNKHq0Z2j7D5w56aClzIBF22Y5CwvfkDmyj5MLVY8sicxoHv0vDpam0at1A/0");
 			textImage.setText("图片"+i);
 			textImageList.add(textImage);
 		}
 
 		for (int i = 0; i < 1; i++) {
-			TimeLimit limit = new TimeLimit();
+			AdvancedInfoTimeLimit limit = new AdvancedInfoTimeLimit();
 			limit.setBeginHour(8);
 			limit.setBeginMinute(0);
 			limit.setEndHour(18);
@@ -160,7 +162,7 @@ public class CardTest extends TokenTest {
 
 		sku.setQuantity(100);
 
-		CardResult result = CardAPI.CreateAPI.create(accessToken, cardCash);
+		CreateResult result = CardAPI.create(accessToken, cardCash);
 		System.out.print(result.getErrmsg());
 	}
 	
@@ -169,10 +171,10 @@ public class CardTest extends TokenTest {
 	 */
 	@Test
 	public void paycell() {
-		CardSet cardSet = new CardSet();
+		PaySellSet cardSet = new PaySellSet();
 		cardSet.setCardId("pkMP8v-JC_03FJQEveLW93ssQz0I");
 		cardSet.setIsOpen(true);
-		BaseResult result = CardAPI.CreateAPI.paycellSet(accessToken, cardSet);
+		BaseResult result = CardAPI.payCellSet(accessToken, cardSet);
 		System.out.print(result.getErrmsg());
 	}
 
@@ -181,10 +183,10 @@ public class CardTest extends TokenTest {
 	 */
 	@Test
 	public void selfconsumecell() {
-		CardSet cardSet = new CardSet();
+		SelfConsumeCellSet cardSet = new SelfConsumeCellSet();
 		cardSet.setCardId("pkMP8v-JC_03FJQEveLW93ssQz0I");
 		cardSet.setIsOpen(true);
-		BaseResult result = CardAPI.CreateAPI.selfconsumecellSet(accessToken, cardSet);
+		BaseResult result = CardAPI.selfconsumecellSet(accessToken, cardSet);
 		System.out.print(result.getErrmsg());
 	}
 
@@ -193,9 +195,9 @@ public class CardTest extends TokenTest {
 	 */
 	@Test
 	public void qrcodeCreate() {
-		QrAction action = new QrAction();
-		QrActionInfo actionInfo = new QrActionInfo();
-		QrCardItem card = new QrCardItem();
+		QrCodeCreate action = new QrCodeCreate();
+		ActionInfo actionInfo = new ActionInfo();
+		ActionInfoCard card = new ActionInfoCard();
 		
 		action.setActionInfo(actionInfo);
 		action.setExpireSeconds(null);
@@ -209,7 +211,7 @@ public class CardTest extends TokenTest {
 		card.setOuterId(1);
 		card.setOuterStr("测试卡券");
 		
-		QrResult result = CardAPI.PutInAPI.qrcodeCreate(accessToken, action);
+		QrCodeCreateResult result = CardAPI.qrcodeCreate(accessToken, action);
 		System.out.print(result.getErrmsg());
 	}
 	
@@ -218,10 +220,10 @@ public class CardTest extends TokenTest {
 	 */
 	@Test
 	public void qrcodeCreateMultiple() {
-		QrMultipleAction action = new QrMultipleAction();
-		QrMultipleActionInfo actionInfo = new QrMultipleActionInfo();
-		QrMultipleCard multipleCard = new QrMultipleCard();
-		List<QrMultipleCardItem> cardList = new ArrayList<QrMultipleCardItem>();
+		QrCodeCreateMultiple action = new QrCodeCreateMultiple();
+		ActionInfoMultiple actionInfo = new ActionInfoMultiple();
+		ActionInfoMultipleCard multipleCard = new ActionInfoMultipleCard();
+		List<ActionInfoMultipleCardItem> cardList = new ArrayList<ActionInfoMultipleCardItem>();
 		
 		action.setActionInfo(actionInfo);
 		
@@ -229,17 +231,17 @@ public class CardTest extends TokenTest {
 		
 		multipleCard.setCardList(cardList);
 		
-		QrMultipleCardItem card1 = new QrMultipleCardItem();
+		ActionInfoMultipleCardItem card1 = new ActionInfoMultipleCardItem();
 		card1.setCardId("pkMP8vwCai4ipiriDAf6_XyDnGyg");
 		card1.setCode(null);
 		cardList.add(card1);
 		
-		QrMultipleCardItem card2 = new QrMultipleCardItem();
+		ActionInfoMultipleCardItem card2 = new ActionInfoMultipleCardItem();
 		card2.setCardId("pkMP8v2nZLbH4Xps-J56fZsLhzhY");
 		card2.setCode(null);
 		cardList.add(card2);
 		
-		QrResult result = CardAPI.PutInAPI.qrcodeCreate(accessToken, action);
+		QrCodeCreateResult result = CardAPI.qrcodeCreate(accessToken, action);
 		System.out.print(result.getErrmsg());
 	}
 	
@@ -248,8 +250,8 @@ public class CardTest extends TokenTest {
 	 */
 	@Test
 	public void landingpageCreate() {
-		LandingPage landingPage = new LandingPage();
-		List<LandingCard> cardList = new ArrayList<LandingCard>();
+		LandingPageCreate landingPage = new LandingPageCreate();
+		List<LandingPageCreateCard> cardList = new ArrayList<LandingPageCreateCard>();
 		
 		landingPage.setBanner("http://mmbiz.qpic.cn/mmbiz/p98FjXy8LacgHxp3sJ3vn97bGLz0ib0Sfz1bjiaoOYA027iasqSG0sjpiby4vce3AtaPu6cIhBHkt6IjlkY9YnDsfw/0");
 		landingPage.setCanShare(true);
@@ -257,17 +259,17 @@ public class CardTest extends TokenTest {
 		landingPage.setPageTitle("惠城优惠大派送");
 		landingPage.setScene("SCENE_NEAR_BY");
 		
-		LandingCard card1 = new LandingCard();
+		LandingPageCreateCard card1 = new LandingPageCreateCard();
 		card1.setCardId("pkMP8vwCai4ipiriDAf6_XyDnGyg");
 		card1.setThumbUrl("http://mmbiz.qpic.cn/mmbiz/p98FjXy8LacgHxp3sJ3vn97bGLz0ib0Sfz1bjiaoOYA027iasqSG0sjpiby4vce3AtaPu6cIhBHkt6IjlkY9YnDsfw/0");
 		cardList.add(card1);
 		
-		LandingCard card2 = new LandingCard();
+		LandingPageCreateCard card2 = new LandingPageCreateCard();
 		card2.setCardId("pkMP8v2nZLbH4Xps-J56fZsLhzhY");
 		card2.setThumbUrl("http://mmbiz.qpic.cn/mmbiz/p98FjXy8LacgHxp3sJ3vn97bGLz0ib0Sfz1bjiaoOYA027iasqSG0sjpiby4vce3AtaPu6cIhBHkt6IjlkY9YnDsfw/0");
 		cardList.add(card2);
 		
-		LandingResult result = CardAPI.PutInAPI.landingpageCreate(accessToken, landingPage);
+		LandingPageCreateResult result = CardAPI.landingPageCreate(accessToken, landingPage);
 		System.out.print(result.getErrmsg());
 	}
 	
@@ -276,9 +278,9 @@ public class CardTest extends TokenTest {
 	 */
 	@Test
 	public void mpnewsGethtml() {
-		Mpnews mpnews = new Mpnews();
+		MpNewsGetHtml mpnews = new MpNewsGetHtml();
 		mpnews.setCardId("pkMP8vwCai4ipiriDAf6_XyDnGyg");
-		MpnewsResult result = CardAPI.PutInAPI.mpnewsGethtml(accessToken, mpnews);
+		MpNewsGetHtmlResult result = CardAPI.mpNewsGetHtml(accessToken, mpnews);
 		System.out.print(result.getErrmsg());
 	}
 	
@@ -287,10 +289,10 @@ public class CardTest extends TokenTest {
 	 */
 	@Test
 	public void testwhitelistSet() {
-		TestWhiteList whiteList = new TestWhiteList();
+		TestWhiteListSet whiteList = new TestWhiteListSet();
 		whiteList.setOpenid(null);
 		whiteList.setUsername(new String[]{"mo_yq5"});
-		BaseResult result = CardAPI.PutInAPI.testwhitelistSet(accessToken, whiteList);
+		BaseResult result = CardAPI.testWhiteListSet(accessToken, whiteList);
 		System.out.print(result.getErrmsg());
 	}
 	
@@ -303,7 +305,7 @@ public class CardTest extends TokenTest {
 		codeGet.setCardId("pkMP8vwCai4ipiriDAf6_XyDnGyg");
 		codeGet.setCheckConsume(true);
 		codeGet.setCode("12343");
-		CodeGetResult result = CardAPI.ConsumeAPI.codeGet(accessToken, codeGet);
+		CodeGetResult result = CardAPI.codeGet(accessToken, codeGet);
 		System.out.print(result.getErrmsg());
 	}
 	
@@ -315,7 +317,7 @@ public class CardTest extends TokenTest {
 		CodeConsume codeConsume = new CodeConsume();
 		codeConsume.setCardId("pkMP8vwCai4ipiriDAf6_XyDnGyg");
 		codeConsume.setCode("12343");
-		CodeConsumeResult result = CardAPI.ConsumeAPI.codeConsume(accessToken, codeConsume);
+		CodeDecryptResult result = CardAPI.codeConsume(accessToken, codeConsume);
 		System.out.print(result.getErrmsg());
 	}
 	
@@ -326,7 +328,7 @@ public class CardTest extends TokenTest {
 	public void codeDecrypt() {
 		CodeDecrypt codeDecrypt = new CodeDecrypt();
 		codeDecrypt.setEncryptCode("XXIzTtMqCxwOaawoE91+VJdsFmv7b8g0VZIZkqf4GWA60Fzpc8ksZ/5ZZ0DVkXdE");
-		CodeDecryptResult result = CardAPI.ConsumeAPI.codeDecrypt(accessToken, codeDecrypt);
+		CodeConsumeResult result = CardAPI.codeDecrypt(accessToken, codeDecrypt);
 		System.out.print(result.getErrmsg());
 	}
 	
@@ -338,7 +340,7 @@ public class CardTest extends TokenTest {
 		UserGetCardList userGetCardList = new UserGetCardList();
 		userGetCardList.setCardId(null);
 		userGetCardList.setOpenid("okMP8v297b2i8Q5I7_qcwrvizDPM");
-		UserGetCardListResult result = CardAPI.userGetcardlist(accessToken, userGetCardList);
+		UserGetCardListResult result = CardAPI.userGetCardList(accessToken, userGetCardList);
 		System.out.print(result.getErrmsg());
 	}
 	
@@ -348,7 +350,7 @@ public class CardTest extends TokenTest {
 	@Test
 	public void get() {
 		
-		weixin.popular.bean.card.get.CardResult<?> result = CardAPI.getByCardId(accessToken, "pkMP8vwCai4ipiriDAf6_XyDnGyg");
+		weixin.popular.bean.card.get.GetResult<?> result = CardAPI.getByCardId(accessToken, "pkMP8vwCai4ipiriDAf6_XyDnGyg");
 		System.out.print(result.getErrmsg());
 		if (!result.isSuccess()) {
 			return;
@@ -356,16 +358,16 @@ public class CardTest extends TokenTest {
 		CardType cardType = CardType.valueOf(result.getCard().getCardType().toUpperCase());
 		switch (cardType) {
 		 case CASH:
-			 CashResult cashResult = (CashResult)result;
+			 GetCashResult cashResult = (GetCashResult)result;
 			 break;
 		 case DISCOUNT:
-			 DiscountResult discountResult = (DiscountResult)result;
+			 GetDiscountResult discountResult = (GetDiscountResult)result;
 			 break;
 		 case GENERAL_COUPON:
-			 GeneralCouponResult couponResult = (GeneralCouponResult)result;
+			 GetGeneralCouponResult couponResult = (GetGeneralCouponResult)result;
 			 break;
 		 case GROUPON:
-			 GrouponResult grouponResult = (GrouponResult)result;
+			 GetGrouponResult grouponResult = (GetGrouponResult)result;
 			 break;
 			 // ...其它卡券类型
 		default:
@@ -383,7 +385,7 @@ public class CardTest extends TokenTest {
 		batchget.setCount(10);
 		batchget.setOffset(0);
 		batchget.setStatusList(null);
-		BatchGetResult result = CardAPI.batchget(accessToken, batchget);
+		BatchGetResult result = CardAPI.batchGet(accessToken, batchget);
 		System.out.print(result.getErrmsg());
 	}
 	
@@ -396,7 +398,7 @@ public class CardTest extends TokenTest {
 		modifystock.setCardId("pkMP8vwCai4ipiriDAf6_XyDnGyg");
 		modifystock.setIncreaseStockValue(10);
 		modifystock.setReduceStockValue(5);
-		BaseResult result = CardAPI.modifystock(accessToken, modifystock);
+		BaseResult result = CardAPI.modifyStock(accessToken, modifystock);
 		System.out.print(result.getErrmsg());
 	}
 	
@@ -439,11 +441,11 @@ public class CardTest extends TokenTest {
 	 */
 	@Test
 	public void bizuinInfo() {
-		BizuinCube bizuinCube = new BizuinCube();
+		BizuinInfo bizuinCube = new BizuinInfo();
 		bizuinCube.setBeginDate("2016-05-01");
 		bizuinCube.setCondSource(1);
 		bizuinCube.setEndDate("2016-05-30");
-		BizuinResult result = CardAPI.DataCubeAPI.bizuinInfo(accessToken, bizuinCube);
+		BizuinInfoResult result = DataCubeAPI.getCardBizuinInfo(accessToken, bizuinCube);
 		System.out.print(result.getErrmsg());
 	}
 	
@@ -452,12 +454,12 @@ public class CardTest extends TokenTest {
 	 */
 	@Test
 	public void freeCardCube() {
-		FreeCardCube freeCardCube = new FreeCardCube();
+		CardInfo freeCardCube = new CardInfo();
 		freeCardCube.setBeginDate("2016-05-01");
 		freeCardCube.setCardId("pFS7Fjg8kV1IdDz01r4SQwMkuCKc");
 		freeCardCube.setCondSource(1);
 		freeCardCube.setEndDate("2016-05-30");
-		FreeCardResult result = CardAPI.DataCubeAPI.freeCardInfo(accessToken, freeCardCube);
+		CardInfoResult result = DataCubeAPI.getCardCardInfo(accessToken, freeCardCube);
 		System.out.print(result.getErrmsg());
 	}
 	
@@ -466,11 +468,11 @@ public class CardTest extends TokenTest {
 	 */
 	@Test
 	public void memberCardInfo() {
-		MemberCardCube memberCardCube = new MemberCardCube();
+		MemberCardInfo memberCardCube = new MemberCardInfo();
 		memberCardCube.setBeginDate("2016-05-01");
 		memberCardCube.setCondSource(1);
 		memberCardCube.setEndDate("2016-05-30");
-		MemberCardResult result = CardAPI.DataCubeAPI.memberCardInfo(accessToken, memberCardCube);
+		MemberCardInfoResult result = DataCubeAPI.getCardMemberCardInfo(accessToken, memberCardCube);
 		System.out.print(result.getErrmsg());
 	}
 }

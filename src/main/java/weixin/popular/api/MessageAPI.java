@@ -294,7 +294,7 @@ public class MessageAPI extends BaseAPI{
 	 * @return BaseResult
 	 */
 	public static BaseResult templateApi_set_industry(String access_token,String... industrys){
-		Map<String, String> map = new LinkedHashMap<>();
+		Map<String, String> map = new LinkedHashMap<String, String>();
 		for(int i=1;i<=industrys.length;i++){
 			map.put("industry_id"+i, industrys[i-1]);
 		}

@@ -8,7 +8,7 @@ import com.alibaba.fastjson.annotation.JSONField;
  * @author Moyq5
  *
  */
-public class Groupon extends CardInfo {
+public class Groupon extends AbstractCardInfo {
 
 	/**
 	 * 团购详情<br>

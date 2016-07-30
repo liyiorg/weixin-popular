@@ -8,7 +8,7 @@ import com.alibaba.fastjson.annotation.JSONField;
  * @author Moyq5
  *
  */
-public abstract class AbstractCardInfo {
+public abstract class AbstractInfo {
 
 	/**
 	 * 基本信息
@@ -17,7 +17,8 @@ public abstract class AbstractCardInfo {
 	private BaseInfo baseInfo;
 
 	/**
-	 * 高级信息
+	 * 高级信息<br>
+	 * 不支持修改 
 	 */
 	@JSONField(name = "advanced_info")
 	private AdvancedInfo advancedInfo;
@@ -45,6 +46,7 @@ public abstract class AbstractCardInfo {
 
 	/**
 	 * 高级信息
+	 * 不支持修改
 	 */
 	public void setAdvancedInfo(AdvancedInfo advancedInfo) {
 		this.advancedInfo = advancedInfo;

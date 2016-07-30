@@ -8,7 +8,7 @@ import com.alibaba.fastjson.annotation.JSONField;
  * @author Moyq5
  *
  */
-public class CreateGeneralCoupon extends AbstractCardCreate {
+public class CreateGeneralCoupon extends AbstractCreate {
 
 	@JSONField(name = "general_coupon")
 	private GeneralCoupon generalCoupon;

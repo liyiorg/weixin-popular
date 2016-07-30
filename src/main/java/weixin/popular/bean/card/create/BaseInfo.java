@@ -12,14 +12,14 @@ public class BaseInfo {
 
 	/**
 	 * 卡券的商户logo，建议像素为300*300。<br>
-	 * 必填：是
+	 * 添加必填
 	 */
 	@JSONField(name = "logo_url")
 	private String logoUrl;
 
 	/**
 	 * 商户名字,字数上限为12个汉字。<br>
-	 * 必填：是
+	 * 添加必填，不支持修改
 	 */
 	@JSONField(name = "brand_name")
 	private String brandName;
@@ -32,65 +32,62 @@ public class BaseInfo {
 	 * "CODE_TYPE_ONLY_QRCODE"，二维码无code显示；<br>
 	 * "CODE_TYPE_ONLY_BARCODE"，一维码无code显示；<br>
 	 * "CODE_TYPE_NONE"，不显示code和条形码类型<br>
-	 * 必填：是
+	 * 添加必填
 	 */
 	@JSONField(name = "code_type")
 	private String codeType;
 
 	/**
 	 * 卡券名，字数上限为9个汉字。(建议涵盖卡券属性、服务及金额)。<br>
-	 * 必填：是
+	 * 添加必填
 	 */
 	private String title;
 
 	/**
-	 * 券名，字数上限为18个汉字。<br>
-	 * 必填：否
+	 * 券名，字数上限为18个汉字。
 	 */
 	@JSONField(name = "sub_title")
 	private String subTitle;
 
 	/**
 	 * 券颜色。按色彩规范标注填写Color010-Color100<br>
-	 * 必填：是
+	 * 添加必填
 	 */
 	private String color;
 
 	/**
 	 * 卡券使用提醒，字数上限为16个汉字。<br>
-	 * 必填：是
+	 * 添加必填
 	 */
 	private String notice;
 
 	/**
-	 * 客服电话。<br>
-	 * 必填：否
+	 * 客服电话。
 	 */
 	@JSONField(name = "service_phone")
 	private String servicePhone;
 
 	/**
 	 * 卡券使用说明，字数上限为1024个汉字。<br>
-	 * 必填：是
+	 * 添加必填
 	 */
 	private String description;
 
 	/**
 	 * 使用日期，有效期的信息。<br>
-	 * 必填：是
+	 * 添加必填
 	 */
 	@JSONField(name = "date_info")
 	private BaseInfoDateInfo dateInfo;
 
 	/**
 	 * 商品信息。<br>
-	 * 必填：是
+	 * 添加必填，不支持修改
 	 */
 	private BaseInfoSku sku;
 
 	/**
-	 * 每人可领券的数量限制,不填写默认为50。<br>
-	 * 必填：否
+	 * 每人可领券的数量限制,不填写默认为50。
 	 */
 	@JSONField(name = "get_limit")
 	private Integer getLimit;
@@ -98,7 +95,7 @@ public class BaseInfo {
 	/**
 	 * 是否自定义Code码。 填写true或false，默认为false。 <br>
 	 * 通常自有优惠码系统的开发者选择自定义Code码，并在卡券投放时带入 <br>
-	 * 必填：否
+	 * 不支持修改
 	 */
 	@JSONField(name = "use_custom_code")
 	private Boolean useCustomCode;
@@ -106,21 +103,19 @@ public class BaseInfo {
 	/**
 	 * 是否指定用户领取，填写true或false。默认为false。 <br>
 	 * 通常指定特殊用户群体投放卡券或防止刷券时选择指定用户领取。<br>
-	 * 必填：否
+	 * 不支持修改
 	 */
 	@JSONField(name = "bind_openid")
 	private Boolean bindOpenid;
 
 	/**
-	 * 卡券领取页面是否可分享。<br>
-	 * 必填：否
+	 * 卡券领取页面是否可分享。
 	 */
 	@JSONField(name = "can_share")
 	private Boolean canShare;
 
 	/**
-	 * 卡券是否可转赠。<br>
-	 * 必填：否
+	 * 卡券是否可转赠。
 	 */
 	@JSONField(name = "can_give_friend")
 	private Boolean canGiveFriend;
@@ -134,71 +129,62 @@ public class BaseInfo {
 	private Integer[] locationIdList;
 
 	/**
-	 * 卡券顶部居中的按钮，如“立即使用”，仅在卡券状态正常(可以核销)时显示<br>
-	 * 必填：否
+	 * 卡券顶部居中的按钮，如“立即使用”，仅在卡券状态正常(可以核销)时显示
 	 */
 	@JSONField(name = "center_title")
 	private String centerTitle;
 
 	/**
-	 * 显示在入口下方的提示语，如“立即享受优惠”，仅在卡券状态正常(可以核销)时显示。<br>
-	 * 必填：否
+	 * 显示在入口下方的提示语，如“立即享受优惠”，仅在卡券状态正常(可以核销)时显示。
 	 */
 	@JSONField(name = "center_sub_title")
 	private String centerSubTitle;
 
 	/**
-	 * 顶部居中的url，仅在卡券状态正常(可以核销)时显示。<br>
-	 * 必填：否
+	 * 顶部居中的url，仅在卡券状态正常(可以核销)时显示。
 	 */
 	@JSONField(name = "center_url")
 	private String centerUrl;
 
 	/**
-	 * 自定义跳转外链的入口名字， 如“立即使用”。详情见活用自定义入口<br>
-	 * 必填：否
+	 * 自定义跳转外链的入口名字， 如“立即使用”。详情见活用自定义入口
 	 */
 	@JSONField(name = "custom_url_name")
 	private String customUrlName;
 
 	/**
-	 * 自定义跳转的URL。<br>
-	 * 必填：否
+	 * 自定义跳转的URL。
 	 */
 	@JSONField(name = "custom_url")
 	private String customUrl;
 
 	/**
-	 * 显示在入口右侧的提示语。如“更多惊喜”。<br>
-	 * 必填：否
+	 * 显示在入口右侧的提示语。如“更多惊喜”。
 	 */
 	@JSONField(name = "custom_url_sub_title")
 	private String customUrlSubTitle;
 
 	/**
-	 * 营销场景的自定义入口名称。如，“产品介绍”。<br>
-	 * 必填：否
+	 * 营销场景的自定义入口名称。如，“产品介绍”。
 	 */
 	@JSONField(name = "promotion_url_name")
 	private String promotionUrlName;
 
 	/**
-	 * 入口跳转外链的地址链接。<br>
-	 * 必填：否
+	 * 入口跳转外链的地址链接。
 	 */
 	@JSONField(name = "promotion_url")
 	private String promotionUrl;
 
 	/**
-	 * 显示在营销入口右侧的提示语。如，“卖场大优惠。”。<br>
-	 * 必填：否
+	 * 显示在营销入口右侧的提示语。如，“卖场大优惠。”。
 	 */
 	@JSONField(name = "promotion_url_sub_title")
 	private String promotionUrlSubTitle;
 
 	/**
 	 * 第三方来源名，例如同程旅游、大众点评。<br>
-	 * 必填：否
+	 * 不支持修改
 	 */
 	private String source;
 
@@ -211,7 +197,7 @@ public class BaseInfo {
 
 	/**
 	 * 卡券的商户logo，建议像素为300*300。<br>
-	 * 必填：是
+	 * 添加必填
 	 */
 	public void setLogoUrl(String logoUrl) {
 		this.logoUrl = logoUrl;
@@ -226,7 +212,7 @@ public class BaseInfo {
 
 	/**
 	 * 商户名字,字数上限为12个汉字。<br>
-	 * 必填：是
+	 * 添加必填，不支持修改
 	 */
 	public void setBrandName(String brandName) {
 		this.brandName = brandName;
@@ -251,7 +237,7 @@ public class BaseInfo {
 	 * "CODE_TYPE_ONLY_QRCODE"，二维码无code显示；<br>
 	 * "CODE_TYPE_ONLY_BARCODE"，一维码无code显示；<br>
 	 * "CODE_TYPE_NONE"，不显示code和条形码类型<br>
-	 * 必填：是
+	 * 添加必填
 	 */
 	public void setCodeType(String codeType) {
 		this.codeType = codeType;
@@ -266,7 +252,7 @@ public class BaseInfo {
 
 	/**
 	 * 卡券名，字数上限为9个汉字。(建议涵盖卡券属性、服务及金额)。<br>
-	 * 必填：是
+	 * 添加必填
 	 */
 	public void setTitle(String title) {
 		this.title = title;
@@ -280,8 +266,7 @@ public class BaseInfo {
 	}
 
 	/**
-	 * 券名，字数上限为18个汉字。<br>
-	 * 必填：否
+	 * 券名，字数上限为18个汉字。
 	 */
 	public void setSubTitle(String subTitle) {
 		this.subTitle = subTitle;
@@ -296,7 +281,7 @@ public class BaseInfo {
 
 	/**
 	 * 券颜色。按色彩规范标注填写Color010-Color100<br>
-	 * 必填：是
+	 * 添加必填
 	 */
 	public void setColor(String color) {
 		this.color = color;
@@ -311,7 +296,7 @@ public class BaseInfo {
 
 	/**
 	 * 卡券使用提醒，字数上限为16个汉字。<br>
-	 * 必填：是
+	 * 添加必填
 	 */
 	public void setNotice(String notice) {
 		this.notice = notice;
@@ -325,8 +310,7 @@ public class BaseInfo {
 	}
 
 	/**
-	 * 客服电话。<br>
-	 * 必填：否
+	 * 客服电话。
 	 */
 	public void setServicePhone(String servicePhone) {
 		this.servicePhone = servicePhone;
@@ -341,7 +325,7 @@ public class BaseInfo {
 
 	/**
 	 * 卡券使用说明，字数上限为1024个汉字。<br>
-	 * 必填：是
+	 * 添加必填
 	 */
 	public void setDescription(String description) {
 		this.description = description;
@@ -356,7 +340,7 @@ public class BaseInfo {
 
 	/**
 	 * 使用日期，有效期的信息。<br>
-	 * 必填：是
+	 * 添加必填
 	 */
 	public void setDateInfo(BaseInfoDateInfo dateInfo) {
 		this.dateInfo = dateInfo;
@@ -371,7 +355,7 @@ public class BaseInfo {
 
 	/**
 	 * 商品信息。<br>
-	 * 必填：是
+	 * 添加必填，不支持修改
 	 */
 	public void setSku(BaseInfoSku sku) {
 		this.sku = sku;
@@ -385,8 +369,7 @@ public class BaseInfo {
 	}
 
 	/**
-	 * 每人可领券的数量限制,不填写默认为50。<br>
-	 * 必填：否
+	 * 每人可领券的数量限制,不填写默认为50。
 	 */
 	public void setGetLimit(Integer getLimit) {
 		this.getLimit = getLimit;
@@ -401,8 +384,8 @@ public class BaseInfo {
 
 	/**
 	 * 是否自定义Code码。 填写true或false，默认为false。 <br>
-	 * 通常自有优惠码系统的开发者选择自定义Code码，并在卡券投放时带入 <br>
-	 * 必填：否
+	 * 通常自有优惠码系统的开发者选择自定义Code码，并在卡券投放时带入<br>
+	 * 不支持修改
 	 */
 	public void setUseCustomCode(Boolean useCustomCode) {
 		this.useCustomCode = useCustomCode;
@@ -418,7 +401,7 @@ public class BaseInfo {
 	/**
 	 * 是否指定用户领取，填写true或false。默认为false。 <br>
 	 * 通常指定特殊用户群体投放卡券或防止刷券时选择指定用户领取。<br>
-	 * 必填：否
+	 * 不支持修改
 	 */
 	public void setBindOpenid(Boolean bindOpenid) {
 		this.bindOpenid = bindOpenid;
@@ -432,8 +415,7 @@ public class BaseInfo {
 	}
 
 	/**
-	 * 卡券领取页面是否可分享。<br>
-	 * 必填：否
+	 * 卡券领取页面是否可分享。
 	 */
 	public void setCanShare(Boolean canShare) {
 		this.canShare = canShare;
@@ -447,8 +429,7 @@ public class BaseInfo {
 	}
 
 	/**
-	 * 卡券是否可转赠。<br>
-	 * 必填：否
+	 * 卡券是否可转赠。
 	 */
 	public void setCanGiveFriend(Boolean canGiveFriend) {
 		this.canGiveFriend = canGiveFriend;
@@ -478,8 +459,7 @@ public class BaseInfo {
 	}
 
 	/**
-	 * 卡券顶部居中的按钮，如“立即使用”，仅在卡券状态正常(可以核销)时显示<br>
-	 * 必填：否
+	 * 卡券顶部居中的按钮，如“立即使用”，仅在卡券状态正常(可以核销)时显示
 	 */
 	public void setCenterTitle(String centerTitle) {
 		this.centerTitle = centerTitle;
@@ -493,8 +473,7 @@ public class BaseInfo {
 	}
 
 	/**
-	 * 显示在入口下方的提示语，如“立即享受优惠”，仅在卡券状态正常(可以核销)时显示。<br>
-	 * 必填：否
+	 * 显示在入口下方的提示语，如“立即享受优惠”，仅在卡券状态正常(可以核销)时显示。
 	 */
 	public void setCenterSubTitle(String centerSubTitle) {
 		this.centerSubTitle = centerSubTitle;
@@ -508,8 +487,7 @@ public class BaseInfo {
 	}
 
 	/**
-	 * 顶部居中的url，仅在卡券状态正常(可以核销)时显示。<br>
-	 * 必填：否
+	 * 顶部居中的url，仅在卡券状态正常(可以核销)时显示。
 	 */
 	public void setCenterUrl(String centerUrl) {
 		this.centerUrl = centerUrl;
@@ -523,8 +501,7 @@ public class BaseInfo {
 	}
 
 	/**
-	 * 自定义跳转外链的入口名字， 如“立即使用”。详情见活用自定义入口<br>
-	 * 必填：否
+	 * 自定义跳转外链的入口名字， 如“立即使用”。详情见活用自定义入口
 	 */
 	public void setCustomUrlName(String customUrlName) {
 		this.customUrlName = customUrlName;
@@ -538,8 +515,7 @@ public class BaseInfo {
 	}
 
 	/**
-	 * 自定义跳转的URL。<br>
-	 * 必填：否
+	 * 自定义跳转的URL。
 	 */
 	public void setCustomUrl(String customUrl) {
 		this.customUrl = customUrl;
@@ -553,8 +529,7 @@ public class BaseInfo {
 	}
 
 	/**
-	 * 显示在入口右侧的提示语。如“更多惊喜”。<br>
-	 * 必填：否
+	 * 显示在入口右侧的提示语。如“更多惊喜”。
 	 */
 	public void setCustomUrlSubTitle(String customUrlSubTitle) {
 		this.customUrlSubTitle = customUrlSubTitle;
@@ -568,8 +543,7 @@ public class BaseInfo {
 	}
 
 	/**
-	 * 营销场景的自定义入口名称。如，“产品介绍”。<br>
-	 * 必填：否
+	 * 营销场景的自定义入口名称。如，“产品介绍”。
 	 */
 	public void setPromotionUrlName(String promotionUrlName) {
 		this.promotionUrlName = promotionUrlName;
@@ -583,8 +557,7 @@ public class BaseInfo {
 	}
 
 	/**
-	 * 入口跳转外链的地址链接。<br>
-	 * 必填：否
+	 * 入口跳转外链的地址链接。
 	 */
 	public void setPromotionUrl(String promotionUrl) {
 		this.promotionUrl = promotionUrl;
@@ -598,8 +571,7 @@ public class BaseInfo {
 	}
 
 	/**
-	 * 显示在营销入口右侧的提示语。如，“卖场大优惠。”。<br>
-	 * 必填：否
+	 * 显示在营销入口右侧的提示语。如，“卖场大优惠。”。
 	 */
 	public void setPromotionUrlSubTitle(String promotionUrlSubTitle) {
 		this.promotionUrlSubTitle = promotionUrlSubTitle;
@@ -614,7 +586,7 @@ public class BaseInfo {
 
 	/**
 	 * 第三方来源名，例如同程旅游、大众点评。<br>
-	 * 必填：否
+	 * 不支持修改
 	 */
 	public void setSource(String source) {
 		this.source = source;

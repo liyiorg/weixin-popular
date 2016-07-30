@@ -12,7 +12,7 @@ public class AdvancedInfoAbstract {
 
 	/**
 	 * 封面摘要简介。<br>
-	 * 必填：是，长度：24
+	 * 添加必填，长度：24
 	 */
 	@JSONField(name = "abstract")
 	private String abstractText;
@@ -20,7 +20,7 @@ public class AdvancedInfoAbstract {
 	/**
 	 * 封面图片列表，仅支持填入一个封面图片链接，上传图片接口上传获取图片获得链接，<br>
 	 * 填写非CDN链接会报错，并在此填入。建议图片尺寸像素850*350 <br>
-	 * 必填：是，长度：128
+	 * 添加必填，长度：128
 	 */
 	@JSONField(name = "icon_url_list")
 	private String[] iconUrlList;
@@ -34,7 +34,7 @@ public class AdvancedInfoAbstract {
 
 	/**
 	 * 封面摘要简介。<br>
-	 * 必填：是，长度：24
+	 * 添加必填，长度：24
 	 */
 	public void setAbstractText(String abstractText) {
 		this.abstractText = abstractText;
@@ -50,7 +50,7 @@ public class AdvancedInfoAbstract {
 	/**
 	 * 封面图片列表，仅支持填入一个封面图片链接，上传图片接口上传获取图片获得链接，<br>
 	 * 填写非CDN链接会报错，并在此填入。建议图片尺寸像素850*350 <br>
-	 * 必填：是，长度：128
+	 * 添加必填，长度：128
 	 */
 	public void setIconUrlList(String[] iconUrlList) {
 		this.iconUrlList = iconUrlList;

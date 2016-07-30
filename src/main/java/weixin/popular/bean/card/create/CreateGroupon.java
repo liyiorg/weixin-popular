@@ -6,7 +6,7 @@ package weixin.popular.bean.card.create;
  * @author Moyq5
  *
  */
-public class CreateGroupon extends AbstractCardCreate {
+public class CreateGroupon extends AbstractCreate {
 
 	private Groupon groupon;
 

@@ -1,5 +1,7 @@
 package weixin.popular.bean.card.get;
 
-public class GetGrouponResult extends GetResult<GrouponCard> {
+import weixin.popular.bean.card.create.CreateGroupon;
+
+public class GetGrouponResult extends GetResult<CreateGroupon> {
 
 }

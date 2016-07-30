@@ -47,14 +47,14 @@ import weixin.popular.bean.card.qrcode.create.QrCodeCreate;
 import weixin.popular.bean.card.qrcode.create.QrCodeCreateMultiple;
 import weixin.popular.bean.card.qrcode.create.QrCodeCreateResult;
 import weixin.popular.bean.card.testwhitelist.set.TestWhiteListSet;
+import weixin.popular.bean.card.update.UpdateCash;
+import weixin.popular.bean.card.update.UpdateDiscount;
+import weixin.popular.bean.card.update.UpdateGeneralCoupon;
+import weixin.popular.bean.card.update.UpdateGift;
+import weixin.popular.bean.card.update.UpdateGroupon;
+import weixin.popular.bean.card.update.UpdateResult;
 import weixin.popular.bean.card.user.getcardlist.UserGetCardList;
 import weixin.popular.bean.card.user.getcardlist.UserGetCardListResult;
-import weixin.popular.bean.datacube.getcardbizuininfo.BizuinInfo;
-import weixin.popular.bean.datacube.getcardbizuininfo.BizuinInfoResult;
-import weixin.popular.bean.datacube.getcardcardinfo.CardInfo;
-import weixin.popular.bean.datacube.getcardcardinfo.CardInfoResult;
-import weixin.popular.bean.datacube.getcardmembercardinfo.MemberCardInfo;
-import weixin.popular.bean.datacube.getcardmembercardinfo.MemberCardInfoResult;
 import weixin.popular.client.LocalHttpClient;
 import weixin.popular.util.JsonUtil;
 
@@ -65,409 +65,346 @@ import weixin.popular.util.JsonUtil;
  *
  */
 public class CardAPI extends BaseAPI {
-	
 
 	/**
 	 * 批量查询卡券列表
-	 * @param access_token
-	 * @param batchget
-	 * @return
 	 */
-	public static BatchGetResult batchGet(String access_token, BatchGet batchget) {
-		return batchGet(access_token, JsonUtil.toJSONString(batchget));
+	public static BatchGetResult batchGet(String accessToken, BatchGet batchget) {
+		return batchGet(accessToken, JsonUtil.toJSONString(batchget));
 	}
-	
+
 	/**
 	 * 批量查询卡券列表
-	 * @param access_token
-	 * @param requestJson post完整的json
-	 * @return
 	 */
-	public static BatchGetResult batchGet(String access_token, String requestJson) {
-		HttpUriRequest httpUriRequest = RequestBuilder.post()
-										.setHeader(jsonHeader)
-										.setUri(BASE_URI+"/card/batchget")
-										.addParameter(getATPN(), access_token)
-										.setEntity(new StringEntity(requestJson,Charset.forName("utf-8")))
-										.build();
-		return LocalHttpClient.executeJsonResult(httpUriRequest,BatchGetResult.class);
+	public static BatchGetResult batchGet(String accessToken, String postJson) {
+		HttpUriRequest httpUriRequest = RequestBuilder
+				.post()
+				.setHeader(jsonHeader)
+				.setUri(BASE_URI + "/card/batchget")
+				.addParameter(getATPN(), accessToken)
+				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
+				.build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest,
+				BatchGetResult.class);
 	}
-	
+
 	/**
 	 * 核查code
-	 * @param access_token
-	 * @param codeCheck
-	 * @return
 	 */
-	public static CodeCheckCodeResult codeCheckCode(String access_token, CodeCheckCode codeCheck) {
-		return codeCheckCode(access_token, JsonUtil.toJSONString(codeCheck));
+	public static CodeCheckCodeResult codeCheckCode(String accessToken, CodeCheckCode codeCheck) {
+		return codeCheckCode(accessToken, JsonUtil.toJSONString(codeCheck));
 	}
-	
+
 	/**
 	 * 核查code
-	 * @param access_token
-	 * @param requestJson post完整的json
-	 * @return
 	 */
-	public static CodeCheckCodeResult codeCheckCode(String access_token, String requestJson) {
-		HttpUriRequest httpUriRequest = RequestBuilder.post()
-										.setHeader(jsonHeader)
-										.setUri(BASE_URI+"/card/code/checkcode")
-										.addParameter(getATPN(), access_token)
-										.setEntity(new StringEntity(requestJson,Charset.forName("utf-8")))
-										.build();
-		return LocalHttpClient.executeJsonResult(httpUriRequest,CodeCheckCodeResult.class);
+	public static CodeCheckCodeResult codeCheckCode(String accessToken, String postJson) {
+		HttpUriRequest httpUriRequest = RequestBuilder
+				.post()
+				.setHeader(jsonHeader)
+				.setUri(BASE_URI + "/card/code/checkcode")
+				.addParameter(getATPN(), accessToken)
+				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
+				.build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest,
+				CodeCheckCodeResult.class);
 	}
-	
+
 	/**
 	 * 核销Code
-	 * @param access_token
-	 * @param codeConsume
-	 * @return
 	 */
-	public static CodeDecryptResult codeConsume(String access_token, CodeConsume codeConsume) {
-		return codeConsume(access_token, JsonUtil.toJSONString(codeConsume));
+	public static CodeDecryptResult codeConsume(String accessToken, CodeConsume codeConsume) {
+		return codeConsume(accessToken, JsonUtil.toJSONString(codeConsume));
 	}
-	
+
 	/**
 	 * 核销Code
-	 * @param access_token
-	 * @param requestJson post完整的json
-	 * @return
 	 */
-	public static CodeDecryptResult codeConsume(String access_token, String requestJson) {
-		HttpUriRequest httpUriRequest = RequestBuilder.post()
-										.setHeader(jsonHeader)
-										.setUri(BASE_URI+"/card/code/consume")
-										.addParameter(getATPN(), access_token)
-										.setEntity(new StringEntity(requestJson,Charset.forName("utf-8")))
-										.build();
-		return LocalHttpClient.executeJsonResult(httpUriRequest,CodeDecryptResult.class);
+	public static CodeDecryptResult codeConsume(String accessToken, String postJson) {
+		HttpUriRequest httpUriRequest = RequestBuilder
+				.post()
+				.setHeader(jsonHeader)
+				.setUri(BASE_URI + "/card/code/consume")
+				.addParameter(getATPN(), accessToken)
+				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
+				.build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest,
+				CodeDecryptResult.class);
 	}
-	
+
 	/**
 	 * Code解码<br>
 	 * 1.只能解码本公众号卡券获取的加密code。 <br>
 	 * 2.开发者若从url上获取到加密code,请注意先进行urldecode，否则报错。<br>
 	 * 3.encrypt_code是卡券的code码经过加密处理得到的加密code码，与code一一对应。<br>
 	 * 4.开发者只能解密本公众号的加密code，否则报错。
-	 * @param access_token
-	 * @param codeDecrypt
-	 * @return
 	 */
-	public static CodeConsumeResult codeDecrypt(String access_token, CodeDecrypt codeDecrypt) {
-		return codeDecrypt(access_token, JsonUtil.toJSONString(codeDecrypt));
+	public static CodeConsumeResult codeDecrypt(String accessToken, CodeDecrypt codeDecrypt) {
+		return codeDecrypt(accessToken, JsonUtil.toJSONString(codeDecrypt));
 	}
-	
+
 	/**
 	 * Code解码<br>
 	 * 1.只能解码本公众号卡券获取的加密code。 <br>
 	 * 2.开发者若从url上获取到加密code,请注意先进行urldecode，否则报错。<br>
 	 * 3.encrypt_code是卡券的code码经过加密处理得到的加密code码，与code一一对应。<br>
 	 * 4.开发者只能解密本公众号的加密code，否则报错。
-	 * @param access_token
-	 * @param requestJson post完整的json
-	 * @return
 	 */
-	public static CodeConsumeResult codeDecrypt(String access_token, String requestJson) {
-		HttpUriRequest httpUriRequest = RequestBuilder.post()
-										.setHeader(jsonHeader)
-										.setUri(BASE_URI+"/card/code/decrypt")
-										.addParameter(getATPN(), access_token)
-										.setEntity(new StringEntity(requestJson,Charset.forName("utf-8")))
-										.build();
-		return LocalHttpClient.executeJsonResult(httpUriRequest,CodeConsumeResult.class);
+	public static CodeConsumeResult codeDecrypt(String accessToken, String postJson) {
+		HttpUriRequest httpUriRequest = RequestBuilder
+				.post()
+				.setHeader(jsonHeader)
+				.setUri(BASE_URI + "/card/code/decrypt")
+				.addParameter(getATPN(), accessToken)
+				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
+				.build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest,
+				CodeConsumeResult.class);
 	}
-	
+
 	/**
 	 * 导入code
-	 * @param access_token
-	 * @param codeDeposit
-	 * @return
 	 */
-	public static CodeDepositResult codeDeposit(String access_token, CodeDeposit codeDeposit) {
-		return codeDeposit(access_token, JsonUtil.toJSONString(codeDeposit));
+	public static CodeDepositResult codeDeposit(String accessToken, CodeDeposit codeDeposit) {
+		return codeDeposit(accessToken, JsonUtil.toJSONString(codeDeposit));
 	}
-	
+
 	/**
 	 * 导入code
-	 * @param access_token
-	 * @param requestJson post完整的json
-	 * @return
 	 */
-	public static CodeDepositResult codeDeposit(String access_token, String requestJson) {
-		HttpUriRequest httpUriRequest = RequestBuilder.post()
-										.setHeader(jsonHeader)
-										.setUri(BASE_URI+"/card/code/deposit")
-										.addParameter(getATPN(), access_token)
-										.setEntity(new StringEntity(requestJson,Charset.forName("utf-8")))
-										.build();
-		return LocalHttpClient.executeJsonResult(httpUriRequest,CodeDepositResult.class);
+	public static CodeDepositResult codeDeposit(String accessToken, String postJson) {
+		HttpUriRequest httpUriRequest = RequestBuilder
+				.post()
+				.setHeader(jsonHeader)
+				.setUri(BASE_URI + "/card/code/deposit")
+				.addParameter(getATPN(), accessToken)
+				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
+				.build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest,
+				CodeDepositResult.class);
 	}
-	
-	/**
-	 * 查询Code
-	 * @param access_token
-	 * @param codeGet
-	 * @return
-	 */
-	public static CodeGetResult codeGet(String access_token, CodeGet codeGet) {
-		return codeGet(access_token, JsonUtil.toJSONString(codeGet));
-	}
-	
 
 	/**
 	 * 查询Code
-	 * @param access_token
-	 * @param requestJson post完整的json
-	 * @return
 	 */
-	public static CodeGetResult codeGet(String access_token, String requestJson) {
-		HttpUriRequest httpUriRequest = RequestBuilder.post()
-										.setHeader(jsonHeader)
-										.setUri(BASE_URI+"/card/code/get")
-										.addParameter(getATPN(), access_token)
-										.setEntity(new StringEntity(requestJson,Charset.forName("utf-8")))
-										.build();
-		return LocalHttpClient.executeJsonResult(httpUriRequest,CodeGetResult.class);
+	public static CodeGetResult codeGet(String accessToken, CodeGet codeGet) {
+		return codeGet(accessToken, JsonUtil.toJSONString(codeGet));
 	}
-	
+
 	/**
-	 * 查询导入code数目
-	 * @param access_token
-	 * @param codeCount
-	 * @return
+	 * 查询Code
 	 */
-	public static CodeGetDepositCountResult codeGetDepositCount(String access_token, CodeGetDepositCount codeCount) {
-		return codeGetDepositCount(access_token, JsonUtil.toJSONString(codeCount));
+	public static CodeGetResult codeGet(String accessToken, String postJson) {
+		HttpUriRequest httpUriRequest = RequestBuilder
+				.post()
+				.setHeader(jsonHeader)
+				.setUri(BASE_URI + "/card/code/get")
+				.addParameter(getATPN(), accessToken)
+				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
+				.build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest,
+				CodeGetResult.class);
 	}
-	
 
 	/**
 	 * 查询导入code数目
-	 * @param access_token
-	 * @param requestJson post完整的json
-	 * @return
 	 */
-	public static CodeGetDepositCountResult codeGetDepositCount(String access_token, String requestJson) {
-		HttpUriRequest httpUriRequest = RequestBuilder.post()
-										.setHeader(jsonHeader)
-										.setUri(BASE_URI+"/card/code/getdepositcount")
-										.addParameter(getATPN(), access_token)
-										.setEntity(new StringEntity(requestJson,Charset.forName("utf-8")))
-										.build();
-		return LocalHttpClient.executeJsonResult(httpUriRequest,CodeGetDepositCountResult.class);
+	public static CodeGetDepositCountResult codeGetDepositCount(String accessToken, CodeGetDepositCount codeCount) {
+		return codeGetDepositCount(accessToken,
+				JsonUtil.toJSONString(codeCount));
 	}
-	
+
+	/**
+	 * 查询导入code数目
+	 */
+	public static CodeGetDepositCountResult codeGetDepositCount( String accessToken, String postJson) {
+		HttpUriRequest httpUriRequest = RequestBuilder
+				.post()
+				.setHeader(jsonHeader)
+				.setUri(BASE_URI + "/card/code/getdepositcount")
+				.addParameter(getATPN(), accessToken)
+				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
+				.build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest,
+				CodeGetDepositCountResult.class);
+	}
+
 	/**
 	 * 设置卡券失效
-	 * @param access_token
-	 * @param codeUnavailable
-	 * @return
 	 */
-	public static BaseResult codeUnavailable(String access_token, CodeUnavailable codeUnavailable) {
-		return codeUnavailable(access_token, JsonUtil.toJSONString(codeUnavailable));
+	public static BaseResult codeUnavailable(String accessToken, CodeUnavailable codeUnavailable) {
+		return codeUnavailable(accessToken,
+				JsonUtil.toJSONString(codeUnavailable));
 	}
-	
+
 	/**
 	 * 设置卡券失效
-	 * @param access_token
-	 * @param requestJson post完整的json
-	 * @return
 	 */
-	public static BaseResult codeUnavailable(String access_token, String requestJson) {
-		HttpUriRequest httpUriRequest = RequestBuilder.post()
-										.setHeader(jsonHeader)
-										.setUri(BASE_URI+"/card/code/unavailable")
-										.addParameter(getATPN(), access_token)
-										.setEntity(new StringEntity(requestJson,Charset.forName("utf-8")))
-										.build();
-		return LocalHttpClient.executeJsonResult(httpUriRequest,BaseResult.class);
+	public static BaseResult codeUnavailable(String accessToken, String postJson) {
+		HttpUriRequest httpUriRequest = RequestBuilder
+				.post()
+				.setHeader(jsonHeader)
+				.setUri(BASE_URI + "/card/code/unavailable")
+				.addParameter(getATPN(), accessToken)
+				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
+				.build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest,
+				BaseResult.class);
 	}
-	
+
 	/**
 	 * 设置卡券失效
-	 * @param access_token
-	 * @param code
-	 * @return
 	 */
-	public static BaseResult codeUnavailableByCode(String access_token, String code) {
-		return codeUnavailable(access_token, String.format("{\"code\": \"%s\"}", code));
+	public static BaseResult codeUnavailableByCode(String accessToken, String code) {
+		return codeUnavailable(accessToken, String.format("{\"code\": \"%s\"}", code));
 	}
-	
+
 	/**
 	 * 更改Code
-	 * @param access_token
-	 * @param codeUpdate
-	 * @return
 	 */
-	public static BaseResult codeUpdate(String access_token, CodeUpdate codeUpdate) {
-		return codeUpdate(access_token, JsonUtil.toJSONString(codeUpdate));
+	public static BaseResult codeUpdate(String accessToken, CodeUpdate codeUpdate) {
+		return codeUpdate(accessToken, JsonUtil.toJSONString(codeUpdate));
 	}
-	
+
 	/**
 	 * 更改Code
-	 * @param access_token
-	 * @param requestJson post完整的json
-	 * @return
 	 */
-	public static BaseResult codeUpdate(String access_token, String requestJson) {
-		HttpUriRequest httpUriRequest = RequestBuilder.post()
-										.setHeader(jsonHeader)
-										.setUri(BASE_URI+"/card/code/update")
-										.addParameter(getATPN(), access_token)
-										.setEntity(new StringEntity(requestJson,Charset.forName("utf-8")))
-										.build();
-		return LocalHttpClient.executeJsonResult(httpUriRequest,BaseResult.class);
+	public static BaseResult codeUpdate(String accessToken, String postJson) {
+		HttpUriRequest httpUriRequest = RequestBuilder
+				.post()
+				.setHeader(jsonHeader)
+				.setUri(BASE_URI + "/card/code/update")
+				.addParameter(getATPN(), accessToken)
+				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
+				.build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest,
+				BaseResult.class);
 	}
-	
+
 	/**
 	 * 创建卡券
-	 * @param access_token
-	 * @param card
-	 * @return
 	 */
-	public static CreateResult create(String access_token, Create<?> card) {
-		return create(access_token, JsonUtil.toJSONString(card));
+	public static CreateResult create(String accessToken, Create<?> card) {
+		return create(accessToken, JsonUtil.toJSONString(card));
 	}
-	
+
 	/**
 	 * 创建代金券
-	 * @param access_token
-	 * @param cardCash
-	 * @return
 	 */
-	public static CreateResult create(String access_token, CreateCash cardCash) {
+	public static CreateResult create(String accessToken, CreateCash cardCash) {
 		Create<CreateCash> card = new Create<CreateCash>();
 		card.setCard(cardCash);
-		return create(access_token,card);
+		return create(accessToken, card);
 	}
-	
+
 	/**
 	 * 创建折扣券
-	 * @param access_token
-	 * @param cardDiscount
-	 * @return
 	 */
-	public static CreateResult create(String access_token, CreateDiscount cardDiscount) {
+	public static CreateResult create(String accessToken, CreateDiscount cardDiscount) {
 		Create<CreateDiscount> card = new Create<CreateDiscount>();
 		card.setCard(cardDiscount);
-		return create(access_token, card);
+		return create(accessToken, card);
 	}
-	
+
 	/**
 	 * 创建优惠券
-	 * @param access_token
-	 * @param cardGeneralCoupon
-	 * @return
 	 */
-	public static CreateResult create(String access_token, CreateGeneralCoupon cardGeneralCoupon) {
+	public static CreateResult create(String accessToken, CreateGeneralCoupon cardGeneralCoupon) {
 		Create<CreateGeneralCoupon> card = new Create<CreateGeneralCoupon>();
 		card.setCard(cardGeneralCoupon);
-		return create(access_token, card);
+		return create(accessToken, card);
 	}
-	
+
 	/**
 	 * 创建兑换券
-	 * @param access_token
-	 * @param cardGift
-	 * @return
 	 */
-	public static CreateResult create(String access_token, CreateGift cardGift) {
+	public static CreateResult create(String accessToken, CreateGift cardGift) {
 		Create<CreateGift> card = new Create<CreateGift>();
 		card.setCard(cardGift);
-		return create(access_token, card);
+		return create(accessToken, card);
 	}
-	
+
 	/**
 	 * 创建团购券
-	 * @param access_token
-	 * @param cardGroupon
-	 * @return
 	 */
-	public static CreateResult create(String access_token, CreateGroupon cardGroupon) {
+	public static CreateResult create(String accessToken, CreateGroupon cardGroupon) {
 		Create<CreateGroupon> card = new Create<CreateGroupon>();
 		card.setCard(cardGroupon);
-		return create(access_token, card);
+		return create(accessToken, card);
 	}
-	
+
 	/**
 	 * 创建卡券
-	 * @param access_token
-	 * @param requestJson post完整的json
+	 * 
 	 * @return
 	 */
-	public static CreateResult create(String access_token, String requestJson) {
-		HttpUriRequest httpUriRequest = RequestBuilder.post()
-										.setHeader(jsonHeader)
-										.setUri(BASE_URI+"/card/create")
-										.addParameter(getATPN(), access_token)
-										.setEntity(new StringEntity(requestJson,Charset.forName("utf-8")))
-										.build();
-		return LocalHttpClient.executeJsonResult(httpUriRequest,CreateResult.class);
+	public static CreateResult create(String accessToken, String postJson) {
+		HttpUriRequest httpUriRequest = RequestBuilder
+				.post()
+				.setHeader(jsonHeader)
+				.setUri(BASE_URI + "/card/create")
+				.addParameter(getATPN(), accessToken)
+				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
+				.build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest,
+				CreateResult.class);
 	}
-	
+
 	/**
 	 * 删除卡券
-	 * @param access_token
-	 * @param requestJson post完整的json
-	 * @return
 	 */
-	public static BaseResult delete(String access_token, String requestJson) {
-		HttpUriRequest httpUriRequest = RequestBuilder.post()
-										.setHeader(jsonHeader)
-										.setUri(BASE_URI+"/card/delete")
-										.addParameter(getATPN(), access_token)
-										.setEntity(new StringEntity(requestJson,Charset.forName("utf-8")))
-										.build();
-		return LocalHttpClient.executeJsonResult(httpUriRequest,BaseResult.class);
+	public static BaseResult delete(String accessToken, String postJson) {
+		HttpUriRequest httpUriRequest = RequestBuilder
+				.post()
+				.setHeader(jsonHeader)
+				.setUri(BASE_URI + "/card/delete")
+				.addParameter(getATPN(), accessToken)
+				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
+				.build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest,
+				BaseResult.class);
 	}
-	
+
 	/**
 	 * 删除卡券
-	 * @param access_token
-	 * @param cardId
-	 * @return
 	 */
-	public static BaseResult deleteByCardId(String access_token, String cardId) {
-		return delete(access_token, String.format("{\"card_id\": \"%s\"}", cardId));
+	public static BaseResult deleteByCardId(String accessToken, String cardId) {
+		return delete(accessToken, String.format("{\"card_id\": \"%s\"}", cardId));
 	}
-	
+
 	/**
 	 * 查看卡券详情
-	 * @param access_token access_token
-	 * @param requestJson post完整的json
-	 * @return CardResult
 	 */
-	public static GetResult<?> get(String access_token, String requestJson) {
-		HttpUriRequest httpUriRequest = RequestBuilder.post()
-										.setHeader(jsonHeader)
-										.setUri(BASE_URI+"/card/get")
-										.addParameter(getATPN(), access_token)
-										.setEntity(new StringEntity(requestJson,Charset.forName("utf-8")))
-										.build();
-		AbstractResult abs = LocalHttpClient.executeJsonResult(httpUriRequest,AbstractResult.class);
+	public static GetResult<?> get(String accessToken, String postJson) {
+		HttpUriRequest httpUriRequest = RequestBuilder
+				.post()
+				.setHeader(jsonHeader)
+				.setUri(BASE_URI + "/card/get")
+				.addParameter(getATPN(), accessToken)
+				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
+				.build();
+		AbstractResult abs = LocalHttpClient.executeJsonResult(httpUriRequest, AbstractResult.class);
 		if (!abs.isSuccess()) {
 			return abs;
 		}
-		
+
 		GetResult<?> result = abs;
 		CardType cardType = CardType.valueOf(abs.getCard().getCardType().toUpperCase());
 		Class<? extends GetResult<?>> clazz = null;
 		switch (cardType) {
-		 case CASH:
-			 clazz = GetCashResult.class;
-			 break;
-		 case DISCOUNT:
-			 clazz = GetDiscountResult.class;
-			 break;
-		 case GENERAL_COUPON:
-			 clazz = GetGeneralCouponResult.class;
-			 break;
-		 case GROUPON:
-			 clazz = GetGrouponResult.class;
-			 break;
-			 // ...其它卡券类型
+		case CASH:
+			clazz = GetCashResult.class;
+			break;
+		case DISCOUNT:
+			clazz = GetDiscountResult.class;
+			break;
+		case GENERAL_COUPON:
+			clazz = GetGeneralCouponResult.class;
+			break;
+		case GROUPON:
+			clazz = GetGrouponResult.class;
+			break;
+		// ...其它卡券类型
 		default:
 			break;
 		}
@@ -476,235 +413,260 @@ public class CardAPI extends BaseAPI {
 		}
 		return result;
 	}
-	
+
 	/**
 	 * 查看卡券详情
-	 * @param access_token access_token
-	 * @param cardId cardId
-	 * @return CardResult
 	 */
-	public static GetResult<?> getByCardId(String access_token, String cardId) {
-		return get(access_token, String.format("{\"card_id\": \"%s\"}", cardId));
+	public static GetResult<?> getByCardId(String accessToken, String cardId) {
+		return get(accessToken, String.format("{\"card_id\": \"%s\"}", cardId));
 	}
-	
+
 	/**
 	 * 创建货架
-	 * @param access_token
-	 * @param landingPage
-	 * @return
 	 */
-	public static LandingPageCreateResult landingPageCreate(String access_token, LandingPageCreate landingPage) {
-		return landingPageCreate(access_token, JsonUtil.toJSONString(landingPage));
+	public static LandingPageCreateResult landingPageCreate(String accessToken, LandingPageCreate landingPage) {
+		return landingPageCreate(accessToken,
+				JsonUtil.toJSONString(landingPage));
 	}
-	
+
 	/**
 	 * 创建货架
-	 * @param access_token
-	 * @param requestJson post完整的json
-	 * @return
 	 */
-	public static LandingPageCreateResult landingPageCreate(String access_token, String requestJson) {
-		HttpUriRequest httpUriRequest = RequestBuilder.post()
-										.setHeader(jsonHeader)
-										.setUri(BASE_URI+"/card/landingpage/create")
-										.addParameter(getATPN(), access_token)
-										.setEntity(new StringEntity(requestJson,Charset.forName("utf-8")))
-										.build();
-		return LocalHttpClient.executeJsonResult(httpUriRequest,LandingPageCreateResult.class);
+	public static LandingPageCreateResult landingPageCreate(String accessToken, String postJson) {
+		HttpUriRequest httpUriRequest = RequestBuilder
+				.post()
+				.setHeader(jsonHeader)
+				.setUri(BASE_URI + "/card/landingpage/create")
+				.addParameter(getATPN(), accessToken)
+				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
+				.build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest,
+				LandingPageCreateResult.class);
 	}
-	
+
 	/**
 	 * 修改库存
-	 * @param access_token
-	 * @param modifystock
-	 * @return
 	 */
-	public static BaseResult modifyStock(String access_token, ModifyStock modifystock) {
-		return modifyStock(access_token, JsonUtil.toJSONString(modifystock));
+	public static BaseResult modifyStock(String accessToken, ModifyStock modifystock) {
+		return modifyStock(accessToken, JsonUtil.toJSONString(modifystock));
 	}
-	
+
 	/**
 	 * 修改库存
-	 * @param access_token
-	 * @param requestJson post完整的json
-	 * @return
 	 */
-	public static BaseResult modifyStock(String access_token, String requestJson) {
-		HttpUriRequest httpUriRequest = RequestBuilder.post()
-										.setHeader(jsonHeader)
-										.setUri(BASE_URI+"/card/modifystock")
-										.addParameter(getATPN(), access_token)
-										.setEntity(new StringEntity(requestJson,Charset.forName("utf-8")))
-										.build();
-		return LocalHttpClient.executeJsonResult(httpUriRequest,BaseResult.class);
+	public static BaseResult modifyStock(String accessToken, String postJson) {
+		HttpUriRequest httpUriRequest = RequestBuilder
+				.post()
+				.setHeader(jsonHeader)
+				.setUri(BASE_URI + "/card/modifystock")
+				.addParameter(getATPN(), accessToken)
+				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
+				.build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest,
+				BaseResult.class);
 	}
-	
+
 	/**
 	 * 图文消息群发卡券素材
-	 * @param access_token
-	 * @param mpnews
-	 * @return
 	 */
-	public static MpNewsGetHtmlResult mpNewsGetHtml(String access_token, MpNewsGetHtml mpnews) {
-		return mpNewsGetHtml(access_token, JsonUtil.toJSONString(mpnews));
+	public static MpNewsGetHtmlResult mpNewsGetHtml(String accessToken, MpNewsGetHtml mpnews) {
+		return mpNewsGetHtml(accessToken, JsonUtil.toJSONString(mpnews));
 	}
-	
+
 	/**
 	 * 图文消息群发卡券素材
-	 * @param access_token
-	 * @param requestJson post完整的json
-	 * @return
 	 */
-	public static MpNewsGetHtmlResult mpNewsGetHtml(String access_token, String requestJson) {
-		HttpUriRequest httpUriRequest = RequestBuilder.post()
-										.setHeader(jsonHeader)
-										.setUri(BASE_URI+"/card/mpnews/gethtml")
-										.addParameter(getATPN(), access_token)
-										.setEntity(new StringEntity(requestJson,Charset.forName("utf-8")))
-										.build();
-		return LocalHttpClient.executeJsonResult(httpUriRequest,MpNewsGetHtmlResult.class);
+	public static MpNewsGetHtmlResult mpNewsGetHtml(String accessToken,
+			String postJson) {
+		HttpUriRequest httpUriRequest = RequestBuilder
+				.post()
+				.setHeader(jsonHeader)
+				.setUri(BASE_URI + "/card/mpnews/gethtml")
+				.addParameter(getATPN(), accessToken)
+				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
+				.build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest,
+				MpNewsGetHtmlResult.class);
 	}
-	
+
 	/**
 	 * 设置买单功能
-	 * @param access_token
-	 * @param cardSet
-	 * @return
 	 */
-	public static BaseResult payCellSet(String access_token, PaySellSet cardSet) {
-		return payCellSet(access_token, JsonUtil.toJSONString(cardSet));
+	public static BaseResult payCellSet(String accessToken, PaySellSet cardSet) {
+		return payCellSet(accessToken, JsonUtil.toJSONString(cardSet));
 	}
-	
+
 	/**
 	 * 设置买单功能
-	 * @param access_token
-	 * @param requestJson post完整的json
-	 * @return
 	 */
-	public static BaseResult payCellSet(String access_token, String requestJson) {
-		HttpUriRequest httpUriRequest = RequestBuilder.post()
-										.setHeader(jsonHeader)
-										.setUri(BASE_URI+"/card/paycell/set")
-										.addParameter(getATPN(), access_token)
-										.setEntity(new StringEntity(requestJson,Charset.forName("utf-8")))
-										.build();
-		return LocalHttpClient.executeJsonResult(httpUriRequest,BaseResult.class);
+	public static BaseResult payCellSet(String accessToken, String postJson) {
+		HttpUriRequest httpUriRequest = RequestBuilder
+				.post()
+				.setHeader(jsonHeader)
+				.setUri(BASE_URI + "/card/paycell/set")
+				.addParameter(getATPN(), accessToken)
+				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
+				.build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest,
+				BaseResult.class);
 	}
-	
+
 	/**
 	 * 设置扫描二维码领取单张卡券
-	 * @param access_token
-	 * @param action
-	 * @return
 	 */
-	public static QrCodeCreateResult qrcodeCreate(String access_token, QrCodeCreate action) {
-		return qrcodeCreate(access_token, JsonUtil.toJSONString(action));
+	public static QrCodeCreateResult qrcodeCreate(String accessToken,
+			QrCodeCreate action) {
+		return qrcodeCreate(accessToken, JsonUtil.toJSONString(action));
 	}
-	
+
 	/**
 	 * 设置扫描二维码领取多张卡券
-	 * @param access_token
-	 * @param action
-	 * @return
 	 */
-	public static QrCodeCreateResult qrcodeCreate(String access_token, QrCodeCreateMultiple action) {
-		return qrcodeCreate(access_token, JsonUtil.toJSONString(action));
+	public static QrCodeCreateResult qrcodeCreate(String accessToken,
+			QrCodeCreateMultiple action) {
+		return qrcodeCreate(accessToken, JsonUtil.toJSONString(action));
 	}
-	
+
 	/**
 	 * 创建领取卡券二维码
-	 * @param access_token
-	 * @param requestJson post完整的json
-	 * @return
 	 */
-	public static QrCodeCreateResult qrcodeCreate(String access_token, String requestJson) {
-		HttpUriRequest httpUriRequest = RequestBuilder.post()
-										.setHeader(jsonHeader)
-										.setUri(BASE_URI+"/card/qrcode/create")
-										.addParameter(getATPN(), access_token)
-										.setEntity(new StringEntity(requestJson,Charset.forName("utf-8")))
-										.build();
-		return LocalHttpClient.executeJsonResult(httpUriRequest,QrCodeCreateResult.class);
-	}
-	
-	/**
-	 * 设置自助核销功能
-	 * @param access_token
-	 * @param cardSet
-	 * @return
-	 */
-	public static BaseResult selfconsumecellSet(String access_token, PaySellSet cardSet) {
-		return selfconsumecellSet(access_token, JsonUtil.toJSONString(cardSet));
-	}
-	
-	/**
-	 * 设置自助核销功能
-	 * @param access_token
-	 * @param requestJson post完整的json
-	 * @return
-	 */
-	public static BaseResult selfconsumecellSet(String access_token, String requestJson) {
-		HttpUriRequest httpUriRequest = RequestBuilder.post()
-										.setHeader(jsonHeader)
-										.setUri(BASE_URI+"/card/selfconsumecell/set")
-										.addParameter(getATPN(), access_token)
-										.setEntity(new StringEntity(requestJson,Charset.forName("utf-8")))
-										.build();
-		return LocalHttpClient.executeJsonResult(httpUriRequest,BaseResult.class);
+	public static QrCodeCreateResult qrcodeCreate(String accessToken,
+			String postJson) {
+		HttpUriRequest httpUriRequest = RequestBuilder
+				.post()
+				.setHeader(jsonHeader)
+				.setUri(BASE_URI + "/card/qrcode/create")
+				.addParameter(getATPN(), accessToken)
+				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
+				.build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest,
+				QrCodeCreateResult.class);
 	}
 
+	/**
+	 * 设置自助核销功能
+	 */
+	public static BaseResult selfconsumecellSet(String accessToken,
+			PaySellSet cardSet) {
+		return selfconsumecellSet(accessToken, JsonUtil.toJSONString(cardSet));
+	}
+
+	/**
+	 * 设置自助核销功能
+	 */
+	public static BaseResult selfconsumecellSet(String accessToken,
+			String postJson) {
+		HttpUriRequest httpUriRequest = RequestBuilder
+				.post()
+				.setHeader(jsonHeader)
+				.setUri(BASE_URI + "/card/selfconsumecell/set")
+				.addParameter(getATPN(), accessToken)
+				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
+				.build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest,
+				BaseResult.class);
+	}
 
 	/**
 	 * 设置测试白名单
-	 * @param access_token
-	 * @param whiteList
-	 * @return
 	 */
-	public static BaseResult testWhiteListSet(String access_token, TestWhiteListSet whiteList) {
-		return testWhiteListSet(access_token, JsonUtil.toJSONString(whiteList));
+	public static BaseResult testWhiteListSet(String accessToken,
+			String postJson) {
+		HttpUriRequest httpUriRequest = RequestBuilder
+				.post()
+				.setHeader(jsonHeader)
+				.setUri(BASE_URI + "/card/testwhitelist/set")
+				.addParameter(getATPN(), accessToken)
+				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
+				.build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest,
+				BaseResult.class);
 	}
-	
+
 	/**
 	 * 设置测试白名单
-	 * @param access_token
-	 * @param requestJson post完整的json
-	 * @return
 	 */
-	public static BaseResult testWhiteListSet(String access_token, String requestJson) {
-		HttpUriRequest httpUriRequest = RequestBuilder.post()
-										.setHeader(jsonHeader)
-										.setUri(BASE_URI+"/card/testwhitelist/set")
-										.addParameter(getATPN(), access_token)
-										.setEntity(new StringEntity(requestJson,Charset.forName("utf-8")))
-										.build();
-		return LocalHttpClient.executeJsonResult(httpUriRequest,BaseResult.class);
+	public static BaseResult testWhiteListSet(String accessToken,
+			TestWhiteListSet whiteList) {
+		return testWhiteListSet(accessToken, JsonUtil.toJSONString(whiteList));
 	}
-	
+
+	/**
+	 * 更改卡券信息接口
+	 */
+	public static UpdateResult update(String accessToken, String postJson) {
+		HttpUriRequest httpUriRequest = RequestBuilder
+				.post()
+				.setHeader(jsonHeader)
+				.setUri(BASE_URI + "/card/update")
+				.addParameter(getATPN(), accessToken)
+				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
+				.build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest,
+				UpdateResult.class);
+	}
+
+	/**
+	 * 更改卡券信息接口(代金券)
+	 */
+	public static UpdateResult update(String accessToken, UpdateCash updateCash) {
+		return update(accessToken, JsonUtil.toJSONString(updateCash));
+	}
+
+	/**
+	 * 更改卡券信息接口(折扣券)
+	 */
+	public static UpdateResult update(String accessToken,
+			UpdateDiscount updateDiscount) {
+		return update(accessToken, JsonUtil.toJSONString(updateDiscount));
+	}
+
+	/**
+	 * 更改卡券信息接口(优惠券)
+	 */
+	public static UpdateResult update(String accessToken,
+			UpdateGeneralCoupon updateGeneralCoupon) {
+		return update(accessToken, JsonUtil.toJSONString(updateGeneralCoupon));
+	}
+
+	/**
+	 * 更改卡券信息接口(兑换券)
+	 */
+	public static UpdateResult update(String accessToken, UpdateGift updateGift) {
+		return update(accessToken, JsonUtil.toJSONString(updateGift));
+	}
+
+	/**
+	 * 更改卡券信息接口(团购券)
+	 */
+	public static UpdateResult update(String accessToken,
+			UpdateGroupon updateGroupon) {
+		return update(accessToken, JsonUtil.toJSONString(updateGroupon));
+	}
 
 	/**
 	 * 获取用户已领取卡券
-	 * @param access_token access_token
-	 * @param userGetCardList userGetCardList
-	 * @return UserGetCardListResult
 	 */
-	public static UserGetCardListResult userGetCardList(String access_token, UserGetCardList userGetCardList) {
-		return userGetCardList(access_token, JsonUtil.toJSONString(userGetCardList));
+	public static UserGetCardListResult userGetCardList(String accessToken,
+			String postJson) {
+		HttpUriRequest httpUriRequest = RequestBuilder
+				.post()
+				.setHeader(jsonHeader)
+				.setUri(BASE_URI + "/card/user/getcardlist")
+				.addParameter(getATPN(), accessToken)
+				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
+				.build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest,
+				UserGetCardListResult.class);
 	}
-	
+
 	/**
 	 * 获取用户已领取卡券
-	 * @param access_token access_token
-	 * @param requestJson post完整的json
-	 * @return UserGetCardListResult
 	 */
-	public static UserGetCardListResult userGetCardList(String access_token, String requestJson) {
-		HttpUriRequest httpUriRequest = RequestBuilder.post()
-										.setHeader(jsonHeader)
-										.setUri(BASE_URI+"/card/user/getcardlist")
-										.addParameter(getATPN(), access_token)
-										.setEntity(new StringEntity(requestJson,Charset.forName("utf-8")))
-										.build();
-		return LocalHttpClient.executeJsonResult(httpUriRequest,UserGetCardListResult.class);
+	public static UserGetCardListResult userGetCardList(String accessToken,
+			UserGetCardList userGetCardList) {
+		return userGetCardList(accessToken,
+				JsonUtil.toJSONString(userGetCardList));
 	}
-	
+
 }

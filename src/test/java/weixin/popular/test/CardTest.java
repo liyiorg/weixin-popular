@@ -74,9 +74,9 @@ public class CardTest extends TokenTest {
 	 */
 	@Test
 	public void create() {
+		// CreateCash（代金券） CreateDiscount（折扣券）、CreateGeneralCoupon（优惠券）、
+		// CreateGift（兑换券）、CreateGroupon（团购券）
 		CreateCash cardCash = new CreateCash();
-		// Cash（代金券） Discount（折扣券）、GeneralCoupon（优惠券）、
-		// Gift（兑换券）、Groupon（团购券）
 		Cash cash = new Cash(); 
 		AdvancedInfo advancedInfo = new AdvancedInfo();
 		BaseInfo baseInfo = new BaseInfo();

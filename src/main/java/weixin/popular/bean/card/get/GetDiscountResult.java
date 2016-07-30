@@ -1,5 +1,7 @@
 package weixin.popular.bean.card.get;
 
-public class GetDiscountResult extends GetResult<DiscountCard> {
+import weixin.popular.bean.card.create.CreateDiscount;
+
+public class GetDiscountResult extends GetResult<CreateDiscount> {
 
 }

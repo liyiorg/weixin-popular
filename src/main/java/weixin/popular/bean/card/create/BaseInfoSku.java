@@ -10,7 +10,7 @@ public class BaseInfoSku {
 
 	/**
 	 * 卡券库存的数量，上限为100000000。<br>
-	 * 必填：是
+	 * 添加必填
 	 */
 	private Integer quantity;
 
@@ -23,7 +23,7 @@ public class BaseInfoSku {
 
 	/**
 	 * 卡券库存的数量，上限为100000000。<br>
-	 * 必填：是
+	 * 添加必填
 	 */
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;

@@ -8,11 +8,11 @@ import com.alibaba.fastjson.annotation.JSONField;
  * @author Moyq5
  *
  */
-public class Groupon extends AbstractCardInfo {
+public class Groupon extends AbstractInfo {
 
 	/**
 	 * 团购详情<br>
-	 * 必填：是
+	 * 添加必填，不支持修改 
 	 */
 	@JSONField(name = "deal_detail")
 	private String dealDetail;
@@ -26,7 +26,7 @@ public class Groupon extends AbstractCardInfo {
 
 	/**
 	 * 团购详情<br>
-	 * 必填：是
+	 * 添加必填，不支持修改 
 	 */
 	public void setDealDetail(String dealDetail) {
 		this.dealDetail = dealDetail;

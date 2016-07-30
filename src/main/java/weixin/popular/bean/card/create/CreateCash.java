@@ -6,7 +6,7 @@ package weixin.popular.bean.card.create;
  * @author Moyq5
  *
  */
-public class CreateCash extends AbstractCardCreate {
+public class CreateCash extends AbstractCreate {
 
 	private Cash cash;
 

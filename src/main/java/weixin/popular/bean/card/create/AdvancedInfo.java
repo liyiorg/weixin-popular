@@ -16,29 +16,28 @@ public class AdvancedInfo {
 	/**
 	 * 使用门槛（条件）字段，<br>
 	 * 若不填写使用条件则在券面拼写：无最低消费限制，全场通用，不限品类；<br>
-	 * 并在使用说明显示：可与其他优惠共享<br>
-	 * 必填：否
+	 * 并在使用说明显示：可与其他优惠共享
 	 */
 	@JSONField(name = "use_condition")
 	private AdvancedInfoUseCondition useCondition;
 
 	/**
 	 * 封面摘要 <br>
-	 * 必填：是
+	 * 添加必填
 	 */
 	@JSONField(name = "abstract")
 	private AdvancedInfoAbstract abstractInfo;
 
 	/**
 	 * 图文列表，显示在详情内页，优惠券券开发者须至少传入一组图文列表 <br>
-	 * 必填：是
+	 * 添加必填
 	 */
 	@JSONField(name = "text_image_list")
 	private List<AdvancedInfoTextImage> textImageList;
 
 	/**
 	 * 使用时段限制<br>
-	 * 必填：否
+	 * 添加必填
 	 */
 	@JSONField(name = "time_limit")
 	private List<AdvancedInfoTimeLimit> timeLimit;
@@ -48,8 +47,7 @@ public class AdvancedInfo {
 	 * BIZ_SERVICE_DELIVER 外卖服务；<br>
 	 * BIZ_SERVICE_FREE_PARK 停车位；<br>
 	 * BIZ_SERVICE_WITH_PET 可带宠物；<br>
-	 * BIZ_SERVICE_FREE_WIFI 免费wifi，可多选 <br>
-	 * 必填：否
+	 * BIZ_SERVICE_FREE_WIFI 免费wifi，可多选 
 	 */
 	@JSONField(name = "business_service")
 	private String[] businessService;
@@ -64,8 +62,7 @@ public class AdvancedInfo {
 	/**
 	 * 使用门槛（条件）字段，<br>
 	 * 若不填写使用条件则在券面拼写：无最低消费限制，全场通用，不限品类；<br>
-	 * 并在使用说明显示：可与其他优惠共享<br>
-	 * 必填：否
+	 * 并在使用说明显示：可与其他优惠共享
 	 */
 	public void setUseCondition(AdvancedInfoUseCondition useCondition) {
 		this.useCondition = useCondition;
@@ -80,7 +77,7 @@ public class AdvancedInfo {
 
 	/**
 	 * 封面摘要 <br>
-	 * 必填：是
+	 * 添加必填
 	 */
 	public void setAbstractInfo(AdvancedInfoAbstract abstractInfo) {
 		this.abstractInfo = abstractInfo;
@@ -97,7 +94,7 @@ public class AdvancedInfo {
 
 	/**
 	 * 图文列表，显示在详情内页，优惠券券开发者须至少传入一组图文列表 <br>
-	 * 必填：是
+	 * 添加必填
 	 */
 	public void setTextImageList(List<AdvancedInfoTextImage> textImageList) {
 		this.textImageList = textImageList;
@@ -111,8 +108,7 @@ public class AdvancedInfo {
 	}
 
 	/**
-	 * 使用时段限制<br>
-	 * 必填：否
+	 * 使用时段限制
 	 */
 	public void setTimeLimit(List<AdvancedInfoTimeLimit> timeLimit) {
 		this.timeLimit = timeLimit;
@@ -134,8 +130,7 @@ public class AdvancedInfo {
 	 * BIZ_SERVICE_DELIVER 外卖服务；<br>
 	 * BIZ_SERVICE_FREE_PARK 停车位；<br>
 	 * BIZ_SERVICE_WITH_PET 可带宠物；<br>
-	 * BIZ_SERVICE_FREE_WIFI 免费wifi，可多选 <br>
-	 * 必填：否
+	 * BIZ_SERVICE_FREE_WIFI 免费wifi，可多选 
 	 */
 	public void setBusinessService(String[] businessService) {
 		this.businessService = businessService;

@@ -8,22 +8,31 @@ import com.alibaba.fastjson.annotation.JSONField;
  * @author Moyq5
  *
  */
-public class AbstractCardCreate {
+public class AbstractCreate {
 	
+	/**
+	 * 卡券类型
+	 */
 	@JSONField(name = "card_type")
 	private String cardType;
 	
-	public AbstractCardCreate() {
+	public AbstractCreate() {
 	}
 	
-	public AbstractCardCreate(String cardType) {
+	public AbstractCreate(String cardType) {
 		this.cardType = cardType;
 	}
 	
+	/**
+	 * @return 卡券类型
+	 */
 	public String getCardType() {
 		return cardType;
 	}
 
+	/**
+	 * @param cardType 卡券类型
+	 */
 	public void setCardType(String cardType) {
 		this.cardType = cardType;
 	}

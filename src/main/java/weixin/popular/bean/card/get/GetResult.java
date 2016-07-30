@@ -1,15 +1,15 @@
 package weixin.popular.bean.card.get;
 
 import weixin.popular.bean.BaseResult;
-import weixin.popular.bean.card.create.AbstractCardCreate;
+import weixin.popular.bean.card.create.AbstractCreate;
 
 /**
  * 
  * @author Moyq5
  *
- * @param <T>可以是CardCash、CardDiscount、CardGeneralCoupon、CardGift、CardGroupon
+ * @param <T>可以是CreateCash、CreateDiscount、CreateGeneralCoupon、CreateGift、CreateGroupon
  */
-public class GetResult<T extends AbstractCardCreate> extends BaseResult {
+public class GetResult<T extends AbstractCreate> extends BaseResult {
 
 	private T card;
 

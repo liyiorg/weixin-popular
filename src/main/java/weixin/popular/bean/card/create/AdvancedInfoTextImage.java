@@ -12,14 +12,14 @@ public class AdvancedInfoTextImage {
 
 	/**
 	 * 图片链接，必须调用上传图片接口上传图片获得链接，并在此填入，否则报错 <br>
-	 * 必填：是，长度：128
+	 * 添加必填，长度：128
 	 */
 	@JSONField(name = "image_url")
 	private String imageUrl;
 
 	/**
 	 * 图文描述 <br>
-	 * 必填：是，长度：512
+	 * 添加必填，长度：512
 	 */
 	private String text;
 
@@ -32,7 +32,7 @@ public class AdvancedInfoTextImage {
 
 	/**
 	 * 图片链接，必须调用上传图片接口上传图片获得链接，并在此填入，否则报错 <br>
-	 * 必填：是，长度：128
+	 * 添加必填，长度：128
 	 */
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
@@ -47,7 +47,7 @@ public class AdvancedInfoTextImage {
 
 	/**
 	 * 图文描述 <br>
-	 * 必填：是，长度：512
+	 * 添加必填，长度：512
 	 */
 	public void setText(String text) {
 		this.text = text;

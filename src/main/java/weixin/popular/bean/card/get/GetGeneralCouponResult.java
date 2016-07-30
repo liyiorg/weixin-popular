@@ -1,5 +1,7 @@
 package weixin.popular.bean.card.get;
 
-public class GetGeneralCouponResult extends GetResult<GeneralCouponCard> {
+import weixin.popular.bean.card.create.CreateGeneralCoupon;
+
+public class GetGeneralCouponResult extends GetResult<CreateGeneralCoupon> {
 
 }

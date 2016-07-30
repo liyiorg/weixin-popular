@@ -7,7 +7,7 @@ package weixin.popular.bean.card.create;
  *
  * @param <T> 可以是CardCash、CardDiscount、CardGeneralCoupon、CardGift、CardGroupon
  */
-public class Create<T extends AbstractCardCreate> {
+public class Create<T extends AbstractCreate> {
 
 	private T card;
 

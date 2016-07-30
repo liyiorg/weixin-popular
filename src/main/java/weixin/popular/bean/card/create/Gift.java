@@ -6,11 +6,11 @@ package weixin.popular.bean.card.create;
  * @author Moyq5
  *
  */
-public class Gift extends AbstractCardInfo {
+public class Gift extends AbstractInfo {
 
 	/**
 	 * 填写兑换内容的名称。<br>
-	 * 必填：是
+	 * 添加必填，不支持修改 
 	 */
 	private String gift;
 
@@ -23,7 +23,7 @@ public class Gift extends AbstractCardInfo {
 
 	/**
 	 * 填写兑换内容的名称。<br>
-	 * 必填：是
+	 * 添加必填，不支持修改 
 	 */
 	public void setGift(String gift) {
 		this.gift = gift;

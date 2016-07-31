@@ -5,7 +5,7 @@ package weixin.popular.bean.card.update;
 
 import com.alibaba.fastjson.annotation.JSONField;
 
-import weixin.popular.bean.card.create.GeneralCoupon;
+import weixin.popular.bean.card.GeneralCoupon;
 
 
 /**

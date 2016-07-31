@@ -3,6 +3,8 @@
  */
 package weixin.popular.bean.shakearound.device.update;
 
+import weixin.popular.bean.shakearound.device.DeviceIdentifier;
+
 import com.alibaba.fastjson.annotation.JSONField;
 
 /**
@@ -17,7 +19,7 @@ public class DeviceUpdate {
 	 * 必填
 	 */
 	@JSONField(name = "device_identifier")
-	private DeviceUpdateDeviceIdentifier deviceIdentifier;
+	private DeviceIdentifier deviceIdentifier;
 	
 	/**
 	 * 设备的备注信息，不超过15个汉字或30个英文字母。<br>
@@ -30,7 +32,7 @@ public class DeviceUpdate {
 	 * 必填
 	 * @return
 	 */
-	public DeviceUpdateDeviceIdentifier getDeviceIdentifier() {
+	public DeviceIdentifier getDeviceIdentifier() {
 		return deviceIdentifier;
 	}
 
@@ -39,7 +41,7 @@ public class DeviceUpdate {
 	 * 必填
 	 * @param deviceIdentifier 指定的设备ID
 	 */
-	public void setDeviceIdentifier(DeviceUpdateDeviceIdentifier deviceIdentifier) {
+	public void setDeviceIdentifier(DeviceIdentifier deviceIdentifier) {
 		this.deviceIdentifier = deviceIdentifier;
 	}
 

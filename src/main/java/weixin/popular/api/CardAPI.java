@@ -8,6 +8,11 @@ import org.apache.http.entity.StringEntity;
 
 import weixin.popular.bean.BaseResult;
 import weixin.popular.bean.card.CardType;
+import weixin.popular.bean.card.CashCard;
+import weixin.popular.bean.card.DiscountCard;
+import weixin.popular.bean.card.GeneralCouponCard;
+import weixin.popular.bean.card.GiftCard;
+import weixin.popular.bean.card.GrouponCard;
 import weixin.popular.bean.card.batchget.BatchGet;
 import weixin.popular.bean.card.batchget.BatchGetResult;
 import weixin.popular.bean.card.code.checkcode.CodeCheckCode;
@@ -25,18 +30,13 @@ import weixin.popular.bean.card.code.getdepositcount.CodeGetDepositCountResult;
 import weixin.popular.bean.card.code.unavailable.CodeUnavailable;
 import weixin.popular.bean.card.code.update.CodeUpdate;
 import weixin.popular.bean.card.create.Create;
-import weixin.popular.bean.card.create.CreateCash;
-import weixin.popular.bean.card.create.CreateDiscount;
-import weixin.popular.bean.card.create.CreateGeneralCoupon;
-import weixin.popular.bean.card.create.CreateGift;
-import weixin.popular.bean.card.create.CreateGroupon;
 import weixin.popular.bean.card.create.CreateResult;
+import weixin.popular.bean.card.get.AbstractResult;
 import weixin.popular.bean.card.get.GetCashResult;
 import weixin.popular.bean.card.get.GetDiscountResult;
 import weixin.popular.bean.card.get.GetGeneralCouponResult;
 import weixin.popular.bean.card.get.GetGrouponResult;
 import weixin.popular.bean.card.get.GetResult;
-import weixin.popular.bean.card.get.AbstractResult;
 import weixin.popular.bean.card.landingpage.create.LandingPageCreate;
 import weixin.popular.bean.card.landingpage.create.LandingPageCreateResult;
 import weixin.popular.bean.card.modifystock.ModifyStock;
@@ -291,45 +291,45 @@ public class CardAPI extends BaseAPI {
 	/**
 	 * 创建代金券
 	 */
-	public static CreateResult create(String accessToken, CreateCash cardCash) {
-		Create<CreateCash> card = new Create<CreateCash>();
-		card.setCard(cardCash);
+	public static CreateResult create(String accessToken, CashCard cashCard) {
+		Create<CashCard> card = new Create<CashCard>();
+		card.setCard(cashCard);
 		return create(accessToken, card);
 	}
 
 	/**
 	 * 创建折扣券
 	 */
-	public static CreateResult create(String accessToken, CreateDiscount cardDiscount) {
-		Create<CreateDiscount> card = new Create<CreateDiscount>();
-		card.setCard(cardDiscount);
+	public static CreateResult create(String accessToken, DiscountCard discountCard) {
+		Create<DiscountCard> card = new Create<DiscountCard>();
+		card.setCard(discountCard);
 		return create(accessToken, card);
 	}
 
 	/**
 	 * 创建优惠券
 	 */
-	public static CreateResult create(String accessToken, CreateGeneralCoupon cardGeneralCoupon) {
-		Create<CreateGeneralCoupon> card = new Create<CreateGeneralCoupon>();
-		card.setCard(cardGeneralCoupon);
+	public static CreateResult create(String accessToken, GeneralCouponCard generalCouponCard) {
+		Create<GeneralCouponCard> card = new Create<GeneralCouponCard>();
+		card.setCard(generalCouponCard);
 		return create(accessToken, card);
 	}
 
 	/**
 	 * 创建兑换券
 	 */
-	public static CreateResult create(String accessToken, CreateGift cardGift) {
-		Create<CreateGift> card = new Create<CreateGift>();
-		card.setCard(cardGift);
+	public static CreateResult create(String accessToken, GiftCard giftCard) {
+		Create<GiftCard> card = new Create<GiftCard>();
+		card.setCard(giftCard);
 		return create(accessToken, card);
 	}
 
 	/**
 	 * 创建团购券
 	 */
-	public static CreateResult create(String accessToken, CreateGroupon cardGroupon) {
-		Create<CreateGroupon> card = new Create<CreateGroupon>();
-		card.setCard(cardGroupon);
+	public static CreateResult create(String accessToken, GrouponCard grouponCard) {
+		Create<GrouponCard> card = new Create<GrouponCard>();
+		card.setCard(grouponCard);
 		return create(accessToken, card);
 	}
 

@@ -3,6 +3,8 @@
  */
 package weixin.popular.bean.shakearound.relation.search;
 
+import weixin.popular.bean.shakearound.device.DeviceIdentifier;
+
 import com.alibaba.fastjson.annotation.JSONField;
 
 /**
@@ -22,7 +24,7 @@ public class RelationSearch {
 	 * 指定的设备；当type为1时，此项为必填
 	 */
 	@JSONField(name = "device_identifier")
-	private RelationSearchDeviceIdentifier deviceIdentifier;
+	private DeviceIdentifier deviceIdentifier;
 	
 	/**
 	 * 指定的页面id；当type为2时，此项为必填
@@ -62,7 +64,7 @@ public class RelationSearch {
 	 * 指定的设备；当type为1时，此项为必填
 	 * @return 指定的设备
 	 */
-	public RelationSearchDeviceIdentifier getDeviceIdentifier() {
+	public DeviceIdentifier getDeviceIdentifier() {
 		return deviceIdentifier;
 	}
 
@@ -70,7 +72,7 @@ public class RelationSearch {
 	 * 指定的设备；当type为1时，此项为必填
 	 * @param deviceIdentifier 指定的设备
 	 */
-	public void setDeviceIdentifier(RelationSearchDeviceIdentifier deviceIdentifier) {
+	public void setDeviceIdentifier(DeviceIdentifier deviceIdentifier) {
 		this.deviceIdentifier = deviceIdentifier;
 	}
 

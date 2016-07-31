@@ -9,7 +9,17 @@ import org.junit.Test;
 import weixin.popular.api.CardAPI;
 import weixin.popular.api.DataCubeAPI;
 import weixin.popular.bean.BaseResult;
+import weixin.popular.bean.card.AdvancedInfo;
+import weixin.popular.bean.card.AdvancedInfoAbstract;
+import weixin.popular.bean.card.AdvancedInfoTextImage;
+import weixin.popular.bean.card.AdvancedInfoTimeLimit;
+import weixin.popular.bean.card.AdvancedInfoUseCondition;
+import weixin.popular.bean.card.BaseInfo;
+import weixin.popular.bean.card.BaseInfoDateInfo;
+import weixin.popular.bean.card.BaseInfoSku;
 import weixin.popular.bean.card.CardType;
+import weixin.popular.bean.card.Cash;
+import weixin.popular.bean.card.CashCard;
 import weixin.popular.bean.card.batchget.BatchGet;
 import weixin.popular.bean.card.batchget.BatchGetResult;
 import weixin.popular.bean.card.code.consume.CodeConsume;
@@ -20,17 +30,7 @@ import weixin.popular.bean.card.code.get.CodeGet;
 import weixin.popular.bean.card.code.get.CodeGetResult;
 import weixin.popular.bean.card.code.unavailable.CodeUnavailable;
 import weixin.popular.bean.card.code.update.CodeUpdate;
-import weixin.popular.bean.card.create.AdvancedInfo;
-import weixin.popular.bean.card.create.AdvancedInfoAbstract;
-import weixin.popular.bean.card.create.AdvancedInfoTextImage;
-import weixin.popular.bean.card.create.AdvancedInfoTimeLimit;
-import weixin.popular.bean.card.create.AdvancedInfoUseCondition;
-import weixin.popular.bean.card.create.BaseInfo;
-import weixin.popular.bean.card.create.BaseInfoDateInfo;
-import weixin.popular.bean.card.create.BaseInfoSku;
-import weixin.popular.bean.card.create.CreateCash;
 import weixin.popular.bean.card.create.CreateResult;
-import weixin.popular.bean.card.create.Cash;
 import weixin.popular.bean.card.get.GetCashResult;
 import weixin.popular.bean.card.get.GetDiscountResult;
 import weixin.popular.bean.card.get.GetGeneralCouponResult;
@@ -74,9 +74,9 @@ public class CardTest extends TokenTest {
 	 */
 	@Test
 	public void create() {
-		// CreateCash（代金券） CreateDiscount（折扣券）、CreateGeneralCoupon（优惠券）、
-		// CreateGift（兑换券）、CreateGroupon（团购券）
-		CreateCash cardCash = new CreateCash();
+		// CashCard（代金券） DiscountCard（折扣券）、GeneralCouponCard（优惠券）、
+		// GiftCard（兑换券）、GrouponCard（团购券）
+		CashCard cashCard = new CashCard();
 		Cash cash = new Cash(); 
 		AdvancedInfo advancedInfo = new AdvancedInfo();
 		BaseInfo baseInfo = new BaseInfo();
@@ -87,7 +87,7 @@ public class CardTest extends TokenTest {
 		BaseInfoDateInfo dateInfo = new BaseInfoDateInfo();
 		BaseInfoSku sku = new BaseInfoSku();
 
-		cardCash.setCash(cash);
+		cashCard.setCash(cash);
 
 		cash.setAdvancedInfo(advancedInfo);
 		cash.setBaseInfo(baseInfo);
@@ -162,7 +162,7 @@ public class CardTest extends TokenTest {
 
 		sku.setQuantity(100);
 
-		CreateResult result = CardAPI.create(accessToken, cardCash);
+		CreateResult result = CardAPI.create(accessToken, cashCard);
 		System.out.print(result.getErrmsg());
 	}
 	

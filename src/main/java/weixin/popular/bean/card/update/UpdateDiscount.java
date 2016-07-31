@@ -3,7 +3,7 @@
  */
 package weixin.popular.bean.card.update;
 
-import weixin.popular.bean.card.create.Discount;
+import weixin.popular.bean.card.Discount;
 
 /**
  * 微信卡券－卡券管理－更改卡券信息接口（折扣券）－请求参数 

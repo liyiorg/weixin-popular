@@ -12,4 +12,5 @@ import weixin.popular.bean.BaseResult;
  */
 public class DeviceBindPageResult extends BaseResult {
 
+	// private Object data
 }

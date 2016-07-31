@@ -21,8 +21,6 @@ public class PageDelete {
 	private Integer pageId;
 
 	/**
-	 * 指定页面的id<br>
-	 * 必填
 	 * @return 指定页面的id
 	 */
 	public Integer getPageId() {
@@ -32,7 +30,7 @@ public class PageDelete {
 	/**
 	 * 指定页面的id<br>
 	 * 必填
-	 * @param pageId 指定页面的id
+	 * @param pageId 页面的id
 	 */
 	public void setPageId(Integer pageId) {
 		this.pageId = pageId;

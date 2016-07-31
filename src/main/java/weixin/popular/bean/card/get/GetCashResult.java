@@ -1,7 +1,7 @@
 package weixin.popular.bean.card.get;
 
-import weixin.popular.bean.card.create.CreateCash;
+import weixin.popular.bean.card.CashCard;
 
-public class GetCashResult extends GetResult<CreateCash> {
+public class GetCashResult extends GetResult<CashCard> {
 
 }

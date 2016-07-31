@@ -1,7 +1,7 @@
 package weixin.popular.bean.card.get;
 
-import weixin.popular.bean.card.create.CreateGift;
+import weixin.popular.bean.card.GiftCard;
 
-public class GetGiftResult extends GetResult<CreateGift> {
+public class GetGiftResult extends GetResult<GiftCard> {
 
 }

@@ -3,7 +3,7 @@
  */
 package weixin.popular.bean.card.update;
 
-import weixin.popular.bean.card.create.Gift;
+import weixin.popular.bean.card.Gift;
 
 
 /**

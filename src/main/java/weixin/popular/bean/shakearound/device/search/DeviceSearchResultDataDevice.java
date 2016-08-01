@@ -3,6 +3,8 @@
  */
 package weixin.popular.bean.shakearound.device.search;
 
+import weixin.popular.bean.shakearound.device.DeviceIdentifier;
+
 import com.alibaba.fastjson.annotation.JSONField;
 
 /**
@@ -10,22 +12,12 @@ import com.alibaba.fastjson.annotation.JSONField;
  * @author Moyq5
  * @date 2016年7月26日
  */
-public class DeviceSearchResultDataDevice {
+public class DeviceSearchResultDataDevice extends DeviceIdentifier {
 
 	/**
 	 * 设备的备注信息
 	 */
 	private String comment;
-	
-	/**
-	 * 设备编号
-	 */
-	@JSONField(name = "device_id")
-	private Integer deviceId;
-	
-	private Integer major;
-	
-	private Integer minor;
 	
 	/**
 	 * 激活状态，0：未激活，1：已激活
@@ -52,8 +44,6 @@ public class DeviceSearchResultDataDevice {
 	@JSONField(name = "poi_id")
 	private Integer poiId;
 	
-	private String uuid;
-
 	/**
 	 * @return 设备的备注信息
 	 */
@@ -66,36 +56,6 @@ public class DeviceSearchResultDataDevice {
 	 */
 	public void setComment(String comment) {
 		this.comment = comment;
-	}
-
-	/**
-	 * @return 设备编号
-	 */
-	public Integer getDeviceId() {
-		return deviceId;
-	}
-
-	/**
-	 * @param deviceId 设备编号
-	 */
-	public void setDeviceId(Integer deviceId) {
-		this.deviceId = deviceId;
-	}
-
-	public Integer getMajor() {
-		return major;
-	}
-
-	public void setMajor(Integer major) {
-		this.major = major;
-	}
-
-	public Integer getMinor() {
-		return minor;
-	}
-
-	public void setMinor(Integer minor) {
-		this.minor = minor;
 	}
 
 	/**
@@ -166,11 +126,4 @@ public class DeviceSearchResultDataDevice {
 		this.poiId = poiId;
 	}
 
-	public String getUuid() {
-		return uuid;
-	}
-
-	public void setUuid(String uuid) {
-		this.uuid = uuid;
-	}
 }

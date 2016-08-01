@@ -3,6 +3,8 @@
  */
 package weixin.popular.bean.shakearound.device.bindpage;
 
+import weixin.popular.bean.shakearound.device.DeviceIdentifier;
+
 import com.alibaba.fastjson.annotation.JSONField;
 
 /**
@@ -17,7 +19,7 @@ public class DeviceBindPage {
 	 * 必填
 	 */
 	@JSONField(name = "device_identifier")
-	private DeviceBindPageDeviceIdentifier deviceIdentifier;
+	private DeviceIdentifier deviceIdentifier;
 	
 	/**
 	 * 待关联的页面列表<br>
@@ -31,7 +33,7 @@ public class DeviceBindPage {
 	 * 必填
 	 * @return 指定页面的设备ID
 	 */
-	public DeviceBindPageDeviceIdentifier getDeviceIdentifier() {
+	public DeviceIdentifier getDeviceIdentifier() {
 		return deviceIdentifier;
 	}
 
@@ -40,7 +42,7 @@ public class DeviceBindPage {
 	 * 必填
 	 * @param deviceIdentifier 指定页面的设备ID
 	 */
-	public void setDeviceIdentifier(DeviceBindPageDeviceIdentifier deviceIdentifier) {
+	public void setDeviceIdentifier(DeviceIdentifier deviceIdentifier) {
 		this.deviceIdentifier = deviceIdentifier;
 	}
 

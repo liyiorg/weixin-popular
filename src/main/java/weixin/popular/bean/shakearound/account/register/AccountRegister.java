@@ -5,7 +5,7 @@ import java.util.List;
 import com.alibaba.fastjson.annotation.JSONField;
 
 /**
- * 周边摇一摇周边－申请开通功能－参数对象－请求参数
+ * 微信摇一摇周边－申请开通功能－请求参数
  * 
  * @author Moyq5
  * @date 2016年7月25日

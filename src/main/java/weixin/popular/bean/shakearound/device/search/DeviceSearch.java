@@ -5,6 +5,8 @@ package weixin.popular.bean.shakearound.device.search;
 
 import java.util.List;
 
+import weixin.popular.bean.shakearound.device.DeviceIdentifier;
+
 import com.alibaba.fastjson.annotation.JSONField;
 
 /**
@@ -27,7 +29,7 @@ public class DeviceSearch {
 	 * 指定的设备 ； 当type为1时，此项为必填
 	 */
 	@JSONField(name = "device_identifiers")
-	private List<DeviceSearchDeviceIdentifier> deviceIdentifiers;
+	private List<DeviceIdentifier> deviceIdentifiers;
 	
 	/**
 	 * 批次ID，申请设备ID时所返回的批次ID；当type为3时，此项为必填
@@ -74,7 +76,7 @@ public class DeviceSearch {
 	 * 指定的设备 ； 当type为1时，此项为必填
 	 * @return 指定的设备
 	 */
-	public List<DeviceSearchDeviceIdentifier> getDeviceIdentifiers() {
+	public List<DeviceIdentifier> getDeviceIdentifiers() {
 		return deviceIdentifiers;
 	}
 
@@ -82,8 +84,7 @@ public class DeviceSearch {
 	 * 指定的设备 ； 当type为1时，此项为必填
 	 * @param deviceIdentifiers 指定的设备
 	 */
-	public void setDeviceIdentifiers(
-			List<DeviceSearchDeviceIdentifier> deviceIdentifiers) {
+	public void setDeviceIdentifiers(List<DeviceIdentifier> deviceIdentifiers) {
 		this.deviceIdentifiers = deviceIdentifiers;
 	}
 

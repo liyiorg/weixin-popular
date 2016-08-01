@@ -1,5 +1,7 @@
 package weixin.popular.bean.card.code.checkcode;
 
+import weixin.popular.bean.BaseResult;
+
 import com.alibaba.fastjson.annotation.JSONField;
 
 /**
@@ -8,7 +10,7 @@ import com.alibaba.fastjson.annotation.JSONField;
  * @author Moyq5
  *
  */
-public class CodeCheckCodeResult {
+public class CodeCheckCodeResult extends BaseResult {
 
 	/**
 	 * 已经成功存入的code。

@@ -29,42 +29,42 @@ public class RelationSearchResultDataRelation {
 	private Integer pageId;
 
 	/**
-	 * @return the deviceId
+	 * @return 设备编号
 	 */
 	public Integer getDeviceId() {
 		return deviceId;
 	}
 
 	/**
-	 * @param deviceId the deviceId
+	 * @param deviceId 设备编号
 	 */
 	public void setDeviceId(Integer deviceId) {
 		this.deviceId = deviceId;
 	}
 
 	/**
-	 * @return the major
+	 * @return 设备major
 	 */
 	public Integer getMajor() {
 		return major;
 	}
 
 	/**
-	 * @param major the major
+	 * @param major 设备major
 	 */
 	public void setMajor(Integer major) {
 		this.major = major;
 	}
 
 	/**
-	 * @return the minor
+	 * @return 设备minor
 	 */
 	public Integer getMinor() {
 		return minor;
 	}
 
 	/**
-	 * @param minor the minor
+	 * @param minor 设备minor
 	 */
 	public void setMinor(Integer minor) {
 		this.minor = minor;

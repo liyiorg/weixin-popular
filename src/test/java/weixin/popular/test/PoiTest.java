@@ -45,7 +45,7 @@ public class PoiTest extends TokenTest {
 		baseInfo.setSpecial("免费WIFI");
 		baseInfo.setTelephone("400-6600-2036");
 		
-		BaseResult result = PoiAPI.addpoi(accessToken, poi);
+		BaseResult result = PoiAPI.addPoi(accessToken, poi);
 		System.out.print(result.getErrmsg());
 	}
 	
@@ -54,7 +54,7 @@ public class PoiTest extends TokenTest {
 	 */
 	@Test
 	public void getpoilist() {
-		PoiListResult result = PoiAPI.getpoilist(accessToken, 0, 10);
+		PoiListResult result = PoiAPI.getPoiList(accessToken, 0, 10);
 		System.out.print(result.getErrmsg());
 	}
 	
@@ -63,7 +63,7 @@ public class PoiTest extends TokenTest {
 	 */
 	@Test
 	public void getpoi() {
-		PoiResult result = PoiAPI.getpoiByPoiId(accessToken, "460999770");
+		PoiResult result = PoiAPI.getPoiByPoiId(accessToken, "460999770");
 		System.out.print(result.getErrmsg());
 	}
 	
@@ -87,7 +87,7 @@ public class PoiTest extends TokenTest {
 		baseInfo.setSpecial("免费WIFI");
 		baseInfo.setTelephone("400-6600-2036");
 		
-		BaseResult result = PoiAPI.updatepoi(accessToken, poi);
+		BaseResult result = PoiAPI.updatePoi(accessToken, poi);
 		System.out.print(result.getErrmsg());
 	}
 	
@@ -96,7 +96,7 @@ public class PoiTest extends TokenTest {
 	 */
 	@Test
 	public void delpoi() {
-		BaseResult result = PoiAPI.delpoiByPoiId(accessToken, "460999770");
+		BaseResult result = PoiAPI.delPoiByPoiId(accessToken, "460999770");
 		System.out.print(result.getErrmsg());
 	}
 	
@@ -105,7 +105,7 @@ public class PoiTest extends TokenTest {
 	 */
 	@Test
 	public void getwxcategory() {
-		CategoryListResult result = PoiAPI.getwxcategory(accessToken);
+		CategoryListResult result = PoiAPI.getWxCategory(accessToken);
 		System.out.print(result.getCategoryList().length);
 	}
 }

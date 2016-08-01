@@ -3,10 +3,12 @@
  */
 package weixin.popular.bean.shakearound.device.bindlocation;
 
+import weixin.popular.bean.shakearound.device.DeviceIdentifier;
+
 import com.alibaba.fastjson.annotation.JSONField;
 
 /**
- * 微信摇一摇周边－设备管理－配置设备与门店的关联关系－请求参数
+ * 微信摇一摇周边－设备管理－配置设备与(或者其它公众号的)门店的关联关系－请求参数
  * @author Moyq5
  * @date 2016年7月26日
  */
@@ -17,7 +19,7 @@ public class DeviceBindLocation {
 	 * 必填
 	 */
 	@JSONField(name = "device_identifier")
-	private DeviceBindLocationDeviceIdentifier deviceIdentifier;
+	private DeviceIdentifier deviceIdentifier;
 	
 	/**
 	 * 设备关联的门店ID，关联门店后，在门店1KM的范围内有优先摇出信息的机会。<br>
@@ -47,7 +49,7 @@ public class DeviceBindLocation {
 	 * 必填
 	 * @return 指定的设备ID
 	 */
-	public DeviceBindLocationDeviceIdentifier getDeviceIdentifier() {
+	public DeviceIdentifier getDeviceIdentifier() {
 		return deviceIdentifier;
 	}
 
@@ -56,8 +58,7 @@ public class DeviceBindLocation {
 	 * 必填
 	 * @param deviceIdentifier 指定的设备ID
 	 */
-	public void setDeviceIdentifier(
-			DeviceBindLocationDeviceIdentifier deviceIdentifier) {
+	public void setDeviceIdentifier(DeviceIdentifier deviceIdentifier) {
 		this.deviceIdentifier = deviceIdentifier;
 	}
 

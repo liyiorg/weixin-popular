@@ -6,9 +6,9 @@ package weixin.popular.support.token;
  * @author Moyq5
  *
  */
-public abstract class ComponentTokenManager extends TokenManager<ComponentTokenInfo> {
+public abstract class ComponentManagerAbstract extends TokenManager<ComponentTokenInfo> {
 
-	protected ComponentTokenManager(TokenContext context) {
+	protected ComponentManagerAbstract(TokenContext context) {
 		super(context);
 	}
 

@@ -6,9 +6,9 @@ package weixin.popular.support.token;
  * @author Moyq5
  *
  */
-public abstract class AuthorizerTokenManager extends TokenManager<AuthorizerTokenInfo> {
+public abstract class AuthorizerManagerAbstract extends TokenManager<AuthorizerTokenInfo> {
 
-	protected AuthorizerTokenManager(TokenContext context) {
+	protected AuthorizerManagerAbstract(TokenContext context) {
 		super(context);
 	}
 

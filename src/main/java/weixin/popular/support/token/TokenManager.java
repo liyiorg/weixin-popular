@@ -21,5 +21,9 @@ public abstract class TokenManager<T extends TokenInfo> {
 	public void addTokenInfo(T tokenInfo) {
 		context.getTokenStorage().update(tokenInfo);
 	}
+	
+	public TokenContext getContext() {
+		return context;
+	}
 
 }

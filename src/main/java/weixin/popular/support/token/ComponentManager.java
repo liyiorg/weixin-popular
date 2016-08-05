@@ -7,15 +7,16 @@ package weixin.popular.support.token;
  * @author Moyq5
  *
  */
-public class ComponentManager extends ComponentTokenManager {
+public class ComponentManager extends ComponentManagerAbstract {
 
-	private static ComponentTokenManager manager;
+	private static ComponentManagerAbstract manager;
 
 	static {
 		TokenContext context = new TokenContext();
 		context.setRefreshScheduler(ComponentRefreshScheduler.getInstance());
 		context.setTokenStorage(new DefaultComponentStorage());
 		context.setType(TokenType.COMPONENT);
+		context.setRefreshMsgHandler(new RefreshMsgHandler());
 		manager = new ComponentManager(context);
 	}
 
@@ -28,26 +29,8 @@ public class ComponentManager extends ComponentTokenManager {
 	 * 
 	 * @return
 	 */
-	public synchronized static ComponentTokenManager getInstance() {
+	public synchronized static ComponentManagerAbstract getInstance() {
 		return manager;
 	}
 
-	/**
-	 * 获取token存储器对象
-	 * 
-	 * @return
-	 */
-	public static TokenStorage getTokenStorage() {
-		return manager.context.getTokenStorage();
-	}
-
-	/**
-	 * 指定token存储器对象
-	 * 
-	 * @param tokenStorage
-	 */
-	public static void setTokenStorage(TokenStorage tokenStorage) {
-		manager.context.setTokenStorage(tokenStorage);
-	}
-	
 }

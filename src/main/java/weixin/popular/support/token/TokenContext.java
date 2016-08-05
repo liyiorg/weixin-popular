@@ -13,6 +13,8 @@ public class TokenContext {
 	private TokenStorage tokenStorage;
 
 	private TokenType type;
+	
+	private RefreshMsgHandler refreshMsgHandler;
 
 	public RefreshScheduler getRefreshScheduler() {
 		return refreshScheduler;
@@ -36,5 +38,13 @@ public class TokenContext {
 
 	public void setType(TokenType type) {
 		this.type = type;
+	}
+
+	public RefreshMsgHandler getRefreshMsgHandler() {
+		return refreshMsgHandler;
+	}
+
+	public void setRefreshMsgHandler(RefreshMsgHandler refreshMsgHandler) {
+		this.refreshMsgHandler = refreshMsgHandler;
 	}
 }

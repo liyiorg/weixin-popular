@@ -20,11 +20,11 @@ public abstract class TokenUtils {
 	/**
 	 * 获取第三方平台"公众号"access_token
 	 * @param componentAppId
-	 * @param authorizeAppId
+	 * @param authorizerAppId
 	 * @return
 	 */
-	public static String getAuthorizerAccessToken(String componentAppId, String authorizeAppId) {
-		return AuthorizerManager.getInstance().getAccessToken(componentAppId, authorizeAppId);
+	public static String getAuthorizerAccessToken(String componentAppId, String authorizerAppId) {
+		return AuthorizerManager.getInstance().getAccessToken(componentAppId, authorizerAppId);
 	}
 
 	/**
@@ -34,7 +34,7 @@ public abstract class TokenUtils {
 	 * @see DefaultComponentStorage
 	 */
 	public static void setComponentTokenStorage(TokenStorage tokenStorage) {
-		ComponentManager.setTokenStorage(tokenStorage);
+		ComponentManager.getInstance().getContext().setTokenStorage(tokenStorage);
 	}
 
 	/**
@@ -44,7 +44,7 @@ public abstract class TokenUtils {
 	 * @see DefaultAuthorizerStorage
 	 */
 	public static void setAuthorizerTokenStorage(TokenStorage tokenStorage) {
-		AuthorizerManager.setTokenStorage(tokenStorage);
+		AuthorizerManager.getInstance().getContext().setTokenStorage(tokenStorage);
 	}
 
 	/**
@@ -63,5 +63,21 @@ public abstract class TokenUtils {
 	 */
 	public static void addAuthorizerTokenInfo(AuthorizerTokenInfo tokenInfo) {
 		AuthorizerManager.getInstance().addTokenInfo(tokenInfo);
+	}
+	
+	/**
+	 * 第三方平台授权令牌刷新（API请求）结果消息处理
+	 * @param handler
+	 */
+	public static void setComponentTokenRefreshMsgHandler(RefreshMsgHandler handler) {
+		ComponentManager.getInstance().getContext().setRefreshMsgHandler(handler);
+	}
+	
+	/**
+	 * 公众号授权令牌刷新（API请求）结果消息处理
+	 * @param handler
+	 */
+	public static void setAuthorizerTokenRefreshMsgHandler(RefreshMsgHandler handler) {
+		AuthorizerManager.getInstance().getContext().setRefreshMsgHandler(handler);
 	}
 }

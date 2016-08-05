@@ -66,6 +66,7 @@ weixin-popular 包括微信公众平台、公众号第三方平台基础API与�
 * SignatureUtil   签权生成、验证
 * XMLConverUtil   XML 对象转换（JAXB）
 * JsUtil          JsAPI config,chooseWXPay JSON生成
+* TokenUtils      access_token刷新相关[使用说明](https://github.com/moyq5/weixin-popular/wiki/token_refresh)
 
 ## example
 * [消息事件接收](https://github.com/liyiorg/weixin-popular/wiki/消息事件接收)

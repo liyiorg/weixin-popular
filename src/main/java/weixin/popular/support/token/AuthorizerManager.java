@@ -7,15 +7,16 @@ package weixin.popular.support.token;
  * @author Moyq5
  *
  */
-public class AuthorizerManager extends AuthorizerTokenManager {
+public class AuthorizerManager extends AuthorizerManagerAbstract {
 
-	private static AuthorizerTokenManager manager;
+	private static AuthorizerManagerAbstract manager;
 
 	static {
 		TokenContext context = new TokenContext();
 		context.setRefreshScheduler(AuthorizerRefreshScheduler.getInstance());
 		context.setTokenStorage(new DefaultAuthorizerStorage());
 		context.setType(TokenType.AUTHORIZER);
+		context.setRefreshMsgHandler(new RefreshMsgHandler());
 		manager = new AuthorizerManager(context);
 	}
 
@@ -28,26 +29,8 @@ public class AuthorizerManager extends AuthorizerTokenManager {
 	 * 
 	 * @return
 	 */
-	public static AuthorizerTokenManager getInstance() {
+	public static AuthorizerManagerAbstract getInstance() {
 		return manager;
-	}
-
-	/**
-	 * 获取token存储器对象
-	 * 
-	 * @return
-	 */
-	public static TokenStorage getTokenStorage() {
-		return manager.context.getTokenStorage();
-	}
-
-	/**
-	 * 指定token存储器对象
-	 * 
-	 * @param tokenStorage
-	 */
-	public static void setTokenStorage(TokenStorage tokenStorage) {
-		manager.context.setTokenStorage(tokenStorage);
 	}
 
 }

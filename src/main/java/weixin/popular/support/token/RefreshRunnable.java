@@ -36,7 +36,7 @@ public class RefreshRunnable<T extends RefreshInfo, E extends TokenInfo> impleme
 		long curTime = new Date().getTime();
 		if (nextTime > curTime) {
 			// 还没到刷新access_token时间，跳过处理逻辑
-			logger.debug("access_token refresh skip");
+			logger.debug("refresh skip");
 			return;
 		}
 		try {
@@ -51,7 +51,7 @@ public class RefreshRunnable<T extends RefreshInfo, E extends TokenInfo> impleme
 			}
 			nextTime = tokenStorage.nextTime();
 		} catch (Exception e) {
-			logger.error("access_token refresh error:", e);
+			logger.error("refresh error:", e);
 		}
 
 		curTime = new Date().getTime();
@@ -61,13 +61,13 @@ public class RefreshRunnable<T extends RefreshInfo, E extends TokenInfo> impleme
 
 			Date date = new Date();
 			date.setTime(nextTime);
-			logger.debug("next access_token expiration check time： {}",
+			logger.debug("next check time： {}",
 					new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date));
 		} else {
 
 			Date date = new Date();
 			date.setTime(nextTime);
-			logger.debug("next access_token expiration time： {}",
+			logger.debug("next refresh time： {}",
 					new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date));
 		}
 	}

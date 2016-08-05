@@ -1,8 +1,5 @@
 package weixin.popular.support.token;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import weixin.popular.api.ComponentAPI;
 import weixin.popular.bean.component.ComponentAccessToken;
 
@@ -14,8 +11,6 @@ import weixin.popular.bean.component.ComponentAccessToken;
  */
 public class ComponentRefreshScheduler extends RefreshSchedulerAbstract<ComponentRefreshInfo, ComponentTokenInfo> {
 
-	private static final Logger logger = LoggerFactory.getLogger(ComponentRefreshScheduler.class);
-	
 	private static ComponentRefreshScheduler instance = new ComponentRefreshScheduler();
 
 	private ComponentRefreshScheduler() {
@@ -39,8 +34,7 @@ public class ComponentRefreshScheduler extends RefreshSchedulerAbstract<Componen
 				cri.getAppId(), cri.getAppSecret(), cri.getVerifyTicket());
 		
 		if (!cat.isSuccess()) {
-			logger.warn("第三方平台应用授权令牌刷新失败：appId={},code={},msg={}", 
-					new Object[]{cri.getAppId(), cat.getErrcode(), cat.getErrmsg()});
+			ComponentManager.getInstance().getContext().getRefreshMsgHandler().handle(cri.getAppId(), cat.getErrcode(), cat.getErrmsg());
 			return null;
 		}
 		
@@ -54,7 +48,7 @@ public class ComponentRefreshScheduler extends RefreshSchedulerAbstract<Componen
 
 	@Override
 	protected TokenStorage getTokenStorage() {
-		return ComponentManager.getTokenStorage();
+		return ComponentManager.getInstance().getContext().getTokenStorage();
 	}
 
 }

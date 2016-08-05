@@ -1,8 +1,5 @@
 package weixin.popular.support.token;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import weixin.popular.api.ComponentAPI;
 import weixin.popular.bean.component.AuthorizerAccessToken;
 
@@ -13,8 +10,6 @@ import weixin.popular.bean.component.AuthorizerAccessToken;
  *
  */
 public class AuthorizerRefreshScheduler extends RefreshSchedulerAbstract<AuthorizerRefreshInfo, AuthorizerTokenInfo> {
-	
-	private static final Logger logger = LoggerFactory.getLogger(AuthorizerRefreshScheduler.class);
 	
 	private static AuthorizerRefreshScheduler instance = new AuthorizerRefreshScheduler();
 
@@ -40,8 +35,7 @@ public class AuthorizerRefreshScheduler extends RefreshSchedulerAbstract<Authori
 				ari.getAuthorizerAppId(), ari.getAuthorizerRefreshToken());
 		
 		if (!aat.isSuccess()) {
-			logger.warn("第三方平台公众号授权令牌刷新失败：componentAppId={},appId={},code={},msg={}", 
-					new Object[]{ari.getComponentAppId(), ari.getAuthorizerAppId(), aat.getErrcode(), aat.getErrmsg()});
+			AuthorizerManager.getInstance().getContext().getRefreshMsgHandler().handle(ari.getAuthorizerAppId(), aat.getErrcode(), aat.getErrmsg());
 			return null;
 		}
 		
@@ -57,7 +51,7 @@ public class AuthorizerRefreshScheduler extends RefreshSchedulerAbstract<Authori
 
 	@Override
 	protected TokenStorage  getTokenStorage() {
-		return AuthorizerManager.getTokenStorage();
+		return AuthorizerManager.getInstance().getContext().getTokenStorage();
 	}
 
 }

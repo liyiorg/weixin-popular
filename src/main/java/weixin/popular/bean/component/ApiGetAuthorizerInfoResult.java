@@ -8,8 +8,6 @@ public class ApiGetAuthorizerInfoResult extends BaseResult {
 
 	private Authorizer_info authorizer_info;
 
-	private String qrcode_url;
-
 	private Authorization_info authorization_info;
 
 	public Authorizer_info getAuthorizer_info() {
@@ -18,14 +16,6 @@ public class ApiGetAuthorizerInfoResult extends BaseResult {
 
 	public void setAuthorizer_info(Authorizer_info authorizer_info) {
 		this.authorizer_info = authorizer_info;
-	}
-
-	public String getQrcode_url() {
-		return qrcode_url;
-	}
-
-	public void setQrcode_url(String qrcode_url) {
-		this.qrcode_url = qrcode_url;
 	}
 
 	public Authorization_info getAuthorization_info() {
@@ -51,6 +41,8 @@ public class ApiGetAuthorizerInfoResult extends BaseResult {
 		private Business_info business_info;
 
 		private String alias;
+		
+		private String qrcode_url;
 
 		public String getNick_name() {
 			return nick_name;
@@ -106,6 +98,14 @@ public class ApiGetAuthorizerInfoResult extends BaseResult {
 
 		public void setAlias(String alias) {
 			this.alias = alias;
+		}
+		
+		public String getQrcode_url() {
+			return qrcode_url;
+		}
+
+		public void setQrcode_url(String qrcode_url) {
+			this.qrcode_url = qrcode_url;
 		}
 
 		public static class Service_type_info {

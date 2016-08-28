@@ -3,7 +3,7 @@
  */
 package weixin.popular.bean.shakearound.device.group;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 分组信息
@@ -16,14 +16,14 @@ public class GroupInfo {
 	 * 分组唯一标识，全局唯一<br>
 	 * 修改必填
 	 */
-	@JSONField(name = "group_id")
+	@JsonProperty("group_id")
 	private Integer groupId;
 	
 	/**
 	 * 分组名<br>
 	 * 修改必填
 	 */
-	@JSONField(name = "group_name")
+	@JsonProperty("group_name")
 	private String groupName;
 
 	/**

@@ -1,6 +1,6 @@
 package weixin.popular.bean.card.code.unavailable;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 卡券管理－设置卡券失效接口－请求参数
@@ -13,7 +13,7 @@ public class CodeUnavailable {
 	/**
 	 * 卡券ID。自定义Code码卡券为必填。
 	 */
-	@JSONField(name = "card_id")
+	@JsonProperty("card_id")
 	private String cardId;
 	
 	/**

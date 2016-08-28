@@ -41,7 +41,7 @@ public class PoiAPI extends BaseAPI {
 	 * 创建门店
 	 */
 	public static BaseResult addPoi(String accessToken, Poi poi) {
-		return addPoi(accessToken, JsonUtil.toJSONString(poi));
+		return addPoi(accessToken, JsonUtil.toJson(poi));
 	}
 
 	/**
@@ -115,7 +115,7 @@ public class PoiAPI extends BaseAPI {
 	 * 修改门店服务信息
 	 */
 	public static BaseResult updatePoi(String accessToken, Poi poi) {
-		return updatePoi(accessToken, JsonUtil.toJSONString(poi));
+		return updatePoi(accessToken, JsonUtil.toJson(poi));
 	}
 
 	/**

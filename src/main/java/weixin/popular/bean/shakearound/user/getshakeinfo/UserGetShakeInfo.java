@@ -3,7 +3,7 @@
  */
 package weixin.popular.bean.shakearound.user.getshakeinfo;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 微信摇一摇周边－获取设备及用户信息－请求参数
@@ -22,7 +22,7 @@ public class UserGetShakeInfo {
 	 * 是否需要返回门店poi_id，传1则返回，否则不返回；<br>
 	 * 门店相关信息具体可查看<a href="https://mp.weixin.qq.com/zh_CN/htmledition/comm_htmledition/res/store_manage/store_manage_file.zip">门店相关的接口文档</a>
 	 */
-	@JSONField(name = "need_poi")
+	@JsonProperty("need_poi")
 	private Integer needPoi;
 
 	/**

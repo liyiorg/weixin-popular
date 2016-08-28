@@ -49,7 +49,7 @@ public class MaterialAPI extends BaseAPI{
 	 * @return Media
 	 */
 	public static Media add_news(String access_token,List<Article> articles){
-		String str = JsonUtil.toJSONString(articles);
+		String str = JsonUtil.toJson(articles);
 		String messageJson = "{\"articles\":"+str+"}";
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 										.setHeader(jsonHeader)
@@ -79,7 +79,7 @@ public class MaterialAPI extends BaseAPI{
 		MultipartEntityBuilder multipartEntityBuilder = MultipartEntityBuilder.create()
         		 			.addPart("media", bin);
         if(description != null){
-        	multipartEntityBuilder.addTextBody("description", JsonUtil.toJSONString(description),ContentType.create("text/plain",Charset.forName("utf-8")));
+        	multipartEntityBuilder.addTextBody("description", JsonUtil.toJson(description),ContentType.create("text/plain",Charset.forName("utf-8")));
         }
         HttpEntity reqEntity = multipartEntityBuilder.addTextBody(getATPN(), access_token)
 			                 .addTextBody("type",mediaType.uploadType())
@@ -111,7 +111,7 @@ public class MaterialAPI extends BaseAPI{
         MultipartEntityBuilder multipartEntityBuilder = MultipartEntityBuilder.create()
         		.addBinaryBody("media",data,ContentType.DEFAULT_BINARY,"temp."+mediaType.fileSuffix());
 		if(description != null){
-			multipartEntityBuilder.addTextBody("description", JsonUtil.toJSONString(description),ContentType.create("text/plain",Charset.forName("utf-8")));
+			multipartEntityBuilder.addTextBody("description", JsonUtil.toJson(description),ContentType.create("text/plain",Charset.forName("utf-8")));
 		}
 		HttpEntity reqEntity = multipartEntityBuilder.addTextBody(getATPN(), access_token)
 		                 .addTextBody("type",mediaType.uploadType())
@@ -141,7 +141,7 @@ public class MaterialAPI extends BaseAPI{
 			 MultipartEntityBuilder multipartEntityBuilder = MultipartEntityBuilder.create()
 					 .addBinaryBody("media",EntityUtils.toByteArray(entity),ContentType.get(entity),"temp."+mediaType.fileSuffix());
 			 if(description != null){
-				multipartEntityBuilder.addTextBody("description", JsonUtil.toJSONString(description),ContentType.create("text/plain",Charset.forName("utf-8")));
+				multipartEntityBuilder.addTextBody("description", JsonUtil.toJson(description),ContentType.create("text/plain",Charset.forName("utf-8")));
 			 }
 			 HttpEntity reqEntity = multipartEntityBuilder.addTextBody(getATPN(), access_token)
 			         .addTextBody("type",mediaType.uploadType())
@@ -208,7 +208,7 @@ public class MaterialAPI extends BaseAPI{
 	 * @return BaseResult
 	 */
 	public static BaseResult update_news(String access_token,String media_id,int index,List<Article> articles){
-		String str = JsonUtil.toJSONString(articles);
+		String str = JsonUtil.toJson(articles);
 		String messageJson = "{\"media_id\":\""+media_id+"\",\"index\":"+index+",\"articles\":"+str+"}";
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 										.setHeader(jsonHeader)

@@ -1,6 +1,6 @@
 package weixin.popular.bean.datacube.getcardbizuininfo;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 拉取卡券概况数据接口－请求参数
@@ -19,21 +19,21 @@ public class BizuinInfo {
 	 * 查询数据的起始时间。格式：2015-06-15<br>
 	 * 必填：是
 	 */
-	@JSONField(name = "begin_date")
+	@JsonProperty("begin_date")
 	private String beginDate;
 
 	/**
 	 * 查询数据的截至时间。格式：2015-06-30<br>
 	 * 必填：是
 	 */
-	@JSONField(name = "end_date")
+	@JsonProperty("end_date")
 	private String endDate;
 
 	/**
 	 * 卡券来源，0为公众平台创建的卡券数据、1是API创建的卡券数据<br>
 	 * 必填：是
 	 */
-	@JSONField(name = "cond_source")
+	@JsonProperty("cond_source")
 	private Integer condSource;
 
 	/**

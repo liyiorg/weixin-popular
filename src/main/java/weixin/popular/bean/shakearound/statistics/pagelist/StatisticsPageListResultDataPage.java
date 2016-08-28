@@ -3,7 +3,7 @@
  */
 package weixin.popular.bean.shakearound.statistics.pagelist;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import weixin.popular.bean.shakearound.statistics.AbstractStatisticsResultData;
 
@@ -17,7 +17,7 @@ public class StatisticsPageListResultDataPage extends AbstractStatisticsResultDa
 	/**
 	 * 页面ID
 	 */
-	@JSONField(name = "page_id")
+	@JsonProperty("page_id")
 	private Integer pageId;
 
 	/**

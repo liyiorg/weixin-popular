@@ -1,6 +1,6 @@
 package weixin.popular.bean.card.paycell.set;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 微信卡券－设置买单－提交对象
@@ -13,13 +13,13 @@ public class PaySellSet {
 	/**
 	 * 卡券ID。
 	 */
-	@JSONField(name = "card_id")
+	@JsonProperty("card_id")
 	private String cardId;
 	
 	/**
 	 * 是否开启买单功能
 	 */
-	@JSONField(name = "is_open")
+	@JsonProperty("is_open")
 	private Boolean isOpen;
 
 	/**

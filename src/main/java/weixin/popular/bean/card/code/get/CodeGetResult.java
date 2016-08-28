@@ -1,6 +1,6 @@
 package weixin.popular.bean.card.code.get;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import weixin.popular.bean.BaseResult;
 
@@ -25,7 +25,7 @@ public class CodeGetResult extends BaseResult {
 	/**
 	 * 是否可以核销，true为可以核销，false为不可核销
 	 */
-	@JSONField(name = "can_consume")
+	@JsonProperty("can_consume")
 	private Boolean canConsume;
 	
 	/**
@@ -39,7 +39,7 @@ public class CodeGetResult extends BaseResult {
 	 * UNAVAILABLE 已失效 <br>
 	 * code未被添加或被转赠领取的情况则统一报错：invalid serial code
 	 */
-	@JSONField(name = "user_card_status")
+	@JsonProperty("user_card_status")
 	private String userCardStatus;
 
 	/**

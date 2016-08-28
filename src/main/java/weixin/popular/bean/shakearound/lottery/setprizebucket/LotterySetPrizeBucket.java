@@ -7,7 +7,7 @@ import java.util.List;
 
 import weixin.popular.bean.shakearound.lottery.TicketInfo;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 微信摇一摇周边－摇一摇红包－录入红包信息－请求参数
@@ -19,26 +19,26 @@ public class LotterySetPrizeBucket {
 	/**
 	 * 红包抽奖id，来自addlotteryinfo返回的lottery_id
 	 */
-	@JSONField(name = "lottery_id")
+	@JsonProperty("lottery_id")
 	private String lotteryId;
 	
 	/**
 	 * 红包提供者的商户号，需与预下单中的商户号mch_id一致
 	 */
-	@JSONField(name = "mchid")
+	@JsonProperty("mchid")
 	private String mchId;
 	
 	/**
 	 * 红包提供商户公众号的appid，需与预下单中的公众账号appid（wxappid）一致
 	 */
-	@JSONField(name = "sponsor_appid")
+	@JsonProperty("sponsor_appid")
 	private String sponsorAppId;
 	
 	/**
 	 * 红包ticket列表，如果红包数较多，可以一次传入多个红包，批量调用该接口设置红包信息。<br>
 	 * 每次请求传入的红包个数上限为100
 	 */
-	@JSONField(name = "prize_info_list")
+	@JsonProperty("prize_info_list")
 	private List<TicketInfo> prizeInfoList;
 
 	/**

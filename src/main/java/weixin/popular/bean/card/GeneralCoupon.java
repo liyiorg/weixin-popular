@@ -1,6 +1,6 @@
 package weixin.popular.bean.card;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 优惠券
@@ -14,7 +14,7 @@ public class GeneralCoupon extends AbstractInfo {
 	 * 填写优惠详情。<br>
 	 * 添加必填，不支持修改 
 	 */
-	@JSONField(name = "default_detail")
+	@JsonProperty("default_detail")
 	private String defaultDetail;
 
 	/**

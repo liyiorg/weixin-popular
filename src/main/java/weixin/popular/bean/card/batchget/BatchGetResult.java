@@ -1,6 +1,6 @@
 package weixin.popular.bean.card.batchget;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import weixin.popular.bean.BaseResult;
 
@@ -15,13 +15,13 @@ public class BatchGetResult extends BaseResult {
 	/**
 	 * 卡券ID列表。
 	 */
-	@JSONField(name = "card_id_list")
+	@JsonProperty("card_id_list")
 	private String[] cardIdList;
 
 	/**
 	 * 该商户名下卡券ID总数。
 	 */
-	@JSONField(name = "total_num")
+	@JsonProperty("total_num")
 	private Integer totalNum;
 
 	/**

@@ -1,6 +1,6 @@
 package weixin.popular.bean.shakearound.lottery.addlotteryinfo;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 微信摇一摇周边－摇一摇红包－创建红包活动－请求参数
@@ -27,19 +27,19 @@ public class LotteryAddLotteryInfo {
 	/**
 	 * 抽奖活动开始时间，unix时间戳，单位秒
 	 */
-	@JSONField(name = "begin_time")
+	@JsonProperty("begin_time")
 	private Long beginTime;
 	
 	/**
 	 * 抽奖活动结束时间，unix时间戳，单位秒,红包活动有效期最长为91天
 	 */
-	@JSONField(name = "expire_time")
+	@JsonProperty("expire_time")
 	private Long expireTime;
 	
 	/**
 	 * 红包提供商户公众号的appid，需与预下单中的公众账号appid（wxappid）一致
 	 */
-	@JSONField(name = "sponsor_appid")
+	@JsonProperty("sponsor_appid")
 	private String sponsorAppId;
 	
 	/**
@@ -50,7 +50,7 @@ public class LotteryAddLotteryInfo {
 	/**
 	 * 红包关注界面后可以跳转到第三方自定义的页面
 	 */
-	@JSONField(name = "jump_url")
+	@JsonProperty("jump_url")
 	private String jumpUrl;
 	
 	/**

@@ -239,7 +239,7 @@ public class UserAPI extends BaseAPI{
 	 * @return BaseResult
 	 */
 	public static BaseResult groupsMembersBatchUpdate(String access_token,List<String> openid_list,String to_groupid){
-		String openidListStr = JsonUtil.toJSONString(openid_list);
+		String openidListStr = JsonUtil.toJson(openid_list);
 		String groupJson = "{\"openid_list\":"+openidListStr+",\"to_groupid\":"+to_groupid+"}";
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 										.setHeader(jsonHeader)

@@ -1,6 +1,6 @@
 package weixin.popular.bean.shakearound.device.applyid;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 微信摇一摇周边－设备管理－申请设备ID－响应参数－申请状态信息
@@ -12,7 +12,7 @@ public class DeviceApplyIdResultData {
 	/**
 	 * 申请的批次ID，可用在“查询设备列表”接口按批次查询本次申请成功的设备ID。
 	 */
-	@JSONField(name = "apply_id")
+	@JsonProperty("apply_id")
 	private Integer applyId;
 	
 	/**
@@ -21,13 +21,13 @@ public class DeviceApplyIdResultData {
 	 * 若单次申请的设备ID数量大于500个，会在三个工作日内完成审核；<br>
 	 * 此外返回值全部为1(审核中)
 	 */
-	@JSONField(name = "audit_status")
+	@JsonProperty("audit_status")
 	private Integer auditStatus;
 	
 	/**
 	 * 审核备注，对审核状态的文字说明
 	 */
-	@JSONField(name = "audit_comment")
+	@JsonProperty("audit_comment")
 	private String auditComment;
 	
 	/**

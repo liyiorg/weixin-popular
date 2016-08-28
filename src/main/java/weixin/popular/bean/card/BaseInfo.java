@@ -1,6 +1,6 @@
 package weixin.popular.bean.card;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 卡券基础信息
@@ -14,14 +14,14 @@ public class BaseInfo {
 	 * 卡券的商户logo，建议像素为300*300。<br>
 	 * 添加必填
 	 */
-	@JSONField(name = "logo_url")
+	@JsonProperty("logo_url")
 	private String logoUrl;
 
 	/**
 	 * 商户名字,字数上限为12个汉字。<br>
 	 * 添加必填，不支持修改
 	 */
-	@JSONField(name = "brand_name")
+	@JsonProperty("brand_name")
 	private String brandName;
 
 	/**
@@ -34,7 +34,7 @@ public class BaseInfo {
 	 * "CODE_TYPE_NONE"，不显示code和条形码类型<br>
 	 * 添加必填
 	 */
-	@JSONField(name = "code_type")
+	@JsonProperty("code_type")
 	private String codeType;
 
 	/**
@@ -46,7 +46,7 @@ public class BaseInfo {
 	/**
 	 * 券名，字数上限为18个汉字。
 	 */
-	@JSONField(name = "sub_title")
+	@JsonProperty("sub_title")
 	private String subTitle;
 
 	/**
@@ -64,7 +64,7 @@ public class BaseInfo {
 	/**
 	 * 客服电话。
 	 */
-	@JSONField(name = "service_phone")
+	@JsonProperty("service_phone")
 	private String servicePhone;
 
 	/**
@@ -77,7 +77,7 @@ public class BaseInfo {
 	 * 使用日期，有效期的信息。<br>
 	 * 添加必填
 	 */
-	@JSONField(name = "date_info")
+	@JsonProperty("date_info")
 	private BaseInfoDateInfo dateInfo;
 
 	/**
@@ -89,7 +89,7 @@ public class BaseInfo {
 	/**
 	 * 每人可领券的数量限制,不填写默认为50。
 	 */
-	@JSONField(name = "get_limit")
+	@JsonProperty("get_limit")
 	private Integer getLimit;
 
 	/**
@@ -97,7 +97,7 @@ public class BaseInfo {
 	 * 通常自有优惠码系统的开发者选择自定义Code码，并在卡券投放时带入 <br>
 	 * 不支持修改
 	 */
-	@JSONField(name = "use_custom_code")
+	@JsonProperty("use_custom_code")
 	private Boolean useCustomCode;
 
 	/**
@@ -105,19 +105,19 @@ public class BaseInfo {
 	 * 通常指定特殊用户群体投放卡券或防止刷券时选择指定用户领取。<br>
 	 * 不支持修改
 	 */
-	@JSONField(name = "bind_openid")
+	@JsonProperty("bind_openid")
 	private Boolean bindOpenid;
 
 	/**
 	 * 卡券领取页面是否可分享。
 	 */
-	@JSONField(name = "can_share")
+	@JsonProperty("can_share")
 	private Boolean canShare;
 
 	/**
 	 * 卡券是否可转赠。
 	 */
-	@JSONField(name = "can_give_friend")
+	@JsonProperty("can_give_friend")
 	private Boolean canGiveFriend;
 
 	/**
@@ -125,61 +125,61 @@ public class BaseInfo {
 	 * 调用POI门店管理接口获取门店位置poiid。<br>
 	 * 具备线下门店的商户为必填。<br>
 	 */
-	@JSONField(name = "location_id_list")
+	@JsonProperty("location_id_list")
 	private Integer[] locationIdList;
 
 	/**
 	 * 卡券顶部居中的按钮，如“立即使用”，仅在卡券状态正常(可以核销)时显示
 	 */
-	@JSONField(name = "center_title")
+	@JsonProperty("center_title")
 	private String centerTitle;
 
 	/**
 	 * 显示在入口下方的提示语，如“立即享受优惠”，仅在卡券状态正常(可以核销)时显示。
 	 */
-	@JSONField(name = "center_sub_title")
+	@JsonProperty("center_sub_title")
 	private String centerSubTitle;
 
 	/**
 	 * 顶部居中的url，仅在卡券状态正常(可以核销)时显示。
 	 */
-	@JSONField(name = "center_url")
+	@JsonProperty("center_url")
 	private String centerUrl;
 
 	/**
 	 * 自定义跳转外链的入口名字， 如“立即使用”。详情见活用自定义入口
 	 */
-	@JSONField(name = "custom_url_name")
+	@JsonProperty("custom_url_name")
 	private String customUrlName;
 
 	/**
 	 * 自定义跳转的URL。
 	 */
-	@JSONField(name = "custom_url")
+	@JsonProperty("custom_url")
 	private String customUrl;
 
 	/**
 	 * 显示在入口右侧的提示语。如“更多惊喜”。
 	 */
-	@JSONField(name = "custom_url_sub_title")
+	@JsonProperty("custom_url_sub_title")
 	private String customUrlSubTitle;
 
 	/**
 	 * 营销场景的自定义入口名称。如，“产品介绍”。
 	 */
-	@JSONField(name = "promotion_url_name")
+	@JsonProperty("promotion_url_name")
 	private String promotionUrlName;
 
 	/**
 	 * 入口跳转外链的地址链接。
 	 */
-	@JSONField(name = "promotion_url")
+	@JsonProperty("promotion_url")
 	private String promotionUrl;
 
 	/**
 	 * 显示在营销入口右侧的提示语。如，“卖场大优惠。”。
 	 */
-	@JSONField(name = "promotion_url_sub_title")
+	@JsonProperty("promotion_url_sub_title")
 	private String promotionUrlSubTitle;
 
 	/**

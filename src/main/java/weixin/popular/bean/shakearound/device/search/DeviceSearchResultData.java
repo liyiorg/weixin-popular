@@ -5,7 +5,7 @@ package weixin.popular.bean.shakearound.device.search;
 
 import java.util.List;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 /**
@@ -23,7 +23,7 @@ public class DeviceSearchResultData {
 	/**
 	 * 商户名下的设备总量
 	 */
-	@JSONField(name = "total_count")
+	@JsonProperty("total_count")
 	private Integer totalCount;
 
 	/**

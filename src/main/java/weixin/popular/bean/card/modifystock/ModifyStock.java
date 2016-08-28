@@ -1,6 +1,6 @@
 package weixin.popular.bean.card.modifystock;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 卡券管理－修改库存接口－请求参数
@@ -14,19 +14,19 @@ public class ModifyStock {
 	 * 卡券ID。<br>
 	 * 必填：是
 	 */
-	@JSONField(name = "card_id")
+	@JsonProperty("card_id")
 	private String cardId;
 	
 	/**
 	 * 增加多少库存，支持不填或填0。
 	 */
-	@JSONField(name = "increase_stock_value")
+	@JsonProperty("increase_stock_value")
 	private Integer increaseStockValue;
 	
 	/**
 	 * 减少多少库存，可以不填或填0。
 	 */
-	@JSONField(name = "reduce_stock_value")
+	@JsonProperty("reduce_stock_value")
 	private Integer reduceStockValue;
 	
 	/**

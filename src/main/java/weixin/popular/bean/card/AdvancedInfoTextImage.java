@@ -1,6 +1,6 @@
 package weixin.popular.bean.card;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 图文列表
@@ -14,7 +14,7 @@ public class AdvancedInfoTextImage {
 	 * 图片链接，必须调用上传图片接口上传图片获得链接，并在此填入，否则报错 <br>
 	 * 添加必填，长度：128
 	 */
-	@JSONField(name = "image_url")
+	@JsonProperty("image_url")
 	private String imageUrl;
 
 	/**

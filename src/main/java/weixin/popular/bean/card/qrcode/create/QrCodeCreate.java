@@ -1,6 +1,6 @@
 package weixin.popular.bean.card.qrcode.create;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 卡券投放－创建领取单个卡券二维码信息接口－请求参数
@@ -10,16 +10,16 @@ import com.alibaba.fastjson.annotation.JSONField;
  */
 public class QrCodeCreate {
 
-	@JSONField(name = "action_name")
+	@JsonProperty("action_name")
 	private String actionName = "QR_CARD";
 
 	/**
 	 * 指定二维码的有效时间，范围是60 ~ 1800秒。不填默认为365天有效
 	 */
-	@JSONField(name = "expire_seconds")
+	@JsonProperty("expire_seconds")
 	private Integer expireSeconds;
 	
-	@JSONField(name = "action_info")
+	@JsonProperty("action_info")
 	private ActionInfo actionInfo;
 
 	/**

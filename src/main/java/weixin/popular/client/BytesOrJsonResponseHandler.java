@@ -52,7 +52,7 @@ public class BytesOrJsonResponseHandler{
     				 HttpEntity entity = response.getEntity();
 	                 String str = EntityUtils.toString(entity,"utf-8");
 	                 logger.info("URI[{}] elapsed time:{} ms RESPONSE DATA:{}",super.uriId,System.currentTimeMillis()-super.startTime,str);
-	                 return JsonUtil.parseObject(str, clazz);
+	                 return JsonUtil.toObject(str, clazz);
     			}else{
     				//bytes data
     				try {

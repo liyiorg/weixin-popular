@@ -1,6 +1,6 @@
 package weixin.popular.bean.card.code.update;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 卡券管理－更改Code接口－请求参数
@@ -13,7 +13,7 @@ public class CodeUpdate {
 	/**
 	 * 卡券ID。自定义Code码卡券为必填。
 	 */
-	@JSONField(name = "card_id")
+	@JsonProperty("card_id")
 	private String cardId;
 	
 	/**
@@ -26,7 +26,7 @@ public class CodeUpdate {
 	 * 变更后的有效Code码。<br>
 	 * 必填：是，长度：64
 	 */
-	@JSONField(name = "new_code")
+	@JsonProperty("new_code")
 	private String newCode;
 
 	/**

@@ -1,6 +1,6 @@
 package weixin.popular.bean.paymch;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class MchPayApp {
 
@@ -10,7 +10,7 @@ public class MchPayApp {
 
 	private String prepayid;
 
-	@JSONField(name="package")
+	@JsonProperty("package")
 	private String package_;
 
 	private String noncestr;

@@ -1,6 +1,6 @@
 package weixin.popular.bean.card;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 封面摘要结构体名称
@@ -14,7 +14,7 @@ public class AdvancedInfoAbstract {
 	 * 封面摘要简介。<br>
 	 * 添加必填，长度：24
 	 */
-	@JSONField(name = "abstract")
+	@JsonProperty("abstract")
 	private String abstractText;
 
 	/**
@@ -22,7 +22,7 @@ public class AdvancedInfoAbstract {
 	 * 填写非CDN链接会报错，并在此填入。建议图片尺寸像素850*350 <br>
 	 * 添加必填，长度：128
 	 */
-	@JSONField(name = "icon_url_list")
+	@JsonProperty("icon_url_list")
 	private String[] iconUrlList;
 
 	/**

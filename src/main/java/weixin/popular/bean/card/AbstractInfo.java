@@ -1,6 +1,6 @@
 package weixin.popular.bean.card;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 卡券信息抽象类，具体卡券的公共信息对象
@@ -13,14 +13,14 @@ public abstract class AbstractInfo {
 	/**
 	 * 基本信息
 	 */
-	@JSONField(name = "base_info")
+	@JsonProperty("base_info")
 	private BaseInfo baseInfo;
 
 	/**
 	 * 高级信息<br>
 	 * 不支持修改 
 	 */
-	@JSONField(name = "advanced_info")
+	@JsonProperty("advanced_info")
 	private AdvancedInfo advancedInfo;
 
 	/**

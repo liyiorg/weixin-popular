@@ -1,6 +1,6 @@
 package weixin.popular.bean.shakearound.device;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 设备信息ID
@@ -14,7 +14,7 @@ public class DeviceIdentifier {
 	 * 添加或修改时，若填了UUID、major、minor，则可不填设备编号，若二者都填，则以设备编号为优先<br>
 	 * 必填
 	 */
-	@JSONField(name = "device_id")
+	@JsonProperty("device_id")
 	private Integer deviceId;
 	
 	/**

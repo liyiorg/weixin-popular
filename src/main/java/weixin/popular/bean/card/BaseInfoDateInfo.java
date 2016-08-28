@@ -1,6 +1,6 @@
 package weixin.popular.bean.card;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 使用日期，有效期的信息
@@ -24,7 +24,7 @@ public class BaseInfoDateInfo {
 	 * 最终需转换为字符串形态传入。（东八区时间，单位为秒） <br>
 	 * 添加必填
 	 */
-	@JSONField(name = "begin_timestamp")
+	@JsonProperty("begin_timestamp")
 	private Integer beginTimestamp;
 
 	/**
@@ -33,21 +33,21 @@ public class BaseInfoDateInfo {
 	 * 设置了fixed_term卡券，当时间达到end_timestamp时卡券统一过期<br>
 	 * 添加必填
 	 */
-	@JSONField(name = "end_timestamp")
+	@JsonProperty("end_timestamp")
 	private Integer endTimestamp;
 
 	/**
 	 * type为DATE_TYPE_FIX_TERM时专用，表示自领取后多少天内有效，不支持填写0。 <br>
 	 * 添加必填，不支持修改
 	 */
-	@JSONField(name = "fixed_term")
+	@JsonProperty("fixed_term")
 	private Integer fixedTerm;
 
 	/**
 	 * type为DATE_TYPE_FIX_TERM时专用，表示自领取后多少天开始生效，领取后当天生效填写0。（单位为天）<br>
 	 * 添加必填，不支持修改
 	 */
-	@JSONField(name = "fixed_begin_term")
+	@JsonProperty("fixed_begin_term")
 	private Integer fixedBeginTerm;
 
 	/**

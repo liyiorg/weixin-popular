@@ -13,8 +13,10 @@ import org.apache.http.client.methods.RequestBuilder;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.util.EntityUtils;
 
-import weixin.popular.bean.qrcode.QrcodeTicket;
+import weixin.popular.bean.qrcode.create.Create;
+import weixin.popular.bean.qrcode.create.CreateResult;
 import weixin.popular.client.LocalHttpClient;
+import weixin.popular.util.JsonUtil;
 
 /**
  * 二维码API
@@ -26,52 +28,56 @@ public class QrcodeAPI extends BaseAPI{
 
 	/**
 	 * 创建二维码
-	 * @param access_token access_token
-	 * @param qrcodeJson json 数据
-	 * @return QrcodeTicket
 	 */
-	private static QrcodeTicket qrcodeCreate(String access_token,String qrcodeJson){
+	public static CreateResult create(String accessToken,String postJson){
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 										.setHeader(jsonHeader)
 										.setUri(BASE_URI+"/cgi-bin/qrcode/create")
-										.addParameter(getATPN(), access_token)
-										.setEntity(new StringEntity(qrcodeJson,Charset.forName("utf-8")))
+										.addParameter(getATPN(), accessToken)
+										.setEntity(new StringEntity(postJson,Charset.forName("utf-8")))
 										.build();
-		return LocalHttpClient.executeJsonResult(httpUriRequest,QrcodeTicket.class);
+		return LocalHttpClient.executeJsonResult(httpUriRequest,CreateResult.class);
+	}
+	
+	/**
+	 * 创建二维码
+	 */
+	public static CreateResult create(String accessToken, Create create){
+		return create(accessToken, JsonUtil.toJson(create));
 	}
 
 	/**
 	 * 创建临时二维码
-	 * @param access_token access_token
-	 * @param expire_seconds 最大不超过604800秒（即30天）
-	 * @param scene_id		  场景值ID，32位非0整型  最多10万个
+	 * @param accessToken access_token
+	 * @param expireSeconds 最大不超过604800秒（即30天）
+	 * @param sceneId		  场景值ID，32位非0整型  最多10万个
 	 * @return QrcodeTicket
 	 */
-	public static QrcodeTicket qrcodeCreateTemp(String access_token,int expire_seconds,long scene_id){
-		String json = String.format("{\"expire_seconds\": %d, \"action_name\": \"QR_SCENE\", \"action_info\": {\"scene\": {\"scene_id\": %d}}}",expire_seconds,scene_id);
-		return qrcodeCreate(access_token,json);
+	public static CreateResult createBySceneId(String accessToken,int expireSeconds,long sceneId){
+		String json = String.format("{\"expire_seconds\": %d, \"action_name\": \"QR_SCENE\", \"action_info\": {\"scene\": {\"scene_id\": %d}}}",expireSeconds,sceneId);
+		return create(accessToken,json);
 	}
 
 	/**
 	 * 创建持久二维码
-	 * @param access_token access_token
-	 * @param scene_id	场景值ID 1-100000
+	 * @param accessToken access_token
+	 * @param sceneId	场景值ID 1-100000
 	 * @return QrcodeTicket
 	 */
-	public static QrcodeTicket qrcodeCreateFinal(String access_token,int scene_id){
-		String json = String.format("{\"action_name\": \"QR_LIMIT_SCENE\", \"action_info\": {\"scene\": {\"scene_id\":%d}}}", scene_id);
-		return qrcodeCreate(access_token,json);
+	public static CreateResult createBySceneId(String accessToken,int sceneId){
+		String json = String.format("{\"action_name\": \"QR_LIMIT_SCENE\", \"action_info\": {\"scene\": {\"scene_id\":%d}}}", sceneId);
+		return create(accessToken,json);
 	}
 	
 	/**
 	 * 创建持久二维码
-	 * @param access_token access_token
-	 * @param scene_str	场景值ID（字符串形式的ID），字符串类型，长度限制为1到64
+	 * @param accessToken access_token
+	 * @param sceneStr	场景值ID（字符串形式的ID），字符串类型，长度限制为1到64
 	 * @return QrcodeTicket
 	 */
-	public static QrcodeTicket qrcodeCreateFinal(String access_token,String scene_str){
-		String json = String.format("{\"action_name\": \"QR_LIMIT_STR_SCENE\", \"action_info\": {\"scene\": {\"scene_str\": \"%s\"}}}", scene_str);
-		return qrcodeCreate(access_token,json);
+	public static CreateResult createBySceneStr(String accessToken,String sceneStr){
+		String json = String.format("{\"action_name\": \"QR_LIMIT_STR_SCENE\", \"action_info\": {\"scene\": {\"scene_str\": \"%s\"}}}", sceneStr);
+		return create(accessToken,json);
 	}
 
 	/**

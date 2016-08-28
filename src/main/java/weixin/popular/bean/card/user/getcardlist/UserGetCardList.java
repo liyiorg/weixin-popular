@@ -1,6 +1,6 @@
 package weixin.popular.bean.card.user.getcardlist;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 管理卡券－获取用户已领取卡券接口－请求参数
@@ -14,7 +14,7 @@ public class UserGetCardList {
 	 * 卡券ID。不填写时默认查询当前appid下的卡券。<br>
 	 * 必填：否
 	 */
-	@JSONField(name = "card_id")
+	@JsonProperty("card_id")
 	private String cardId;
 	
 	/**

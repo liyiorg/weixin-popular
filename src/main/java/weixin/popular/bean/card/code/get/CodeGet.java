@@ -1,6 +1,6 @@
 package weixin.popular.bean.card.code.get;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 卡券核销－查询Code接口－请求参数
@@ -13,7 +13,7 @@ public class CodeGet {
 	/**
 	 * 卡券ID代表一类卡券。自定义code卡券必填。
 	 */
-	@JSONField(name = "card_id")
+	@JsonProperty("card_id")
 	private String cardId;
 	
 	/**
@@ -26,7 +26,7 @@ public class CodeGet {
 	 * 是否校验code核销状态，填入true和false时的code异常状态返回数据不同。<br>
 	 * 必填：否
 	 */
-	@JSONField(name = "check_consume")
+	@JsonProperty("check_consume")
 	private Boolean checkConsume;
 
 	/**

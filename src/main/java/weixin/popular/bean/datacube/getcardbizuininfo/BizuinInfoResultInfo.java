@@ -1,6 +1,6 @@
 package weixin.popular.bean.datacube.getcardbizuininfo;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 拉取卡券概况数据接口－响应参数－日期数据
@@ -12,67 +12,67 @@ public class BizuinInfoResultInfo {
 	/**
 	 * 日期信息
 	 */
-	@JSONField(name = "ref_date")
+	@JsonProperty("ref_date")
 	private String refDate;
 	
 	/**
 	 * 浏览次数
 	 */
-	@JSONField(name = "view_cnt")
+	@JsonProperty("view_cnt")
 	private Integer viewCnt;
 	
 	/**
 	 * 浏览人数
 	 */
-	@JSONField(name = "view_user")
+	@JsonProperty("view_user")
 	private Integer viewUser;
 	
 	/**
 	 * 领取次数
 	 */
-	@JSONField(name = "receive_cnt")
+	@JsonProperty("receive_cnt")
 	private Integer receiveCnt;
 	
 	/**
 	 * 领取人数
 	 */
-	@JSONField(name = "receive_user")
+	@JsonProperty("receive_user")
 	private Integer receiveUser;
 	
 	/**
 	 * 使用次数
 	 */
-	@JSONField(name = "verify_cnt")
+	@JsonProperty("verify_cnt")
 	private Integer verifyCnt;
 	
 	/**
 	 * 使用人数
 	 */
-	@JSONField(name = "verify_user")
+	@JsonProperty("verify_user")
 	private Integer verifyUser;
 	
 	/**
 	 * 转赠次数
 	 */
-	@JSONField(name = "given_cnt")
+	@JsonProperty("given_cnt")
 	private Integer givenCnt;
 	
 	/**
 	 * 转赠人数
 	 */
-	@JSONField(name = "given_user")
+	@JsonProperty("given_user")
 	private Integer givenUser;
 	
 	/**
 	 * 过期次数
 	 */
-	@JSONField(name = "expire_cnt")
+	@JsonProperty("expire_cnt")
 	private Integer expireCnt;
 	
 	/**
 	 * 过期人数
 	 */
-	@JSONField(name = "expire_user")
+	@JsonProperty("expire_user")
 	private Integer expireUser;
 	
 	/**

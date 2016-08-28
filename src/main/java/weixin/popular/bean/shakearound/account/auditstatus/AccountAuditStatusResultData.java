@@ -1,6 +1,6 @@
 package weixin.popular.bean.shakearound.account.auditstatus;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 微信摇一摇周边－申请开通功能－查询审核状态－响应参数－审核状态信息
@@ -12,25 +12,25 @@ public class AccountAuditStatusResultData {
 	/**
 	 * 提交申请的时间戳
 	 */
-	@JSONField(name = "apply_time")
+	@JsonProperty("apply_time")
 	private Long applyTime;
 	
 	/**
 	 * 审核备注，包括审核不通过的原因
 	 */
-	@JSONField(name = "audit_comment")
+	@JsonProperty("audit_comment")
 	private String auditComment;
 	
 	/**
 	 * 审核状态。0：审核未通过、1：审核中、2：审核已通过；审核会在三个工作日内完成
 	 */
-	@JSONField(name = "audit_status")
+	@JsonProperty("audit_status")
 	private Integer auditStatus;
 	
 	/**
 	 * 确定审核结果的时间戳；若状态为审核中，则该时间值为0
 	 */
-	@JSONField(name = "audit_time")
+	@JsonProperty("audit_time")
 	private Long auditTime;
 
 	/**

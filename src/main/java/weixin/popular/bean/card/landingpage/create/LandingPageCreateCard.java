@@ -1,6 +1,6 @@
 package weixin.popular.bean.card.landingpage.create;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 卡券发放－创建货架接口－请求参数－货架投放的卡券
@@ -14,14 +14,14 @@ public class LandingPageCreateCard {
 	 * 所要在页面投放的card_id<br>
 	 * 必填：是
 	 */
-	@JSONField(name = "card_id")
+	@JsonProperty("card_id")
 	private String cardId;
 	
 	/**
 	 * 缩略图url<br>
 	 * 必填：是
 	 */
-	@JSONField(name = "thumb_url")
+	@JsonProperty("thumb_url")
 	private String thumbUrl;
 
 	/**

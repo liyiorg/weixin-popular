@@ -4,7 +4,7 @@ import java.util.List;
 
 import weixin.popular.bean.BaseResult;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 管理卡券－获取用户已领取卡券接口－响应参数
@@ -17,13 +17,13 @@ public class UserGetCardListResult extends BaseResult {
 	/**
 	 * 已领取的卡券列表
 	 */
-	@JSONField(name = "card_list")
+	@JsonProperty("card_list")
 	private List<UserGetCardListResultCard> cardList;
 	
 	/**
 	 * 是否有可用的朋友的券
 	 */
-	@JSONField(name = "has_share_card")
+	@JsonProperty("has_share_card")
 	private Boolean hasShareCard;
 
 	/**

@@ -2,7 +2,7 @@ package weixin.popular.bean.datacube.getcardcardinfo;
 
 import weixin.popular.bean.datacube.getcardbizuininfo.BizuinInfo;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 获取免费券数据接口－提交对象<br>
@@ -19,7 +19,7 @@ public class CardInfo extends BizuinInfo {
 	 * 卡券ID。填写后，指定拉出该卡券的相关数据。<br>
 	 * 必填：否
 	 */
-	@JSONField(name = "card_id")
+	@JsonProperty("card_id")
 	private String cardId;
 
 	/**

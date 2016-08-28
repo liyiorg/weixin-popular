@@ -1,6 +1,6 @@
 package weixin.popular.bean.card;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 使用门槛（条件）
@@ -13,33 +13,33 @@ public class AdvancedInfoUseCondition {
 	/**
 	 * 指定可用的商品类目，仅用于代金券类型，填入后将在券面拼写适用于xxx
 	 */
-	@JSONField(name = "accept_category")
+	@JsonProperty("accept_category")
 	private String acceptCategory;
 
 	/**
 	 * 指定可用的商品类目，仅用于代金券类型，填入后将在券面拼写不适用于xxxx
 	 */
-	@JSONField(name = "reject_category")
+	@JsonProperty("reject_category")
 	private String rejectCategory;
 
 	/**
 	 * 满减门槛字段，可用于兑换券和代金券，填入后将在全面拼写消费满xx元可用。
 	 */
-	@JSONField(name = "least_cost")
+	@JsonProperty("least_cost")
 	private Integer leastCost;
 
 	/**
 	 * 购买xx可用类型门槛，仅用于兑换，填入后自动拼写购买xxx可用。<br>
 	 * 长度：512
 	 */
-	@JSONField(name = "object_use_for")
+	@JsonProperty("object_use_for")
 	private String objectUseFor;
 
 	/**
 	 * 不可以与其他类型共享门槛，填写false时系统将在使用须知里拼写“不可与其他优惠共享”，<br>
 	 * 填写true时系统将在使用须知里拼写“可与其他优惠共享”，默认为true
 	 */
-	@JSONField(name = "can_use_with_other_discount")
+	@JsonProperty("can_use_with_other_discount")
 	private Boolean canUseWithOtherDiscount;
 
 	/**

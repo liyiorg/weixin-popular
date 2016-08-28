@@ -115,7 +115,7 @@ public class JsUtil {
 			.append("timestamp:").append(timestamp).append(",")
 			.append("nonceStr:").append("'").append(nonceStr).append("'").append(",")
 			.append("signature:").append("'").append(signature).append("'").append(",")
-			.append("jsApiList:").append(JsonUtil.toJSONString(jsApiList==null?ALL_JS_API_LIST:jsApiList))
+			.append("jsApiList:").append(JsonUtil.toJson(jsApiList==null?ALL_JS_API_LIST:jsApiList))
 			.append("}").toString();
 	}
 

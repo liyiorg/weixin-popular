@@ -3,7 +3,7 @@
  */
 package weixin.popular.bean.shakearound.device.group.delete;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 微信摇一摇周边－删除分组－请求参数
@@ -16,7 +16,7 @@ public class DeviceGroupDelete {
 	 * 分组唯一标识，全局唯一<br>
 	 * 必填
 	 */
-	@JSONField(name = "group_id")
+	@JsonProperty("group_id")
 	private Integer groupId;
 
 	/**

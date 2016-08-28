@@ -1,6 +1,6 @@
 package weixin.popular.bean.poi;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 门店图片信息
@@ -10,7 +10,7 @@ import com.alibaba.fastjson.annotation.JSONField;
  */
 public class Photo {
 
-	@JSONField(name = "photo_url")
+	@JsonProperty("photo_url")
 	private String photoUrl;
 
 	public String getPhotoUrl() {

@@ -1,6 +1,6 @@
 package weixin.popular.bean.card;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 卡券抽象类，公众属性
@@ -13,7 +13,7 @@ public class AbstractCard {
 	/**
 	 * 卡券类型
 	 */
-	@JSONField(name = "card_type")
+	@JsonProperty("card_type")
 	private String cardType;
 	
 	public AbstractCard() {

@@ -5,7 +5,7 @@ package weixin.popular.bean.shakearound.device.bindpage;
 
 import weixin.popular.bean.shakearound.device.DeviceIdentifier;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 微信摇一摇周边－配置设备与页面的关联关系－请求参数
@@ -18,14 +18,14 @@ public class DeviceBindPage {
 	 * 指定页面的设备ID<br>
 	 * 必填
 	 */
-	@JSONField(name = "device_identifier")
+	@JsonProperty("device_identifier")
 	private DeviceIdentifier deviceIdentifier;
 	
 	/**
 	 * 待关联的页面列表<br>
 	 * 必填
 	 */
-	@JSONField(name = "page_ids")
+	@JsonProperty("page_ids")
 	private Integer[] pageIds;
 
 	/**

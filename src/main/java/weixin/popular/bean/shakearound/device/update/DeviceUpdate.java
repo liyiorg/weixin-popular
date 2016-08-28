@@ -5,7 +5,7 @@ package weixin.popular.bean.shakearound.device.update;
 
 import weixin.popular.bean.shakearound.device.DeviceIdentifier;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 微信摇一摇周边－设备管理－编辑设备信息－请求参数
@@ -18,7 +18,7 @@ public class DeviceUpdate {
 	 * 指定的设备ID<br>
 	 * 必填
 	 */
-	@JSONField(name = "device_identifier")
+	@JsonProperty("device_identifier")
 	private DeviceIdentifier deviceIdentifier;
 	
 	/**

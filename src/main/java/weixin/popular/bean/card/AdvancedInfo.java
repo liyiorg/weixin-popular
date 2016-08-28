@@ -2,7 +2,7 @@ package weixin.popular.bean.card;
 
 import java.util.List;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 
@@ -18,28 +18,28 @@ public class AdvancedInfo {
 	 * 若不填写使用条件则在券面拼写：无最低消费限制，全场通用，不限品类；<br>
 	 * 并在使用说明显示：可与其他优惠共享
 	 */
-	@JSONField(name = "use_condition")
+	@JsonProperty("use_condition")
 	private AdvancedInfoUseCondition useCondition;
 
 	/**
 	 * 封面摘要 <br>
 	 * 添加必填
 	 */
-	@JSONField(name = "abstract")
+	@JsonProperty("abstract")
 	private AdvancedInfoAbstract abstractInfo;
 
 	/**
 	 * 图文列表，显示在详情内页，优惠券券开发者须至少传入一组图文列表 <br>
 	 * 添加必填
 	 */
-	@JSONField(name = "text_image_list")
+	@JsonProperty("text_image_list")
 	private List<AdvancedInfoTextImage> textImageList;
 
 	/**
 	 * 使用时段限制<br>
 	 * 添加必填
 	 */
-	@JSONField(name = "time_limit")
+	@JsonProperty("time_limit")
 	private List<AdvancedInfoTimeLimit> timeLimit;
 
 	/**
@@ -49,7 +49,7 @@ public class AdvancedInfo {
 	 * BIZ_SERVICE_WITH_PET 可带宠物；<br>
 	 * BIZ_SERVICE_FREE_WIFI 免费wifi，可多选 
 	 */
-	@JSONField(name = "business_service")
+	@JsonProperty("business_service")
 	private String[] businessService;
 
 	/**

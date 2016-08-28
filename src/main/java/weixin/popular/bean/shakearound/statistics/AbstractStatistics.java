@@ -3,7 +3,7 @@
  */
 package weixin.popular.bean.shakearound.statistics;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 微信摇一摇周边－统计接口请求参数抽象类
@@ -16,14 +16,14 @@ public abstract class AbstractStatistics {
 	 * 起始日期时间戳，最长时间跨度为30天，单位为秒<br>
 	 * 必填
 	 */
-	@JSONField(name = "begin_date")
+	@JsonProperty("begin_date")
 	private Long beginDate;
 	
 	/**
 	 * 结束日期时间戳，最长时间跨度为30天，单位为秒<br>
 	 * 必填
 	 */
-	@JSONField(name = "end_date")
+	@JsonProperty("end_date")
 	private Long endDate;
 
 

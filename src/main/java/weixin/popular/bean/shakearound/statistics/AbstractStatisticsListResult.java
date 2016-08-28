@@ -5,7 +5,7 @@ package weixin.popular.bean.shakearound.statistics;
 
 import weixin.popular.bean.shakearound.AbstractResult;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 微信摇一摇周边－（批量查询）统计接口响应参数抽象类
@@ -22,13 +22,13 @@ public class AbstractStatisticsListResult<T>  extends AbstractResult<T> {
 	/**
 	 * 所查询的结果页序号；返回结果按摇周边人数降序排序，每50条记录为一页
 	 */
-	@JSONField(name = "page_index")
+	@JsonProperty("page_index")
 	private Integer pageIndex;
 	
 	/**
 	 * 设备总数
 	 */
-	@JSONField(name = "total_count")
+	@JsonProperty("total_count")
 	private Integer totalCount;
 
 	/**

@@ -5,7 +5,7 @@ package weixin.popular.bean.shakearound.relation.search;
 
 import weixin.popular.bean.shakearound.device.DeviceIdentifier;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 微信摇一摇周边－查询设备与页面的关联关系－请求参数
@@ -23,13 +23,13 @@ public class RelationSearch {
 	/**
 	 * 指定的设备；当type为1时，此项为必填
 	 */
-	@JSONField(name = "device_identifier")
+	@JsonProperty("device_identifier")
 	private DeviceIdentifier deviceIdentifier;
 	
 	/**
 	 * 指定的页面id；当type为2时，此项为必填
 	 */
-	@JSONField(name = "page_id")
+	@JsonProperty("page_id")
 	private Integer pageId;
 	
 	/**

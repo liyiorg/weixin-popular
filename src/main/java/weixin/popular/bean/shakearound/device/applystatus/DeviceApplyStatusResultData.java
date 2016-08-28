@@ -3,7 +3,7 @@
  */
 package weixin.popular.bean.shakearound.device.applystatus;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 微信摇一摇周边－设备管理－查询设备ID申请审核状态－响应参数－审核状态信息
@@ -15,13 +15,13 @@ public class DeviceApplyStatusResultData {
 	/**
 	 * 提交申请的时间戳
 	 */
-	@JSONField(name = "apply_time")
+	@JsonProperty("apply_time")
 	private Long applyTime;
 	
 	/**
 	 * 审核备注，对审核状态的文字说明
 	 */
-	@JSONField(name = "audit_comment")
+	@JsonProperty("audit_comment")
 	private String auditComment;
 	
 	/**
@@ -29,13 +29,13 @@ public class DeviceApplyStatusResultData {
 	 * 若单次申请的设备ID数量小于等于500个，系统会进行快速审核；<br>
 	 * 若单次申请的设备ID数量大于500个，会在三个工作日内完成审核；<br>
 	 */
-	@JSONField(name = "audit_status")
+	@JsonProperty("audit_status")
 	private Integer auditStatus;
 	
 	/**
 	 * 确定审核结果的时间戳，若状态为审核中，则该时间值为0
 	 */
-	@JSONField(name = "audit_time")
+	@JsonProperty("audit_time")
 	private Long auditTime;
 
 	/**

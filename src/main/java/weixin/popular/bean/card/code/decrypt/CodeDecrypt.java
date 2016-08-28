@@ -1,6 +1,6 @@
 package weixin.popular.bean.card.code.decrypt;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 卡券核销－Code解码接口－请求参数
@@ -14,7 +14,7 @@ public class CodeDecrypt {
 	 * 经过加密的Code码。<br>
 	 * 必填：是
 	 */
-	@JSONField(name = "encrypt_code")
+	@JsonProperty("encrypt_code")
 	private String encryptCode;
 
 	/**

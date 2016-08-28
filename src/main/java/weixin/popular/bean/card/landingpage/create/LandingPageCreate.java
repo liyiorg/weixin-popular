@@ -2,7 +2,7 @@ package weixin.popular.bean.card.landingpage.create;
 
 import java.util.List;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 卡券发放－创建货架接口－请求参数
@@ -22,14 +22,14 @@ public class LandingPageCreate {
 	 * 页面的title。<br>
 	 * 必填：是
 	 */
-	@JSONField(name = "page_title")
+	@JsonProperty("page_title")
 	private String pageTitle;
 	
 	/**
 	 * 页面是否可以分享,填入true/false<br>
 	 * 必填：是
 	 */
-	@JSONField(name = "can_share")
+	@JsonProperty("can_share")
 	private Boolean canShare;
 	
 	/**
@@ -44,7 +44,7 @@ public class LandingPageCreate {
 	 * 必填：是
 	 */
 	private String scene;
-	@JSONField(name = "card_list")
+	@JsonProperty("card_list")
 	
 	/**
 	 * 卡券列表<br>

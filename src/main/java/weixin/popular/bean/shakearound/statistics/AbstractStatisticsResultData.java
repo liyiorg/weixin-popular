@@ -3,7 +3,7 @@
  */
 package weixin.popular.bean.shakearound.statistics;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 基本数据结构－统计结果数据
@@ -15,25 +15,25 @@ public abstract class AbstractStatisticsResultData {
 	/**
 	 * 点击摇周边消息的次数
 	 */
-	@JSONField(name = "click_pv")
+	@JsonProperty("click_pv")
 	private Integer clickPv;
 	
 	/**
 	 * 点击摇周边消息的人数
 	 */
-	@JSONField(name = "click_uv")
+	@JsonProperty("click_uv")
 	private Integer clickUv;
 	
 	/**
 	 * 摇周边的次数
 	 */
-	@JSONField(name = "shake_pv")
+	@JsonProperty("shake_pv")
 	private Integer shakePv;
 	
 	/**
 	 * 摇周边的人数
 	 */
-	@JSONField(name = "shake_uv")
+	@JsonProperty("shake_uv")
 	private Integer shakeUv;
 
 	/**

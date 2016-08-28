@@ -7,7 +7,7 @@ import java.util.List;
 
 import weixin.popular.bean.shakearound.page.PageInfo;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 微信摇一摇周边－页面管理－查询页面列表－响应参数－页面列表数据
@@ -24,7 +24,7 @@ public class PageSearchResultData {
 	/**
 	 * 商户名下的页面总数
 	 */
-	@JSONField(name = "total_count")
+	@JsonProperty("total_count")
 	private Integer totalCount;
 
 	/**

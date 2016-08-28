@@ -1,6 +1,6 @@
 package weixin.popular.bean.card.code.get;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 卡券核销－查询Code接口－响应参数－卡券信息
@@ -13,19 +13,19 @@ public class CodeGetResultCard {
 	/**
 	 * 卡券ID
 	 */
-	@JSONField(name = "card_id")
+	@JsonProperty("card_id")
 	private String cardId;
 	
 	/**
 	 * 起始使用时间
 	 */
-	@JSONField(name = "begin_time")
+	@JsonProperty("begin_time")
 	private Integer beginTime;
 	
 	/**
 	 * 结束时间
 	 */
-	@JSONField(name = "end_time")
+	@JsonProperty("end_time")
 	private Integer endTime;
 
 	/**

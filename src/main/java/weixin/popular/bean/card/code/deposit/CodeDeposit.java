@@ -1,6 +1,6 @@
 package weixin.popular.bean.card.code.deposit;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 投放卡券－导入code接口－请求参数
@@ -14,7 +14,7 @@ public class CodeDeposit {
 	 * 需要进行导入code的卡券ID。<br>
 	 * 必填：是
 	 */
-	@JSONField(name = "card_id")
+	@JsonProperty("card_id")
 	private String cardId;
 	
 	/**

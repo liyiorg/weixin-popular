@@ -63,7 +63,7 @@ public class MessageAPI extends BaseAPI{
 	 * @return BaseResult
 	 */
 	public static BaseResult messageCustomSend(String access_token,Message message){
-		String str = JsonUtil.toJSONString(message);
+		String str = JsonUtil.toJson(message);
 		return messageCustomSend(access_token,str);
 	}
 
@@ -74,7 +74,7 @@ public class MessageAPI extends BaseAPI{
 	 * @return Media
 	 */
 	public static Media mediaUploadnews(String access_token,List<Article> articles){
-		String str = JsonUtil.toJSONString(articles);
+		String str = JsonUtil.toJson(articles);
 		String messageJson = "{\"articles\":"+str+"}";
 		return mediaUploadnews(access_token, messageJson);
 	}
@@ -102,7 +102,7 @@ public class MessageAPI extends BaseAPI{
 	 * @return Media
 	 */
 	public static Media mediaUploadvideo(String access_token,Uploadvideo uploadvideo){
-		String messageJson = JsonUtil.toJSONString(uploadvideo);
+		String messageJson = JsonUtil.toJson(uploadvideo);
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 										.setHeader(jsonHeader)
 										.setUri(MEDIA_URI+"/cgi-bin/media/uploadvideo")
@@ -136,7 +136,7 @@ public class MessageAPI extends BaseAPI{
 	 * @return MessageSendResult
 	 */
 	public  static MessageSendResult messageMassSendall(String access_token,MassMessage massMessage){
-		String str = JsonUtil.toJSONString(massMessage);
+		String str = JsonUtil.toJson(massMessage);
 		return messageMassSendall(access_token,str);
 	}
 
@@ -164,7 +164,7 @@ public class MessageAPI extends BaseAPI{
 	 * @return MessageSendResult
 	 */
 	public static MessageSendResult messageMassSend(String access_token,MassMessage massMessage){
-		String str = JsonUtil.toJSONString(massMessage);
+		String str = JsonUtil.toJson(massMessage);
 		return messageMassSend(access_token,str);
 	}
 
@@ -197,7 +197,7 @@ public class MessageAPI extends BaseAPI{
 	 * @return MessageSendResult
 	 */
 	public static MessageSendResult messageMassPreview(String access_token,Preview preview){
-		String previewJson = JsonUtil.toJSONString(preview);
+		String previewJson = JsonUtil.toJson(preview);
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 										.setHeader(jsonHeader)
 										.setUri(BASE_URI+"/cgi-bin/message/mass/preview")
@@ -233,7 +233,7 @@ public class MessageAPI extends BaseAPI{
 	 * @return TemplateMessageResult
 	 */
 	public static TemplateMessageResult messageTemplateSend(String access_token,TemplateMessage templateMessage){
-		String messageJson = JsonUtil.toJSONString(templateMessage);
+		String messageJson = JsonUtil.toJson(templateMessage);
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI+"/cgi-bin/message/template/send")
@@ -298,7 +298,7 @@ public class MessageAPI extends BaseAPI{
 		for(int i=1;i<=industrys.length;i++){
 			map.put("industry_id"+i, industrys[i-1]);
 		}
-		String messageJson = JsonUtil.toJSONString(map);
+		String messageJson = JsonUtil.toJson(map);
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI+"/cgi-bin/template/api_set_industry")

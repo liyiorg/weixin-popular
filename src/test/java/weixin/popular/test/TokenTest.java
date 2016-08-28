@@ -7,7 +7,7 @@ import weixin.popular.bean.token.Token;
 
 public class TokenTest {
 
-	protected static String accessToken = "Tb_ZeBHgEHtTW1nkolJ6uhECu_gNipC9eZ-NUw-fN9Tq5cCvOCy4zQz9cRUQrE_FAEps59fbKjVJr7S5NHa1a8fk78jHjjKFSuwJEanR3y6N7fABleM0NWicDQQP9yNkJZSgAAARHA";
+	protected static String accessToken = "wIflrWSFVxtQcQMIIfvLi8t-9kd8xNPFPQwYk3tTpQ02Mk7LXZOukzv9fi10HvioXrWCScTnx3MZLEmoiH2YrBS3v94SfwHkTH6ZuRpj5hFdjCTf_Z3SsjY1jld7aMqPOLHhAGDGDZ";
 	
 	@Test
 	public void token() {

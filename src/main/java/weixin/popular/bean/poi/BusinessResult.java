@@ -1,6 +1,6 @@
 package weixin.popular.bean.poi;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 门店信息－响应对象
@@ -10,7 +10,7 @@ import com.alibaba.fastjson.annotation.JSONField;
  */
 public class BusinessResult {
 
-	@JSONField(name = "base_info")
+	@JsonProperty("base_info")
 	private BaseInfoResult baseInfo;
 
 	public BaseInfoResult getBaseInfo() {

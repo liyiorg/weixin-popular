@@ -21,7 +21,7 @@ public class QrcodeTest extends TokenTest {
 		create.setActionInfo(actionInfo);
 		create.setActionName("QR_LIMIT_STR_SCENE");
 		actionInfo.setScene(scene);
-		scene.setSceneStr("your companyCode");
+		scene.setSceneStr("your companyCode");// 门店编号
 		
 		CreateResult result = QrcodeAPI.create(accessToken, create);
 		System.out.println(result.getErrmsg());

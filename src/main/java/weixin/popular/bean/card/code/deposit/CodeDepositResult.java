@@ -2,7 +2,7 @@ package weixin.popular.bean.card.code.deposit;
 
 import weixin.popular.bean.BaseResult;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 投放卡券－导入code接口－响应参数
@@ -14,19 +14,19 @@ public class CodeDepositResult extends BaseResult {
 	/**
 	 * 成功个数
 	 */
-	@JSONField(name = "succ_code")
+	@JsonProperty("succ_code")
 	private Integer succCode;
 	
 	/**
 	 * 重复导入数
 	 */
-	@JSONField(name = "duplicate_code")
+	@JsonProperty("duplicate_code")
 	private Integer duplicateCode;
 	
 	/**
 	 * 	失败个数
 	 */
-	@JSONField(name = "fail_code")
+	@JsonProperty("fail_code")
 	private Integer failCode;
 
 	/**

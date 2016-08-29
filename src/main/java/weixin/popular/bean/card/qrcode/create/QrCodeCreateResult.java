@@ -1,6 +1,6 @@
 package weixin.popular.bean.card.qrcode.create;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import weixin.popular.bean.BaseResult;
 
@@ -20,7 +20,7 @@ public class QrCodeCreateResult extends BaseResult {
 	/**
 	 * 二维码的有效时间，范围是60 ~ 1800秒。不填默认为365天有效
 	 */
-	@JSONField(name = "expire_seconds")
+	@JsonProperty("expire_seconds")
 	private Integer expireSeconds;
 
 	/**
@@ -31,7 +31,7 @@ public class QrCodeCreateResult extends BaseResult {
 	/**
 	 * 二维码显示地址，点击后跳转二维码页面
 	 */
-	@JSONField(name = "show_qrcode_url")
+	@JsonProperty("show_qrcode_url")
 	private String showQrcodeUrl;
 
 	/**

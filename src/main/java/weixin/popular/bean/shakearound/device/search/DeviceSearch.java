@@ -7,7 +7,7 @@ import java.util.List;
 
 import weixin.popular.bean.shakearound.device.DeviceIdentifier;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 微信摇一摇周边－设备管理－查询设备列表－请求参数
@@ -28,19 +28,19 @@ public class DeviceSearch {
 	/**
 	 * 指定的设备 ； 当type为1时，此项为必填
 	 */
-	@JSONField(name = "device_identifiers")
+	@JsonProperty("device_identifiers")
 	private List<DeviceIdentifier> deviceIdentifiers;
 	
 	/**
 	 * 批次ID，申请设备ID时所返回的批次ID；当type为3时，此项为必填
 	 */
-	@JSONField(name = "apply_id")
+	@JsonProperty("apply_id")
 	private Integer applyId;
 	
 	/**
 	 * 前一次查询列表末尾的设备ID ， 第一次查询last_seen 为0
 	 */
-	@JSONField(name = "last_seen")
+	@JsonProperty("last_seen")
 	private Integer lastSeen;
 	
 	/**

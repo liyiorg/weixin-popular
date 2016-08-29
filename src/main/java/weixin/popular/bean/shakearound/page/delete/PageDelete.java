@@ -3,7 +3,7 @@
  */
 package weixin.popular.bean.shakearound.page.delete;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 /**
@@ -17,7 +17,7 @@ public class PageDelete {
 	 * 指定页面的id<br>
 	 * 必填
 	 */
-	@JSONField(name = "page_id")
+	@JsonProperty("page_id")
 	private Integer pageId;
 
 	/**

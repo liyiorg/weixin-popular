@@ -1,6 +1,6 @@
 package weixin.popular.bean.card.code.getdepositcount;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 投放卡券－查询导入code数目接口－请求参数
@@ -14,7 +14,7 @@ public class CodeGetDepositCount {
 	 * 进行导入code的卡券ID。<br>
 	 * 必填：是
 	 */
-	@JSONField(name = "card_id")
+	@JsonProperty("card_id")
 	private String cardId;
 
 	/**

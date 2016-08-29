@@ -5,7 +5,7 @@ package weixin.popular.bean.shakearound.relation.search;
 
 import java.util.List;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 /**
@@ -23,7 +23,7 @@ public class RelationSearchResultData {
 	/**
 	 * 设备或页面的关联关系总数
 	 */
-	@JSONField(name = "total_count")
+	@JsonProperty("total_count")
 	private Integer totalCount;
 
 	/**

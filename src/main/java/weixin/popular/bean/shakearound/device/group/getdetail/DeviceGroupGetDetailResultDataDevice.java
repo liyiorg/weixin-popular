@@ -5,7 +5,7 @@ package weixin.popular.bean.shakearound.device.group.getdetail;
 
 import weixin.popular.bean.shakearound.device.DeviceIdentifier;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 微信摇一摇周边－查询分组详情－响应参数－分组详情－设备信息
@@ -23,7 +23,7 @@ public class DeviceGroupGetDetailResultDataDevice extends DeviceIdentifier {
 	 * 设备关联的门店ID，关联门店后，在门店1KM的范围内有优先摇出信息的机会。<br>
 	 * 门店相关信息具体可查看门店相关的接口文档 
 	 */
-	@JSONField(name = "poi_id")
+	@JsonProperty("poi_id")
 	private Integer poiId;
 
 	/**

@@ -1,6 +1,6 @@
 package weixin.popular.bean.poi;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import weixin.popular.bean.BaseResult;
 
@@ -12,10 +12,10 @@ import weixin.popular.bean.BaseResult;
  */
 public class PoiListResult extends BaseResult {
 
-	@JSONField(name = "business_list")
+	@JsonProperty("business_list")
 	private BusinessResult[] businessList;
 
-	@JSONField(name = "total_count")
+	@JsonProperty("total_count")
 	private int totalCount;
 
 	public BusinessResult[] getBusinessList() {

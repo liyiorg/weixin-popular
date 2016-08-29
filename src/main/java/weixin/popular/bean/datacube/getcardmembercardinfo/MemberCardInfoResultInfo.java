@@ -1,6 +1,6 @@
 package weixin.popular.bean.datacube.getcardmembercardinfo;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 拉取会员卡数据接口－响应对象（每行记录对象）
@@ -13,61 +13,61 @@ public class MemberCardInfoResultInfo {
 	/**
 	 * 日期信息
 	 */
-	@JSONField(name = "ref_date")
+	@JsonProperty("ref_date")
 	private String refDate;
 	
 	/**
 	 * 浏览次数
 	 */
-	@JSONField(name = "view_cnt")
+	@JsonProperty("view_cnt")
 	private Integer viewCnt;
 	
 	/**
 	 * 浏览人数
 	 */
-	@JSONField(name = "view_user")
+	@JsonProperty("view_user")
 	private Integer viewUser;
 	
 	/**
 	 * 领取次数
 	 */
-	@JSONField(name = "receive_cnt")
+	@JsonProperty("receive_cnt")
 	private Integer receiveCnt;
 	
 	/**
 	 * 领取人数
 	 */
-	@JSONField(name = "receive_user")
+	@JsonProperty("receive_user")
 	private Integer receiveUser;
 	
 	/**
 	 * 使用次数
 	 */
-	@JSONField(name = "verify_cnt")
+	@JsonProperty("verify_cnt")
 	private Integer verifyCnt;
 	
 	/**
 	 * 使用人数
 	 */
-	@JSONField(name = "verify_user")
+	@JsonProperty("verify_user")
 	private Integer verifyUser;
 	
 	/**
 	 * 激活人数
 	 */
-	@JSONField(name = "active_user")
+	@JsonProperty("active_user")
 	private Integer activeUser;
 	
 	/**
 	 * 有效会员总人数
 	 */
-	@JSONField(name = "total_user")
+	@JsonProperty("total_user")
 	private Integer totalUser;
 	
 	/**
 	 * 历史领取会员卡总人数
 	 */
-	@JSONField(name = "total_receive_user")
+	@JsonProperty("total_receive_user")
 	private Integer totalReceiveUser;
 	
 	

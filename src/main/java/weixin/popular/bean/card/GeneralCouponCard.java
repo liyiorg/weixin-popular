@@ -3,7 +3,7 @@ package weixin.popular.bean.card;
 import weixin.popular.bean.card.AbstractCard;
 import weixin.popular.bean.card.GeneralCoupon;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 优惠券
@@ -13,7 +13,7 @@ import com.alibaba.fastjson.annotation.JSONField;
  */
 public class GeneralCouponCard extends AbstractCard {
 
-	@JSONField(name = "general_coupon")
+	@JsonProperty("general_coupon")
 	private GeneralCoupon generalCoupon;
 
 	public GeneralCouponCard() {

@@ -1,6 +1,6 @@
 package weixin.popular.bean.card.batchget;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 卡券管理－批量查询卡券列表－请求参数
@@ -31,7 +31,7 @@ public class BatchGet {
 	 * “CARD_STATUS_DISPATCH”，在公众平台投放过的卡券；<br>
 	 * 必填：否
 	 */
-	@JSONField(name = "status_list")
+	@JsonProperty("status_list")
 	private String[] statusList;
 
 	/**

@@ -5,7 +5,7 @@ package weixin.popular.bean.shakearound.device.bindlocation;
 
 import weixin.popular.bean.shakearound.device.DeviceIdentifier;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 微信摇一摇周边－设备管理－配置设备与(或者其它公众号的)门店的关联关系－请求参数
@@ -18,7 +18,7 @@ public class DeviceBindLocation {
 	 * 指定的设备ID<br>
 	 * 必填
 	 */
-	@JSONField(name = "device_identifier")
+	@JsonProperty("device_identifier")
 	private DeviceIdentifier deviceIdentifier;
 	
 	/**
@@ -27,7 +27,7 @@ public class DeviceBindLocation {
 	 * 门店相关信息具体可查看门店相关的接口文档<br>
 	 * 必填
 	 */
-	@JSONField(name = "poi_id")
+	@JsonProperty("poi_id")
 	private Integer poiId;
 	
 	/**
@@ -41,7 +41,7 @@ public class DeviceBindLocation {
 	 * 关联门店所归属的公众账号的APPID<br>
 	 * 当Type为2时，必填
 	 */
-	@JSONField(name = "poi_appid")
+	@JsonProperty("poi_appid")
 	private String poiAppid;
 
 	/**

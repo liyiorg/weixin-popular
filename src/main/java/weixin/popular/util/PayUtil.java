@@ -38,7 +38,7 @@ public class PayUtil {
 		Map<String, String> mapS = MapUtil.objectToMap(payJsRequest,"signType","paySign");
 		String paySign = SignatureUtil.generatePaySign(mapS,paySignkey);
 		payJsRequest.setPaySign(paySign);
-		return JsonUtil.toJSONString(payJsRequest);
+		return JsonUtil.toJson(payJsRequest);
 	}
 
 
@@ -131,7 +131,7 @@ public class PayUtil {
 		Map<String, String> mapS = MapUtil.objectToMap(payJsRequest);
 		String paySign = SignatureUtil.generateSign(mapS,key);
 		payJsRequest.setPaySign(paySign);
-		return JsonUtil.toJSONString(payJsRequest);
+		return JsonUtil.toJson(payJsRequest);
 	}
 
 

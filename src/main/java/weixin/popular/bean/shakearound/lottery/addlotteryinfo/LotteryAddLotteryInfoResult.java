@@ -3,7 +3,7 @@
  */
 package weixin.popular.bean.shakearound.lottery.addlotteryinfo;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import weixin.popular.bean.BaseResult;
 
@@ -17,13 +17,13 @@ public class LotteryAddLotteryInfoResult extends BaseResult {
 	/**
 	 * 生成的红包活动id
 	 */
-	@JSONField(name = "lottery_id")
+	@JsonProperty("lottery_id")
 	private String lotteryId;
 	
 	/**
 	 * 生成的模板页面ID
 	 */
-	@JSONField(name = "page_id")
+	@JsonProperty("page_id")
 	private Integer pageId;
 
 	/**

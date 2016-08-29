@@ -1,6 +1,6 @@
 package weixin.popular.bean.card.landingpage.create;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import weixin.popular.bean.BaseResult;
 
@@ -20,7 +20,7 @@ public class LandingPageCreateResult extends BaseResult {
 	/**
 	 * 货架ID。货架的唯一标识。
 	 */
-	@JSONField(name = "page_id")
+	@JsonProperty("page_id")
 	private Integer pageId;
 	
 	/**

@@ -89,7 +89,7 @@ public class PayAPI extends BaseAPI{
 		String app_signature = SignatureUtil.generatePaySign(map, paySignKey);
 		map.put("app_signature",app_signature);
 		map.put("sign_method", "sha1");
-		return payDelivernotify(access_token,JsonUtil.toJSONString(map));
+		return payDelivernotify(access_token,JsonUtil.toJson(map));
 	}
 
 
@@ -118,6 +118,6 @@ public class PayAPI extends BaseAPI{
 
 		map.put("app_signature",app_signature);
 		map.put("sign_method", "sha1");
-		return payOrderquery(access_token,JsonUtil.toJSONString(map));
+		return payOrderquery(access_token,JsonUtil.toJson(map));
 	}
 }

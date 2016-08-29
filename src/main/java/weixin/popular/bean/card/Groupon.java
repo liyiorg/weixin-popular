@@ -1,6 +1,6 @@
 package weixin.popular.bean.card;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 团购券
@@ -14,7 +14,7 @@ public class Groupon extends AbstractInfo {
 	 * 团购详情<br>
 	 * 添加必填，不支持修改 
 	 */
-	@JSONField(name = "deal_detail")
+	@JsonProperty("deal_detail")
 	private String dealDetail;
 
 	/**

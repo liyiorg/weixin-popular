@@ -3,7 +3,7 @@
  */
 package weixin.popular.bean.shakearound.statistics.device;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import weixin.popular.bean.shakearound.device.DeviceIdentifier;
 import weixin.popular.bean.shakearound.statistics.AbstractStatistics;
@@ -19,7 +19,7 @@ public class StatisticsDevice extends AbstractStatistics {
 	 * 指定页面的设备ID<br>
 	 * 必填
 	 */
-	@JSONField(name = "device_identifier")
+	@JsonProperty("device_identifier")
 	private DeviceIdentifier deviceIdentifier;
 	
 	/**

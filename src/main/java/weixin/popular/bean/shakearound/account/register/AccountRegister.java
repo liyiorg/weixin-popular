@@ -2,7 +2,7 @@ package weixin.popular.bean.shakearound.account.register;
 
 import java.util.List;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 微信摇一摇周边－申请开通功能－请求参数
@@ -22,7 +22,7 @@ public class AccountRegister {
 	 * 联系人电话<br>
 	 * 必填
 	 */
-	@JSONField(name = "phone_number")
+	@JsonProperty("phone_number")
 	private String phoneNumber;
 	
 	/**
@@ -35,7 +35,7 @@ public class AccountRegister {
 	 * 平台定义的行业代号，具体请查看链接<a href="http://3gimg.qq.com/shake_nearby/Qualificationdocuments.html">行业代号</a><br>
 	 * 必填
 	 */
-	@JSONField(name = "industry_id")
+	@JsonProperty("industry_id")
 	private String industryId;
 	
 	/**
@@ -45,13 +45,13 @@ public class AccountRegister {
 	 * 当不需要资质文件时，数组内可以不填写url<br>
 	 * 必填
 	 */
-	@JSONField(name = "qualification_cert_urls")
+	@JsonProperty("qualification_cert_urls")
 	private List<String> qualificationCertUrls;
 	
 	/**
 	 * 申请理由，不超过250汉字或500个英文字母
 	 */
-	@JSONField(name = "apply_reason")
+	@JsonProperty("apply_reason")
 	private String applyReason;
 
 	/**

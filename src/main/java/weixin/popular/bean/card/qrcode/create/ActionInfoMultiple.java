@@ -1,6 +1,6 @@
 package weixin.popular.bean.card.qrcode.create;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 
@@ -9,7 +9,7 @@ import com.alibaba.fastjson.annotation.JSONField;
  */
 public class ActionInfoMultiple {
 
-	@JSONField(name = "multiple_card")
+	@JsonProperty("multiple_card")
 	private ActionInfoMultipleCard multipleCard;
 
 	public ActionInfoMultipleCard getMultipleCard() {

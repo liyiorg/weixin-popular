@@ -3,7 +3,7 @@
  */
 package weixin.popular.bean.card.delete;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 微信卡券－卡券管理－删除卡券接口－请求参数
@@ -14,7 +14,7 @@ public class Delete {
 	/**
 	 * 卡券ID
 	 */
-	@JSONField(name = "card_id")
+	@JsonProperty("card_id")
 	private String cardId;
 
 	/**

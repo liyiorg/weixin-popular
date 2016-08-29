@@ -1,6 +1,6 @@
 package weixin.popular.bean.shakearound.device.applyid;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 微信摇一摇周边－设备管理－申请设备ID－请求参数
@@ -20,7 +20,7 @@ public class DeviceApplyId {
 	 * 申请理由，不超过100个汉字或200个英文字母<br>
 	 * 必填
 	 */
-	@JSONField(name = "apply_reason")
+	@JsonProperty("apply_reason")
 	private String applyReason;
 	
 	/**
@@ -32,7 +32,7 @@ public class DeviceApplyId {
 	 * 设备关联的门店ID，关联门店后，在门店1KM的范围内有优先摇出信息的机会。<br>
 	 * 门店相关信息具体可查看门店相关的接口文档
 	 */
-	@JSONField(name = "poi_id")
+	@JsonProperty("poi_id")
 	private Integer poiId;
 
 	/**

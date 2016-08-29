@@ -1,6 +1,6 @@
 package weixin.popular.bean.card.qrcode.create;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 卡券投放－创建领取多张卡券二维码信息接口－请求参数
@@ -10,10 +10,10 @@ import com.alibaba.fastjson.annotation.JSONField;
  */
 public class QrCodeCreateMultiple {
 
-	@JSONField(name = "action_name")
+	@JsonProperty("action_name")
 	private String actionName = "QR_MULTIPLE_CARD";
 	
-	@JSONField(name = "action_info")
+	@JsonProperty("action_info")
 	private ActionInfoMultiple actionInfo;
 
 	/**

@@ -3,7 +3,7 @@
  */
 package weixin.popular.bean.card.update;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import weixin.popular.bean.card.GeneralCoupon;
 
@@ -18,7 +18,7 @@ public class UpdateGeneralCoupon extends AbstractUpdate {
 	/**
 	 * 优惠券
 	 */
-	@JSONField(name = "general_coupon")
+	@JsonProperty("general_coupon")
 	private GeneralCoupon generalCoupon;
 
 	/**

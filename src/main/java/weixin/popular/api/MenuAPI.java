@@ -44,7 +44,7 @@ public class MenuAPI extends BaseAPI{
 	 * @return BaseResult
 	 */
 	public static BaseResult menuCreate(String access_token,MenuButtons menuButtons){
-		String str = JsonUtil.toJSONString(menuButtons);
+		String str = JsonUtil.toJson(menuButtons);
 		return menuCreate(access_token,str);
 	}
 
@@ -99,7 +99,7 @@ public class MenuAPI extends BaseAPI{
 	 * @return BaseResult
 	 */
 	public static BaseResult menuAddconditional(String access_token,MenuButtons menuButtons){
-		String menuJson = JsonUtil.toJSONString(menuButtons);
+		String menuJson = JsonUtil.toJson(menuButtons);
 		return menuAddconditional(access_token,menuJson);
 	}
 	

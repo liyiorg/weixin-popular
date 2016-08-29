@@ -1,6 +1,6 @@
 package weixin.popular.bean.poi;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 门店信息－提交对象
@@ -12,7 +12,7 @@ public class BaseInfo {
 	/**
 	 * 门店ID，修改服务信息是需要指定
 	 */
-	@JSONField(name = "poi_id")
+	@JsonProperty("poi_id")
 	private String poiId;
 	/**
 	 * 商户自己的id，用于后续审核通过收到poi_id 的通知时，做对应关系。请商户自己保证唯一识别性<br>
@@ -23,13 +23,13 @@ public class BaseInfo {
 	 * 门店名称（仅为商户名，如：国美、麦当劳，不应包含地区、地址、分店名等信息，错误示例：北京国美）<br>
 	 * 必填：是
 	 */
-	@JSONField(name = "business_name")
+	@JsonProperty("business_name")
 	private String businessName;
 	/**
 	 * 分店名称（不应包含地区信息，不应与门店名有重复，错误示例：北京王府井店）<br>
 	 * 必填：是
 	 */
-	@JSONField(name = "branch_name")
+	@JsonProperty("branch_name")
 	private String branchName;
 	/**
 	 * 门店所在的省份（直辖市填城市名,如：北京市）<br>
@@ -65,7 +65,7 @@ public class BaseInfo {
 	 * 坐标类型，1 为火星坐标（目前只能选1）<br>
 	 * 必填：是
 	 */
-	@JSONField(name = "offset_type")
+	@JsonProperty("offset_type")
 	private Integer offsetType;
 	/**
 	 * 门店所在地理位置的经度<br>
@@ -83,7 +83,7 @@ public class BaseInfo {
 	 * 或模特肖像）、营业执照、无门店正门的街景、地图截图、公交地铁站牌、菜单截图等<br>
 	 * 必填：否
 	 */
-	@JSONField(name = "photo_list")
+	@JsonProperty("photo_list")
 	private Photo[] photoList;
 	/**
 	 * 推荐品，餐厅可为推荐菜；酒店为推荐套房；景点为推荐游玩景点等，针对自己行业的推荐内容<br>
@@ -104,13 +104,13 @@ public class BaseInfo {
 	 * 营业时间，24 小时制表示，用“-”连接，如 8:00-20:00<br>
 	 * 必填：否
 	 */
-	@JSONField(name = "open_time")
+	@JsonProperty("open_time")
 	private String openTime;
 	/**
 	 * 人均价格，大于0 的整数<br>
 	 * 必填：否
 	 */
-	@JSONField(name = "avg_price")
+	@JsonProperty("avg_price")
 	private Float avgPrice;
 	public String getPoiId() {
 		return poiId;

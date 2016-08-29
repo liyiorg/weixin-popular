@@ -3,7 +3,7 @@
  */
 package weixin.popular.bean.shakearound.page;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 页面信息
@@ -16,7 +16,7 @@ public class PageInfo {
 	 * 页面的id<br>
 	 * 修改必填
 	 */
-	@JSONField(name = "page_id")
+	@JsonProperty("page_id")
 	private Integer pageId;
 	
 	/**
@@ -35,7 +35,7 @@ public class PageInfo {
 	 * 跳转链接<br>
 	 * 添加、修改必填
 	 */
-	@JSONField(name = "page_url")
+	@JsonProperty("page_url")
 	private String pageUrl;
 	
 	/**
@@ -47,7 +47,7 @@ public class PageInfo {
 	 * 在摇一摇页面展示的图片。<br>
 	 * 添加、修改必填，图片需先上传至微信侧服务器，用“素材管理-上传图片素材”接口上传图片，返回的图片URL再配置在此处<br>
 	 */
-	@JSONField(name = "icon_url")
+	@JsonProperty("icon_url")
 	private String iconUrl;
 
 	/**

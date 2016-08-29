@@ -1,6 +1,6 @@
 package weixin.popular.bean.poi;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 门店类目列表
@@ -9,7 +9,7 @@ import com.alibaba.fastjson.annotation.JSONField;
  *
  */
 public class CategoryListResult {
-	@JSONField(name = "category_list")
+	@JsonProperty("category_list")
 	private String[] categoryList;
 
 	public String[] getCategoryList() {

@@ -3,7 +3,7 @@
  */
 package weixin.popular.bean.shakearound.lottery.querylottery;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 微信摇一摇周边－摇一摇红包－红包查询接口－响应参数－红包信息<br>
@@ -34,79 +34,79 @@ public class LotteryQueryLotteryResultResult {
 	/**
 	 * 抽奖活动开始时间，unix时间戳，单位秒
 	 */
-	@JSONField(name = "begin_time")
+	@JsonProperty("begin_time")
 	private Long beginTime;
 	
 	/**
 	 * 抽奖活动结束时间，unix时间戳，单位秒，红包活动有效期最长为91天
 	 */
-	@JSONField(name = "expire_time")
+	@JsonProperty("expire_time")
 	private Long expireTime;
 	
 	/**
 	 * 红包提供商户公众号的appid
 	 */
-	@JSONField(name = "sponsor_appid")
+	@JsonProperty("sponsor_appid")
 	private String sponsorAppId;
 	
 	/**
 	 * 创建活动的开发者appid
 	 */
-	@JSONField(name = "appid")
+	@JsonProperty("appid")
 	private String appId;
 	
 	/**
 	 * 已录入的红包总数
 	 */
-	@JSONField(name = "prize_count")
+	@JsonProperty("prize_count")
 	private Long prizeCount;
 	
 	/**
 	 * 创建活动时预设的录入红包ticket数量上限
 	 */
-	@JSONField(name = "prize_count_limit")
+	@JsonProperty("prize_count_limit")
 	private Long prizeCountLimit;
 	
 	/**
 	 * 红包关注界面后可以跳转到第三方自定义的页面
 	 */
-	@JSONField(name = "jump_url")
+	@JsonProperty("jump_url")
 	private String jumpUrl;
 	
 	/**
 	 * 过期红包ticket数量
 	 */
-	@JSONField(name = "expired_prizes")
+	@JsonProperty("expired_prizes")
 	private Long expiredPrizes;
 	
 	/**
 	 * 已发放的红包ticket数量
 	 */
-	@JSONField(name = "drawed_prizes")
+	@JsonProperty("drawed_prizes")
 	private Long drawedPrizes;
 	
 	/**
 	 * 可用的红包ticket数量
 	 */
-	@JSONField(name = "available_prizes")
+	@JsonProperty("available_prizes")
 	private Long availablePrizes;
 	
 	/**
 	 * 已过期的红包金额总和
 	 */
-	@JSONField(name = "expired_value")
+	@JsonProperty("expired_value")
 	private Long expiredValue;
 	
 	/**
 	 * 已发放的红包金额总和
 	 */
-	@JSONField(name = "drawed_value")
+	@JsonProperty("drawed_value")
 	private Long drawedValue;
 	
 	/**
 	 * 可用的红包金额总和
 	 */
-	@JSONField(name = "available_value")
+	@JsonProperty("available_value")
 	private Long availableValue;
 
 	/**

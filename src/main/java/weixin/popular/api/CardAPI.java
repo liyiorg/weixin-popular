@@ -70,7 +70,7 @@ public class CardAPI extends BaseAPI {
 	 * 批量查询卡券列表
 	 */
 	public static BatchGetResult batchGet(String accessToken, BatchGet batchget) {
-		return batchGet(accessToken, JsonUtil.toJSONString(batchget));
+		return batchGet(accessToken, JsonUtil.toJson(batchget));
 	}
 
 	/**
@@ -92,7 +92,7 @@ public class CardAPI extends BaseAPI {
 	 * 核查code
 	 */
 	public static CodeCheckCodeResult codeCheckCode(String accessToken, CodeCheckCode codeCheck) {
-		return codeCheckCode(accessToken, JsonUtil.toJSONString(codeCheck));
+		return codeCheckCode(accessToken, JsonUtil.toJson(codeCheck));
 	}
 
 	/**
@@ -114,7 +114,7 @@ public class CardAPI extends BaseAPI {
 	 * 核销Code
 	 */
 	public static CodeDecryptResult codeConsume(String accessToken, CodeConsume codeConsume) {
-		return codeConsume(accessToken, JsonUtil.toJSONString(codeConsume));
+		return codeConsume(accessToken, JsonUtil.toJson(codeConsume));
 	}
 
 	/**
@@ -140,7 +140,7 @@ public class CardAPI extends BaseAPI {
 	 * 4.开发者只能解密本公众号的加密code，否则报错。
 	 */
 	public static CodeConsumeResult codeDecrypt(String accessToken, CodeDecrypt codeDecrypt) {
-		return codeDecrypt(accessToken, JsonUtil.toJSONString(codeDecrypt));
+		return codeDecrypt(accessToken, JsonUtil.toJson(codeDecrypt));
 	}
 
 	/**
@@ -166,7 +166,7 @@ public class CardAPI extends BaseAPI {
 	 * 导入code
 	 */
 	public static CodeDepositResult codeDeposit(String accessToken, CodeDeposit codeDeposit) {
-		return codeDeposit(accessToken, JsonUtil.toJSONString(codeDeposit));
+		return codeDeposit(accessToken, JsonUtil.toJson(codeDeposit));
 	}
 
 	/**
@@ -188,7 +188,7 @@ public class CardAPI extends BaseAPI {
 	 * 查询Code
 	 */
 	public static CodeGetResult codeGet(String accessToken, CodeGet codeGet) {
-		return codeGet(accessToken, JsonUtil.toJSONString(codeGet));
+		return codeGet(accessToken, JsonUtil.toJson(codeGet));
 	}
 
 	/**
@@ -211,7 +211,7 @@ public class CardAPI extends BaseAPI {
 	 */
 	public static CodeGetDepositCountResult codeGetDepositCount(String accessToken, CodeGetDepositCount codeCount) {
 		return codeGetDepositCount(accessToken,
-				JsonUtil.toJSONString(codeCount));
+				JsonUtil.toJson(codeCount));
 	}
 
 	/**
@@ -234,7 +234,7 @@ public class CardAPI extends BaseAPI {
 	 */
 	public static BaseResult codeUnavailable(String accessToken, CodeUnavailable codeUnavailable) {
 		return codeUnavailable(accessToken,
-				JsonUtil.toJSONString(codeUnavailable));
+				JsonUtil.toJson(codeUnavailable));
 	}
 
 	/**
@@ -263,7 +263,7 @@ public class CardAPI extends BaseAPI {
 	 * 更改Code
 	 */
 	public static BaseResult codeUpdate(String accessToken, CodeUpdate codeUpdate) {
-		return codeUpdate(accessToken, JsonUtil.toJSONString(codeUpdate));
+		return codeUpdate(accessToken, JsonUtil.toJson(codeUpdate));
 	}
 
 	/**
@@ -285,7 +285,7 @@ public class CardAPI extends BaseAPI {
 	 * 创建卡券
 	 */
 	public static CreateResult create(String accessToken, Create<?> card) {
-		return create(accessToken, JsonUtil.toJSONString(card));
+		return create(accessToken, JsonUtil.toJson(card));
 	}
 
 	/**
@@ -426,7 +426,7 @@ public class CardAPI extends BaseAPI {
 	 */
 	public static LandingPageCreateResult landingPageCreate(String accessToken, LandingPageCreate landingPage) {
 		return landingPageCreate(accessToken,
-				JsonUtil.toJSONString(landingPage));
+				JsonUtil.toJson(landingPage));
 	}
 
 	/**
@@ -448,7 +448,7 @@ public class CardAPI extends BaseAPI {
 	 * 修改库存
 	 */
 	public static BaseResult modifyStock(String accessToken, ModifyStock modifystock) {
-		return modifyStock(accessToken, JsonUtil.toJSONString(modifystock));
+		return modifyStock(accessToken, JsonUtil.toJson(modifystock));
 	}
 
 	/**
@@ -470,7 +470,7 @@ public class CardAPI extends BaseAPI {
 	 * 图文消息群发卡券素材
 	 */
 	public static MpNewsGetHtmlResult mpNewsGetHtml(String accessToken, MpNewsGetHtml mpnews) {
-		return mpNewsGetHtml(accessToken, JsonUtil.toJSONString(mpnews));
+		return mpNewsGetHtml(accessToken, JsonUtil.toJson(mpnews));
 	}
 
 	/**
@@ -493,7 +493,7 @@ public class CardAPI extends BaseAPI {
 	 * 设置买单功能
 	 */
 	public static BaseResult payCellSet(String accessToken, PaySellSet cardSet) {
-		return payCellSet(accessToken, JsonUtil.toJSONString(cardSet));
+		return payCellSet(accessToken, JsonUtil.toJson(cardSet));
 	}
 
 	/**
@@ -516,7 +516,7 @@ public class CardAPI extends BaseAPI {
 	 */
 	public static QrCodeCreateResult qrcodeCreate(String accessToken,
 			QrCodeCreate action) {
-		return qrcodeCreate(accessToken, JsonUtil.toJSONString(action));
+		return qrcodeCreate(accessToken, JsonUtil.toJson(action));
 	}
 
 	/**
@@ -524,7 +524,7 @@ public class CardAPI extends BaseAPI {
 	 */
 	public static QrCodeCreateResult qrcodeCreate(String accessToken,
 			QrCodeCreateMultiple action) {
-		return qrcodeCreate(accessToken, JsonUtil.toJSONString(action));
+		return qrcodeCreate(accessToken, JsonUtil.toJson(action));
 	}
 
 	/**
@@ -548,7 +548,7 @@ public class CardAPI extends BaseAPI {
 	 */
 	public static BaseResult selfconsumecellSet(String accessToken,
 			PaySellSet cardSet) {
-		return selfconsumecellSet(accessToken, JsonUtil.toJSONString(cardSet));
+		return selfconsumecellSet(accessToken, JsonUtil.toJson(cardSet));
 	}
 
 	/**
@@ -588,7 +588,7 @@ public class CardAPI extends BaseAPI {
 	 */
 	public static BaseResult testWhiteListSet(String accessToken,
 			TestWhiteListSet whiteList) {
-		return testWhiteListSet(accessToken, JsonUtil.toJSONString(whiteList));
+		return testWhiteListSet(accessToken, JsonUtil.toJson(whiteList));
 	}
 
 	/**
@@ -610,7 +610,7 @@ public class CardAPI extends BaseAPI {
 	 * 更改卡券信息接口(代金券)
 	 */
 	public static UpdateResult update(String accessToken, UpdateCash updateCash) {
-		return update(accessToken, JsonUtil.toJSONString(updateCash));
+		return update(accessToken, JsonUtil.toJson(updateCash));
 	}
 
 	/**
@@ -618,7 +618,7 @@ public class CardAPI extends BaseAPI {
 	 */
 	public static UpdateResult update(String accessToken,
 			UpdateDiscount updateDiscount) {
-		return update(accessToken, JsonUtil.toJSONString(updateDiscount));
+		return update(accessToken, JsonUtil.toJson(updateDiscount));
 	}
 
 	/**
@@ -626,14 +626,14 @@ public class CardAPI extends BaseAPI {
 	 */
 	public static UpdateResult update(String accessToken,
 			UpdateGeneralCoupon updateGeneralCoupon) {
-		return update(accessToken, JsonUtil.toJSONString(updateGeneralCoupon));
+		return update(accessToken, JsonUtil.toJson(updateGeneralCoupon));
 	}
 
 	/**
 	 * 更改卡券信息接口(兑换券)
 	 */
 	public static UpdateResult update(String accessToken, UpdateGift updateGift) {
-		return update(accessToken, JsonUtil.toJSONString(updateGift));
+		return update(accessToken, JsonUtil.toJson(updateGift));
 	}
 
 	/**
@@ -641,7 +641,7 @@ public class CardAPI extends BaseAPI {
 	 */
 	public static UpdateResult update(String accessToken,
 			UpdateGroupon updateGroupon) {
-		return update(accessToken, JsonUtil.toJSONString(updateGroupon));
+		return update(accessToken, JsonUtil.toJson(updateGroupon));
 	}
 
 	/**
@@ -666,7 +666,7 @@ public class CardAPI extends BaseAPI {
 	public static UserGetCardListResult userGetCardList(String accessToken,
 			UserGetCardList userGetCardList) {
 		return userGetCardList(accessToken,
-				JsonUtil.toJSONString(userGetCardList));
+				JsonUtil.toJson(userGetCardList));
 	}
 
 }

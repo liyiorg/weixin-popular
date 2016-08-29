@@ -3,7 +3,7 @@
  */
 package weixin.popular.bean.shakearound.user.getshakeinfo;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 微信摇一摇周边－获取设备及用户信息－响应参数－设备及用户信息
@@ -15,25 +15,25 @@ public class UserGetShakeInfoResultData {
 	/**
 	 * 摇周边页面唯一ID
 	 */
-	@JSONField(name = "page_id")
+	@JsonProperty("page_id")
 	private Integer pageId;
 	
 	/**
 	 * 设备信息，包括UUID、major、minor，以及距离
 	 */
-	@JSONField(name = "beacon_info")
+	@JsonProperty("beacon_info")
 	private UserGetShakeInfoResultDataBeaconInfo beaconInfo;
 	
 	/**
 	 * 商户AppID下用户的唯一标识
 	 */
-	@JSONField(name = "openid")
+	@JsonProperty("openid")
 	private String openId;
 	
 	/**
 	 * 门店ID，有的话则返回，反之不会在JSON格式内
 	 */
-	@JSONField(name = "poi_id")
+	@JsonProperty("poi_id")
 	private Integer poiId;
 
 	/**

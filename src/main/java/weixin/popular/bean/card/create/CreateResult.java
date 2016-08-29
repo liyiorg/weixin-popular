@@ -1,6 +1,6 @@
 package weixin.popular.bean.card.create;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import weixin.popular.bean.BaseResult;
 
@@ -15,7 +15,7 @@ public class CreateResult extends BaseResult {
 	/**
 	 * 卡券ID
 	 */
-	@JSONField(name = "card_id")
+	@JsonProperty("card_id")
 	private String cardId;
 
 	/**

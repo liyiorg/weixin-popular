@@ -32,7 +32,7 @@ public class DataCubeAPI extends BaseAPI {
 	 * @return
 	 */
 	public static BizuinInfoResult getCardBizuinInfo(String access_token, BizuinInfo bizuinCube) {
-		return getCardBizuinInfo(access_token, JsonUtil.toJSONString(bizuinCube));
+		return getCardBizuinInfo(access_token, JsonUtil.toJson(bizuinCube));
 	}
 	
 	/**
@@ -65,7 +65,7 @@ public class DataCubeAPI extends BaseAPI {
 	 * @return
 	 */
 	public static CardInfoResult getCardCardInfo(String access_token, CardInfo freeCardCube) {
-		return getCardCardInfo(access_token, JsonUtil.toJSONString(freeCardCube));
+		return getCardCardInfo(access_token, JsonUtil.toJson(freeCardCube));
 	}
 	
 	/**
@@ -99,7 +99,7 @@ public class DataCubeAPI extends BaseAPI {
 	 * @return
 	 */
 	public static MemberCardInfoResult getCardMemberCardInfo(String access_token, MemberCardInfo memberCardCube) {
-		return getCardMemberCardInfo(access_token, JsonUtil.toJSONString(memberCardCube));
+		return getCardMemberCardInfo(access_token, JsonUtil.toJson(memberCardCube));
 	}
 	
 	/**

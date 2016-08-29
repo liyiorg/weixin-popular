@@ -3,7 +3,7 @@
  */
 package weixin.popular.bean.shakearound.page.add;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 
@@ -17,7 +17,7 @@ public class PageAddResultData {
 	/**
 	 * 新增页面的页面id
 	 */
-	@JSONField(name = "page_id")
+	@JsonProperty("page_id")
 	private Integer pageId;
 
 	/**

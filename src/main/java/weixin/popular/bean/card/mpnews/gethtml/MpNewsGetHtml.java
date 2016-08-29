@@ -1,6 +1,6 @@
 package weixin.popular.bean.card.mpnews.gethtml;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 投放卡券－图文消息群发卡券－请求参数
@@ -14,7 +14,7 @@ public class MpNewsGetHtml {
 	 * 卡券ID。<br>
 	 * 必填：否
 	 */
-	@JSONField(name = "card_id")
+	@JsonProperty("card_id")
 	private String cardId;
 
 	/**

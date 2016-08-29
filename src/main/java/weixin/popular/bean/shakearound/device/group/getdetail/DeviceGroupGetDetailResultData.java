@@ -5,7 +5,7 @@ package weixin.popular.bean.shakearound.device.group.getdetail;
 
 import java.util.List;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import weixin.popular.bean.shakearound.device.group.GroupInfo;
 
@@ -19,7 +19,7 @@ public class DeviceGroupGetDetailResultData extends GroupInfo {
 	/**
 	 * 此分组现有的总设备数
 	 */
-	@JSONField(name = "total_count")
+	@JsonProperty("total_count")
 	private Integer totalCount;
 	
 	/**

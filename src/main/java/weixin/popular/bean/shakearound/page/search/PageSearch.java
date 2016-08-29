@@ -3,7 +3,7 @@
  */
 package weixin.popular.bean.shakearound.page.search;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 微信摇一摇周边－页面管理－查询页面列表－请求参数
@@ -21,7 +21,7 @@ public class PageSearch {
 	/**
 	 * 指定页面的id列表；当type为1时，此项为必填
 	 */
-	@JSONField(name = "page_ids")
+	@JsonProperty("page_ids")
 	private Integer[] pageIds;
 	
 	/**

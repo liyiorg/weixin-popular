@@ -12,17 +12,27 @@ import weixin.popular.client.LocalHttpClient;
  *
  */
 public class TicketAPI extends BaseAPI{
-
+	
 	/**
 	 * 获取 jsapi_ticket
 	 * @param access_token access_token
-	 * @return Ticket
+	 * @return ticket
 	 */
 	public static Ticket ticketGetticket(String access_token){
-		HttpUriRequest httpUriRequest = RequestBuilder.post()
+		return ticketGetticket(access_token,"jsapi");
+	}
+
+	/**
+	 * 获取 ticket
+	 * @param access_token access_token
+	 * @param type jsapi or wx_card
+	 * @return ticket
+	 */
+	public static Ticket ticketGetticket(String access_token,String type){
+		HttpUriRequest httpUriRequest = RequestBuilder.get()
 				.setUri(BASE_URI + "/cgi-bin/ticket/getticket")
-				.addParameter(PARAM_ACCESS_TOKEN,access_token)
-				.addParameter("type", "jsapi")
+				.addParameter(getATPN(),access_token)
+				.addParameter("type", type)
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,Ticket.class);
 	}

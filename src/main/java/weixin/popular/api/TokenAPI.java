@@ -20,7 +20,7 @@ public class TokenAPI extends BaseAPI{
 	 * @return Token
 	 */
 	public static Token token(String appid,String secret){
-		HttpUriRequest httpUriRequest = RequestBuilder.post()
+		HttpUriRequest httpUriRequest = RequestBuilder.get()
 				.setUri(BASE_URI + "/cgi-bin/token")
 				.addParameter("grant_type","client_credential")
 				.addParameter("appid", appid)

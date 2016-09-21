@@ -43,7 +43,7 @@ public class UserAPI extends BaseAPI{
 	 * @return User
 	 */
 	public static User userInfo(String access_token,String openid,int emoji){
-		HttpUriRequest httpUriRequest = RequestBuilder.post()
+		HttpUriRequest httpUriRequest = RequestBuilder.get()
 				.setUri(BASE_URI+"/cgi-bin/user/info")
 				.addParameter(getATPN(),access_token)
 				.addParameter("openid",openid)
@@ -73,7 +73,7 @@ public class UserAPI extends BaseAPI{
 	 * @return FollowResult
 	 */
 	public static FollowResult userGet(String access_token,String next_openid){
-		HttpUriRequest httpUriRequest = RequestBuilder.post()
+		HttpUriRequest httpUriRequest = RequestBuilder.get()
 				.setUri(BASE_URI+"/cgi-bin/user/get")
 				.addParameter(getATPN(),access_token)
 				.addParameter("next_openid", next_openid==null?"":next_openid)
@@ -474,4 +474,5 @@ public class UserAPI extends BaseAPI{
 										.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,BaseResult.class);
 	}
+	
 }

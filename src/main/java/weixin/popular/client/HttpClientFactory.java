@@ -44,7 +44,7 @@ public class HttpClientFactory{
 	 * @param maxPerRoute maxPerRoute
 	 * @param timeout timeout
 	 * @param retryExecutionCount retryExecutionCount
-	 * @return
+	 * @return CloseableHttpClient
 	 */
 	public static CloseableHttpClient createHttpClient(int maxTotal,int maxPerRoute,int timeout,int retryExecutionCount) {
 		try {

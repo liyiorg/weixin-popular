@@ -81,9 +81,9 @@ public class MessageAPI extends BaseAPI{
 	
 	/**
 	 * 高级群发 构成 MassMPnewsMessage 对象的前置请求接口
-	 * @param access_token
-	 * @param messageJson
-	 * @return
+	 * @param access_token access_token
+	 * @param messageJson messageJson
+	 * @return result
 	 */
 	public static Media mediaUploadnews(String access_token,String messageJson){
 		HttpUriRequest httpUriRequest = RequestBuilder.post()

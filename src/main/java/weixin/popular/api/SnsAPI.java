@@ -6,6 +6,7 @@ import java.net.URLEncoder;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.client.methods.RequestBuilder;
 
+import weixin.popular.bean.BaseResult;
 import weixin.popular.bean.sns.SnsToken;
 import weixin.popular.bean.user.User;
 import weixin.popular.client.LocalHttpClient;
@@ -92,6 +93,24 @@ public class SnsAPI extends BaseAPI{
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,SnsToken.class);
 	}
+	
+	
+	/**
+	 * 检验授权凭证（access_token）是否有效
+	 * @since 2.8.1
+	 * @param access_token access_token
+	 * @param openid openid
+	 * @return result
+	 */
+	public static BaseResult auth(String access_token,String openid){
+		HttpUriRequest httpUriRequest = RequestBuilder.get()
+				.setUri(BASE_URI + "/sns/auth")
+				.addParameter(getATPN(), access_token)
+				.addParameter("openid", openid)
+				.build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest,BaseResult.class);
+	}
+	
 
 	/**
 	 * 拉取用户信息(需scope为 snsapi_userinfo)
@@ -109,7 +128,7 @@ public class SnsAPI extends BaseAPI{
 	 * @return User
 	 */
 	public static User userinfo(String access_token,String openid,String lang,int emoji){
-		HttpUriRequest httpUriRequest = RequestBuilder.post()
+		HttpUriRequest httpUriRequest = RequestBuilder.get()
 				.setUri(BASE_URI + "/sns/userinfo")
 				.addParameter(PARAM_ACCESS_TOKEN, access_token)
 				.addParameter("openid", openid)

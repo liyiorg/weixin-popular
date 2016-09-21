@@ -17,19 +17,18 @@ import weixin.popular.util.JsonUtil;
 
 /**
  * 数据统计
- * @author nobody
- *
+ * @author Moyq5
  */
 public class DataCubeAPI extends BaseAPI {
 
 	/**
 	 * 拉取卡券概况数据<br>
-	 * 1. 查询时间区间需<=62天，否则报错；<br>
+	 * 1. 查询时间区间需&lt;=62天，否则报错;  <br>
 	 * 2. 传入时间格式需严格参照示例填写如”2015-06-15”，否则报错；<br>
 	 * 3. 该接口只能拉取非当天的数据，不能拉取当天的卡券数据，否则报错。<br>
-	 * @param access_token
-	 * @param bizuinCube
-	 * @return
+	 * @param access_token access_token
+	 * @param bizuinCube bizuinCube
+	 * @return result
 	 */
 	public static BizuinInfoResult getCardBizuinInfo(String access_token, BizuinInfo bizuinCube) {
 		return getCardBizuinInfo(access_token, JsonUtil.toJSONString(bizuinCube));
@@ -37,12 +36,12 @@ public class DataCubeAPI extends BaseAPI {
 	
 	/**
 	 * 拉取卡券概况数据<br>
-	 * 1. 查询时间区间需<=62天，否则报错；<br>
+	 * 1. 查询时间区间需&lt;=62天，否则报错；<br>
 	 * 2. 传入时间格式需严格参照示例填写如”2015-06-15”，否则报错；<br>
 	 * 3. 该接口只能拉取非当天的数据，不能拉取当天的卡券数据，否则报错。<br>
-	 * @param access_token
+	 * @param access_token access_token
 	 * @param requestJson post完整的json
-	 * @return
+	 * @return result
 	 */
 	public static BizuinInfoResult getCardBizuinInfo(String access_token, String requestJson) {
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
@@ -57,12 +56,12 @@ public class DataCubeAPI extends BaseAPI {
 	/**
 	 * 获取免费券数据<br>
 	 * 1. 该接口目前仅支持拉取免费券（优惠券、团购券、折扣券、礼品券）的卡券相关数据，暂不支持特殊票券（电影票、会议门票、景区门票、飞机票）数据。<br>
-	 * 2. 查询时间区间需<=62天，否则报错；<br>
+	 * 2. 查询时间区间需&lt;=62天，否则报错；<br>
 	 * 3. 传入时间格式需严格参照示例填写如”2015-06-15”，否则报错；<br>
 	 * 4. 该接口只能拉取非当天的数据，不能拉取当天的卡券数据，否则报错。<br>
-	 * @param access_token
-	 * @param freeCardCube
-	 * @return
+	 * @param access_token access_token
+	 * @param freeCardCube freeCardCube
+	 * @return result
 	 */
 	public static CardInfoResult getCardCardInfo(String access_token, CardInfo freeCardCube) {
 		return getCardCardInfo(access_token, JsonUtil.toJSONString(freeCardCube));
@@ -71,12 +70,12 @@ public class DataCubeAPI extends BaseAPI {
 	/**
 	 * 获取免费券数据<br>
 	 * 1. 该接口目前仅支持拉取免费券（优惠券、团购券、折扣券、礼品券）的卡券相关数据，暂不支持特殊票券（电影票、会议门票、景区门票、飞机票）数据。<br>
-	 * 2. 查询时间区间需<=62天，否则报错；<br>
+	 * 2. 查询时间区间需&lt;=62天，否则报错；<br>
 	 * 3. 传入时间格式需严格参照示例填写如”2015-06-15”，否则报错；<br>
 	 * 4. 该接口只能拉取非当天的数据，不能拉取当天的卡券数据，否则报错。<br>
-	 * @param access_token
+	 * @param access_token access_token
 	 * @param requestJson post完整的json
-	 * @return
+	 * @return result
 	 */
 	public static CardInfoResult getCardCardInfo(String access_token, String requestJson) {
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
@@ -91,12 +90,12 @@ public class DataCubeAPI extends BaseAPI {
 	
 	/**
 	 * 拉取会员卡数据<br>
-	 * 1. 查询时间区间需<=62天，否则报错；<br>
+	 * 1. 查询时间区间需&lt;=62天，否则报错；<br>
 	 * 2. 传入时间格式需严格参照示例填写如”2015-06-15”，否则报错；<br>
 	 * 3. 该接口只能拉取非当天的数据，不能拉取当天的卡券数据，否则报错。<br>
-	 * @param access_token
-	 * @param memberCardCube
-	 * @return
+	 * @param access_token access_token
+	 * @param memberCardCube memberCardCube
+	 * @return result
 	 */
 	public static MemberCardInfoResult getCardMemberCardInfo(String access_token, MemberCardInfo memberCardCube) {
 		return getCardMemberCardInfo(access_token, JsonUtil.toJSONString(memberCardCube));
@@ -104,12 +103,12 @@ public class DataCubeAPI extends BaseAPI {
 	
 	/**
 	 * 拉取会员卡数据<br>
-	 * 1. 查询时间区间需<=62天，否则报错；<br>
+	 * 1. 查询时间区间需&lt;=62天，否则报错；<br>
 	 * 2. 传入时间格式需严格参照示例填写如”2015-06-15”，否则报错；<br>
 	 * 3. 该接口只能拉取非当天的数据，不能拉取当天的卡券数据，否则报错。<br>
-	 * @param access_token
+	 * @param access_token access_token
 	 * @param requestJson post完整的json
-	 * @return
+	 * @return result
 	 */
 	public static MemberCardInfoResult getCardMemberCardInfo(String access_token, String requestJson) {
 		HttpUriRequest httpUriRequest = RequestBuilder.post()

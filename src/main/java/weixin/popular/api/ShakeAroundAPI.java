@@ -75,12 +75,14 @@ import weixin.popular.util.JsonUtil;
  * 微信摇一摇周边
  * 
  * @author Moyq5
- * @date 2016年7月31日
+ * 
  */
 public class ShakeAroundAPI extends BaseAPI {
 
 	/**
 	 * 申请开通功能－查询审核状态
+	 * @param accessToken accessToken
+	 * @return result
 	 */
 	public static AccountAuditStatusResult accountAuditStatus(String accessToken) {
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
@@ -93,6 +95,9 @@ public class ShakeAroundAPI extends BaseAPI {
 
 	/**
 	 * 申请开通功能
+	 * @param accessToken accessToken
+	 * @param accountRegister accountRegister
+	 * @return result
 	 */
 	public static AccountRegisterResult accountRegister(String accessToken,
 			AccountRegister accountRegister) {
@@ -102,6 +107,9 @@ public class ShakeAroundAPI extends BaseAPI {
 
 	/**
 	 * 申请开通功能
+	 * @param accessToken accessToken
+	 * @param postJson postJson
+	 * @return result
 	 */
 	public static AccountRegisterResult accountRegister(String accessToken,
 			String postJson) {
@@ -118,6 +126,9 @@ public class ShakeAroundAPI extends BaseAPI {
 
 	/**
 	 * 设备管理－申请设备ID
+	 * @param accessToken accessToken
+	 * @param deviceApplyId deviceApplyId
+	 * @return result
 	 */
 	public static DeviceApplyIdResult deviceApplyId(String accessToken,
 			DeviceApplyId deviceApplyId) {
@@ -126,6 +137,9 @@ public class ShakeAroundAPI extends BaseAPI {
 
 	/**
 	 * 设备管理－申请设备ID
+	 * @param accessToken accessToken
+	 * @param postJson postJson
+	 * @return result
 	 */
 	public static DeviceApplyIdResult deviceApplyId(String accessToken,
 			String postJson) {
@@ -142,6 +156,9 @@ public class ShakeAroundAPI extends BaseAPI {
 
 	/**
 	 * 设备管理－查询设备ID申请审核状态
+	 * @param accessToken accessToken
+	 * @param deviceApplyStatus deviceApplyStatus
+	 * @return result
 	 */
 	public static DeviceApplyStatusResult deviceApplyStatus(String accessToken,
 			DeviceApplyStatus deviceApplyStatus) {
@@ -151,6 +168,9 @@ public class ShakeAroundAPI extends BaseAPI {
 
 	/**
 	 * 设备管理－查询设备ID申请审核状态
+	 * @param accessToken accessToken
+	 * @param postJson postJson
+	 * @return result
 	 */
 	public static DeviceApplyStatusResult deviceApplyStatus(String accessToken,
 			String postJson) {
@@ -167,6 +187,9 @@ public class ShakeAroundAPI extends BaseAPI {
 
 	/**
 	 * 设备管理－配置设备与(或者其它公众号的)门店的关联关系
+	 * @param accessToken accessToken
+	 * @param deviceBindLocation deviceBindLocation
+	 * @return result
 	 */
 	public static DeviceBindLocationResult deviceBindLocation(
 			String accessToken, DeviceBindLocation deviceBindLocation) {
@@ -176,6 +199,9 @@ public class ShakeAroundAPI extends BaseAPI {
 
 	/**
 	 * 设备管理－配置设备与(或者其它公众号的)门店的关联关系
+	 * @param accessToken accessToken
+	 * @param postJson postJson
+	 * @return result
 	 */
 	public static DeviceBindLocationResult deviceBindLocation(
 			String accessToken, String postJson) {
@@ -192,6 +218,9 @@ public class ShakeAroundAPI extends BaseAPI {
 
 	/**
 	 * 配置设备与页面的关联关系
+	 * @param accessToken accessToken
+	 * @param deviceBindPage deviceBindPage
+	 * @return result
 	 */
 	public static DeviceBindPageResult deviceBindPage(String accessToken,
 			DeviceBindPage deviceBindPage) {
@@ -201,6 +230,9 @@ public class ShakeAroundAPI extends BaseAPI {
 
 	/**
 	 * 配置设备与页面的关联关系
+	 * @param accessToken accessToken
+	 * @param postJson postJson
+	 * @return result
 	 */
 	public static DeviceBindPageResult deviceBindPage(String accessToken,
 			String postJson) {
@@ -217,6 +249,9 @@ public class ShakeAroundAPI extends BaseAPI {
 
 	/**
 	 * 新增分组
+	 * @param accessToken accessToken
+	 * @param deviceGroupAdd deviceGroupAdd
+	 * @return result
 	 */
 	public static DeviceGroupAddResult deviceGroupAdd(String accessToken,
 			DeviceGroupAdd deviceGroupAdd) {
@@ -226,6 +261,9 @@ public class ShakeAroundAPI extends BaseAPI {
 
 	/**
 	 * 新增分组
+	 * @param accessToken accessToken
+	 * @param postJson postJson
+	 * @return result
 	 */
 	public static DeviceGroupAddResult deviceGroupAdd(String accessToken,
 			String postJson) {
@@ -242,6 +280,9 @@ public class ShakeAroundAPI extends BaseAPI {
 
 	/**
 	 * 添加设备到分组
+	 * @param accessToken accessToken
+	 * @param deviceGroupAddDevice deviceGroupAddDevice
+	 * @return result
 	 */
 	public static DeviceGroupAddDeviceResult deviceGroupAddDevice(
 			String accessToken, DeviceGroupAddDevice deviceGroupAddDevice) {
@@ -251,6 +292,9 @@ public class ShakeAroundAPI extends BaseAPI {
 
 	/**
 	 * 添加设备到分组
+	 * @param accessToken accessToken
+	 * @param postJson postJson
+	 * @return result
 	 */
 	public static DeviceGroupAddDeviceResult deviceGroupAddDevice(
 			String accessToken, String postJson) {
@@ -267,6 +311,9 @@ public class ShakeAroundAPI extends BaseAPI {
 
 	/**
 	 * 删除分组
+	 * @param accessToken accessToken
+	 * @param deviceGroupDelete deviceGroupDelete
+	 * @return result
 	 */
 	public static DeviceGroupDeleteResult deviceGroupDelete(String accessToken,
 			DeviceGroupDelete deviceGroupDelete) {
@@ -276,6 +323,9 @@ public class ShakeAroundAPI extends BaseAPI {
 
 	/**
 	 * 删除分组
+	 * @param accessToken accessToken
+	 * @param postJson postJson
+	 * @return result
 	 */
 	public static DeviceGroupDeleteResult deviceGroupDelete(String accessToken,
 			String postJson) {
@@ -292,6 +342,9 @@ public class ShakeAroundAPI extends BaseAPI {
 
 	/**
 	 * 从分组中移除设备
+	 * @param accessToken accessToken
+	 * @param deviceGroupDeleteDevice deviceGroupDeleteDevice
+	 * @return result
 	 */
 	public static DeviceGroupDeleteDeviceResult deviceGroupDeleteDevice(
 			String accessToken, DeviceGroupDeleteDevice deviceGroupDeleteDevice) {
@@ -301,6 +354,9 @@ public class ShakeAroundAPI extends BaseAPI {
 
 	/**
 	 * 从分组中移除设备
+	 * @param accessToken accessToken
+	 * @param postJson postJson
+	 * @return result
 	 */
 	public static DeviceGroupDeleteDeviceResult deviceGroupDeleteDevice(
 			String accessToken, String postJson) {
@@ -317,6 +373,9 @@ public class ShakeAroundAPI extends BaseAPI {
 
 	/**
 	 * 查询分组详情
+	 * @param accessToken accessToken
+	 * @param deviceGroupGetDetail deviceGroupGetDetail
+	 * @return result
 	 */
 	public static DeviceGroupGetDetailResult deviceGroupGetDetail(
 			String accessToken, DeviceGroupGetDetail deviceGroupGetDetail) {
@@ -326,6 +385,9 @@ public class ShakeAroundAPI extends BaseAPI {
 
 	/**
 	 * 查询分组详情
+	 * @param accessToken accessToken
+	 * @param postJson postJson
+	 * @return result
 	 */
 	public static DeviceGroupGetDetailResult deviceGroupGetDetail(
 			String accessToken, String postJson) {
@@ -342,6 +404,9 @@ public class ShakeAroundAPI extends BaseAPI {
 
 	/**
 	 * 查询分组列表
+	 * @param accessToken accessToken
+	 * @param deviceGroupGetList deviceGroupGetList
+	 * @return result
 	 */
 	public static DeviceGroupGetListResult deviceGroupGetList(
 			String accessToken, DeviceGroupGetList deviceGroupGetList) {
@@ -351,6 +416,9 @@ public class ShakeAroundAPI extends BaseAPI {
 
 	/**
 	 * 查询分组列表
+	 * @param accessToken accessToken
+	 * @param postJson postJson
+	 * @return result
 	 */
 	public static DeviceGroupGetListResult deviceGroupGetList(
 			String accessToken, String postJson) {
@@ -367,6 +435,9 @@ public class ShakeAroundAPI extends BaseAPI {
 
 	/**
 	 * 编辑分组信息
+	 * @param accessToken accessToken
+	 * @param deviceGroupUpdate deviceGroupUpdate
+	 * @return result
 	 */
 	public static DeviceGroupUpdateResult deviceGroupUpdate(String accessToken,
 			DeviceGroupUpdate deviceGroupUpdate) {
@@ -376,6 +447,9 @@ public class ShakeAroundAPI extends BaseAPI {
 
 	/**
 	 * 编辑分组信息
+	 * @param accessToken accessToken
+	 * @param postJson postJson
+	 * @return result
 	 */
 	public static DeviceGroupUpdateResult deviceGroupUpdate(String accessToken,
 			String postJson) {
@@ -392,6 +466,9 @@ public class ShakeAroundAPI extends BaseAPI {
 
 	/**
 	 * 查询设备列表
+	 * @param accessToken accessToken
+	 * @param deviceSearch deviceSearch
+	 * @return result
 	 */
 	public static DeviceSearchResult deviceSearch(String accessToken,
 			DeviceSearch deviceSearch) {
@@ -400,6 +477,9 @@ public class ShakeAroundAPI extends BaseAPI {
 
 	/**
 	 * 查询设备列表
+	 * @param accessToken accessToken
+	 * @param postJson postJson
+	 * @return result
 	 */
 	public static DeviceSearchResult deviceSearch(String accessToken,
 			String postJson) {
@@ -416,6 +496,9 @@ public class ShakeAroundAPI extends BaseAPI {
 
 	/**
 	 * 编辑设备信息
+	 * @param accessToken accessToken
+	 * @param deviceUpdate deviceUpdate
+	 * @return result
 	 */
 	public static DeviceUpdateResult deviceUpdate(String accessToken,
 			DeviceUpdate deviceUpdate) {
@@ -424,6 +507,9 @@ public class ShakeAroundAPI extends BaseAPI {
 
 	/**
 	 * 编辑设备信息
+	 * @param accessToken accessToken
+	 * @param postJson postJson
+	 * @return result
 	 */
 	public static DeviceUpdateResult deviceUpdate(String accessToken,
 			String postJson) {
@@ -440,6 +526,9 @@ public class ShakeAroundAPI extends BaseAPI {
 
 	/**
 	 * 摇一摇红包－创建红包活动
+	 * @param accessToken accessToken
+	 * @param lotteryAddLotteryInfo lotteryAddLotteryInfo
+	 * @return result
 	 */
 	public static LotteryAddLotteryInfoResult lotteryAddLotteryInfo(
 			String accessToken, LotteryAddLotteryInfo lotteryAddLotteryInfo) {
@@ -449,6 +538,9 @@ public class ShakeAroundAPI extends BaseAPI {
 
 	/**
 	 * 摇一摇红包－创建红包活动
+	 * @param accessToken accessToken
+	 * @param postJson postJson
+	 * @return result
 	 */
 	public static LotteryAddLotteryInfoResult lotteryAddLotteryInfo(
 			String accessToken, String postJson) {
@@ -465,6 +557,9 @@ public class ShakeAroundAPI extends BaseAPI {
 
 	/**
 	 * 摇一摇红包－红包查询接口
+	 * @param accessToken accessToken
+	 * @param lotteryId lotteryId
+	 * @return result
 	 */
 	public static LotteryQueryLotteryResult lotteryQueryLottery(
 			String accessToken, String lotteryId) {
@@ -479,6 +574,10 @@ public class ShakeAroundAPI extends BaseAPI {
 
 	/**
 	 * 摇一摇红包－设置红包活动抽奖开关
+	 * @param accessToken accessToken
+	 * @param lotteryId lotteryId
+	 * @param onoff onoff
+	 * @return result
 	 */
 	public static BaseResult lotterySetLotterySwitch(String accessToken,
 			String lotteryId, int onoff) {
@@ -494,6 +593,9 @@ public class ShakeAroundAPI extends BaseAPI {
 
 	/**
 	 * 摇一摇红包－录入红包信息
+	 * @param accessToken accessToken
+	 * @param lotterySetPrizeBucket lotterySetPrizeBucket
+	 * @return result
 	 */
 	public static LotterySetPrizeBucketResult lotterySetPrizeBucket(
 			String accessToken, LotterySetPrizeBucket lotterySetPrizeBucket) {
@@ -503,6 +605,9 @@ public class ShakeAroundAPI extends BaseAPI {
 
 	/**
 	 * 摇一摇红包－录入红包信息
+	 * @param accessToken accessToken
+	 * @param postJson postJson
+	 * @return result
 	 */
 	public static LotterySetPrizeBucketResult lotterySetPrizeBucket(
 			String accessToken, String postJson) {
@@ -519,6 +624,10 @@ public class ShakeAroundAPI extends BaseAPI {
 
 	/**
 	 * 上传图片素材
+	 * @param accessToken accessToken
+	 * @param type type
+	 * @param media media
+	 * @return result
 	 */
 	public static MaterialAddResult materialAdd(String accessToken,
 			MediaType type, File media) {
@@ -536,6 +645,9 @@ public class ShakeAroundAPI extends BaseAPI {
 
 	/**
 	 * 页面管理－新增页面
+	 * @param accessToken accessToken
+	 * @param pageAdd pageAdd
+	 * @return result
 	 */
 	public static PageAddResult pageAdd(String accessToken, PageAdd pageAdd) {
 		return pageAdd(accessToken, JsonUtil.toJSONString(pageAdd));
@@ -543,6 +655,9 @@ public class ShakeAroundAPI extends BaseAPI {
 
 	/**
 	 * 页面管理－新增页面
+	 * @param accessToken accessToken
+	 * @param postJson postJson
+	 * @return result
 	 */
 	public static PageAddResult pageAdd(String accessToken, String postJson) {
 		HttpUriRequest httpUriRequest = RequestBuilder
@@ -558,6 +673,9 @@ public class ShakeAroundAPI extends BaseAPI {
 
 	/**
 	 * 页面管理－删除页面
+	 * @param accessToken accessToken
+	 * @param pageDelete pageDelete
+	 * @return result
 	 */
 	public static PageDeleteResult pageDelete(String accessToken,
 			PageDelete pageDelete) {
@@ -566,6 +684,9 @@ public class ShakeAroundAPI extends BaseAPI {
 
 	/**
 	 * 页面管理－删除页面
+	 * @param accessToken accessToken
+	 * @param postJson postJson
+	 * @return result
 	 */
 	public static PageDeleteResult pageDelete(String accessToken,
 			String postJson) {
@@ -582,6 +703,9 @@ public class ShakeAroundAPI extends BaseAPI {
 
 	/**
 	 * 页面管理－查询页面列表
+	 * @param accessToken accessToken
+	 * @param pageSearch pageSearch
+	 * @return result
 	 */
 	public static PageSearchResult pageSearch(String accessToken,
 			PageSearch pageSearch) {
@@ -590,6 +714,9 @@ public class ShakeAroundAPI extends BaseAPI {
 
 	/**
 	 * 页面管理－查询页面列表
+	 * @param accessToken accessToken
+	 * @param postJson postJson
+	 * @return result
 	 */
 	public static PageSearchResult pageSearch(String accessToken,
 			String postJson) {
@@ -606,6 +733,9 @@ public class ShakeAroundAPI extends BaseAPI {
 
 	/**
 	 * 页面管理－编辑页面信息
+	 * @param accessToken accessToken
+	 * @param pageUpdate pageUpdate
+	 * @return result
 	 */
 	public static PageUpdateResult pageUpdate(String accessToken,
 			PageUpdate pageUpdate) {
@@ -614,6 +744,9 @@ public class ShakeAroundAPI extends BaseAPI {
 
 	/**
 	 * 页面管理－编辑页面信息
+	 * @param accessToken accessToken
+	 * @param postJson postJson
+	 * @return result
 	 */
 	public static PageUpdateResult pageUpdate(String accessToken,
 			String postJson) {
@@ -630,6 +763,9 @@ public class ShakeAroundAPI extends BaseAPI {
 
 	/**
 	 * 查询设备与页面的关联关系
+	 * @param accessToken accessToken
+	 * @param relationSearch relationSearch
+	 * @return result
 	 */
 	public static RelationSearchResult relationSearch(String accessToken,
 			RelationSearch relationSearch) {
@@ -639,6 +775,9 @@ public class ShakeAroundAPI extends BaseAPI {
 
 	/**
 	 * 查询设备与页面的关联关系
+	 * @param accessToken accessToken
+	 * @param postJson postJson
+	 * @return result
 	 */
 	public static RelationSearchResult relationSearch(String accessToken,
 			String postJson) {
@@ -655,6 +794,9 @@ public class ShakeAroundAPI extends BaseAPI {
 
 	/**
 	 * 以设备为维度的数据统计接口
+	 * @param accessToken accessToken
+	 * @param statisticsDevice statisticsDevice
+	 * @return result
 	 */
 	public static StatisticsDeviceResult statisticsDevice(String accessToken,
 			StatisticsDevice statisticsDevice) {
@@ -664,6 +806,9 @@ public class ShakeAroundAPI extends BaseAPI {
 
 	/**
 	 * 以设备为维度的数据统计接口
+	 * @param accessToken accessToken
+	 * @param postJson postJson
+	 * @return result
 	 */
 	public static StatisticsDeviceResult statisticsDevice(String accessToken,
 			String postJson) {
@@ -680,6 +825,9 @@ public class ShakeAroundAPI extends BaseAPI {
 
 	/**
 	 * 批量查询设备统计数据接口
+	 * @param accessToken accessToken
+	 * @param statisticsDeviceList statisticsDeviceList
+	 * @return result
 	 */
 	public static StatisticsDeviceListResult statisticsDeviceList(
 			String accessToken, StatisticsDeviceList statisticsDeviceList) {
@@ -689,6 +837,9 @@ public class ShakeAroundAPI extends BaseAPI {
 
 	/**
 	 * 批量查询设备统计数据接口
+	 * @param accessToken accessToken
+	 * @param postJson postJson
+	 * @return result
 	 */
 	public static StatisticsDeviceListResult statisticsDeviceList(
 			String accessToken, String postJson) {
@@ -705,6 +856,9 @@ public class ShakeAroundAPI extends BaseAPI {
 
 	/**
 	 * 以页面为维度的数据统计接口
+	 * @param accessToken accessToken
+	 * @param statisticsPage statisticsPage
+	 * @return result
 	 */
 	public static StatisticsPageResult statisticsPage(String accessToken,
 			StatisticsPage statisticsPage) {
@@ -714,6 +868,9 @@ public class ShakeAroundAPI extends BaseAPI {
 
 	/**
 	 * 以页面为维度的数据统计接口
+	 * @param accessToken accessToken
+	 * @param postJson postJson
+	 * @return result
 	 */
 	public static StatisticsPageResult statisticsPage(String accessToken,
 			String postJson) {
@@ -730,6 +887,9 @@ public class ShakeAroundAPI extends BaseAPI {
 
 	/**
 	 * 批量查询页面统计数据接口
+	 * @param accessToken accessToken
+	 * @param statisticsPageList statisticsPageList
+	 * @return result
 	 */
 	public static StatisticsPageListResult statisticsPageList(
 			String accessToken, StatisticsPageList statisticsPageList) {
@@ -739,6 +899,9 @@ public class ShakeAroundAPI extends BaseAPI {
 
 	/**
 	 * 批量查询页面统计数据接口
+	 * @param accessToken accessToken
+	 * @param postJson postJson
+	 * @return result
 	 */
 	public static StatisticsPageListResult statisticsPageList(
 			String accessToken, String postJson) {
@@ -755,6 +918,9 @@ public class ShakeAroundAPI extends BaseAPI {
 
 	/**
 	 * 获取设备及用户信息
+	 * @param accessToken accessToken
+	 * @param postJson postJson
+	 * @return result
 	 */
 	public static UserGetShakeInfoResult userGetShakeInfo(String accessToken,
 			String postJson) {
@@ -771,6 +937,9 @@ public class ShakeAroundAPI extends BaseAPI {
 
 	/**
 	 * 获取设备及用户信息
+	 * @param accessToken accessToken
+	 * @param userGetShakeInfo userGetShakeInfo
+	 * @return result
 	 */
 	public static UserGetShakeInfoResult userGetShakeInfo(String accessToken,
 			UserGetShakeInfo userGetShakeInfo) {

@@ -114,7 +114,7 @@ public class MessageAPI extends BaseAPI{
 
 
 	/**
-	 * 高级群发接口 根据分组进行群发
+	 * 高级群发接口 根据 分组或标签 进行群发
 	 * @param access_token access_token
 	 * @param messageJson messageJson
 	 * @return MessageSendResult
@@ -130,7 +130,7 @@ public class MessageAPI extends BaseAPI{
 	}
 
 	/**
-	 * 高级群发接口 根据分组进行群发
+	 * 高级群发接口 根据 分组或标签  进行群发
 	 * @param access_token access_token
 	 * @param massMessage massMessage
 	 * @return MessageSendResult
@@ -385,4 +385,5 @@ public class MessageAPI extends BaseAPI{
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,CurrentAutoreplyInfo.class);
 	}
+	
 }

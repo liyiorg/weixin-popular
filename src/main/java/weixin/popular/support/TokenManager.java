@@ -82,9 +82,14 @@ public class TokenManager{
 		ScheduledFuture<?> scheduledFuture =  scheduledExecutorService.scheduleWithFixedDelay(new Runnable() {
 			@Override
 			public void run() {
-				Token token = TokenAPI.token(appid,secret);
-				tokenMap.put(appid,token.getAccess_token());
-				logger.info("ACCESS_TOKEN refurbish with appid:{}",appid);
+				try {
+					Token token = TokenAPI.token(appid,secret);
+					tokenMap.put(appid,token.getAccess_token());
+					logger.info("ACCESS_TOKEN refurbish with appid:{}",appid);
+				} catch (Exception e) {
+					logger.error("ACCESS_TOKEN refurbish error with appid:{}",appid);
+					e.printStackTrace();
+				}
 			}
 		},0,118,TimeUnit.MINUTES);
 		futureMap.put(appid, scheduledFuture);
@@ -97,6 +102,17 @@ public class TokenManager{
 	public static void destroyed(){
 		scheduledExecutorService.shutdownNow();
 		logger.info("destroyed");
+	}
+	
+	/**
+	 * 取消刷新
+	 * @param appid appid
+	 */
+	public static void destroyed(String appid){
+		if(futureMap.containsKey(appid)){
+			futureMap.get(appid).cancel(true);
+			logger.info("destroyed appid:{}");
+		}
 	}
 
 	/**

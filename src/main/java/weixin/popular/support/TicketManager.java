@@ -16,7 +16,7 @@ import weixin.popular.api.TicketAPI;
 import weixin.popular.bean.ticket.Ticket;
 
 /**
- * TicketManager ticket 自动刷新
+ * TicketManager ticket(jsapi | wx_card) 自动刷新
  * @author LiYi
  *
  */
@@ -33,7 +33,7 @@ public class TicketManager {
 	private static int poolSize = 2;
 	
 	private static boolean daemon = Boolean.TRUE;
-
+	
 	/**
 	 * 初始化 scheduledExecutorService
 	 */
@@ -68,7 +68,7 @@ public class TicketManager {
 	}
 	
 	/**
-	 * 初始化ticket 刷新，每119分钟刷新一次。
+	 * 初始化ticket(jsapi) 刷新，每119分钟刷新一次。<br>
 	 * 依赖TokenManager
 	 * @param appid appid
 	 */
@@ -77,7 +77,18 @@ public class TicketManager {
 	}
 	
 	/**
-	 * 初始化ticket 刷新
+	 * 初始化ticket 刷新，每119分钟刷新一次。<br>
+	 * 依赖TokenManager
+	 * @since 2.8.2 
+	 * @param appid
+	 * @param types [jsapi,wx_card]
+	 */
+	public static void init(final String appid,String types){
+		init(appid,0,60*119,types);
+	}
+	
+	/**
+	 * 初始化ticket(jsapi) 刷新 
 	 * 依赖TokenManager
 	 * @since 2.6.1
 	 * @param appid appid
@@ -85,22 +96,43 @@ public class TicketManager {
 	 * @param delay 执行间隔（秒）
 	 */
 	public static void init(final String appid,int initialDelay,int delay){
-		if(scheduledExecutorService == null){
-			initScheduledExecutorService();
-		}
-		if(futureMap.containsKey(appid)){
-			return;
-		}
-		ScheduledFuture<?> scheduledFuture =  scheduledExecutorService.scheduleWithFixedDelay(new Runnable() {
-			@Override
-			public void run() {
-				String access_token = TokenManager.getToken(appid);
-				Ticket ticket = TicketAPI.ticketGetticket(access_token);
-				ticketMap.put(appid,ticket.getTicket());
-				logger.info("TICKET refurbish with appid:{}",appid);
+		init(appid,initialDelay, delay,"jsapi");
+	}
+	
+	/**
+	 * 初始化ticket 刷新
+	 * 依赖TokenManager
+	 * @since 2.8.2
+	 * @param appid appid
+	 * @param initialDelay 首次执行延迟（秒）
+	 * @param delay 执行间隔（秒）
+	 * @param types ticket 类型  [jsapi,wx_card]
+	 */
+	public static void init(final String appid,int initialDelay,int delay,String... types){
+		for(final String type : types){
+			final String key = appid + "__" + type;
+			if(scheduledExecutorService == null){
+				initScheduledExecutorService();
 			}
-		},initialDelay,delay,TimeUnit.SECONDS);
-		futureMap.put(appid,scheduledFuture);
+			if(futureMap.containsKey(key)){
+				futureMap.get(key).cancel(true);
+			}
+			ScheduledFuture<?> scheduledFuture =  scheduledExecutorService.scheduleWithFixedDelay(new Runnable() {
+				@Override
+				public void run() {
+					try {
+						String access_token = TokenManager.getToken(appid);
+						Ticket ticket = TicketAPI.ticketGetticket(access_token,type);
+						ticketMap.put(key,ticket.getTicket());
+						logger.info("TICKET refurbish with appid:{} type:{}",appid,type);
+					} catch (Exception e) {
+						logger.error("TICKET refurbish error with appid:{} type:{}",appid,type);
+						e.printStackTrace();
+					}
+				}
+			},initialDelay,delay,TimeUnit.SECONDS);
+			futureMap.put(key,scheduledFuture);
+		}
 	}
 
 	/**
@@ -110,18 +142,53 @@ public class TicketManager {
 		scheduledExecutorService.shutdownNow();
 		logger.info("destroyed");
 	}
+	
+	/**
+	 * 取消刷新
+	 * @param appid appid
+	 */
+	public static void destroyed(String appid){
+		destroyed(appid,"jsapi","wx_card");
+	}
+	
+	/**
+	 * 取消刷新
+	 * @param appid appid
+	 * @param types ticket 类型  [jsapi,wx_card]
+	 */
+	public static void destroyed(String appid,String... types){
+		for(String type : types){
+			String key = appid + "__" + type;
+			if(futureMap.containsKey(key)){
+				futureMap.get(key).cancel(true);
+				logger.info("destroyed appid:{} type:{}",appid,type);
+			}
+		}
+	}
 
 	/**
-	 * 获取 jsapi ticket
+	 * 获取 ticket(jsapi)
 	 * @param appid appid
 	 * @return ticket
 	 */
 	public static String getTicket(final String appid){
-		return ticketMap.get(appid);
+		return getTicket(appid ,"jsapi");
 	}
+	
+	
+	/**
+	 * 获取 ticket
+	 * @param appid
+	 * @param type jsapi or wx_card
+	 * @return
+	 */
+	public static String getTicket(final String appid,String type){
+		return ticketMap.get(appid + "__" + type);
+	}
+	
 
 	/**
-	 * 获取第一个appid 的  jsapi ticket
+	 * 获取第一个appid 的第一个类型的 ticket
 	 * 适用于单一微信号
 	 * @return ticket
 	 */

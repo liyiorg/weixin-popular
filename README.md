@@ -14,7 +14,7 @@ weixin-popular 包括微信公众平台、公众号第三方平台基础API与�
 <dependency>
   <groupId>com.github.liyiorg</groupId>
   <artifactId>weixin-popular</artifactId>
-  <version>2.8.1</version>
+  <version>2.8.2</version>
 </dependency>
 ```
 * [升级注意事项](https://github.com/liyiorg/weixin-popular/wiki/jar_update)

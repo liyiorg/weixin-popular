@@ -197,4 +197,21 @@ public class ComponentAPI extends BaseAPI{
 		return LocalHttpClient.executeJsonResult(httpUriRequest,BaseResult.class);
 	}
 
+	/**
+	 * 第三方平台对其所有API调用次数清零
+	 * @since 2.8.2
+	 * @param component_access_token 调用接口凭据
+	 * @param component_appid 第三方平台APPID
+	 * @return result
+	 */
+	public static BaseResult clear_quota(String component_access_token,String component_appid){
+		String json = String.format("{\"component_appid\":\"%s\"}", component_appid);
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+										.setHeader(jsonHeader)
+										.setUri(BASE_URI+"/cgi-bin/component/clear_quota")
+										.addParameter("component_access_token", component_access_token)
+										.setEntity(new StringEntity(json,Charset.forName("utf-8")))
+										.build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest,BaseResult.class);
+	}
 }

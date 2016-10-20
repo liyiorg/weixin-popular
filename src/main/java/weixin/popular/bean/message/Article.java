@@ -9,7 +9,7 @@ public class Article {
 
 	private String title;
 
-	private String thumb_media_id;//图文消息的封面图片素材id（必须是永久mediaID）
+	private String thumb_media_id;//图文消息的封面图片素材id
 
 	private String show_cover_pic;//是否显示封面，0为false，即不显示，1为true，即显示
 

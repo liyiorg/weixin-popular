@@ -192,16 +192,16 @@ public class ApiGetAuthorizerInfoResult extends BaseResult {
 
 	public static class Authorization_info {
 
-		private String appid;
+		private String authorizer_appid;
 
 		private List<FuncInfo> func_info;
 
-		public String getAppid() {
-			return appid;
+		public String getAuthorizer_appid() {
+			return authorizer_appid;
 		}
 
-		public void setAppid(String appid) {
-			this.appid = appid;
+		public void setAuthorizer_appid(String authorizer_appid) {
+			this.authorizer_appid = authorizer_appid;
 		}
 
 		public List<FuncInfo> getFunc_info() {

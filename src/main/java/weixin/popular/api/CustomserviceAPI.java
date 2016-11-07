@@ -31,7 +31,7 @@ public class CustomserviceAPI extends BaseAPI {
 	 * @param access_token
 	 * @return KFAccount
 	 */
-	public static KFAccount get_kf_list(String access_token) {
+	public static KFAccount getkflist(String access_token) {
 		HttpUriRequest httpUriRequest = RequestBuilder.get()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/cgi-bin/customservice/getkflist")
@@ -45,7 +45,7 @@ public class CustomserviceAPI extends BaseAPI {
 	 * @param access_token
 	 * @return KFOnline
 	 */
-	public static KFOnline get_online_kf_list(String access_token) {
+	public static KFOnline getOnlinekflist(String access_token) {
 		HttpUriRequest httpUriRequest = RequestBuilder.get()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/cgi-bin/customservice/getonlinekflist")
@@ -62,7 +62,7 @@ public class CustomserviceAPI extends BaseAPI {
 	 * @param password 客服账号登录密码，格式为密码明文的32位加密MD5值
 	 * @return BaseResult
 	 */
-	public static BaseResult add_kf_account(String access_token, String kf_account, String nickname, String password) {
+	public static BaseResult kfaccountAdd(String access_token, String kf_account, String nickname, String password) {
 		String postJsonData = String.format("{\"kf_account\":\"%1s\",\"nickname\":\"%2s\",\"password\":\"%3s\"}", 
 					kf_account, 
 					nickname,
@@ -84,7 +84,7 @@ public class CustomserviceAPI extends BaseAPI {
 	 * @param password
 	 * @return BaseResult
 	 */
-	public static BaseResult update_kf_account(String access_token, String kf_account, String nickname, String password) {
+	public static BaseResult kfaccountUpdate(String access_token, String kf_account, String nickname, String password) {
 		String postJsonData = String.format("{\"kf_account\":\"%1s\",\"nickname\":\"%2s\",\"password\":\"%3s\"}", 
 					kf_account, 
 					nickname,
@@ -105,7 +105,7 @@ public class CustomserviceAPI extends BaseAPI {
 	 * @param media 头像
 	 * @return BaseResult
 	 */
-	public static BaseResult upload_kf_headimg(String access_token, String kf_account, File media) {
+	public static BaseResult kfaccountUploadHeadimg(String access_token, String kf_account, File media) {
 		HttpPost httpPost = new HttpPost(BASE_URI + "/customservice/kfaccount/uploadheadimg");
 		FileBody bin = new FileBody(media);
 		HttpEntity reqEntity = MultipartEntityBuilder.create()
@@ -123,7 +123,7 @@ public class CustomserviceAPI extends BaseAPI {
 	 * @param kf_account
 	 * @return BaseResult
 	 */
-	public static BaseResult del_kf_account(String access_token, String kf_account) {
+	public static BaseResult kfaccountDel(String access_token, String kf_account) {
 		HttpUriRequest httpUriRequest = RequestBuilder.get()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/customservice/kfaccount/del")
@@ -141,7 +141,7 @@ public class CustomserviceAPI extends BaseAPI {
 	 * @param text
 	 * @return BaseResult
 	 */
-	public static BaseResult create_kf_session(String access_token, String openid, String kf_account, String text) {
+	public static BaseResult kfsessionCreate(String access_token, String openid, String kf_account, String text) {
 		String postJsonData = String.format("{\"kf_account\":\"%1s\",\"openid\":\"%2s\",\"text\":\"%3s\"}", 
 					kf_account,
 					openid,
@@ -163,7 +163,7 @@ public class CustomserviceAPI extends BaseAPI {
 	 * @param text
 	 * @return BaseResult
 	 */
-	public static BaseResult close_kf_session(String access_token, String kf_account, String openid, String text) {
+	public static BaseResult kfsessionClose(String access_token, String kf_account, String openid, String text) {
 		String postJsonData = String.format("{\"kf_account\":\"%1s\",\"openid\":\"%2s\",\"text\":\"%3s\"}", 
 					kf_account,
 					openid,
@@ -183,7 +183,7 @@ public class CustomserviceAPI extends BaseAPI {
 	 * @param openid 客户openid
 	 * @return KFCustomSession
 	 */
-	public static KFCustomSession get_custom_session(String access_token, String openid) {
+	public static KFCustomSession kfsessionGetsession(String access_token, String openid) {
 		HttpUriRequest httpUriRequest = RequestBuilder.get()
 					.setHeader(jsonHeader)
 					.setUri(BASE_URI + "/customservice/kfsession/getsession")
@@ -199,7 +199,7 @@ public class CustomserviceAPI extends BaseAPI {
 	 * @param kf_account
 	 * @return KFSession
 	 */
-	public static KFSession get_kf_session_list(String access_token, String kf_account) {
+	public static KFSession kfsessionGetsessionlist(String access_token, String kf_account) {
 		HttpUriRequest httpUriRequest = RequestBuilder.get()
 					.setHeader(jsonHeader)
 					.setUri(BASE_URI + "/customservice/kfsession/getsessionlist")
@@ -214,7 +214,7 @@ public class CustomserviceAPI extends BaseAPI {
 	 * @param access_token
 	 * @return KFWaitcase
 	 */
-	public static KFWaitcase get_waitcase_session_list(String access_token) {
+	public static KFWaitcase kfsessionGetwaitcase(String access_token) {
 		HttpUriRequest httpUriRequest = RequestBuilder.get()
 					.setHeader(jsonHeader)
 					.setUri(BASE_URI + "/customservice/kfsession/getwaitcase")
@@ -232,7 +232,7 @@ public class CustomserviceAPI extends BaseAPI {
 	 * @param starttime 查询开始时间，UNIX时间戳
 	 * @return KFMsgRecord
 	 */
-	public static KFMsgRecord get_kf_record(String access_token, int endtime, int pageindex, int pagesize, int starttime) {
+	public static KFMsgRecord msgrecordGetrecord(String access_token, int endtime, int pageindex, int pagesize, int starttime) {
 		String jsonPostData = String.format("{\"endtime\":%1d,\"pageindex\":%2d,\"pagesize\":%3d,\"starttime\":%4d}", 
 					endtime,
 					pageindex, 

@@ -12,12 +12,12 @@ import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.entity.mime.content.FileBody;
 
 import weixin.popular.bean.BaseResult;
-import weixin.popular.bean.kf.KFAccount;
-import weixin.popular.bean.kf.KFCustomSession;
-import weixin.popular.bean.kf.KFMsgRecord;
-import weixin.popular.bean.kf.KFOnline;
-import weixin.popular.bean.kf.KFSession;
-import weixin.popular.bean.kf.KFWaitcase;
+import weixin.popular.bean.customservice.KFAccount;
+import weixin.popular.bean.customservice.KFCustomSession;
+import weixin.popular.bean.customservice.KFMsgRecord;
+import weixin.popular.bean.customservice.KFOnline;
+import weixin.popular.bean.customservice.KFSession;
+import weixin.popular.bean.customservice.KFWaitcase;
 import weixin.popular.client.LocalHttpClient;
 
 /**

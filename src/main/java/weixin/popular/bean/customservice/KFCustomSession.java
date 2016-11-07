@@ -1,4 +1,4 @@
-package weixin.popular.bean.kf;
+package weixin.popular.bean.customservice;
 
 import weixin.popular.bean.BaseResult;
 

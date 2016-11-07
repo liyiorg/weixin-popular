@@ -1,4 +1,4 @@
-package weixin.popular.bean.kf;
+package weixin.popular.bean.customservice;
 
 import java.util.List;
 

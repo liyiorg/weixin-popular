@@ -36,6 +36,8 @@ public class LocalHttpClient {
 
 	private static Map<String,CloseableHttpClient> httpClient_mchKeyStore = new HashMap<String, CloseableHttpClient>();
 	
+	private static ResultErrorHandler resultErrorHandler;
+	
 	/**
 	 * @since 2.7.0
 	 * @param timeout timeout
@@ -50,6 +52,14 @@ public class LocalHttpClient {
 	 */
 	public static void setRetryExecutionCount(int retryExecutionCount) {
 		LocalHttpClient.retryExecutionCount = retryExecutionCount;
+	}
+	
+	/**
+	 * @since 2.8.3
+	 * @param resultErrorHandler 数据返回错误处理
+	 */
+	public static void setResultErrorHandler(ResultErrorHandler resultErrorHandler) {
+		LocalHttpClient.resultErrorHandler = resultErrorHandler;
 	}
 
 	/**
@@ -111,13 +121,19 @@ public class LocalHttpClient {
 			lrh.setUriId(uriId);
 		}
 		try {
-			return httpClient.execute(request, responseHandler,HttpClientContext.create());
+			T t = httpClient.execute(request, responseHandler,HttpClientContext.create());
+			if(resultErrorHandler != null){
+				resultErrorHandler.doHandle(uriId, request, t);
+			}
+			return t;
 		} catch (Exception e) {
 			e.printStackTrace();
 			logger.error(e.getMessage());
 		}
 		return null;
 	}
+	
+	
 
 	/**
 	 * 数据返回自动JSON对象解析
@@ -154,7 +170,11 @@ public class LocalHttpClient {
 			lrh.setUriId(uriId);
 		}
 		try {
-			return httpClient_mchKeyStore.get(mch_id).execute(request,responseHandler,HttpClientContext.create());
+			T t = httpClient_mchKeyStore.get(mch_id).execute(request,responseHandler,HttpClientContext.create());
+			if(resultErrorHandler != null){
+				resultErrorHandler.doHandle(uriId, request, t);
+			}
+			return t;
 		} catch (Exception e) {
 			e.printStackTrace();
 			logger.error(e.getMessage());

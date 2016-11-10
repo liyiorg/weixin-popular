@@ -153,8 +153,11 @@ public class ComponentAPI extends BaseAPI{
 	 * 获取授权方的选项设置信息
 	 * @param component_access_token component_access_token
 	 * @param component_appid 公众号第三方平台appid
-	 * @param authorizer_appid 公众号第三方平台appid
-	 * @param option_name 选项名称
+	 * @param authorizer_appid 授权公众号appid
+	 * @param option_name 选项名称<br>
+	 * 						location_report (地理位置上报选项) 	0	无上报  			1	进入会话时上报  2	每5s上报<br>
+	 *  					voice_recognize（语音识别开关选项）	0	关闭语音识别		1	开启语音识别<br>
+	 *  					customer_service（多客服开关选项）	0	关闭多客服		1	开启多客服<br>
 	 * @return AuthorizerOption
 	 */
 	public static AuthorizerOption api_get_authorizer_option(String component_access_token,
@@ -177,7 +180,10 @@ public class ComponentAPI extends BaseAPI{
 	 * @param component_access_token component_access_token
 	 * @param component_appid 公众号第三方平台appid
 	 * @param authorizer_appid 授权公众号appid
-	 * @param option_name 选项名称
+	 * @param option_name 选项名称<br>
+	 * 	 					location_report (地理位置上报选项) 	0	无上报  			1	进入会话时上报  2	每5s上报<br>
+	 *  					voice_recognize（语音识别开关选项）	0	关闭语音识别		1	开启语音识别<br>
+	 *  					customer_service（多客服开关选项）	0	关闭多客服		1	开启多客服<br>
 	 * @param option_value 设置的选项值
 	 * @return BaseResult
 	 */

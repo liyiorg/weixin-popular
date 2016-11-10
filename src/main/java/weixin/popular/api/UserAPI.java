@@ -280,7 +280,7 @@ public class UserAPI extends BaseAPI{
 	 * @param name name	标签名长度超过30个字节
 	 * @return result
 	 */
-	public TagsCreatResult tagsCreate(String access_token,String name){
+	public static TagsCreatResult tagsCreate(String access_token,String name){
 		String json = String.format("{\"tag\":{\"name\":\"%s\"}}",name);
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 										.setHeader(jsonHeader)
@@ -313,7 +313,7 @@ public class UserAPI extends BaseAPI{
 	 * @param name name	标签名长度超过30个字节
 	 * @return result
 	 */
-	public BaseResult tagsUpdate(String access_token,Integer id,String name){
+	public static BaseResult tagsUpdate(String access_token,Integer id,String name){
 		String json = String.format("{\"tag\":{\"id\":%d,\"name\":\"%s\"}}",id,name);
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 										.setHeader(jsonHeader)
@@ -333,7 +333,7 @@ public class UserAPI extends BaseAPI{
 	 * @param id id
 	 * @return result
 	 */
-	public BaseResult tagsDelete(String access_token,Integer id){
+	public static BaseResult tagsDelete(String access_token,Integer id){
 		String json = String.format("{\"tag\":{\"id\":%d}}",id);
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 										.setHeader(jsonHeader)
@@ -352,7 +352,7 @@ public class UserAPI extends BaseAPI{
 	 * @param next_openid 第一个拉取的OPENID，不填默认从头开始拉取
 	 * @return result
 	 */
-	public UserTagGetResult userTagGet(String access_token,Integer tagid,String next_openid){
+	public static UserTagGetResult userTagGet(String access_token,Integer tagid,String next_openid){
 		String json = String.format("{\"tagid\":%d,\"next_openid\":\"%s\"}",tagid,next_openid==null?"":next_openid);
 		HttpUriRequest httpUriRequest = RequestBuilder.get()
 										.setHeader(jsonHeader)
@@ -372,7 +372,7 @@ public class UserAPI extends BaseAPI{
 	 * @param openids openids
 	 * @return result
 	 */
-	public BaseResult tagsMembersBatchtagging(String access_token,Integer tagid,String[] openids){
+	public static BaseResult tagsMembersBatchtagging(String access_token,Integer tagid,String[] openids){
 		String json = String.format("{\"tagid\":%d,\"openid_list\":%s}",tagid,JsonUtil.toJSONString(openids));
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 										.setHeader(jsonHeader)
@@ -391,7 +391,7 @@ public class UserAPI extends BaseAPI{
 	 * @param openids openids
 	 * @return result
 	 */
-	public BaseResult tagsMembersBatchuntagging(String access_token,Integer tagid,String[] openids){
+	public static BaseResult tagsMembersBatchuntagging(String access_token,Integer tagid,String[] openids){
 		String json = String.format("{\"tagid\":%d,\"openid_list\":%s}",tagid,JsonUtil.toJSONString(openids));
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 										.setHeader(jsonHeader)
@@ -409,7 +409,7 @@ public class UserAPI extends BaseAPI{
 	 * @param openid openid
 	 * @return result
 	 */
-	public TagsGetidlistResult tagsGetidlist(String access_token,String openid){
+	public static TagsGetidlistResult tagsGetidlist(String access_token,String openid){
 		String json = String.format("{\"openid\":\"%s\"}",openid);
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 										.setHeader(jsonHeader)
@@ -428,7 +428,7 @@ public class UserAPI extends BaseAPI{
 	 * @param begin_openid	当 begin_openid 为空时，默认从开头拉取。
 	 * @return result
 	 */
-	public GetblacklistResult tagsMembersGetblacklist(String access_token,String begin_openid){
+	public static GetblacklistResult tagsMembersGetblacklist(String access_token,String begin_openid){
 		String json = String.format("{\"begin_openid\":\"%s\"}",begin_openid == null?"":begin_openid);
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 										.setHeader(jsonHeader)
@@ -446,7 +446,7 @@ public class UserAPI extends BaseAPI{
 	 * @param openid_list	需要拉入黑名单的用户的openid，一次拉黑最多允许20个
 	 * @return result
 	 */
-	public BaseResult tagsMembersBatchblacklist(String access_token,String[] openid_list){
+	public static BaseResult tagsMembersBatchblacklist(String access_token,String[] openid_list){
 		String json = String.format("{\"openid_list\":%s}",JsonUtil.toJSONString(openid_list));
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 										.setHeader(jsonHeader)
@@ -464,7 +464,7 @@ public class UserAPI extends BaseAPI{
 	 * @param openid_list	需要取消拉入黑名单的用户的openid，一次取消拉黑最多允许20个
 	 * @return result
 	 */
-	public BaseResult tagsMembersBatchunblacklist(String access_token,String[] openid_list){
+	public static BaseResult tagsMembersBatchunblacklist(String access_token,String[] openid_list){
 		String json = String.format("{\"openid_list\":%s}",JsonUtil.toJSONString(openid_list));
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 										.setHeader(jsonHeader)

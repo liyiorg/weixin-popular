@@ -2,13 +2,17 @@ package weixin.popular.bean.message.templatemessage;
 
 import java.util.LinkedHashMap;
 
-public class TemplateMessage {
+public class WxopenTemplateMessage {
 
 	private String touser;
 
 	private String template_id;
 
-	private String url;
+	private String page;
+
+	private String form_id;
+
+	private String emphasis_keyword;
 
 	private LinkedHashMap<String, TemplateMessageItem> data;
 
@@ -28,12 +32,28 @@ public class TemplateMessage {
 		this.template_id = template_id;
 	}
 
-	public String getUrl() {
-		return url;
+	public String getPage() {
+		return page;
 	}
 
-	public void setUrl(String url) {
-		this.url = url;
+	public void setPage(String page) {
+		this.page = page;
+	}
+
+	public String getForm_id() {
+		return form_id;
+	}
+
+	public void setForm_id(String form_id) {
+		this.form_id = form_id;
+	}
+
+	public String getEmphasis_keyword() {
+		return emphasis_keyword;
+	}
+
+	public void setEmphasis_keyword(String emphasis_keyword) {
+		this.emphasis_keyword = emphasis_keyword;
 	}
 
 	public LinkedHashMap<String, TemplateMessageItem> getData() {

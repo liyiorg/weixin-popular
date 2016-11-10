@@ -34,6 +34,8 @@ public class TicketManager {
 	
 	private static boolean daemon = Boolean.TRUE;
 	
+	private static final String KEY_JOIN = "__";
+	
 	/**
 	 * 初始化 scheduledExecutorService
 	 */
@@ -110,7 +112,7 @@ public class TicketManager {
 	 */
 	public static void init(final String appid,int initialDelay,int delay,String... types){
 		for(final String type : types){
-			final String key = appid + "__" + type;
+			final String key = appid + KEY_JOIN + type;
 			if(scheduledExecutorService == null){
 				initScheduledExecutorService();
 			}
@@ -158,7 +160,7 @@ public class TicketManager {
 	 */
 	public static void destroyed(String appid,String... types){
 		for(String type : types){
-			String key = appid + "__" + type;
+			String key = appid + KEY_JOIN + type;
 			if(futureMap.containsKey(key)){
 				futureMap.get(key).cancel(true);
 				logger.info("destroyed appid:{} type:{}",appid,type);
@@ -183,7 +185,7 @@ public class TicketManager {
 	 * @return
 	 */
 	public static String getTicket(final String appid,String type){
-		return ticketMap.get(appid + "__" + type);
+		return ticketMap.get(appid + KEY_JOIN + type);
 	}
 	
 

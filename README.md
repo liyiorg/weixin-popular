@@ -14,7 +14,7 @@ weixin-popular 包括微信公众平台、公众号第三方平台基础API与�
 <dependency>
   <groupId>com.github.liyiorg</groupId>
   <artifactId>weixin-popular</artifactId>
-  <version>2.8.2</version>
+  <version>2.8.3</version>
 </dependency>
 ```
 * [升级注意事项](https://github.com/liyiorg/weixin-popular/wiki/jar_update)
@@ -29,7 +29,7 @@ weixin-popular 包括微信公众平台、公众号第三方平台基础API与�
 * [PayMchAPI](https://github.com/liyiorg/weixin-popular/wiki/PayMchAPI) 支付订单、红包、企业付款、代扣费(商户平台版)
 * [QrcodeAPI](https://github.com/liyiorg/weixin-popular/wiki/QrcodeAPI) 二维码
 * [SnsAPI](https://github.com/liyiorg/weixin-popular/wiki/SnsAPI) 网签授权
-* [UserAPI](https://github.com/liyiorg/weixin-popular/wiki/UserAPI) 用户管理
+* [UserAPI](https://github.com/liyiorg/weixin-popular/wiki/UserAPI) 用户管理、分组、标签、黑名单
 * [ShorturlAPI](https://github.com/liyiorg/weixin-popular/wiki/ShorturlAPI) 长链接转短链接
 * [TicketAPI](https://github.com/liyiorg/weixin-popular/wiki/TicketAPI) JSAPI ticket
 * [ComponentAPI](https://github.com/liyiorg/weixin-popular/wiki/ComponentAPI) 第三方平台开发
@@ -39,17 +39,14 @@ weixin-popular 包括微信公众平台、公众号第三方平台基础API与�
 * [CardAPI](https://github.com/liyiorg/weixin-popular/wiki/CardAPI) 微信卡券 @Moyq5 (贡献)
 * [ShakearoundAPI](https://github.com/liyiorg/weixin-popular/wiki/ShakearoundAPI) 微信摇一摇周边 @Moyq5 (贡献)
 * [DatacubeAPI](https://github.com/liyiorg/weixin-popular/wiki/DatacubeAPI) 数据统计 @Moyq5 (贡献)
+* [CustomserviceAPI](https://github.com/liyiorg/weixin-popular/wiki/CustomserviceAPI) 客服功能  @ConciseA (贡献)
 
 ### 待开发API
 * [BizwifiAPI](https://github.com/liyiorg/weixin-popular/wiki/BizwifiAPI) 微信连Wi-Fi
-* [CustomserviceAPI](https://github.com/liyiorg/weixin-popular/wiki/CustomserviceAPI) 多客服功能
 * [MerchantAPI](https://github.com/liyiorg/weixin-popular/wiki/MerchantAPI) 微信小店
 * [ScanAPI](https://github.com/liyiorg/weixin-popular/wiki/ScanAPI) 微信扫一扫
 * [SemanticAPI](https://github.com/liyiorg/weixin-popular/wiki/SemanticAPI) 微信智能
 * [DeviceAPI](https://github.com/liyiorg/weixin-popular/wiki/DeviceAPI) 设备功能
-
-## API 模式切换
-* [API 切换] (https://github.com/liyiorg/weixin-popular/wiki/API 模式切换)
 
 ## EMOJI 表情
 * :four_leaf_clover: [API 使用](https://github.com/liyiorg/weixin-popular/wiki/emoji_api)

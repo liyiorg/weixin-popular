@@ -2,6 +2,16 @@ WEIXIN-POPULAR CHANGELOG
 ===========================
 https://github.com/liyiorg/weixin-popular
 
+Changes in version 2.8.3 (2016-11-10)
+-------------------------------------
+* #45 修复 authorizer_access_token 参数问题
+* #59 修复授权appid字段名称
+* 添加客服功能API
+* 添加微信小程序接口 SnsAPI.jscode2session ，MessageAPI.messageWxopenTemplateSend
+* 添加 ResultErrorHandler 处理错误数据返回
+* UserAPI 中的标签api 改进
+* 
+
 Changes in version 2.8.2 (2016-10-20)
 -------------------------------------
 * TicketManager 支持 jsapi,wx_card 类型。

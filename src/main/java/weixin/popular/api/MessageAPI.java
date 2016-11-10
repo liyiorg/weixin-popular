@@ -23,6 +23,7 @@ import weixin.popular.bean.message.message.Message;
 import weixin.popular.bean.message.preview.Preview;
 import weixin.popular.bean.message.templatemessage.TemplateMessage;
 import weixin.popular.bean.message.templatemessage.TemplateMessageResult;
+import weixin.popular.bean.message.templatemessage.WxopenTemplateMessage;
 import weixin.popular.client.LocalHttpClient;
 import weixin.popular.util.JsonUtil;
 
@@ -241,6 +242,24 @@ public class MessageAPI extends BaseAPI{
 				.setEntity(new StringEntity(messageJson,Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,TemplateMessageResult.class);
+	}
+	
+	/**
+	 * 模板消息发送（微信小程序）
+	 * @since 2.8.3
+	 * @param access_token access_token
+	 * @param templateMessage templateMessage
+	 * @return result
+	 */
+	public static BaseResult messageWxopenTemplateSend(String access_token,WxopenTemplateMessage templateMessage){
+		String messageJson = JsonUtil.toJSONString(templateMessage);
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+				.setHeader(jsonHeader)
+				.setUri(BASE_URI+"/cgi-bin/message/wxopen/template/send")
+				.addParameter(getATPN(), access_token)
+				.setEntity(new StringEntity(messageJson,Charset.forName("utf-8")))
+				.build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest,BaseResult.class);
 	}
 
 	/**

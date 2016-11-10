@@ -111,7 +111,7 @@ public class TokenManager{
 	public static void destroyed(String appid){
 		if(futureMap.containsKey(appid)){
 			futureMap.get(appid).cancel(true);
-			logger.info("destroyed appid:{}");
+			logger.info("destroyed appid:{}",appid);
 		}
 	}
 

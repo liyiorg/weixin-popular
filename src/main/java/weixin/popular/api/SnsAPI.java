@@ -7,6 +7,7 @@ import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.client.methods.RequestBuilder;
 
 import weixin.popular.bean.BaseResult;
+import weixin.popular.bean.sns.Jscode2sessionResult;
 import weixin.popular.bean.sns.SnsToken;
 import weixin.popular.bean.user.User;
 import weixin.popular.client.LocalHttpClient;
@@ -219,5 +220,23 @@ public class SnsAPI extends BaseAPI{
 		return null;
 	}
 	
+	/**
+	 *  code 换取 session_key（微信小程序）
+	 * @since 2.8.3
+	 * @param appid appid
+	 * @param secret secret
+	 * @param js_code js_code
+	 * @return result
+	 */
+	public static Jscode2sessionResult jscode2session(String appid,String secret,String js_code){
+		HttpUriRequest httpUriRequest = RequestBuilder.get()
+			.setUri(BASE_URI + "/sns/jscode2session")
+			.addParameter("appid",appid)
+			.addParameter("secret",secret)
+			.addParameter("js_code",js_code)
+			.addParameter("grant_type","authorization_code")
+			.build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest,Jscode2sessionResult.class);
+	}
 
 }

@@ -4,8 +4,7 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import weixin.popular.support.ExpireKey;
 
-
-public class JedisExpireKey implements ExpireKey{
+public class JedisExpireKey implements ExpireKey {
 
 	private JedisPool pool;
 
@@ -13,9 +12,10 @@ public class JedisExpireKey implements ExpireKey{
 
 	private String perfix = "WP_ExpireKey_";
 
-	public JedisExpireKey(){}
+	public JedisExpireKey() {
+	}
 
-	public JedisExpireKey(JedisPool pool){
+	public JedisExpireKey(JedisPool pool) {
 		this.pool = pool;
 	}
 
@@ -29,44 +29,38 @@ public class JedisExpireKey implements ExpireKey{
 
 	@Override
 	public boolean add(String key, int expire) {
-		/*
-		try(Jedis jedis = pool.getResource()){
-			jedis.set(perfix+key, DEFAULT_VALUE);
-			jedis.expire(perfix+key, expire);
+		Jedis jedis = null;
+		try {
+			jedis = pool.getResource();
+			jedis.setex(perfix + key, expire, DEFAULT_VALUE);
 			return true;
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-			return false;
-		}
-		*/
-		Jedis jedis = pool.getResource();
-		if (null != jedis) {
-			jedis.set(perfix+key, DEFAULT_VALUE);
-			jedis.expire(perfix+key, expire);
-			return true;
+		} finally {
+			if (jedis != null) {
+				jedis.close();
+			}
 		}
 		return false;
-		
 	}
 
 	@Override
 	public boolean add(String key) {
-		return add(key,DEFAULT_EXPIRE);
+		return add(key, DEFAULT_EXPIRE);
 	}
 
 	@Override
 	public boolean exists(String key) {
-		/*
-		try(Jedis jedis = pool.getResource()){
-			return jedis.exists(perfix+key);
-		}catch (Exception e) {
+		Jedis jedis = null;
+		try {
+			jedis = pool.getResource();
+			return jedis.exists(perfix + key);
+		} catch (Exception e) {
 			e.printStackTrace();
-			return false;
-		}
-		*/
-		Jedis jedis = pool.getResource();
-		if (null != jedis) {
-			return jedis.exists(perfix+key);
+		} finally {
+			if (jedis != null) {
+				jedis.close();
+			}
 		}
 		return false;
 	}

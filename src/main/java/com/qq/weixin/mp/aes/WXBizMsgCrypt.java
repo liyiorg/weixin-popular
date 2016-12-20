@@ -149,7 +149,7 @@ public class WXBizMsgCrypt {
 	 * @return 解密得到的明文
 	 * @throws AesException aes解密失败
 	 */
-	String decrypt(String text) throws AesException {
+	public String decrypt(String text) throws AesException {
 		byte[] original;
 		try {
 			// 设置解密模式为AES的CBC模式

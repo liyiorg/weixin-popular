@@ -8,11 +8,13 @@ import java.util.UUID;
 import com.qq.weixin.mp.aes.AesException;
 import com.qq.weixin.mp.aes.WXBizMsgCrypt;
 
+import weixin.popular.bean.message.message.Message;
+
 public abstract class XMLMessage {
 
-	private String toUserName;
-	private String fromUserName;
-	private String msgType;
+	protected String toUserName;
+	protected String fromUserName;
+	protected String msgType;
 
 	protected XMLMessage(String toUserName, String fromUserName, String msgType) {
 		super();
@@ -26,6 +28,12 @@ public abstract class XMLMessage {
 	 * @return XML
 	 */
 	public abstract String subXML();
+	
+	/**
+	 * 转换为  Message 对象
+	 * @return Message
+	 */
+	public abstract Message convert();
 
 	public String toXML(){
 		StringBuilder sb = new StringBuilder();
@@ -74,4 +82,18 @@ public abstract class XMLMessage {
 			return outputStreamWrite(outputStream);
 		}
 	}
+
+	public String getToUserName() {
+		return toUserName;
+	}
+
+	public String getFromUserName() {
+		return fromUserName;
+	}
+
+	public String getMsgType() {
+		return msgType;
+	}
+	
+	
 }

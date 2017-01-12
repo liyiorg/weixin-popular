@@ -19,7 +19,7 @@ public class Article {
 
 	private String content;//图文消息的具体内容，支持HTML标签，必须少于2万字符，小于1M，且此处会去除JS
 	
-	private String url;	//图文页的URL
+	private String url;	//图文页的URL(高级群发不可用外链)
 	
 	private String content_source_url; 	//图文消息的原文地址，即点击“阅读原文”后的URL
 

@@ -32,6 +32,8 @@ public class QueryCouponStock {
 	private String version;
 
 	private String type;
+	
+	private String sign_type;
 
 	public String getCoupon_stock_id() {
 		return coupon_stock_id;
@@ -113,4 +115,11 @@ public class QueryCouponStock {
 		this.type = type;
 	}
 
+	public String getSign_type() {
+		return sign_type;
+	}
+
+	public void setSign_type(String sign_type) {
+		this.sign_type = sign_type;
+	}
 }

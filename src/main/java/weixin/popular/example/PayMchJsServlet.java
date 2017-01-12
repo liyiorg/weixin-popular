@@ -46,13 +46,16 @@ public class PayMchJsServlet extends HttpServlet{
 		unifiedorder.setTrade_type("JSAPI");//JSAPI，NATIVE，APP，WAP
 
 		UnifiedorderResult unifiedorderResult = PayMchAPI.payUnifiedorder(unifiedorder,key);
-
-		String json = PayUtil.generateMchPayJsRequestJson(unifiedorderResult.getPrepay_id(), appid, key);
-
-		//将json 传到jsp 页面
-		request.setAttribute("json", json);
-		//示例jsp
-		request.getRequestDispatcher("pay_example.jsp").forward(request,response);
+		
+		//@since 2.8.5  API返回数据签名验证
+		if(unifiedorderResult.getSign_status() !=null && unifiedorderResult.getSign_status()){
+			String json = PayUtil.generateMchPayJsRequestJson(unifiedorderResult.getPrepay_id(), appid, key);
+			
+			//将json 传到jsp 页面
+			request.setAttribute("json", json);
+			//示例jsp
+			request.getRequestDispatcher("pay_example.jsp").forward(request,response);
+		}
 	}
 
 

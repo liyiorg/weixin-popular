@@ -13,6 +13,7 @@ public class Micropay {
 	private String device_info;
 	private String nonce_str;
 	private String sign;
+	private String sign_type;
 	private String body;
 	private String detail;
 	private String attach;
@@ -23,6 +24,16 @@ public class Micropay {
 	private String goods_tag;
 	private String limit_pay;			//指定支付方式 no_credit 指定不能使用信用卡支付
 	private String auth_code;
+	
+	/**
+	 * @since 2.8.5
+	 */
+	protected String sub_appid;
+
+	/**
+	 * @since 2.8.5
+	 */
+	protected String sub_mch_id;
 
 	public String getAppid() {
 		return appid;
@@ -113,5 +124,29 @@ public class Micropay {
 	}
 	public void setLimit_pay(String limit_pay) {
 		this.limit_pay = limit_pay;
+	}
+	public String getSub_appid() {
+		return sub_appid;
+	}
+	public void setSub_appid(String sub_appid) {
+		this.sub_appid = sub_appid;
+	}
+	public String getSub_mch_id() {
+		return sub_mch_id;
+	}
+	public void setSub_mch_id(String sub_mch_id) {
+		this.sub_mch_id = sub_mch_id;
+	}
+	public String getSign_type() {
+		return sign_type;
+	}
+
+	/**
+	 * 签名类型
+	 * @since 2.8.5
+	 * @param sign_type HMAC-SHA256和MD5
+	 */
+	public void setSign_type(String sign_type) {
+		this.sign_type = sign_type;
 	}
 }

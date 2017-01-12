@@ -3,6 +3,9 @@ package weixin.popular.bean.message.massmessage;
 import java.util.HashMap;
 import java.util.Map;
 
+import weixin.popular.bean.message.preview.Preview;
+import weixin.popular.bean.message.preview.WxcardPreview;
+
 public class MassWxcardMessage extends MassMessage{
 
 	private Map<String, String> wxcard;
@@ -22,4 +25,13 @@ public class MassWxcardMessage extends MassMessage{
 		this.wxcard = wxcard;
 	}
 
+	@Override
+	public Preview convert() {
+		Preview preview = new WxcardPreview(wxcard.get("card_id"),null);
+		if(this.getTouser()!=null && this.getTouser().size()>0){
+			preview.setTouser(this.getTouser().iterator().next());
+		}
+		return preview;
+	}
+	
 }

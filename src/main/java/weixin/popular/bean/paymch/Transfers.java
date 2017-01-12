@@ -12,8 +12,6 @@ public class Transfers {
 
 	private String mchid;
 
-	private String sub_mch_id;
-
 	private String device_info;
 
 	private String nonce_str;
@@ -33,6 +31,8 @@ public class Transfers {
 	private String desc;
 
 	private String spbill_create_ip;
+	
+	private String sign_type;
 
 	public String getMch_appid() {
 		return mch_appid;
@@ -48,14 +48,6 @@ public class Transfers {
 
 	public void setMchid(String mchid) {
 		this.mchid = mchid;
-	}
-
-	public String getSub_mch_id() {
-		return sub_mch_id;
-	}
-
-	public void setSub_mch_id(String sub_mch_id) {
-		this.sub_mch_id = sub_mch_id;
 	}
 
 	public String getDevice_info() {
@@ -138,6 +130,12 @@ public class Transfers {
 		this.spbill_create_ip = spbill_create_ip;
 	}
 
+	public String getSign_type() {
+		return sign_type;
+	}
 
+	public void setSign_type(String sign_type) {
+		this.sign_type = sign_type;
+	}
 
 }

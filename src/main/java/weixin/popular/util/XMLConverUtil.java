@@ -107,10 +107,12 @@ public class XMLConverUtil{
 				JAXBContext jaxbContext = JAXBContext.newInstance(object.getClass());
 				Marshaller marshaller = jaxbContext.createMarshaller();
 				marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-	            marshaller.setProperty(CharacterEscapeHandler.class.getName(), new CharacterEscapeHandler() {
-	                public void escape(char[] ac, int i, int j, boolean flag,Writer writer) throws IOException {
-	                writer.write( ac, i, j ); }
-	            });
+				//设置CDATA输出字符
+				marshaller.setProperty(CharacterEscapeHandler.class.getName(), new CharacterEscapeHandler() {
+					public void escape(char[] ac, int i, int j, boolean flag, Writer writer) throws IOException {
+						writer.write(ac, i, j);
+					}
+				});
 				mMap.put(object.getClass(), marshaller);
 			}
 			StringWriter stringWriter = new StringWriter();

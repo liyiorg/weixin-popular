@@ -1,9 +1,15 @@
 package weixin.popular.bean.paymch;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
+import weixin.popular.bean.DynamicField;
 
 /**
  * 退款查询
@@ -14,9 +20,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "xml")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class RefundqueryResult extends MchBase{
+public class RefundqueryResult extends MchBase implements DynamicField{
 
-	@XmlElement
 	private String device_info;
 
 	private String transaction_id;
@@ -24,19 +29,20 @@ public class RefundqueryResult extends MchBase{
 	private String out_trade_no;
 
 	private Integer total_fee;
-
+	
+	private Integer settlement_total_fee;
+	
 	private String fee_type;
 
 	private Integer cash_fee;
 
-	private String cash_fee_type;
-
-	private Integer refund_fee;
-
-	private Integer coupon_refund_fee;
-
 	private Integer refund_count;
+	
+	private String refund_account;
 
+	@XmlTransient
+	private List<RefundqueryResultItem> refundqueryResultItems;
+	
 
 	public String getTransaction_id() {
 		return transaction_id;
@@ -78,30 +84,6 @@ public class RefundqueryResult extends MchBase{
 		this.cash_fee = cash_fee;
 	}
 
-	public String getCash_fee_type() {
-		return cash_fee_type;
-	}
-
-	public void setCash_fee_type(String cash_fee_type) {
-		this.cash_fee_type = cash_fee_type;
-	}
-
-	public Integer getRefund_fee() {
-		return refund_fee;
-	}
-
-	public void setRefund_fee(Integer refund_fee) {
-		this.refund_fee = refund_fee;
-	}
-
-	public Integer getCoupon_refund_fee() {
-		return coupon_refund_fee;
-	}
-
-	public void setCoupon_refund_fee(Integer coupon_refund_fee) {
-		this.coupon_refund_fee = coupon_refund_fee;
-	}
-
 	public Integer getRefund_count() {
 		return refund_count;
 	}
@@ -118,4 +100,68 @@ public class RefundqueryResult extends MchBase{
 		this.device_info = device_info;
 	}
 
+	public Integer getSettlement_total_fee() {
+		return settlement_total_fee;
+	}
+
+	public void setSettlement_total_fee(Integer settlement_total_fee) {
+		this.settlement_total_fee = settlement_total_fee;
+	}
+
+	public String getRefund_account() {
+		return refund_account;
+	}
+
+	public void setRefund_account(String refund_account) {
+		this.refund_account = refund_account;
+	}
+	
+	public void setRefundqueryResultItems(List<RefundqueryResultItem> refundqueryResultItems) {
+		this.refundqueryResultItems = refundqueryResultItems;
+	}
+
+	public List<RefundqueryResultItem> getRefundqueryResultItems() {
+		return refundqueryResultItems;
+	}
+	
+	@Override
+	public void buildDynamicField(Map<String, String> dataMap) {
+		if(dataMap != null){
+			String refund_countStr = dataMap.get("refund_count");
+			if(refund_countStr != null){
+				List<RefundqueryResultItem> list = new ArrayList<RefundqueryResultItem>();
+				for (int i = 0; i < Integer.parseInt(refund_countStr); i++) {
+					RefundqueryResultItem item = new RefundqueryResultItem();
+					item.setOut_refund_no(dataMap.get("out_refund_no_"+i));
+					item.setRefund_id(dataMap.get("refund_id_"+i));
+					item.setRefund_channel(dataMap.get("refund_channel_"+i));
+					item.setRefund_fee(dataMap.get("refund_fee_"+i)==null?null:Integer.parseInt(dataMap.get("refund_fee_"+i)));
+					item.setSettlement_refund_fee(dataMap.get("settlement_refund_fee_"+i)==null?null:Integer.parseInt(dataMap.get("settlement_refund_fee_"+i)));
+					item.setCoupon_type(dataMap.get("coupon_type_"+i));
+					item.setCoupon_refund_fee(dataMap.get("coupon_refund_fee_"+i)==null?null:Integer.parseInt(dataMap.get("coupon_refund_fee_"+i)));
+					item.setCoupon_refund_count(dataMap.get("coupon_refund_count_"+i)==null?null:Integer.parseInt(dataMap.get("coupon_refund_count_"+i)));
+					item.setCoupon_refund(dataMap.get("coupon_refund_"+i));
+					item.setRefund_status(dataMap.get("refund_status_"+i));
+					item.setRefund_recv_accout(dataMap.get("refund_recv_accout_"+i));
+					item.setN(i);
+					if(item.getCoupon_refund_count()!= null){
+						List<Coupon> couponList = new ArrayList<Coupon>();
+						for(int j=0;j<item.getCoupon_refund_count();j++){
+							Coupon coupon = new Coupon(
+									null,
+									dataMap.get("coupon_refund_id_"+i+"_"+j),
+									dataMap.get("coupon_refund_fee_"+i+"_"+j) == null ? null:Integer.parseInt(dataMap.get("coupon_refund_fee_"+i+"_"+j)), 
+									j);
+							couponList.add(coupon);
+						}
+						item.setCoupons(couponList);
+					}
+					list.add(item);
+				}
+				this.refundqueryResultItems = list;
+			}
+		}
+	}
+	
+	
 }

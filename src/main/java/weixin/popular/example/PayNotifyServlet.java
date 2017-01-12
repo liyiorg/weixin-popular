@@ -24,6 +24,7 @@ public class PayNotifyServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	private String pay_sign_key;	//微信支付申请人邮箱获取
 
+	@SuppressWarnings("unused")
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

@@ -11,7 +11,9 @@ public class WxcardPreview extends Preview{
 		super();
 		this.setMsgtype("wxcard");
 		wxcard.put("card_id", card_id);
-		wxcard.put("card_ext", card_ext);
+		if(card_ext != null){
+			wxcard.put("card_ext", card_ext);
+		}
 	}
 
 	public Map<String, Object> getWxcard() {

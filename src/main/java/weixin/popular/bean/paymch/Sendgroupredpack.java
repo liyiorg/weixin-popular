@@ -17,6 +17,8 @@ public class Sendgroupredpack {
 	private String mch_id;
 
 	private String sub_mch_id;
+	
+	private String msgappid;		//触达用户appid 服务商模式下触达用户时的appid(可填服务商自己的appid或子商户的appid)，服务商模式下必填，服务商模式下填入的子商户appid必须在微信支付商户平台中先录入，否则会校验不过。
 
 	private String wxappid;
 
@@ -30,19 +32,34 @@ public class Sendgroupredpack {
 
 	private String amt_type;
 
-	private String amt_list;
-
 	private String wishing;
 
 	private String act_name;
 
 	private String remark;
 
-	private String logo_imgurl;
+	private String scene_id;		/*场景id
+									发放红包使用场景，红包金额大于200时必传
+									PRODUCT_1:商品促销
+									PRODUCT_2:抽奖
+									PRODUCT_3:虚拟物品兑奖 
+									PRODUCT_4:企业内部福利
+									PRODUCT_5:渠道分润
+									PRODUCT_6:保险回馈
+									PRODUCT_7:彩票派奖
+									PRODUCT_8:税务刮奖*/
+	private String risk_info;	 	/*活动信息 
+									posttime:用户操作的时间戳
+									mobile:业务系统账号的手机号，国家代码-手机号。不需要+号
+									deviceid :mac 地址或者设备唯一标识 
+									clientversion :用户操作的客户端版本
+									把值为非空的信息用key=value进行拼接，再进行urlencode
+									urlencode(posttime=xx& mobile =xx&deviceid=xx)*/
 
-	private String watermark_imgurl;
-
-	private String banner_imgurl;
+	private String consume_mch_id;	/*资金授权商户号
+									资金授权商户号服务商替特约商户发放时使用*/
+	
+	private String sign_type;
 
 	public String getNonce_str() {
 		return nonce_str;
@@ -132,14 +149,6 @@ public class Sendgroupredpack {
 		this.amt_type = amt_type;
 	}
 
-	public String getAmt_list() {
-		return amt_list;
-	}
-
-	public void setAmt_list(String amt_list) {
-		this.amt_list = amt_list;
-	}
-
 	public String getWishing() {
 		return wishing;
 	}
@@ -164,28 +173,44 @@ public class Sendgroupredpack {
 		this.remark = remark;
 	}
 
-	public String getLogo_imgurl() {
-		return logo_imgurl;
+	public String getMsgappid() {
+		return msgappid;
 	}
 
-	public void setLogo_imgurl(String logo_imgurl) {
-		this.logo_imgurl = logo_imgurl;
+	public void setMsgappid(String msgappid) {
+		this.msgappid = msgappid;
 	}
 
-	public String getWatermark_imgurl() {
-		return watermark_imgurl;
+	public String getScene_id() {
+		return scene_id;
 	}
 
-	public void setWatermark_imgurl(String watermark_imgurl) {
-		this.watermark_imgurl = watermark_imgurl;
+	public void setScene_id(String scene_id) {
+		this.scene_id = scene_id;
 	}
 
-	public String getBanner_imgurl() {
-		return banner_imgurl;
+	public String getRisk_info() {
+		return risk_info;
 	}
 
-	public void setBanner_imgurl(String banner_imgurl) {
-		this.banner_imgurl = banner_imgurl;
+	public void setRisk_info(String risk_info) {
+		this.risk_info = risk_info;
+	}
+
+	public String getConsume_mch_id() {
+		return consume_mch_id;
+	}
+
+	public void setConsume_mch_id(String consume_mch_id) {
+		this.consume_mch_id = consume_mch_id;
+	}
+
+	public String getSign_type() {
+		return sign_type;
+	}
+
+	public void setSign_type(String sign_type) {
+		this.sign_type = sign_type;
 	}
 
 }

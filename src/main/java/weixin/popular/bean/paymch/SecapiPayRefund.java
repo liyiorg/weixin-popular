@@ -30,6 +30,9 @@ public class SecapiPayRefund {
 
 	@XmlElement
 	private String sign;
+	
+	@XmlElement
+	private String sign_type;
 
 	@XmlElement
 	private String transaction_id;
@@ -51,6 +54,26 @@ public class SecapiPayRefund {
 
 	@XmlElement
 	private String op_user_id;
+	
+	/**
+	 * @since 2.8.5
+	 */
+	@XmlElement
+	private String sub_appid;
+
+	/**
+	 * @since 2.8.5
+	 */
+	@XmlElement
+	private String sub_mch_id;
+	
+	/**
+	 * @since 2.8.5
+	 */
+	@XmlElement
+	private String refund_account;		//退款资金来源
+										//REFUND_SOURCE_UNSETTLED_FUNDS ---未结算资金退款（默认使用未结算资金退款）
+										//REFUND_SOURCE_RECHARGE_FUNDS  ---可用余额退款
 
 	public String getAppid() {
 		return appid;
@@ -148,5 +171,41 @@ public class SecapiPayRefund {
 		this.refund_fee_type = refund_fee_type;
 	}
 
+	public String getSub_appid() {
+		return sub_appid;
+	}
+
+	public void setSub_appid(String sub_appid) {
+		this.sub_appid = sub_appid;
+	}
+
+	public String getSub_mch_id() {
+		return sub_mch_id;
+	}
+
+	public void setSub_mch_id(String sub_mch_id) {
+		this.sub_mch_id = sub_mch_id;
+	}
+
+	public String getRefund_account() {
+		return refund_account;
+	}
+
+	public void setRefund_account(String refund_account) {
+		this.refund_account = refund_account;
+	}
+	
+	public String getSign_type() {
+		return sign_type;
+	}
+
+	/**
+	 * 签名类型
+	 * @since 2.8.5
+	 * @param sign_type HMAC-SHA256和MD5
+	 */
+	public void setSign_type(String sign_type) {
+		this.sign_type = sign_type;
+	}
 
 }

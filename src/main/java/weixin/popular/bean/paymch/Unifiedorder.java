@@ -10,11 +10,12 @@ import weixin.popular.bean.AdaptorCDATA;
 
 /**
  * 统一支付请求参数
- * @author Yi
+ * 
+ * @author SLYH
  *
  */
 
-@XmlRootElement(name="xml")
+@XmlRootElement(name = "xml")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Unifiedorder {
 
@@ -30,9 +31,19 @@ public class Unifiedorder {
 	@XmlElement
 	private String nonce_str;
 
+	/**
+	 * @since 2.8.5
+	 */
+	@XmlElement
+	@XmlJavaTypeAdapter(value = DetailXmlAdapter.class)
+	private Detail detail;
+
 	@XmlElement
 	@XmlJavaTypeAdapter(value = AdaptorCDATA.class)
 	private String sign;
+	
+	@XmlElement
+	private String sign_type;
 
 	@XmlElement
 	@XmlJavaTypeAdapter(value = AdaptorCDATA.class)
@@ -78,6 +89,23 @@ public class Unifiedorder {
 	@XmlElement
 	private String openid;
 
+	/**
+	 * @since 2.8.5
+	 */
+	@XmlElement
+	private String sub_appid;
+
+	/**
+	 * @since 2.8.5
+	 */
+	@XmlElement
+	private String sub_mch_id;
+
+	/**
+	 * @since 2.8.5
+	 */
+	@XmlElement
+	private String sub_openid;
 
 	public String getAppid() {
 		return appid;
@@ -221,6 +249,59 @@ public class Unifiedorder {
 
 	public void setLimit_pay(String limit_pay) {
 		this.limit_pay = limit_pay;
+	}
+
+	public Detail getDetail() {
+		return detail;
+	}
+
+	public void setDetail(Detail detail) {
+		this.detail = detail;
+	}
+
+	public String getFee_type() {
+		return fee_type;
+	}
+
+	public void setFee_type(String fee_type) {
+		this.fee_type = fee_type;
+	}
+
+	public String getSub_appid() {
+		return sub_appid;
+	}
+
+	public void setSub_appid(String sub_appid) {
+		this.sub_appid = sub_appid;
+	}
+
+	public String getSub_mch_id() {
+		return sub_mch_id;
+	}
+
+	public void setSub_mch_id(String sub_mch_id) {
+		this.sub_mch_id = sub_mch_id;
+	}
+
+	public String getSub_openid() {
+		return sub_openid;
+	}
+
+	public void setSub_openid(String sub_openid) {
+		this.sub_openid = sub_openid;
+	}
+
+	public String getSign_type() {
+		return sign_type;
+	}
+
+	/**
+	 * 签名类型
+	 * @since 2.8.5
+	 * @param sign_type HMAC-SHA256和MD5
+	 */
+	public void setSign_type(String sign_type) {
+		this.sign_type = sign_type;
 	}
 
 }

@@ -17,6 +17,10 @@ import weixin.popular.bean.paymch.Authcodetoopenid;
 import weixin.popular.bean.paymch.AuthcodetoopenidResult;
 import weixin.popular.bean.paymch.Closeorder;
 import weixin.popular.bean.paymch.DownloadbillResult;
+import weixin.popular.bean.paymch.Gethbinfo;
+import weixin.popular.bean.paymch.GethbinfoResult;
+import weixin.popular.bean.paymch.Gettransferinfo;
+import weixin.popular.bean.paymch.GettransferinfoResult;
 import weixin.popular.bean.paymch.MchBaseResult;
 import weixin.popular.bean.paymch.MchDownloadbill;
 import weixin.popular.bean.paymch.MchOrderInfoResult;
@@ -84,7 +88,7 @@ public class PayMchAPI extends BaseAPI{
 										.setUri(MCH_URI + "/pay/unifiedorder")
 										.setEntity(new StringEntity(unifiedorderXML,Charset.forName("utf-8")))
 										.build();
-		return LocalHttpClient.executeXmlResult(httpUriRequest,UnifiedorderResult.class);
+		return LocalHttpClient.executeXmlResult(httpUriRequest,UnifiedorderResult.class,unifiedorder.getSign_type(),key);
 	}
 
 	/**
@@ -103,7 +107,7 @@ public class PayMchAPI extends BaseAPI{
 				.setUri(MCH_URI + "/pay/micropay")
 				.setEntity(new StringEntity(closeorderXML,Charset.forName("utf-8")))
 				.build();
-		return LocalHttpClient.executeXmlResult(httpUriRequest,MicropayResult.class);
+		return LocalHttpClient.executeXmlResult(httpUriRequest,MicropayResult.class,micropay.getSign_type(),key);
 	}
 
 	/**
@@ -122,7 +126,7 @@ public class PayMchAPI extends BaseAPI{
 				.setUri(MCH_URI + "/pay/orderquery")
 				.setEntity(new StringEntity(closeorderXML,Charset.forName("utf-8")))
 				.build();
-		return LocalHttpClient.executeXmlResult(httpUriRequest,MchOrderInfoResult.class);
+		return LocalHttpClient.executeXmlResult(httpUriRequest,MchOrderInfoResult.class,mchOrderquery.getSign_type(),key);
 	}
 
 
@@ -143,7 +147,7 @@ public class PayMchAPI extends BaseAPI{
 				.setUri(MCH_URI + "/pay/closeorder")
 				.setEntity(new StringEntity(closeorderXML,Charset.forName("utf-8")))
 				.build();
-		return LocalHttpClient.executeXmlResult(httpUriRequest,MchBaseResult.class);
+		return LocalHttpClient.executeXmlResult(httpUriRequest,MchBaseResult.class,closeorder.getSign_type(),key);
 	}
 
 
@@ -167,16 +171,18 @@ public class PayMchAPI extends BaseAPI{
 				.setUri(MCH_URI + "/secapi/pay/refund")
 				.setEntity(new StringEntity(secapiPayRefundXML,Charset.forName("utf-8")))
 				.build();
-		return LocalHttpClient.keyStoreExecuteXmlResult(secapiPayRefund.getMch_id(),httpUriRequest,SecapiPayRefundResult.class);
+		return LocalHttpClient.keyStoreExecuteXmlResult(secapiPayRefund.getMch_id(),httpUriRequest,SecapiPayRefundResult.class,secapiPayRefund.getSign_type(),key);
 	}
 
 	/**
 	 * 撤销订单
-	 * 7天以内的交易单可调用撤销，其他正常支付的单如需实现相同功能请调用申请退款API。提交支付交易后调用【查询订单API】，没有明确的支付结果再调用【撤销订单API】。
+	 * 7天以内的交易单可调用撤销，其他正常支付的单如需实现相同功能请调用申请退款API。提交支付交易后调用【查询订单API】，没有明确的支付结果再调用【撤销订单API】。<br>
+	 * 官方技术文档已撤销
 	 * @param mchReverse mchReverse
 	 * @param key key
 	 * @return MchReverseResult
 	 */
+	@Deprecated
 	public static MchReverseResult secapiPayReverse(MchReverse mchReverse,String key){
 		Map<String,String> map = MapUtil.objectToMap( mchReverse);
 		String sign = SignatureUtil.generateSign(map,key);
@@ -187,7 +193,7 @@ public class PayMchAPI extends BaseAPI{
 				.setUri(MCH_URI + "/secapi/pay/reverse")
 				.setEntity(new StringEntity(secapiPayRefundXML,Charset.forName("utf-8")))
 				.build();
-		return LocalHttpClient.keyStoreExecuteXmlResult(mchReverse.getMch_id(),httpUriRequest,MchReverseResult.class);
+		return LocalHttpClient.keyStoreExecuteXmlResult(mchReverse.getMch_id(),httpUriRequest,MchReverseResult.class,mchReverse.getSign_type(),key);
 	}
 
 	/**
@@ -200,7 +206,7 @@ public class PayMchAPI extends BaseAPI{
 	 * @return RefundqueryResult
 	 */
 	public static RefundqueryResult payRefundquery(Refundquery refundquery,String key){
-		Map<String,String> map = MapUtil.objectToMap(refundquery);
+		Map<String,String> map = MapUtil.objectToMap(refundquery,refundquery.getSign_type());
 		String sign = SignatureUtil.generateSign(map,key);
 		refundquery.setSign(sign);
 		String refundqueryXML = XMLConverUtil.convertToXML(refundquery);
@@ -209,7 +215,7 @@ public class PayMchAPI extends BaseAPI{
 				.setUri(MCH_URI + "/pay/refundquery")
 				.setEntity(new StringEntity(refundqueryXML,Charset.forName("utf-8")))
 				.build();
-		return LocalHttpClient.executeXmlResult(httpUriRequest,RefundqueryResult.class);
+		return LocalHttpClient.executeXmlResult(httpUriRequest,RefundqueryResult.class,refundquery.getSign_type(),key);
 	}
 
 	/**
@@ -267,7 +273,7 @@ public class PayMchAPI extends BaseAPI{
 				.setUri(MCH_URI + "/tools/shorturl")
 				.setEntity(new StringEntity(shorturlXML,Charset.forName("utf-8")))
 				.build();
-		return LocalHttpClient.executeXmlResult(httpUriRequest,MchShorturlResult.class);
+		return LocalHttpClient.executeXmlResult(httpUriRequest,MchShorturlResult.class,shorturl.getSign_type(),key);
 	}
 	
 	/**
@@ -286,10 +292,11 @@ public class PayMchAPI extends BaseAPI{
 				.setUri(MCH_URI + "/tools/authcodetoopenid")
 				.setEntity(new StringEntity(shorturlXML,Charset.forName("utf-8")))
 				.build();
-		return LocalHttpClient.executeXmlResult(httpUriRequest,AuthcodetoopenidResult.class);
+		return LocalHttpClient.executeXmlResult(httpUriRequest,AuthcodetoopenidResult.class,authcodetoopenid.getSign_type(),key);
 	}
 
 	/**
+	 * 交易保障 <br> 
 	 * 测速上报
 	 * @param report report
 	 * @param key key
@@ -324,7 +331,7 @@ public class PayMchAPI extends BaseAPI{
 				.setUri(MCH_URI + "/mmpaymkttransfers/send_coupon")
 				.setEntity(new StringEntity(secapiPayRefundXML,Charset.forName("utf-8")))
 				.build();
-		return LocalHttpClient.keyStoreExecuteXmlResult(sendCoupon.getMch_id(),httpUriRequest,SendCouponResult.class);
+		return LocalHttpClient.keyStoreExecuteXmlResult(sendCoupon.getMch_id(),httpUriRequest,SendCouponResult.class,sendCoupon.getSign_type(),key);
 	}
 
 	/**
@@ -343,7 +350,7 @@ public class PayMchAPI extends BaseAPI{
 				.setUri(MCH_URI + "/mmpaymkttransfers/query_coupon_stock")
 				.setEntity(new StringEntity(secapiPayRefundXML,Charset.forName("utf-8")))
 				.build();
-		return LocalHttpClient.executeXmlResult(httpUriRequest,QueryCouponStockResult.class);
+		return LocalHttpClient.executeXmlResult(httpUriRequest,QueryCouponStockResult.class,queryCouponStock.getSign_type(),key);
 	}
 
 	/**
@@ -362,21 +369,26 @@ public class PayMchAPI extends BaseAPI{
 				.setUri(MCH_URI + "/promotion/query_coupon")
 				.setEntity(new StringEntity(secapiPayRefundXML,Charset.forName("utf-8")))
 				.build();
-		return LocalHttpClient.executeXmlResult(httpUriRequest,QueryCouponResult.class);
+		return LocalHttpClient.executeXmlResult(httpUriRequest,QueryCouponResult.class,queryCoupon.getSign_type(),key);
 	}
 
 	/**
-	 * 现金红包
+	 * 现金红包 <br>
 	 *
-	 * 微信红包发送规则<br>
-	 * 1. 发送频率规则
-　	 *	每分钟发送红包数量不得超过1800个；
-　	 *	北京时间0：00-8：00不触发红包赠送；（如果以上规则不满足您的需求，请发邮件至wxhongbao@tencent.com获取升级指引）<br>
-	 *	2. 红包规则
-	 *	单个红包金额介于[1.00元，200.00元]之间；<br>
-	 *	同一个红包只能发送给一个用户；（如果以上规则不满足您的需求，请发邮件至wxhongbao@tencent.com获取升级指引）
-	 * @param sendredpack sendredpack
-	 * @param key key
+	 * 1.发送频率限制------默认1800/min <br>
+	 * 2.发送个数上限------按照默认1800/min算<br>
+	 * 3.金额上限------根据传入场景id不同默认上限不同，可以在商户平台产品设置进行设置和申请，最大不大于4999元/个<br>
+	 * 4.其他的“量”上的限制还有哪些？------用户当天的领取上限次数,默认是10<br>
+	 * 5.如果量上满足不了我们的需求，如何提高各个上限？------金额上限和用户当天领取次数上限可以在商户平台进行设置<br>
+	 * 注 <br>
+	 * 1：如果你是服务商，希望代你的特约商户发红包，你可以申请获得你特约商户的“现金红包产品授权”。操作路径如下：【登录商户平台-产品中心-
+	 * 特约商户授权产品】（即将上线） <br>
+	 * 2：红包金额大于200时，请求参数scene_id必传
+	 * 
+	 * @param sendredpack
+	 *            sendredpack
+	 * @param key
+	 *            key
 	 * @return SendredpackResult
 	 */
 	public static SendredpackResult mmpaymkttransfersSendredpack(Sendredpack sendredpack,String key){
@@ -389,11 +401,12 @@ public class PayMchAPI extends BaseAPI{
 				.setUri(MCH_URI + "/mmpaymkttransfers/sendredpack")
 				.setEntity(new StringEntity(secapiPayRefundXML,Charset.forName("utf-8")))
 				.build();
-		return LocalHttpClient.keyStoreExecuteXmlResult(sendredpack.getMch_id(),httpUriRequest,SendredpackResult.class);
+		return LocalHttpClient.keyStoreExecuteXmlResult(sendredpack.getMch_id(),httpUriRequest,SendredpackResult.class,sendredpack.getSign_type(),key);
 	}
 
 	/**
-	 * 裂变红包
+	 * 裂变红包 <br>
+	 * 一次可以发放一组红包。首先领取的用户为种子用户，种子用户领取一组红包当中的一个，并可以通过社交分享将剩下的红包给其他用户。裂变红包充分利用了人际传播的优势。
 	 * @param sendgroupredpack sendgroupredpack
 	 * @param key key
 	 * @return SendredpackResult
@@ -408,14 +421,45 @@ public class PayMchAPI extends BaseAPI{
 				.setUri(MCH_URI + "/mmpaymkttransfers/sendgroupredpack")
 				.setEntity(new StringEntity(secapiPayRefundXML,Charset.forName("utf-8")))
 				.build();
-		return LocalHttpClient.keyStoreExecuteXmlResult(sendgroupredpack.getMch_id(),httpUriRequest,SendredpackResult.class);
+		return LocalHttpClient.keyStoreExecuteXmlResult(sendgroupredpack.getMch_id(),httpUriRequest,SendredpackResult.class,sendgroupredpack.getSign_type(),key);
+	}
+	
+	/**
+	 * 查询红包记录 <br>
+	 * 用于商户对已发放的红包进行查询红包的具体信息，可支持普通红包和裂变包。
+	 * @since 2.8.5
+	 * @param gethbinfo gethbinfo
+	 * @param key key
+	 * @return GethbinfoResult
+	 */
+	public static GethbinfoResult mmpaymkttransfersGethbinfo(Gethbinfo gethbinfo,String key){
+		Map<String,String> map = MapUtil.objectToMap( gethbinfo);
+		String sign = SignatureUtil.generateSign(map,key);
+		gethbinfo.setSign(sign);
+		String secapiPayRefundXML = XMLConverUtil.convertToXML( gethbinfo);
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+				.setHeader(xmlHeader)
+				.setUri(MCH_URI + "/mmpaymkttransfers/gethbinfo")
+				.setEntity(new StringEntity(secapiPayRefundXML,Charset.forName("utf-8")))
+				.build();
+		return LocalHttpClient.keyStoreExecuteXmlResult(gethbinfo.getMch_id(),httpUriRequest,GethbinfoResult.class,gethbinfo.getSign_type(),key);
 	}
 
 
 	/**
-	 * 企业付款
-	 * @param transfers transfers
-	 * @param key key
+	 * 企业付款 <br>
+	 * 接口调用规则：<br>
+	 * 给同一个实名用户付款，单笔单日限额2W/2W<br>
+	 * 给同一个非实名用户付款，单笔单日限额2000/2000<br>
+	 * 一个商户同一日付款总额限额100W<br>
+	 * 单笔最小金额默认为1元<br>
+	 * 每个用户每天最多可付款10次，可以在商户平台--API安全进行设置<br>
+	 * 给同一个用户付款时间间隔不得低于15秒<br>
+	 * 
+	 * @param transfers
+	 *            transfers
+	 * @param key
+	 *            key
 	 * @return TransfersResult
 	 */
 	public static TransfersResult mmpaymkttransfersPromotionTransfers(Transfers transfers,String key){
@@ -428,7 +472,27 @@ public class PayMchAPI extends BaseAPI{
 				.setUri(MCH_URI + "/mmpaymkttransfers/promotion/transfers")
 				.setEntity(new StringEntity(secapiPayRefundXML,Charset.forName("utf-8")))
 				.build();
-		return LocalHttpClient.keyStoreExecuteXmlResult(transfers.getMchid(),httpUriRequest,TransfersResult.class);
+		return LocalHttpClient.keyStoreExecuteXmlResult(transfers.getMchid(),httpUriRequest,TransfersResult.class,transfers.getSign_type(),key);
+	}
+	
+	/**
+	 * 查询企业付款
+	 * @since 2.8.5
+	 * @param gettransferinfo
+	 * @param key
+	 * @return GettransferinfoResult
+	 */
+	public static GettransferinfoResult mmpaymkttransfersGettransferinfo(Gettransferinfo gettransferinfo,String key){
+		Map<String,String> map = MapUtil.objectToMap( gettransferinfo);
+		String sign = SignatureUtil.generateSign(map,key);
+		gettransferinfo.setSign(sign);
+		String secapiPayRefundXML = XMLConverUtil.convertToXML( gettransferinfo);
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+				.setHeader(xmlHeader)
+				.setUri(MCH_URI + "/mmpaymkttransfers/gettransferinfo")
+				.setEntity(new StringEntity(secapiPayRefundXML,Charset.forName("utf-8")))
+				.build();
+		return LocalHttpClient.keyStoreExecuteXmlResult(gettransferinfo.getMch_id(),httpUriRequest,GettransferinfoResult.class,gettransferinfo.getSign_type(),key);
 	}
 
 	/**
@@ -447,7 +511,7 @@ public class PayMchAPI extends BaseAPI{
 				.setUri(MCH_URI + "/pay/pappayapply")
 				.setEntity(new StringEntity(secapiPayRefundXML,Charset.forName("utf-8")))
 				.build();
-		return LocalHttpClient.executeXmlResult(httpUriRequest,PappayapplyResult.class);
+		return LocalHttpClient.executeXmlResult(httpUriRequest,PappayapplyResult.class,pappayapply.getSign_type(),key);
 	}
 
 	/**
@@ -466,7 +530,7 @@ public class PayMchAPI extends BaseAPI{
 				.setUri(MCH_URI + "/pay/paporderquery")
 				.setEntity(new StringEntity(closeorderXML,Charset.forName("utf-8")))
 				.build();
-		return LocalHttpClient.executeXmlResult(httpUriRequest,MchOrderInfoResult.class);
+		return LocalHttpClient.executeXmlResult(httpUriRequest,MchOrderInfoResult.class,mchOrderquery.getSign_type(),key);
 	}
 
 	/**
@@ -485,7 +549,7 @@ public class PayMchAPI extends BaseAPI{
 				.setUri(MCH_URI + "/papay/querycontract")
 				.setEntity(new StringEntity(closeorderXML,Charset.forName("utf-8")))
 				.build();
-		return LocalHttpClient.executeXmlResult(httpUriRequest,PapayQuerycontractResult.class);
+		return LocalHttpClient.executeXmlResult(httpUriRequest,PapayQuerycontractResult.class,papayQuerycontract.getSign_type(),key);
 	}
 
 	/**
@@ -504,7 +568,7 @@ public class PayMchAPI extends BaseAPI{
 				.setUri(MCH_URI + "/papay/deletecontract")
 				.setEntity(new StringEntity(closeorderXML,Charset.forName("utf-8")))
 				.build();
-		return LocalHttpClient.executeXmlResult(httpUriRequest,PapayDeletecontractResult.class);
+		return LocalHttpClient.executeXmlResult(httpUriRequest,PapayDeletecontractResult.class,papayDeletecontract.getSign_type(),key);
 	}
 
 	/**
@@ -545,5 +609,5 @@ public class PayMchAPI extends BaseAPI{
 			}
 		});
 	}
-
+	
 }

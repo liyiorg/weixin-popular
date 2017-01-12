@@ -2,6 +2,8 @@ package weixin.popular.bean.message.massmessage;
 
 import java.util.Set;
 
+import weixin.popular.bean.message.preview.Preview;
+
 /**
  * 高级群发接口数据
  * @author LiYi
@@ -41,5 +43,9 @@ public abstract class MassMessage {
 		this.touser = touser;
 	}
 
-
+	/**
+	 * 转换为预览对象
+	 * @return Preview 子对象
+	 */
+	public abstract Preview convert();
 }

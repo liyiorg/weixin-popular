@@ -154,6 +154,19 @@ public class LocalHttpClient {
 	public static <T> T executeXmlResult(HttpUriRequest request,Class<T> clazz){
 		return execute(request,XmlResponseHandler.createResponseHandler(clazz));
 	}
+	
+	/**
+	 * 数据返回自动XML对象解析
+	 * @param request request
+	 * @param clazz clazz
+	 * @param sign_type 数据返回验证签名类型
+	 * @param key 数据返回验证签名key
+	 * @return result
+	 * @since 2.8.5
+	 */
+	public static <T> T executeXmlResult(HttpUriRequest request,Class<T> clazz,String sign_type,String key){
+		return execute(request,XmlResponseHandler.createResponseHandler(clazz,sign_type,key));
+	}
 
 	/**
 	 * MCH keyStore 请求 数据返回自动XML对象解析
@@ -163,8 +176,21 @@ public class LocalHttpClient {
 	 * @return result
 	 */
 	public static <T> T keyStoreExecuteXmlResult(String mch_id,HttpUriRequest request,Class<T> clazz){
+		return keyStoreExecuteXmlResult(mch_id, request, clazz, null,null);
+	}
+	
+	/**
+	 * MCH keyStore 请求 数据返回自动XML对象解析
+	 * @param mch_id mch_id
+	 * @param request request
+	 * @param sign_type 数据返回验证签名类型
+	 * @param key 数据返回验证签名key
+	 * @since 2.8.5
+	 * @return result
+	 */
+	public static <T> T keyStoreExecuteXmlResult(String mch_id,HttpUriRequest request,Class<T> clazz,String sign_type,String key){
 		String uriId = loggerRequest(request);
-		ResponseHandler<T> responseHandler = XmlResponseHandler.createResponseHandler(clazz);
+		ResponseHandler<T> responseHandler = XmlResponseHandler.createResponseHandler(clazz,sign_type,key);
 		if(responseHandler instanceof LocalResponseHandler){
 			LocalResponseHandler lrh = (LocalResponseHandler) responseHandler;
 			lrh.setUriId(uriId);
@@ -181,6 +207,8 @@ public class LocalHttpClient {
 		}
 		return null;
 	}
+	
+	
 	
 	/**
 	 * 日志记录

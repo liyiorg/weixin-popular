@@ -2,6 +2,17 @@ WEIXIN-POPULAR CHANGELOG
 ===========================
 https://github.com/liyiorg/weixin-popular
 
+Changes in version 2.8.5 (2017-01-12)
+-------------------------------------
+* 支持微信支付服务商平台
+* PayMchAPI 添加红包、企业付款查询接口.
+* PayMchAPI 部分参数bean,result bean 更新
+* PayMchAPI api 调用返回数据 sign 自动验证，通过 getSign_status() 获取验证结果。
+* 微信支付支持  HMAC-SHA256 签名方式，默认MD5
+* 高级群发添加图文原创命中行为字段 send_ignore_reprint
+* 添加 MassMessag.convert()方法  转换为预览对象
+* ApiGetAuthorizerInfoResult 添加 principal_name字段
+
 Changes in version 2.8.4 (2016-12-20)
 -------------------------------------
 * message 添加客服代发字段

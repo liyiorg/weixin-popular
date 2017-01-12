@@ -36,7 +36,9 @@ public class ApiGetAuthorizerInfoResult extends BaseResult {
 
 		private Verify_type_info verify_type_info;
 
-		private String user_name;
+		private String user_name;					//授权方公众号的原始ID
+		
+		private String principal_name;				//公众号的主体名称
 
 		private Business_info business_info;
 
@@ -82,6 +84,14 @@ public class ApiGetAuthorizerInfoResult extends BaseResult {
 
 		public void setUser_name(String user_name) {
 			this.user_name = user_name;
+		}
+		
+		public String getPrincipal_name() {
+			return principal_name;
+		}
+
+		public void setPrincipal_name(String principal_name) {
+			this.principal_name = principal_name;
 		}
 
 		public Business_info getBusiness_info() {

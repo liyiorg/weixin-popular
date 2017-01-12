@@ -26,6 +26,8 @@ public class MchReverse {
 
 	@XmlElement
 	private String sign;
+	
+	private String sign_type;
 
 	public String getAppid() {
 		return appid;
@@ -76,5 +78,12 @@ public class MchReverse {
 		this.transaction_id = transaction_id;
 	}
 
+	public String getSign_type() {
+		return sign_type;
+	}
+
+	public void setSign_type(String sign_type) {
+		this.sign_type = sign_type;
+	}
 
 }

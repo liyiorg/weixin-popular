@@ -4,17 +4,27 @@ weixin-popular
 [![GitHub release](https://img.shields.io/github/release/liyiorg/weixin-popular.svg)](https://github.com/liyiorg/weixin-popular/releases)
 [![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
 
-微信公众平台Java SDK
+微信 JAVA SDK，是微信平台（公众平台、开放平台、商户平台、服务商平台）接口服务的JAVA 实现，开发
+严格按照官方技术文档，合理划分包名、定义字段及方法，能胜任任何微信相关的业务。
 
 ==============
-weixin-popular 包括微信公众平台、公众号第三方平台基础API与支付API,提供便捷的API调用接口.
+## 使用建议
+先查看官方文档，理解交互逻辑，再查看下文的 example。
+
+==============
+weixin-popular 已支持的微信平台
+
+* 公众平台（订阅号、服务号、小程序）
+* 开放平台（网页应用、移动应用、公众号第三方平台开发）
+* 商户平台 （支付）
+* 服务商平台（代支付）
 
 ## maven
 ```xml
 <dependency>
   <groupId>com.github.liyiorg</groupId>
   <artifactId>weixin-popular</artifactId>
-  <version>2.8.3</version>
+  <version>2.8.5</version>
 </dependency>
 ```
 * [升级注意事项](https://github.com/liyiorg/weixin-popular/wiki/jar_update)
@@ -84,4 +94,5 @@ weixin-popular 包括微信公众平台、公众号第三方平台基础API与�
 * [微信商户服务中心](http://mp.weixin.qq.com/cgi-bin/readtemplate?t=business/faq_tmpl&lang=zh_CN)
 * [微信支付开发教程（老版本）](https://mp.weixin.qq.com/paymch/readtemplate?t=mp/business/course2_tmpl&lang=zh_CN&token=6056275)
 * [微信支付商户平台开发者文档](http://mch.weixin.qq.com/wiki/doc/api/index.html)
+* [微信支付服务商平台开发者文档](https://pay.weixin.qq.com/wiki/doc/api/sl.html)
 * [微信开放平台（公众号第三方平台开发）](https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&t=resource/res_list&verify=1&lang=zh_CN)

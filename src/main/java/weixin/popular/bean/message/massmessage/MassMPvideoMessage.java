@@ -3,6 +3,9 @@ package weixin.popular.bean.message.massmessage;
 import java.util.HashMap;
 import java.util.Map;
 
+import weixin.popular.bean.message.preview.MpvideoPreview;
+import weixin.popular.bean.message.preview.Preview;
+
 public class MassMPvideoMessage extends MassMessage{
 
 	private Map<String, String> mpvideo;
@@ -26,5 +29,12 @@ public class MassMPvideoMessage extends MassMessage{
 		this.mpvideo = mpvideo;
 	}
 
-
+	@Override
+	public Preview convert() {
+		Preview preview = new MpvideoPreview(mpvideo.get("media_id"));
+		if(this.getTouser()!=null && this.getTouser().size()>0){
+			preview.setTouser(this.getTouser().iterator().next());
+		}
+		return preview;
+	}
 }

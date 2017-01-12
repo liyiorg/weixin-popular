@@ -46,6 +46,8 @@ public class PayMchNotifyServlet extends HttpServlet{
 		if(expireKey.exists(payNotify.getTransaction_id())){
 			return;
 		}
+		//@since 2.8.5
+		payNotify.buildDynamicField(mapData);
 		//签名验证
 		if(SignatureUtil.validateSign(mapData,key)){
 			expireKey.add(payNotify.getTransaction_id());

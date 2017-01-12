@@ -16,10 +16,8 @@ public class SendredpackResult extends MchBase{
 
 	private Integer total_amount;
 
-	private String send_time;
-
 	private String send_listid;
-
+	
 	public String getMch_billno() {
 		return mch_billno;
 	}
@@ -50,14 +48,6 @@ public class SendredpackResult extends MchBase{
 
 	public void setTotal_amount(Integer total_amount) {
 		this.total_amount = total_amount;
-	}
-
-	public String getSend_time() {
-		return send_time;
-	}
-
-	public void setSend_time(String send_time) {
-		this.send_time = send_time;
 	}
 
 	public String getSend_listid() {

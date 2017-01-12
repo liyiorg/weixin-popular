@@ -32,6 +32,9 @@ public class Refundquery {
 	private String sign;
 	
 	@XmlElement
+	private String sign_type;
+	
+	@XmlElement
 	private String transaction_id;
 	
 	@XmlElement
@@ -42,6 +45,18 @@ public class Refundquery {
 	
 	@XmlElement
 	private String refund_id;
+	
+	/**
+	 * @since 2.8.5
+	 */
+	@XmlElement
+	private String sub_appid;
+
+	/**
+	 * @since 2.8.5
+	 */
+	@XmlElement
+	private String sub_mch_id;
 
 	public String getAppid() {
 		return appid;
@@ -115,4 +130,32 @@ public class Refundquery {
 		this.refund_id = refund_id;
 	}
 
+	public String getSub_appid() {
+		return sub_appid;
+	}
+
+	public void setSub_appid(String sub_appid) {
+		this.sub_appid = sub_appid;
+	}
+
+	public String getSub_mch_id() {
+		return sub_mch_id;
+	}
+
+	public void setSub_mch_id(String sub_mch_id) {
+		this.sub_mch_id = sub_mch_id;
+	}
+	
+	public String getSign_type() {
+		return sign_type;
+	}
+
+	/**
+	 * 签名类型
+	 * @since 2.8.5
+	 * @param sign_type HMAC-SHA256和MD5
+	 */
+	public void setSign_type(String sign_type) {
+		this.sign_type = sign_type;
+	}
 }

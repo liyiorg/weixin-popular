@@ -19,18 +19,14 @@ public class Sendredpack {
 	private String sub_mch_id;
 
 	private String wxappid;
-
-	private String nick_name;
+	
+	private String msgappid;	//触达用户appid;服务商模式下触达用户时的appid(可填服务商自己的appid或子商户的appid)，服务商模式下必填，服务商模式下填入的子商户appid必须在微信支付商户平台中先录入，否则会校验不过。
 
 	private String send_name;
 
 	private String re_openid;
 
 	private Integer total_amount;
-
-	private Integer min_value;
-
-	private Integer max_value;
 
 	private Integer total_num;
 
@@ -42,14 +38,29 @@ public class Sendredpack {
 
 	private String remark;
 
-	private String logo_imgurl;
+	private String scene_id;		/*场景id
+										发放红包使用场景，红包金额大于200时必传
+										PRODUCT_1:商品促销
+										PRODUCT_2:抽奖
+										PRODUCT_3:虚拟物品兑奖 
+										PRODUCT_4:企业内部福利
+										PRODUCT_5:渠道分润
+										PRODUCT_6:保险回馈
+										PRODUCT_7:彩票派奖
+										PRODUCT_8:税务刮奖*/
+	private String risk_info;	 	/*活动信息 
+										posttime:用户操作的时间戳
+										mobile:业务系统账号的手机号，国家代码-手机号。不需要+号
+										deviceid :mac 地址或者设备唯一标识 
+										clientversion :用户操作的客户端版本
+										把值为非空的信息用key=value进行拼接，再进行urlencode
+										urlencode(posttime=xx& mobile =xx&deviceid=xx)*/
 
-	private String share_content;
-
-	private String share_url;
-
-	private String share_imgurl;
-
+	private String consume_mch_id;	/*扣钱方mchid
+										常规模式下无效，服务商模式下选填，服务商模式下不填默认扣子商户的钱*/
+	
+	private String sign_type;
+	
 	public String getNonce_str() {
 		return nonce_str;
 	}
@@ -98,14 +109,6 @@ public class Sendredpack {
 		this.wxappid = wxappid;
 	}
 
-	public String getNick_name() {
-		return nick_name;
-	}
-
-	public void setNick_name(String nick_name) {
-		this.nick_name = nick_name;
-	}
-
 	public String getSend_name() {
 		return send_name;
 	}
@@ -128,22 +131,6 @@ public class Sendredpack {
 
 	public void setTotal_amount(Integer total_amount) {
 		this.total_amount = total_amount;
-	}
-
-	public Integer getMin_value() {
-		return min_value;
-	}
-
-	public void setMin_value(Integer min_value) {
-		this.min_value = min_value;
-	}
-
-	public Integer getMax_value() {
-		return max_value;
-	}
-
-	public void setMax_value(Integer max_value) {
-		this.max_value = max_value;
 	}
 
 	public Integer getTotal_num() {
@@ -186,40 +173,44 @@ public class Sendredpack {
 		this.remark = remark;
 	}
 
-	public String getLogo_imgurl() {
-		return logo_imgurl;
+	public String getMsgappid() {
+		return msgappid;
 	}
 
-	public void setLogo_imgurl(String logo_imgurl) {
-		this.logo_imgurl = logo_imgurl;
+	public void setMsgappid(String msgappid) {
+		this.msgappid = msgappid;
 	}
 
-	public String getShare_content() {
-		return share_content;
+	public String getScene_id() {
+		return scene_id;
 	}
 
-	public void setShare_content(String share_content) {
-		this.share_content = share_content;
+	public void setScene_id(String scene_id) {
+		this.scene_id = scene_id;
 	}
 
-	public String getShare_url() {
-		return share_url;
+	public String getRisk_info() {
+		return risk_info;
 	}
 
-	public void setShare_url(String share_url) {
-		this.share_url = share_url;
+	public void setRisk_info(String risk_info) {
+		this.risk_info = risk_info;
 	}
 
-	public String getShare_imgurl() {
-		return share_imgurl;
+	public String getConsume_mch_id() {
+		return consume_mch_id;
 	}
 
-	public void setShare_imgurl(String share_imgurl) {
-		this.share_imgurl = share_imgurl;
+	public void setConsume_mch_id(String consume_mch_id) {
+		this.consume_mch_id = consume_mch_id;
 	}
 
+	public String getSign_type() {
+		return sign_type;
+	}
 
-
-
+	public void setSign_type(String sign_type) {
+		this.sign_type = sign_type;
+	}
 
 }

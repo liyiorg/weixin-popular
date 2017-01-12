@@ -14,7 +14,9 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.util.EntityUtils;
 
 import weixin.popular.bean.qrcode.QrcodeTicket;
+import weixin.popular.bean.qrcode.Wxaqrcode;
 import weixin.popular.client.LocalHttpClient;
+import weixin.popular.util.JsonUtil;
 
 /**
  * 二维码API
@@ -101,6 +103,24 @@ public class QrcodeAPI extends BaseAPI{
 			}
 		}
 		return null;
+	}
+	
+	/**
+	 * 获取小程序页面二维码 (beta)
+	 * @since 2.8.5
+	 * @param access_token access_token
+	 * @param wxaqrcode wxaqrcode
+	 * @return result
+	 */
+	public static QrcodeTicket wxaappCreatewxaqrcode(String access_token,Wxaqrcode wxaqrcode){
+		String json = JsonUtil.toJSONString(wxaqrcode);
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+								.setHeader(jsonHeader)
+								.setUri(BASE_URI + "/cgi-bin/wxaapp/createwxaqrcode")
+								.addParameter(getATPN(), access_token)
+								.setEntity(new StringEntity(json,Charset.forName("utf-8")))
+								.build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest,QrcodeTicket.class);
 	}
 
 }

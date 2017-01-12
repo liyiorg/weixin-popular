@@ -1,25 +1,42 @@
 package weixin.popular.bean.paymch;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
-@XmlRootElement(name="xml")
+import weixin.popular.bean.DynamicField;
+
+@XmlRootElement(name = "xml")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class MchPayNotify extends MchBase{
-
+public class MchPayNotify extends MchBase implements DynamicField{
+	
 	private String device_info;
 
 	private String openid;
 
 	private String is_subscribe;
 
+	/**
+	 * @since 2.8.5
+	 */
+	private String sub_openid; // 用户在子商户appid下的唯一标识
+
+	/**
+	 * @since 2.8.5
+	 */
+	private String sub_is_subscribe; // 用户是否关注子公众账号，Y-关注，N-未关注，仅在公众账号类型支付有效
+
 	private String trade_type;
 
 	private String bank_type;
 
 	private Integer total_fee;
-	
+
 	private Integer settlement_total_fee;
 
 	private String fee_type;
@@ -43,7 +60,14 @@ public class MchPayNotify extends MchBase{
 	private String contract_id;
 
 	private String trade_state;
-
+	
+	// 代金券或立减优惠
+	// @since 2.8.5
+	// 使用  getCoupons() 获取 List.
+	// List.size() = coupon_count
+	@XmlTransient
+	private List<Coupon> coupons;
+	
 	public String getDevice_info() {
 		return device_info;
 	}
@@ -188,4 +212,48 @@ public class MchPayNotify extends MchBase{
 		this.settlement_total_fee = settlement_total_fee;
 	}
 
+	public String getSub_openid() {
+		return sub_openid;
+	}
+
+	public void setSub_openid(String sub_openid) {
+		this.sub_openid = sub_openid;
+	}
+
+	public String getSub_is_subscribe() {
+		return sub_is_subscribe;
+	}
+
+	public void setSub_is_subscribe(String sub_is_subscribe) {
+		this.sub_is_subscribe = sub_is_subscribe;
+	}
+
+	public List<Coupon> getCoupons() {
+		return coupons;
+	}
+
+	public void setCoupons(List<Coupon> coupons) {
+		this.coupons = coupons;
+	}
+
+	@Override
+	public void buildDynamicField(Map<String, String> dataMap) {
+		if(dataMap != null){
+			String coupon_countStr = dataMap.get("coupon_count");
+			if(coupon_countStr != null){
+				List<Coupon> list = new ArrayList<Coupon>();
+				for (int i = 0; i < Integer.parseInt(coupon_countStr); i++) {
+					Coupon coupon = new Coupon(
+							dataMap.get("coupon_type_"+i),
+							dataMap.get("coupon_id_"+i),
+							Integer.parseInt(dataMap.get("coupon_fee_"+i)), 
+							i);
+					list.add(coupon);
+				}
+				this.coupons = list;
+			}
+			
+		}
+	}
+	
 }

@@ -73,7 +73,6 @@ weixin-popular 已支持的微信平台
 * SignatureUtil   签权生成、验证
 * XMLConverUtil   XML 对象转换（JAXB）
 * JsUtil          JsAPI config,chooseWXPay JSON生成
-* TokenUtils      [授权令牌刷新使用教程](https://github.com/moyq5/weixin-popular/wiki/TokenUtils)
 
 ## example
 * [消息事件接收](https://github.com/liyiorg/weixin-popular/wiki/消息事件接收)
@@ -94,5 +93,7 @@ weixin-popular 已支持的微信平台
 * [微信商户服务中心](http://mp.weixin.qq.com/cgi-bin/readtemplate?t=business/faq_tmpl&lang=zh_CN)
 * [微信支付开发教程（老版本）](https://mp.weixin.qq.com/paymch/readtemplate?t=mp/business/course2_tmpl&lang=zh_CN&token=6056275)
 * [微信支付商户平台开发者文档](http://mch.weixin.qq.com/wiki/doc/api/index.html)
+* [微信支付H5](https://pay.weixin.qq.com/wiki/doc/api/wap.php)
+* [微信支付代扣费](https://pay.weixin.qq.com/wiki/doc/api/pap.php?chapter=17_1)
 * [微信支付服务商平台开发者文档](https://pay.weixin.qq.com/wiki/doc/api/sl.html)
 * [微信开放平台（公众号第三方平台开发）](https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&t=resource/res_list&verify=1&lang=zh_CN)

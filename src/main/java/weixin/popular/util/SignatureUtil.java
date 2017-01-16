@@ -201,6 +201,9 @@ public class SignatureUtil {
 	 * @return boolean
 	 */
 	public static boolean validateSign(Map<String,String> map,String key){
+		if(map.get("sign") == null){
+			return false;
+		}
 		return map.get("sign").equals(generateSign(map,key));
 	}
 	
@@ -213,6 +216,9 @@ public class SignatureUtil {
 	 * @return boolean
 	 */
 	public static boolean validateSign(Map<String,String> map,String sign_type,String key){
+		if(map.get("sign") == null){
+			return false;
+		}
 		return map.get("sign").equals(generateSign(map,sign_type,key));
 	}
 

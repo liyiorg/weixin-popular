@@ -33,6 +33,10 @@ public class UnifiedorderResult extends MchBase{
 	@XmlElement
 	@XmlJavaTypeAdapter(value = AdaptorCDATA.class)
 	private String code_url;
+	
+	@XmlElement
+	@XmlJavaTypeAdapter(value = AdaptorCDATA.class)
+	private String mweb_url;
 
 	public String getDevice_info() {
 		return device_info;
@@ -66,6 +70,12 @@ public class UnifiedorderResult extends MchBase{
 		this.code_url = code_url;
 	}
 
+	public String getMweb_url() {
+		return mweb_url;
+	}
 
+	public void setMweb_url(String mweb_url) {
+		this.mweb_url = mweb_url;
+	}
 
 }

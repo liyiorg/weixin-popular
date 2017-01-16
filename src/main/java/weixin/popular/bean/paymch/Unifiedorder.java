@@ -223,6 +223,17 @@ public class Unifiedorder {
 		return trade_type;
 	}
 
+	/**
+	 * 支付类型
+	 * 
+	 * @param trade_type
+	 *            <br>
+	 * 
+	 *            JSAPI--公众号支付<br>
+	 *            NATIVE--原生扫码支付 <br>
+	 *            APP--APP支付 <br>
+	 *            MWEB--H5
+	 */
 	public void setTrade_type(String trade_type) {
 		this.trade_type = trade_type;
 	}

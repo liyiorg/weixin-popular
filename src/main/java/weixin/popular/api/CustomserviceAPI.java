@@ -35,7 +35,7 @@ public class CustomserviceAPI extends BaseAPI {
 		HttpUriRequest httpUriRequest = RequestBuilder.get()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/cgi-bin/customservice/getkflist")
-				.addParameter(getATPN(), access_token)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest, KFAccount.class);
 	}
@@ -49,7 +49,7 @@ public class CustomserviceAPI extends BaseAPI {
 		HttpUriRequest httpUriRequest = RequestBuilder.get()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/cgi-bin/customservice/getonlinekflist")
-				.addParameter(getATPN(), access_token)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest, KFOnline.class);
 	}
@@ -70,7 +70,7 @@ public class CustomserviceAPI extends BaseAPI {
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/customservice/kfaccount/add")
-				.addParameter(getATPN(), access_token)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
 				.setEntity(new StringEntity(postJsonData, Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest, BaseResult.class);
@@ -92,7 +92,7 @@ public class CustomserviceAPI extends BaseAPI {
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/customservice/kfaccount/update")
-				.addParameter(getATPN(), access_token)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
 				.setEntity(new StringEntity(postJsonData, Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest, BaseResult.class);
@@ -110,7 +110,7 @@ public class CustomserviceAPI extends BaseAPI {
 		FileBody bin = new FileBody(media);
 		HttpEntity reqEntity = MultipartEntityBuilder.create()
 				.addPart("media", bin)
-				.addTextBody(getATPN(), access_token)
+				.addTextBody(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
 				.addTextBody("kf_account", kf_account)
 				.build();
 		httpPost.setEntity(reqEntity);
@@ -127,7 +127,7 @@ public class CustomserviceAPI extends BaseAPI {
 		HttpUriRequest httpUriRequest = RequestBuilder.get()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/customservice/kfaccount/del")
-				.addParameter(getATPN(), access_token)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
 				.addParameter("kf_account", kf_account)
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest, BaseResult.class);
@@ -149,7 +149,7 @@ public class CustomserviceAPI extends BaseAPI {
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/customservice/kfsession/create")
-				.addParameter(getATPN(), access_token)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
 				.setEntity(new StringEntity(postJsonData, Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest, BaseResult.class);
@@ -171,7 +171,7 @@ public class CustomserviceAPI extends BaseAPI {
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/customservice/kfsession/close")
-				.addParameter(getATPN(), access_token)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
 				.setEntity(new StringEntity(postJsonData, Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest, BaseResult.class);
@@ -187,7 +187,7 @@ public class CustomserviceAPI extends BaseAPI {
 		HttpUriRequest httpUriRequest = RequestBuilder.get()
 					.setHeader(jsonHeader)
 					.setUri(BASE_URI + "/customservice/kfsession/getsession")
-					.addParameter(getATPN(), access_token)
+					.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
 					.addParameter("openid", openid)
 					.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest, KFCustomSession.class);
@@ -203,7 +203,7 @@ public class CustomserviceAPI extends BaseAPI {
 		HttpUriRequest httpUriRequest = RequestBuilder.get()
 					.setHeader(jsonHeader)
 					.setUri(BASE_URI + "/customservice/kfsession/getsessionlist")
-					.addParameter(getATPN(), access_token)
+					.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
 					.addParameter("kf_account", kf_account)
 					.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest, KFSession.class);
@@ -218,7 +218,7 @@ public class CustomserviceAPI extends BaseAPI {
 		HttpUriRequest httpUriRequest = RequestBuilder.get()
 					.setHeader(jsonHeader)
 					.setUri(BASE_URI + "/customservice/kfsession/getwaitcase")
-					.addParameter(getATPN(), access_token)
+					.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
 					.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest, KFWaitcase.class);
 	}
@@ -241,7 +241,7 @@ public class CustomserviceAPI extends BaseAPI {
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 					.setHeader(jsonHeader)
 					.setUri(BASE_URI + "/customservice/msgrecord/getrecord")
-					.addParameter(getATPN(), access_token)
+					.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
 					.setEntity(new StringEntity(jsonPostData, Charset.forName("utf-8")))
 					.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest, KFMsgRecord.class);

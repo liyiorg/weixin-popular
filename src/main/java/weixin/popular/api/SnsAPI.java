@@ -106,7 +106,7 @@ public class SnsAPI extends BaseAPI{
 	public static BaseResult auth(String access_token,String openid){
 		HttpUriRequest httpUriRequest = RequestBuilder.get()
 				.setUri(BASE_URI + "/sns/auth")
-				.addParameter(getATPN(), access_token)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
 				.addParameter("openid", openid)
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,BaseResult.class);

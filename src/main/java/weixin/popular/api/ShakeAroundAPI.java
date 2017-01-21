@@ -88,7 +88,7 @@ public class ShakeAroundAPI extends BaseAPI {
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/shakearound/account/auditstatus")
-				.addParameter(getATPN(), accessToken).build();
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(accessToken)).build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,
 				AccountAuditStatusResult.class);
 	}
@@ -117,7 +117,7 @@ public class ShakeAroundAPI extends BaseAPI {
 				.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/shakearound/account/register")
-				.addParameter(getATPN(), accessToken)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(accessToken))
 				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,
@@ -147,7 +147,7 @@ public class ShakeAroundAPI extends BaseAPI {
 				.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/shakearound/device/applyid")
-				.addParameter(getATPN(), accessToken)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(accessToken))
 				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,
@@ -178,7 +178,7 @@ public class ShakeAroundAPI extends BaseAPI {
 				.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/shakearound/device/applystatus")
-				.addParameter(getATPN(), accessToken)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(accessToken))
 				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,
@@ -209,7 +209,7 @@ public class ShakeAroundAPI extends BaseAPI {
 				.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/shakearound/device/bindlocation")
-				.addParameter(getATPN(), accessToken)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(accessToken))
 				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,
@@ -240,7 +240,7 @@ public class ShakeAroundAPI extends BaseAPI {
 				.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/shakearound/device/bindpage")
-				.addParameter(getATPN(), accessToken)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(accessToken))
 				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,
@@ -271,7 +271,7 @@ public class ShakeAroundAPI extends BaseAPI {
 				.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/shakearound/device/group/add")
-				.addParameter(getATPN(), accessToken)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(accessToken))
 				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,
@@ -302,7 +302,7 @@ public class ShakeAroundAPI extends BaseAPI {
 				.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/shakearound/device/group/adddevice")
-				.addParameter(getATPN(), accessToken)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(accessToken))
 				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,
@@ -333,7 +333,7 @@ public class ShakeAroundAPI extends BaseAPI {
 				.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/shakearound/device/group/delete")
-				.addParameter(getATPN(), accessToken)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(accessToken))
 				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,
@@ -364,7 +364,7 @@ public class ShakeAroundAPI extends BaseAPI {
 				.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/shakearound/device/group/deletedevice")
-				.addParameter(getATPN(), accessToken)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(accessToken))
 				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,
@@ -395,7 +395,7 @@ public class ShakeAroundAPI extends BaseAPI {
 				.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/shakearound/device/group/getdetail")
-				.addParameter(getATPN(), accessToken)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(accessToken))
 				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,
@@ -426,7 +426,7 @@ public class ShakeAroundAPI extends BaseAPI {
 				.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/shakearound/device/group/getlist")
-				.addParameter(getATPN(), accessToken)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(accessToken))
 				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,
@@ -457,7 +457,7 @@ public class ShakeAroundAPI extends BaseAPI {
 				.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/shakearound/device/group/update")
-				.addParameter(getATPN(), accessToken)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(accessToken))
 				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,
@@ -487,7 +487,7 @@ public class ShakeAroundAPI extends BaseAPI {
 				.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/shakearound/device/search")
-				.addParameter(getATPN(), accessToken)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(accessToken))
 				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,
@@ -517,7 +517,7 @@ public class ShakeAroundAPI extends BaseAPI {
 				.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/shakearound/device/update")
-				.addParameter(getATPN(), accessToken)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(accessToken))
 				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,
@@ -548,7 +548,7 @@ public class ShakeAroundAPI extends BaseAPI {
 				.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/shakearound/lottery/addlotteryinfo")
-				.addParameter(getATPN(), accessToken)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(accessToken))
 				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,
@@ -566,7 +566,7 @@ public class ShakeAroundAPI extends BaseAPI {
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/shakearound/lottery/querylottery")
-				.addParameter(getATPN(), accessToken)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(accessToken))
 				.addParameter("lottery_id", lotteryId).build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,
 				LotteryQueryLotteryResult.class);
@@ -584,7 +584,7 @@ public class ShakeAroundAPI extends BaseAPI {
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/shakearound/lottery/setlotteryswitch")
-				.addParameter(getATPN(), accessToken)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(accessToken))
 				.addParameter("lottery_id", lotteryId)
 				.addParameter("onoff", "" + onoff).build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,
@@ -615,7 +615,7 @@ public class ShakeAroundAPI extends BaseAPI {
 				.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/shakearound/lottery/setprizebucket")
-				.addParameter(getATPN(), accessToken)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(accessToken))
 				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,
@@ -636,7 +636,7 @@ public class ShakeAroundAPI extends BaseAPI {
 		MultipartEntityBuilder multipartEntityBuilder = MultipartEntityBuilder
 				.create().addPart("media", bin);
 		HttpEntity reqEntity = multipartEntityBuilder
-				.addTextBody(getATPN(), accessToken)
+				.addTextBody(PARAM_ACCESS_TOKEN, API.accessToken(accessToken))
 				.addTextBody("type", type.name()).build();
 		httpPost.setEntity(reqEntity);
 		return LocalHttpClient.executeJsonResult(httpPost,
@@ -664,7 +664,7 @@ public class ShakeAroundAPI extends BaseAPI {
 				.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/shakearound/page/add")
-				.addParameter(getATPN(), accessToken)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(accessToken))
 				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,
@@ -694,7 +694,7 @@ public class ShakeAroundAPI extends BaseAPI {
 				.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/shakearound/page/delete")
-				.addParameter(getATPN(), accessToken)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(accessToken))
 				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,
@@ -724,7 +724,7 @@ public class ShakeAroundAPI extends BaseAPI {
 				.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/shakearound/page/search")
-				.addParameter(getATPN(), accessToken)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(accessToken))
 				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,
@@ -754,7 +754,7 @@ public class ShakeAroundAPI extends BaseAPI {
 				.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/shakearound/page/update")
-				.addParameter(getATPN(), accessToken)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(accessToken))
 				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,
@@ -785,7 +785,7 @@ public class ShakeAroundAPI extends BaseAPI {
 				.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/shakearound/relation/search")
-				.addParameter(getATPN(), accessToken)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(accessToken))
 				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,
@@ -816,7 +816,7 @@ public class ShakeAroundAPI extends BaseAPI {
 				.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/shakearound/statistics/device")
-				.addParameter(getATPN(), accessToken)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(accessToken))
 				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,
@@ -847,7 +847,7 @@ public class ShakeAroundAPI extends BaseAPI {
 				.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/shakearound/statistics/devicelist")
-				.addParameter(getATPN(), accessToken)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(accessToken))
 				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,
@@ -878,7 +878,7 @@ public class ShakeAroundAPI extends BaseAPI {
 				.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/shakearound/statistics/page")
-				.addParameter(getATPN(), accessToken)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(accessToken))
 				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,
@@ -909,7 +909,7 @@ public class ShakeAroundAPI extends BaseAPI {
 				.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/shakearound/statistics/pagelist")
-				.addParameter(getATPN(), accessToken)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(accessToken))
 				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,
@@ -928,7 +928,7 @@ public class ShakeAroundAPI extends BaseAPI {
 				.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/shakearound/user/getshakeinfo")
-				.addParameter(getATPN(), accessToken)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(accessToken))
 				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,

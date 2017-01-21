@@ -4,55 +4,120 @@ package weixin.popular.api;
  * API 设置
  * 
  * 
- * 2.6.0
+ * 2.8.6
+ * 
  * @author SLYH
  *
  */
 public class API {
 
-	private static ThreadLocal<Integer> threadLocal = new ThreadLocal<Integer>();
+	private static final String KEY_JOIN = "#";
 
-	private static Integer mode;
-	
-	public static final int MODE_POPULAR = 1;
-	
-	public static final int MODE_COMPONENT = 2;
-	
-	
+	private static APIHandler apiHandler;
 
 	/**
-	 * 设置默认的API模式
+	 * 判断参数表现形式
 	 * 
-	 * @param mode
-	 *   1 公众号平台API,2 公众号第三方平台API
+	 * @param keyParam
+	 *            keyParam
+	 * @return boolean
 	 */
-	public static void defaultMode(int mode) {
-		API.mode = mode;
+	private static boolean isKeyParam(String keyParam) {
+		// ACCESS_TOKEN_LENGTH 138
+		// TICKET_LENGTH 86
+		// KEY_MAX_LENGTH 18+1+18
+		return keyParam != null && keyParam.length() < 50;
 	}
 
 	/**
-	 * 设置API模式
+	 * keys 组合
 	 * 
-	 * @param mode 模式，可选值 1 or 2
+	 * @param component_appid
+	 *            component_appid
+	 * @param authorizer_appid
+	 *            authorizer_appid
+	 * @return keyParam
 	 */
-	public static void mode(int mode) {
-		threadLocal.set(mode);
+	public static String keyParam(String component_appid, String authorizer_appid) {
+		return String.format("%s%s%s", component_appid, KEY_JOIN, authorizer_appid);
 	}
 
 	/**
-	 * 获取当前API模式
-	 * @return 当前状态
+	 * 获取access_token
+	 * 
+	 * @param key
+	 *            key
+	 * @return access_token
 	 */
-	public static int currentMode() {
-		if (mode == null && threadLocal.get() == null) {
-			return MODE_POPULAR;
-		} else if (threadLocal.get() != null) {
-			return threadLocal.get();
-		} else if (mode != null) {
-			return mode;
-		} else {
-			return MODE_POPULAR;
+	public static String accessToken(String key) {
+		if (isKeyParam(key)) {
+			String[] keys = key.split(KEY_JOIN);
+			if (keys.length == 2) {
+				return apiHandler.accessToken(keys[0], keys[1]);
+			} else if (keys.length == 1) {
+				return apiHandler.accessToken(keys[0]);
+			}
 		}
+		return key;
 	}
 
+	/**
+	 * 获取component_access_token
+	 * 
+	 * @param key
+	 *            key
+	 * @return component_access_token
+	 */
+	public static String componentAccessToken(String key) {
+		if (isKeyParam(key)) {
+			return apiHandler.componentAccessToken(key);
+		}
+		return key;
+	}
+
+	/**
+	 * 获取ticket
+	 * 
+	 * @param key
+	 *            key
+	 * @param type
+	 *            类型 jsapi,wx_card
+	 * @return ticket
+	 */
+	public static String ticket(String key, String type) {
+		if (isKeyParam(key)) {
+			String[] keys = key.split(KEY_JOIN);
+			if (keys.length == 2) {
+				return apiHandler.ticket(keys[0], keys[1], type);
+			} else if (keys.length == 1) {
+				return apiHandler.ticket(keys[0], type);
+			}
+		}
+		return key;
+	}
+
+	public static APIHandler getApiHandler() {
+		return apiHandler;
+	}
+
+	public static void setApiHandler(APIHandler apiHandler) {
+		API.apiHandler = apiHandler;
+	}
+
+	public interface APIHandler {
+
+		public String accessToken(String component_appid, String authorizer_appid);
+
+		public String accessToken(String appid);
+
+		public String componentAccessToken(String component_appid);
+
+		public String ticket(String component_appid, String authorizer_appid, String type);
+
+		public String ticket(String appid, String type);
+	}
+
+	public static void main(String[] args) {
+		System.out.println("refreshtoken@@@RICvM9uODG83ccGVO8YkLWZaFM1TJY3J-PBFyX1Bzpg".length());
+	}
 }

@@ -52,7 +52,7 @@ public class MediaAPI extends BaseAPI{
 		FileBody bin = new FileBody(media);
         HttpEntity reqEntity = MultipartEntityBuilder.create()
         		 .addPart("media", bin)
-                 .addTextBody(getATPN(), access_token)
+                 .addTextBody(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
                  .addTextBody("type",mediaType.uploadType())
                  .build();
         httpPost.setEntity(reqEntity);
@@ -81,7 +81,7 @@ public class MediaAPI extends BaseAPI{
 		}
 		HttpEntity reqEntity = MultipartEntityBuilder.create()
 				 .addBinaryBody("media",data,ContentType.DEFAULT_BINARY,"temp."+mediaType.fileSuffix())
-                 .addTextBody(getATPN(), access_token)
+                 .addTextBody(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
                  .addTextBody("type",mediaType.uploadType())
                  .build();
 		httpPost.setEntity(reqEntity);
@@ -108,7 +108,7 @@ public class MediaAPI extends BaseAPI{
 			HttpEntity entity = tempHttpClient.execute(RequestBuilder.get().setUri(uri).build()).getEntity();
 			HttpEntity reqEntity = MultipartEntityBuilder.create()
 					 .addBinaryBody("media",EntityUtils.toByteArray(entity),ContentType.get(entity),"temp."+mediaType.fileSuffix())
-			         .addTextBody(getATPN(), access_token)
+			         .addTextBody(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
 			         .addTextBody("type",mediaType.uploadType())
 			         .build();
 			httpPost.setEntity(reqEntity);
@@ -143,7 +143,7 @@ public class MediaAPI extends BaseAPI{
 		String http_s = use_http?BASE_URI.replace("https", "http"):BASE_URI;
 		HttpUriRequest httpUriRequest = RequestBuilder.get()
 					.setUri(http_s + "/cgi-bin/media/get")
-					.addParameter(getATPN(), access_token)
+					.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
 					.addParameter("media_id", media_id)
 					.build();
 		return LocalHttpClient.execute(httpUriRequest,BytesOrJsonResponseHandler.createResponseHandler(MediaGetResult.class));
@@ -172,7 +172,7 @@ public class MediaAPI extends BaseAPI{
 		FileBody bin = new FileBody(media);
         HttpEntity reqEntity = MultipartEntityBuilder.create()
         		 .addPart("media", bin)
-                 .addTextBody(getATPN(), access_token)
+                 .addTextBody(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
                  .build();
         httpPost.setEntity(reqEntity);
 		return LocalHttpClient.executeJsonResult(httpPost,UploadimgResult.class);
@@ -196,7 +196,7 @@ public class MediaAPI extends BaseAPI{
 		}
 		HttpEntity reqEntity = MultipartEntityBuilder.create()
 				 .addBinaryBody("media",data,ContentType.DEFAULT_BINARY,"temp.jpg")
-                 .addTextBody(getATPN(), access_token)
+                 .addTextBody(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
                  .build();
         httpPost.setEntity(reqEntity);
 		return LocalHttpClient.executeJsonResult(httpPost,UploadimgResult.class);
@@ -217,7 +217,7 @@ public class MediaAPI extends BaseAPI{
 			HttpEntity entity = tempHttpClient.execute(RequestBuilder.get().setUri(uri).build()).getEntity();
 			HttpEntity reqEntity = MultipartEntityBuilder.create()
 					 .addBinaryBody("media",EntityUtils.toByteArray(entity),ContentType.get(entity),UUID.randomUUID().toString()+".jpg")
-			         .addTextBody(getATPN(), access_token)
+			         .addTextBody(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
 			         .build();
 			httpPost.setEntity(reqEntity);
 			return LocalHttpClient.executeJsonResult(httpPost,UploadimgResult.class);

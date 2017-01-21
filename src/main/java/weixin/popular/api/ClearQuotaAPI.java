@@ -31,7 +31,7 @@ public class ClearQuotaAPI extends BaseAPI{
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 										.setHeader(jsonHeader)
 										.setUri(BASE_URI+"/cgi-bin/clear_quota")
-										.addParameter(getATPN(), access_token)
+										.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
 										.setEntity(new StringEntity(json,Charset.forName("utf-8")))
 										.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,BaseResult.class);

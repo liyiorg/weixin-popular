@@ -21,7 +21,7 @@ public class CallbackipAPI extends BaseAPI{
 	public static Callbackip getcallbackip(String access_token){
 		HttpUriRequest httpUriRequest = RequestBuilder.get()
 				.setUri(BASE_URI + "/cgi-bin/getcallbackip")
-				.addParameter(getATPN(),access_token)
+				.addParameter(PARAM_ACCESS_TOKEN,API.accessToken(access_token))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,Callbackip.class);
 	}

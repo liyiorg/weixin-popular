@@ -33,7 +33,7 @@ public class PoiAPI extends BaseAPI {
 				.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/cgi-bin/poi/addpoi")
-				.addParameter(getATPN(), accessToken)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(accessToken))
 				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,
@@ -61,7 +61,7 @@ public class PoiAPI extends BaseAPI {
 				.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/cgi-bin/poi/getpoi")
-				.addParameter(getATPN(), accessToken)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(accessToken))
 				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,
@@ -89,7 +89,7 @@ public class PoiAPI extends BaseAPI {
 				.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/cgi-bin/poi/getpoilist")
-				.addParameter(getATPN(), accessToken)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(accessToken))
 				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,
@@ -119,7 +119,7 @@ public class PoiAPI extends BaseAPI {
 				.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/cgi-bin/poi/updatepoi")
-				.addParameter(getATPN(), accessToken)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(accessToken))
 				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,
@@ -147,7 +147,7 @@ public class PoiAPI extends BaseAPI {
 				.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/cgi-bin/poi/delpoi")
-				.addParameter(getATPN(), accessToken)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(accessToken))
 				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,
@@ -175,7 +175,7 @@ public class PoiAPI extends BaseAPI {
 	public static CategoryListResult getWxCategory(String accessToken) {
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 				.setUri(BASE_URI + "/cgi-bin/poi/getwxcategory")
-				.addParameter(getATPN(), accessToken).build();
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(accessToken)).build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,
 				CategoryListResult.class);
 	}

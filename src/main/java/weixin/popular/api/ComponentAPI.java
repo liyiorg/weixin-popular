@@ -78,7 +78,7 @@ public class ComponentAPI extends BaseAPI{
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/cgi-bin/component/api_create_preauthcode")
-				.addParameter("component_access_token", component_access_token)
+				.addParameter("component_access_token", API.componentAccessToken(component_access_token))
 				.setEntity(new StringEntity(postJsonData,Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,PreAuthCode.class);
@@ -98,7 +98,7 @@ public class ComponentAPI extends BaseAPI{
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/cgi-bin/component/api_query_auth")
-				.addParameter("component_access_token", component_access_token)
+				.addParameter("component_access_token", API.componentAccessToken(component_access_token))
 				.setEntity(new StringEntity(postJsonData,Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,ApiQueryAuthResult.class);
@@ -121,7 +121,7 @@ public class ComponentAPI extends BaseAPI{
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/cgi-bin/component/api_authorizer_token")
-				.addParameter("component_access_token", component_access_token)
+				.addParameter("component_access_token", API.componentAccessToken(component_access_token))
 				.setEntity(new StringEntity(postJsonData,Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,AuthorizerAccessToken.class);
@@ -143,7 +143,7 @@ public class ComponentAPI extends BaseAPI{
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/cgi-bin/component/api_get_authorizer_info")
-				.addParameter("component_access_token", component_access_token)
+				.addParameter("component_access_token", API.componentAccessToken(component_access_token))
 				.setEntity(new StringEntity(postJsonData,Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,ApiGetAuthorizerInfoResult.class);
@@ -169,7 +169,7 @@ public class ComponentAPI extends BaseAPI{
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/cgi-bin/component/api_get_authorizer_option")
-				.addParameter("component_access_token", component_access_token)
+				.addParameter("component_access_token", API.componentAccessToken(component_access_token))
 				.setEntity(new StringEntity(postJsonData,Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,AuthorizerOption.class);
@@ -197,7 +197,7 @@ public class ComponentAPI extends BaseAPI{
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/cgi-bin/component/api_set_authorizer_option")
-				.addParameter("component_access_token", component_access_token)
+				.addParameter("component_access_token", API.componentAccessToken(component_access_token))
 				.setEntity(new StringEntity(postJsonData,Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,BaseResult.class);
@@ -215,7 +215,7 @@ public class ComponentAPI extends BaseAPI{
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 										.setHeader(jsonHeader)
 										.setUri(BASE_URI+"/cgi-bin/component/clear_quota")
-										.addParameter("component_access_token", component_access_token)
+										.addParameter("component_access_token", API.componentAccessToken(component_access_token))
 										.setEntity(new StringEntity(json,Charset.forName("utf-8")))
 										.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,BaseResult.class);

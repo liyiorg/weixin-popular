@@ -2,6 +2,8 @@ package weixin.popular.bean.menu;
 
 public class Matchrule {
 
+	private String tag_id;
+	
 	private Integer group_id;
 
 	private Integer sex;
@@ -12,7 +14,9 @@ public class Matchrule {
 
 	private String city;
 
-	private String client_platform_type;
+	private String client_platform_type;	//客户端版本，当前只具体到系统型号：IOS(1), Android(2),Others(3)，不填则不做匹配
+	
+	private String language;
 
 	public Integer getGroup_id() {
 		return group_id;
@@ -62,5 +66,20 @@ public class Matchrule {
 		this.client_platform_type = client_platform_type;
 	}
 
+	public String getTag_id() {
+		return tag_id;
+	}
+
+	public void setTag_id(String tag_id) {
+		this.tag_id = tag_id;
+	}
+
+	public String getLanguage() {
+		return language;
+	}
+
+	public void setLanguage(String language) {
+		this.language = language;
+	}
 
 }

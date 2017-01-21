@@ -87,7 +87,7 @@ public class CardAPI extends BaseAPI {
 				.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/card/batchget")
-				.addParameter(getATPN(), accessToken)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(accessToken))
 				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,
@@ -115,7 +115,7 @@ public class CardAPI extends BaseAPI {
 				.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/card/code/checkcode")
-				.addParameter(getATPN(), accessToken)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(accessToken))
 				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,
@@ -143,7 +143,7 @@ public class CardAPI extends BaseAPI {
 				.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/card/code/consume")
-				.addParameter(getATPN(), accessToken)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(accessToken))
 				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,
@@ -179,7 +179,7 @@ public class CardAPI extends BaseAPI {
 				.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/card/code/decrypt")
-				.addParameter(getATPN(), accessToken)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(accessToken))
 				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,
@@ -207,7 +207,7 @@ public class CardAPI extends BaseAPI {
 				.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/card/code/deposit")
-				.addParameter(getATPN(), accessToken)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(accessToken))
 				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,
@@ -235,7 +235,7 @@ public class CardAPI extends BaseAPI {
 				.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/card/code/get")
-				.addParameter(getATPN(), accessToken)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(accessToken))
 				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,
@@ -264,7 +264,7 @@ public class CardAPI extends BaseAPI {
 				.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/card/code/getdepositcount")
-				.addParameter(getATPN(), accessToken)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(accessToken))
 				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,
@@ -293,7 +293,7 @@ public class CardAPI extends BaseAPI {
 				.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/card/code/unavailable")
-				.addParameter(getATPN(), accessToken)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(accessToken))
 				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,
@@ -331,7 +331,7 @@ public class CardAPI extends BaseAPI {
 				.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/card/code/update")
-				.addParameter(getATPN(), accessToken)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(accessToken))
 				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,
@@ -419,7 +419,7 @@ public class CardAPI extends BaseAPI {
 				.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/card/create")
-				.addParameter(getATPN(), accessToken)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(accessToken))
 				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,
@@ -437,7 +437,7 @@ public class CardAPI extends BaseAPI {
 				.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/card/delete")
-				.addParameter(getATPN(), accessToken)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(accessToken))
 				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,
@@ -465,7 +465,7 @@ public class CardAPI extends BaseAPI {
 				.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/card/get")
-				.addParameter(getATPN(), accessToken)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(accessToken))
 				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
 				.build();
 		AbstractResult abs = LocalHttpClient.executeJsonResult(httpUriRequest, AbstractResult.class);
@@ -531,7 +531,7 @@ public class CardAPI extends BaseAPI {
 				.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/card/landingpage/create")
-				.addParameter(getATPN(), accessToken)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(accessToken))
 				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,
@@ -559,7 +559,7 @@ public class CardAPI extends BaseAPI {
 				.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/card/modifystock")
-				.addParameter(getATPN(), accessToken)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(accessToken))
 				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,
@@ -588,7 +588,7 @@ public class CardAPI extends BaseAPI {
 				.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/card/mpnews/gethtml")
-				.addParameter(getATPN(), accessToken)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(accessToken))
 				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,
@@ -616,7 +616,7 @@ public class CardAPI extends BaseAPI {
 				.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/card/paycell/set")
-				.addParameter(getATPN(), accessToken)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(accessToken))
 				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,
@@ -657,7 +657,7 @@ public class CardAPI extends BaseAPI {
 				.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/card/qrcode/create")
-				.addParameter(getATPN(), accessToken)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(accessToken))
 				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,
@@ -687,7 +687,7 @@ public class CardAPI extends BaseAPI {
 				.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/card/selfconsumecell/set")
-				.addParameter(getATPN(), accessToken)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(accessToken))
 				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,
@@ -706,7 +706,7 @@ public class CardAPI extends BaseAPI {
 				.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/card/testwhitelist/set")
-				.addParameter(getATPN(), accessToken)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(accessToken))
 				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,
@@ -735,7 +735,7 @@ public class CardAPI extends BaseAPI {
 				.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/card/update")
-				.addParameter(getATPN(), accessToken)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(accessToken))
 				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,
@@ -807,7 +807,7 @@ public class CardAPI extends BaseAPI {
 				.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI + "/card/user/getcardlist")
-				.addParameter(getATPN(), accessToken)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(accessToken))
 				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,

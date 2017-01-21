@@ -31,7 +31,7 @@ public class MenuAPI extends BaseAPI{
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 										.setHeader(jsonHeader)
 										.setUri(BASE_URI+"/cgi-bin/menu/create")
-										.addParameter(getATPN(), access_token)
+										.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
 										.setEntity(new StringEntity(menuJson,Charset.forName("utf-8")))
 										.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,BaseResult.class);
@@ -56,7 +56,7 @@ public class MenuAPI extends BaseAPI{
 	public static Menu menuGet(String access_token){
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 					.setUri(BASE_URI+"/cgi-bin/menu/get")
-					.addParameter(getATPN(), access_token)
+					.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
 					.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,Menu.class);
 	}
@@ -69,7 +69,7 @@ public class MenuAPI extends BaseAPI{
 	public static BaseResult menuDelete(String access_token){
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 				.setUri(BASE_URI+"/cgi-bin/menu/delete")
-				.addParameter(getATPN(), access_token)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,BaseResult.class);
 	}
@@ -87,7 +87,7 @@ public class MenuAPI extends BaseAPI{
 	public static CurrentSelfmenuInfo get_current_selfmenu_info(String access_token){
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 				.setUri(BASE_URI+"/cgi-bin/get_current_selfmenu_info")
-				.addParameter(getATPN(), access_token)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,CurrentSelfmenuInfo.class);
 	}
@@ -114,7 +114,7 @@ public class MenuAPI extends BaseAPI{
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI+"/cgi-bin/menu/addconditional")
-				.addParameter(getATPN(), access_token)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
 				.setEntity(new StringEntity(menuJson,Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,BaseResult.class);
@@ -130,7 +130,7 @@ public class MenuAPI extends BaseAPI{
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI+"/cgi-bin/menu/delconditional")
-				.addParameter(getATPN(), access_token)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
 				.setEntity(new StringEntity("{\"menuid\":\""+menuid+"\"}",Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,BaseResult.class);
@@ -146,7 +146,7 @@ public class MenuAPI extends BaseAPI{
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI+"/cgi-bin/menu/trymatch")
-				.addParameter(getATPN(), access_token)
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
 				.setEntity(new StringEntity("{\"user_id\":\""+user_id+"\"}",Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,TrymatchResult.class);

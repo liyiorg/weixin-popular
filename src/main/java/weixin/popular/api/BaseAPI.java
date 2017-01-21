@@ -17,13 +17,4 @@ public abstract class BaseAPI {
 	
 	protected static final String PARAM_ACCESS_TOKEN = "access_token";
 	
-	/**
-	 * 获取 access token param name 名称
-	 * 
-	 * 2.6.0
-	 * @return access_token or authorizer_access_token
-	 */
-	protected static String getATPN(){
-		return PARAM_ACCESS_TOKEN;
-	}
 }

@@ -36,7 +36,7 @@ public class QrcodeAPI extends BaseAPI{
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 										.setHeader(jsonHeader)
 										.setUri(BASE_URI+"/cgi-bin/qrcode/create")
-										.addParameter(getATPN(), access_token)
+										.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
 										.setEntity(new StringEntity(qrcodeJson,Charset.forName("utf-8")))
 										.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,QrcodeTicket.class);
@@ -117,7 +117,7 @@ public class QrcodeAPI extends BaseAPI{
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 								.setHeader(jsonHeader)
 								.setUri(BASE_URI + "/cgi-bin/wxaapp/createwxaqrcode")
-								.addParameter(getATPN(), access_token)
+								.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
 								.setEntity(new StringEntity(json,Charset.forName("utf-8")))
 								.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,QrcodeTicket.class);

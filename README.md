@@ -24,7 +24,7 @@ weixin-popular 已支持的微信平台
 <dependency>
   <groupId>com.github.liyiorg</groupId>
   <artifactId>weixin-popular</artifactId>
-  <version>2.8.5</version>
+  <version>2.8.6</version>
 </dependency>
 ```
 * [升级注意事项](https://github.com/liyiorg/weixin-popular/wiki/jar_update)
@@ -48,7 +48,7 @@ weixin-popular 已支持的微信平台
 * [PoiAPI](https://github.com/liyiorg/weixin-popular/wiki/PoiAPI) 微信门店 @Moyq5 (贡献)
 * [CardAPI](https://github.com/liyiorg/weixin-popular/wiki/CardAPI) 微信卡券 @Moyq5 (贡献)
 * [ShakearoundAPI](https://github.com/liyiorg/weixin-popular/wiki/ShakearoundAPI) 微信摇一摇周边 @Moyq5 (贡献)
-* [DatacubeAPI](https://github.com/liyiorg/weixin-popular/wiki/DatacubeAPI) 数据统计 @Moyq5 (贡献)
+* [DatacubeAPI](https://github.com/liyiorg/weixin-popular/wiki/DataCubeAPI) 数据统计 @Moyq5 (贡献)
 * [CustomserviceAPI](https://github.com/liyiorg/weixin-popular/wiki/CustomserviceAPI) 客服功能  @ConciseA (贡献)
 
 ### 待开发API
@@ -57,6 +57,9 @@ weixin-popular 已支持的微信平台
 * [ScanAPI](https://github.com/liyiorg/weixin-popular/wiki/ScanAPI) 微信扫一扫
 * [SemanticAPI](https://github.com/liyiorg/weixin-popular/wiki/SemanticAPI) 微信智能
 * [DeviceAPI](https://github.com/liyiorg/weixin-popular/wiki/DeviceAPI) 设备功能
+
+## API调用模式
+* [调用模式](https://github.com/liyiorg/weixin-popular/wiki/API调用模式)
 
 ## EMOJI 表情
 * :four_leaf_clover: [API 使用](https://github.com/liyiorg/weixin-popular/wiki/emoji_api)

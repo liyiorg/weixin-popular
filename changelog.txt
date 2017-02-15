@@ -2,6 +2,15 @@ WEIXIN-POPULAR CHANGELOG
 ===========================
 https://github.com/liyiorg/weixin-popular
 
+Changes in version 2.8.6 (2017-02-14)
+-------------------------------------
+* MediaAPI 添加高清语音接口
+* PayMchAPI 添加服务商仿真测试模式
+* 修复PayMchAPI.payRefundquery 查询退款接口
+* DataCubeAPI 添加用户分析、图文分析、消息分析、接口分析接口
+* MenuAPI bean 更新
+* API 调用传参access_token 兼容传参数appid 或 component_appid#authorizer_appid，需要设置API.setApiHandler()
+
 Changes in version 2.8.5 (2017-01-12)
 -------------------------------------
 * 支持微信支付服务商平台

@@ -29,6 +29,8 @@ public class PapayContractbill {
 	private String version;
 
 	private String sign;
+	
+	private String sign_type;
 
 	public String getMch_id() {
 		return mch_id;
@@ -118,4 +120,11 @@ public class PapayContractbill {
 		this.sign = sign;
 	}
 
+	public String getSign_type() {
+		return sign_type;
+	}
+
+	public void setSign_type(String sign_type) {
+		this.sign_type = sign_type;
+	}
 }

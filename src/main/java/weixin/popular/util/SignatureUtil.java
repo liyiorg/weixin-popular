@@ -67,7 +67,7 @@ public class SignatureUtil {
 				e.printStackTrace();
 			}
 			return null;
-		}else{
+		}else{//default MD5
 			return DigestUtils.md5Hex(str+"&key="+paternerKey).toUpperCase();
 		}
 	}

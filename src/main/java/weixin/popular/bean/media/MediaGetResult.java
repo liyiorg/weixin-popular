@@ -9,6 +9,8 @@ public class MediaGetResult extends BaseResult{
 	private String contentType;
 	
 	private byte[] bytes;
+	
+	private String video_url;	//如果返回的是视频消息素材
 
 	public String getFilename() {
 		return filename;
@@ -32,6 +34,14 @@ public class MediaGetResult extends BaseResult{
 
 	public void setBytes(byte[] bytes) {
 		this.bytes = bytes;
+	}
+
+	public String getVideo_url() {
+		return video_url;
+	}
+
+	public void setVideo_url(String video_url) {
+		this.video_url = video_url;
 	}
 	
 }

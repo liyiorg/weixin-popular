@@ -117,7 +117,4 @@ public class API {
 		public String ticket(String appid, String type);
 	}
 
-	public static void main(String[] args) {
-		System.out.println("refreshtoken@@@RICvM9uODG83ccGVO8YkLWZaFM1TJY3J-PBFyX1Bzpg".length());
-	}
 }

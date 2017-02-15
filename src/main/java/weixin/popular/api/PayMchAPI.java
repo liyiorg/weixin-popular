@@ -114,7 +114,7 @@ public class PayMchAPI extends BaseAPI{
 	public static UnifiedorderResult payUnifiedorder(Unifiedorder unifiedorder,String key){
 		Map<String,String> map = MapUtil.objectToMap(unifiedorder);
 		if(key != null){
-			String sign = SignatureUtil.generateSign(map,key);
+			String sign = SignatureUtil.generateSign(map,unifiedorder.getSign_type(),key);
 			unifiedorder.setSign(sign);
 		}
 		String unifiedorderXML = XMLConverUtil.convertToXML(unifiedorder);
@@ -134,7 +134,7 @@ public class PayMchAPI extends BaseAPI{
 	 */
 	public static MicropayResult payMicropay(Micropay micropay,String key){
 		Map<String,String> map = MapUtil.objectToMap(micropay);
-		String sign = SignatureUtil.generateSign(map,key);
+		String sign = SignatureUtil.generateSign(map,micropay.getSign_type(),key);
 		micropay.setSign(sign);
 		String closeorderXML = XMLConverUtil.convertToXML(micropay);
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
@@ -153,7 +153,7 @@ public class PayMchAPI extends BaseAPI{
 	 */
 	public static MchOrderInfoResult payOrderquery(MchOrderquery mchOrderquery,String key){
 		Map<String,String> map = MapUtil.objectToMap(mchOrderquery);
-		String sign = SignatureUtil.generateSign(map,key);
+		String sign = SignatureUtil.generateSign(map,mchOrderquery.getSign_type(),key);
 		mchOrderquery.setSign(sign);
 		String closeorderXML = XMLConverUtil.convertToXML(mchOrderquery);
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
@@ -174,7 +174,7 @@ public class PayMchAPI extends BaseAPI{
 	 */
 	public static MchBaseResult payCloseorder(Closeorder closeorder,String key){
 		Map<String,String> map = MapUtil.objectToMap(closeorder);
-		String sign = SignatureUtil.generateSign(map,key);
+		String sign = SignatureUtil.generateSign(map,closeorder.getSign_type(),key);
 		closeorder.setSign(sign);
 		String closeorderXML = XMLConverUtil.convertToXML(closeorder);
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
@@ -198,7 +198,7 @@ public class PayMchAPI extends BaseAPI{
 	 */
 	public static SecapiPayRefundResult secapiPayRefund(SecapiPayRefund secapiPayRefund,String key){
 		Map<String,String> map = MapUtil.objectToMap( secapiPayRefund);
-		String sign = SignatureUtil.generateSign(map,key);
+		String sign = SignatureUtil.generateSign(map,secapiPayRefund.getSign_type(),key);
 		secapiPayRefund.setSign(sign);
 		String secapiPayRefundXML = XMLConverUtil.convertToXML( secapiPayRefund);
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
@@ -220,7 +220,7 @@ public class PayMchAPI extends BaseAPI{
 	@Deprecated
 	public static MchReverseResult secapiPayReverse(MchReverse mchReverse,String key){
 		Map<String,String> map = MapUtil.objectToMap( mchReverse);
-		String sign = SignatureUtil.generateSign(map,key);
+		String sign = SignatureUtil.generateSign(map,mchReverse.getSign_type(),key);
 		mchReverse.setSign(sign);
 		String secapiPayRefundXML = XMLConverUtil.convertToXML( mchReverse);
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
@@ -241,8 +241,8 @@ public class PayMchAPI extends BaseAPI{
 	 * @return RefundqueryResult
 	 */
 	public static RefundqueryResult payRefundquery(Refundquery refundquery,String key){
-		Map<String,String> map = MapUtil.objectToMap(refundquery,refundquery.getSign_type());
-		String sign = SignatureUtil.generateSign(map,key);
+		Map<String,String> map = MapUtil.objectToMap(refundquery);
+		String sign = SignatureUtil.generateSign(map,refundquery.getSign_type(),key);
 		refundquery.setSign(sign);
 		String refundqueryXML = XMLConverUtil.convertToXML(refundquery);
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
@@ -261,7 +261,7 @@ public class PayMchAPI extends BaseAPI{
 	 */
 	public static DownloadbillResult payDownloadbill(MchDownloadbill downloadbill,String key){
 		Map<String,String> map = MapUtil.objectToMap(downloadbill);
-		String sign = SignatureUtil.generateSign(map,key);
+		String sign = SignatureUtil.generateSign(map,downloadbill.getSign_type(),key);
 		downloadbill.setSign(sign);
 		String closeorderXML = XMLConverUtil.convertToXML(downloadbill);
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
@@ -278,7 +278,7 @@ public class PayMchAPI extends BaseAPI{
                 if (status >= 200 && status < 300) {
                     HttpEntity entity = response.getEntity();
                     String str = EntityUtils.toString(entity,"utf-8");
-                    if(str.startsWith("<xml>")){
+                    if(str.matches("\\s*<xml>.*</xml>\\s*")){
                     	return XMLConverUtil.convertToObject(DownloadbillResult.class,str);
                     }else{
                     	DownloadbillResult dr = new DownloadbillResult();
@@ -300,7 +300,7 @@ public class PayMchAPI extends BaseAPI{
 	 */
 	public static MchShorturlResult toolsShorturl(MchShorturl shorturl,String key){
 		Map<String,String> map = MapUtil.objectToMap(shorturl);
-		String sign = SignatureUtil.generateSign(map,key);
+		String sign = SignatureUtil.generateSign(map,shorturl.getSign_type(),key);
 		shorturl.setSign(sign);
 		String shorturlXML = XMLConverUtil.convertToXML(shorturl);
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
@@ -319,7 +319,7 @@ public class PayMchAPI extends BaseAPI{
 	 */
 	public static AuthcodetoopenidResult toolsAuthcodetoopenid(Authcodetoopenid authcodetoopenid,String key){
 		Map<String,String> map = MapUtil.objectToMap(authcodetoopenid);
-		String sign = SignatureUtil.generateSign(map,key);
+		String sign = SignatureUtil.generateSign(map,authcodetoopenid.getSign_type(),key);
 		authcodetoopenid.setSign(sign);
 		String shorturlXML = XMLConverUtil.convertToXML(authcodetoopenid);
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
@@ -339,7 +339,7 @@ public class PayMchAPI extends BaseAPI{
 	 */
 	public static MchBaseResult payitilReport(Report report,String key){
 		Map<String,String> map = MapUtil.objectToMap(report);
-		String sign = SignatureUtil.generateSign(map,key);
+		String sign = SignatureUtil.generateSign(map,report.getSign_type(),key);
 		report.setSign(sign);
 		String shorturlXML = XMLConverUtil.convertToXML(report);
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
@@ -358,7 +358,7 @@ public class PayMchAPI extends BaseAPI{
 	 */
 	public static SendCouponResult mmpaymkttransfersSend_coupon(SendCoupon sendCoupon,String key){
 		Map<String,String> map = MapUtil.objectToMap( sendCoupon);
-		String sign = SignatureUtil.generateSign(map,key);
+		String sign = SignatureUtil.generateSign(map,sendCoupon.getSign_type(),key);
 		sendCoupon.setSign(sign);
 		String secapiPayRefundXML = XMLConverUtil.convertToXML( sendCoupon);
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
@@ -377,7 +377,7 @@ public class PayMchAPI extends BaseAPI{
 	 */
 	public static QueryCouponStockResult mmpaymkttransfersQuery_coupon_stock(QueryCouponStock queryCouponStock,String key){
 		Map<String,String> map = MapUtil.objectToMap( queryCouponStock);
-		String sign = SignatureUtil.generateSign(map,key);
+		String sign = SignatureUtil.generateSign(map,queryCouponStock.getSign_type(),key);
 		queryCouponStock.setSign(sign);
 		String secapiPayRefundXML = XMLConverUtil.convertToXML( queryCouponStock);
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
@@ -396,7 +396,7 @@ public class PayMchAPI extends BaseAPI{
 	 */
 	public static QueryCouponResult promotionQuery_coupon(QueryCoupon queryCoupon,String key){
 		Map<String,String> map = MapUtil.objectToMap( queryCoupon);
-		String sign = SignatureUtil.generateSign(map,key);
+		String sign = SignatureUtil.generateSign(map,queryCoupon.getSign_type(),key);
 		queryCoupon.setSign(sign);
 		String secapiPayRefundXML = XMLConverUtil.convertToXML( queryCoupon);
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
@@ -428,7 +428,7 @@ public class PayMchAPI extends BaseAPI{
 	 */
 	public static SendredpackResult mmpaymkttransfersSendredpack(Sendredpack sendredpack,String key){
 		Map<String,String> map = MapUtil.objectToMap( sendredpack);
-		String sign = SignatureUtil.generateSign(map,key);
+		String sign = SignatureUtil.generateSign(map,sendredpack.getSign_type(),key);
 		sendredpack.setSign(sign);
 		String secapiPayRefundXML = XMLConverUtil.convertToXML( sendredpack);
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
@@ -448,7 +448,7 @@ public class PayMchAPI extends BaseAPI{
 	 */
 	public static SendredpackResult mmpaymkttransfersSendgroupredpack(Sendgroupredpack sendgroupredpack,String key){
 		Map<String,String> map = MapUtil.objectToMap( sendgroupredpack);
-		String sign = SignatureUtil.generateSign(map,key);
+		String sign = SignatureUtil.generateSign(map,sendgroupredpack.getSign_type(),key);
 		sendgroupredpack.setSign(sign);
 		String secapiPayRefundXML = XMLConverUtil.convertToXML( sendgroupredpack);
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
@@ -469,7 +469,7 @@ public class PayMchAPI extends BaseAPI{
 	 */
 	public static GethbinfoResult mmpaymkttransfersGethbinfo(Gethbinfo gethbinfo,String key){
 		Map<String,String> map = MapUtil.objectToMap( gethbinfo);
-		String sign = SignatureUtil.generateSign(map,key);
+		String sign = SignatureUtil.generateSign(map,gethbinfo.getSign_type(),key);
 		gethbinfo.setSign(sign);
 		String secapiPayRefundXML = XMLConverUtil.convertToXML( gethbinfo);
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
@@ -499,7 +499,7 @@ public class PayMchAPI extends BaseAPI{
 	 */
 	public static TransfersResult mmpaymkttransfersPromotionTransfers(Transfers transfers,String key){
 		Map<String,String> map = MapUtil.objectToMap( transfers);
-		String sign = SignatureUtil.generateSign(map,key);
+		String sign = SignatureUtil.generateSign(map,transfers.getSign_type(),key);
 		transfers.setSign(sign);
 		String secapiPayRefundXML = XMLConverUtil.convertToXML( transfers);
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
@@ -519,7 +519,7 @@ public class PayMchAPI extends BaseAPI{
 	 */
 	public static GettransferinfoResult mmpaymkttransfersGettransferinfo(Gettransferinfo gettransferinfo,String key){
 		Map<String,String> map = MapUtil.objectToMap( gettransferinfo);
-		String sign = SignatureUtil.generateSign(map,key);
+		String sign = SignatureUtil.generateSign(map,gettransferinfo.getSign_type(),key);
 		gettransferinfo.setSign(sign);
 		String secapiPayRefundXML = XMLConverUtil.convertToXML( gettransferinfo);
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
@@ -538,7 +538,7 @@ public class PayMchAPI extends BaseAPI{
 	 */
 	public static PappayapplyResult payPappayapply(Pappayapply pappayapply,String key){
 		Map<String,String> map = MapUtil.objectToMap( pappayapply);
-		String sign = SignatureUtil.generateSign(map,key);
+		String sign = SignatureUtil.generateSign(map,pappayapply.getSign_type(),key);
 		pappayapply.setSign(sign);
 		String secapiPayRefundXML = XMLConverUtil.convertToXML( pappayapply);
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
@@ -557,7 +557,7 @@ public class PayMchAPI extends BaseAPI{
 	 */
 	public static MchOrderInfoResult payPaporderquery(MchOrderquery mchOrderquery,String key){
 		Map<String,String> map = MapUtil.objectToMap(mchOrderquery);
-		String sign = SignatureUtil.generateSign(map,key);
+		String sign = SignatureUtil.generateSign(map,mchOrderquery.getSign_type(),key);
 		mchOrderquery.setSign(sign);
 		String closeorderXML = XMLConverUtil.convertToXML(mchOrderquery);
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
@@ -576,7 +576,7 @@ public class PayMchAPI extends BaseAPI{
 	 */
 	public static PapayQuerycontractResult papayQuerycontract(PapayQuerycontract papayQuerycontract,String key){
 		Map<String,String> map = MapUtil.objectToMap(papayQuerycontract);
-		String sign = SignatureUtil.generateSign(map,key);
+		String sign = SignatureUtil.generateSign(map,papayQuerycontract.getSign_type(),key);
 		papayQuerycontract.setSign(sign);
 		String closeorderXML = XMLConverUtil.convertToXML(papayQuerycontract);
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
@@ -595,7 +595,7 @@ public class PayMchAPI extends BaseAPI{
 	 */
 	public static PapayDeletecontractResult papayDeletecontract(PapayDeletecontract papayDeletecontract,String key){
 		Map<String,String> map = MapUtil.objectToMap(papayDeletecontract);
-		String sign = SignatureUtil.generateSign(map,key);
+		String sign = SignatureUtil.generateSign(map,papayDeletecontract.getSign_type(),key);
 		papayDeletecontract.setSign(sign);
 		String closeorderXML = XMLConverUtil.convertToXML(papayDeletecontract);
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
@@ -614,7 +614,7 @@ public class PayMchAPI extends BaseAPI{
 	 */
 	public static PapayContractbillResult papayContractbill(PapayContractbill papayContractbill,String key){
 		Map<String,String> map = MapUtil.objectToMap(papayContractbill);
-		String sign = SignatureUtil.generateSign(map,key);
+		String sign = SignatureUtil.generateSign(map,papayContractbill.getSign_type(),key);
 		papayContractbill.setSign(sign);
 		String closeorderXML = XMLConverUtil.convertToXML(papayContractbill);
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
@@ -631,7 +631,7 @@ public class PayMchAPI extends BaseAPI{
                 if (status >= 200 && status < 300) {
                     HttpEntity entity = response.getEntity();
                     String str = EntityUtils.toString(entity,"utf-8");
-                    if(str.startsWith("<xml>")){
+                    if(str.matches("\\s*<xml>.*</xml>\\s*")){
                     	return XMLConverUtil.convertToObject(PapayContractbillResult.class,str);
                     }else{
                     	PapayContractbillResult dr = new PapayContractbillResult();

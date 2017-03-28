@@ -2,6 +2,12 @@ WEIXIN-POPULAR CHANGELOG
 ===========================
 https://github.com/liyiorg/weixin-popular
 
+Changes in version 2.8.7 (2017-03-28)
+-------------------------------------
+* 修复问题 #67 （CardAPI codeConsume和codeDecrypt方法返回类型错误）
+* 修复问题 #69 （微信支付统一下单加入detail字段时签名错误）
+* #70 LocalHttpClient.initMchKeyStore 支持inputStream流参数
+
 Changes in version 2.8.6 (2017-02-14)
 -------------------------------------
 * MediaAPI 添加高清语音接口

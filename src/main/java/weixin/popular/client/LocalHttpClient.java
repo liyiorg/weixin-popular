@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
@@ -83,10 +84,23 @@ public class LocalHttpClient {
 	 */
 	public static void initMchKeyStore(String mch_id,String keyStoreFilePath){
 		try {
-			KeyStore keyStore = KeyStore.getInstance("PKCS12");
-			 FileInputStream instream = new FileInputStream(new File(keyStoreFilePath));
-			 keyStore.load(instream,mch_id.toCharArray());
-			 instream.close();
+			initMchKeyStore(mch_id, new FileInputStream(new File(keyStoreFilePath)));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * 初始化   MCH HttpClient KeyStore
+	 * @since 2.8.7
+	 * @param mch_id mch_id
+	 * @param inputStream p12 文件流
+	 */
+	public static void initMchKeyStore(String mch_id, InputStream inputStream) {
+		try {
+			 KeyStore keyStore = KeyStore.getInstance("PKCS12");
+			 keyStore.load(inputStream,mch_id.toCharArray());
+			 inputStream.close();
 			 CloseableHttpClient httpClient = HttpClientFactory.createKeyMaterialHttpClient(keyStore, mch_id,timeout,retryExecutionCount);
 			 httpClient_mchKeyStore.put(mch_id, httpClient);
 		} catch (KeyStoreException e) {

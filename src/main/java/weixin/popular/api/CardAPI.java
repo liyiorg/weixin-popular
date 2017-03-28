@@ -128,7 +128,7 @@ public class CardAPI extends BaseAPI {
 	 * @param codeConsume codeConsume
 	 * @return result
 	 */
-	public static CodeDecryptResult codeConsume(String accessToken, CodeConsume codeConsume) {
+	public static CodeConsumeResult codeConsume(String accessToken, CodeConsume codeConsume) {
 		return codeConsume(accessToken, JsonUtil.toJSONString(codeConsume));
 	}
 
@@ -138,7 +138,7 @@ public class CardAPI extends BaseAPI {
 	 * @param postJson postJson
 	 * @return result
 	 */
-	public static CodeDecryptResult codeConsume(String accessToken, String postJson) {
+	public static CodeConsumeResult codeConsume(String accessToken, String postJson) {
 		HttpUriRequest httpUriRequest = RequestBuilder
 				.post()
 				.setHeader(jsonHeader)
@@ -147,7 +147,7 @@ public class CardAPI extends BaseAPI {
 				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,
-				CodeDecryptResult.class);
+				CodeConsumeResult.class);
 	}
 
 	/**
@@ -160,7 +160,7 @@ public class CardAPI extends BaseAPI {
 	 * @param codeDecrypt codeDecrypt
 	 * @return result
 	 */
-	public static CodeConsumeResult codeDecrypt(String accessToken, CodeDecrypt codeDecrypt) {
+	public static CodeDecryptResult codeDecrypt(String accessToken, CodeDecrypt codeDecrypt) {
 		return codeDecrypt(accessToken, JsonUtil.toJSONString(codeDecrypt));
 	}
 
@@ -174,7 +174,7 @@ public class CardAPI extends BaseAPI {
 	 * @param postJson postJson
 	 * @return result
 	 */
-	public static CodeConsumeResult codeDecrypt(String accessToken, String postJson) {
+	public static CodeDecryptResult codeDecrypt(String accessToken, String postJson) {
 		HttpUriRequest httpUriRequest = RequestBuilder
 				.post()
 				.setHeader(jsonHeader)
@@ -183,7 +183,7 @@ public class CardAPI extends BaseAPI {
 				.setEntity(new StringEntity(postJson, Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,
-				CodeConsumeResult.class);
+				CodeDecryptResult.class);
 	}
 
 	/**

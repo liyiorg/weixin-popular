@@ -24,7 +24,7 @@ weixin-popular 已支持的微信平台
 <dependency>
   <groupId>com.github.liyiorg</groupId>
   <artifactId>weixin-popular</artifactId>
-  <version>2.8.6</version>
+  <version>2.8.7</version>
 </dependency>
 ```
 * [升级注意事项](https://github.com/liyiorg/weixin-popular/wiki/jar_update)
@@ -86,9 +86,9 @@ weixin-popular 已支持的微信平台
 ## support
 * [TokenManager token 自动刷新](https://github.com/liyiorg/weixin-popular/wiki/TokenManager-token-自动刷新)
 * [TicketManager ticket 自动刷新](https://github.com/liyiorg/weixin-popular/wiki/TicketManager-ticket-自动刷新)
-* [设置API HttpClient 请求池大小](https://github.com/liyiorg/weixin-popular/wiki/设置API HttpClient 请求池大小)
+* [设置API HttpClient 请求池大小](https://github.com/liyiorg/weixin-popular/wiki/设置API%20HttpClient%20请求池大小)
 * [设置API HttpClient 超时及异常重试](https://github.com/liyiorg/weixin-popular/wiki/超时及异常重试)
-* [设置API MCH KeyStore](https://github.com/liyiorg/weixin-popular/wiki/设置API MCH KeyStore)
+* [设置API MCH KeyStore](https://github.com/liyiorg/weixin-popular/wiki/设置API%20MCH%20KeyStore)
 * [排除重复的异步通知](https://github.com/liyiorg/weixin-popular/wiki/排除重复的异步通知)
 
 ## 参考资料

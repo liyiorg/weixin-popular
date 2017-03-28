@@ -11,6 +11,10 @@ public class GoodsDetail {
 	private Integer quantity; // 必填 32 商品数量
 
 	private Integer price; // 必填 32 商品单价，如果商户有优惠，需传输商户优惠后的单价
+	
+	private String goods_category;	//类目
+	
+	private String body;			//名称
 
 	public String getGoods_id() {
 		return goods_id;
@@ -52,4 +56,20 @@ public class GoodsDetail {
 		this.price = price;
 	}
 
+	public String getGoods_category() {
+		return goods_category;
+	}
+
+	public void setGoods_category(String goods_category) {
+		this.goods_category = goods_category;
+	}
+
+	public String getBody() {
+		return body;
+	}
+
+	public void setBody(String body) {
+		this.body = body;
+	}
+	
 }

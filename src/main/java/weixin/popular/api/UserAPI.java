@@ -365,7 +365,7 @@ public class UserAPI extends BaseAPI{
 	
 	/**
 	 * 用户管理 批量为用户打标签<br>
-	 * 标签功能目前支持公众号为用户打上最多三个标签。
+	 * 标签功能目前支持公众号为用户打上最多20个标签。
 	 * @since 2.8.1
 	 * @param access_token access_token
 	 * @param tagid	tagid

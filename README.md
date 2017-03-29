@@ -91,6 +91,9 @@ weixin-popular 已支持的微信平台
 * [设置API MCH KeyStore](https://github.com/liyiorg/weixin-popular/wiki/设置API%20MCH%20KeyStore)
 * [排除重复的异步通知](https://github.com/liyiorg/weixin-popular/wiki/排除重复的异步通知)
 
+## 激励一下
+![微信扫一扫](https://raw.githubusercontent.com/liyiorg/weixin-popular/2.8.x/jdyx_wx.jpg)
+
 ## 参考资料
 * [微信公众平台开发者文档](http://mp.weixin.qq.com/wiki/index.php)
 * [微信商户服务中心](http://mp.weixin.qq.com/cgi-bin/readtemplate?t=business/faq_tmpl&lang=zh_CN)

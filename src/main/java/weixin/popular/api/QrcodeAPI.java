@@ -106,13 +106,13 @@ public class QrcodeAPI extends BaseAPI{
 	}
 	
 	/**
-	 * 获取小程序页面二维码 (beta)
-	 * @since 2.8.5
+	 * 获取小程序页面二维码
+	 * @since 2.8.8
 	 * @param access_token access_token
 	 * @param wxaqrcode wxaqrcode
-	 * @return result
+	 * @return BufferedImage
 	 */
-	public static QrcodeTicket wxaappCreatewxaqrcode(String access_token,Wxaqrcode wxaqrcode){
+	public static BufferedImage wxaappCreatewxaqrcode(String access_token,Wxaqrcode wxaqrcode){
 		String json = JsonUtil.toJSONString(wxaqrcode);
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 								.setHeader(jsonHeader)
@@ -120,7 +120,23 @@ public class QrcodeAPI extends BaseAPI{
 								.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
 								.setEntity(new StringEntity(json,Charset.forName("utf-8")))
 								.build();
-		return LocalHttpClient.executeJsonResult(httpUriRequest,QrcodeTicket.class);
+		CloseableHttpResponse httpResponse = LocalHttpClient.execute(httpUriRequest);
+		try {
+			int status = httpResponse.getStatusLine().getStatusCode();
+            if (status == 200) {
+				byte[] bytes = EntityUtils.toByteArray(httpResponse.getEntity());
+				return ImageIO.read(new ByteArrayInputStream(bytes));
+            }
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				httpResponse.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return null;
 	}
 
 }

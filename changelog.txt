@@ -2,6 +2,11 @@ WEIXIN-POPULAR CHANGELOG
 ===========================
 https://github.com/liyiorg/weixin-popular
 
+Changes in version 2.8.8 (2017-04-07)
+-------------------------------------
+* 修复问题 #72 （小程序二维码接口返回数据格式错误）
+* 修复问题 #73 （统一下单detail字段签名错误）
+
 Changes in version 2.8.7 (2017-03-28)
 -------------------------------------
 * 修复问题 #67 （CardAPI codeConsume和codeDecrypt方法返回类型错误）

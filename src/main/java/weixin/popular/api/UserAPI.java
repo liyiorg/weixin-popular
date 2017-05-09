@@ -23,7 +23,7 @@ import weixin.popular.util.JsonUtil;
 
 /**
  * User API
- * @author Administrator
+ * @author LiYi
  *
  */
 public class UserAPI extends BaseAPI{

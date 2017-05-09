@@ -6,7 +6,7 @@ package weixin.popular.api;
  * 
  * 2.8.6
  * 
- * @author SLYH
+ * @author LiYi
  *
  */
 public class API {

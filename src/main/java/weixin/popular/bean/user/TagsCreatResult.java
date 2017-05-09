@@ -5,7 +5,7 @@ import weixin.popular.bean.BaseResult;
 /**
  * 标签
  * 
- * @author SLYH
+ * @author LiYi
  * 
  */
 public class TagsCreatResult extends BaseResult {

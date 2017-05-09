@@ -238,5 +238,27 @@ public class SnsAPI extends BaseAPI{
 			.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,Jscode2sessionResult.class);
 	}
+	
+	/**
+	 *  code 换取 session_key（微信小程序   第三方平台）
+	 * @since 2.8.9
+	 * @param appid appid
+	 * @param js_code js_code
+	 * @param component_appid component_appid
+	 * @param component_access_token component_access_token
+	 * @return result
+	 */
+	public static Jscode2sessionResult componentJscode2session(String appid,String js_code,String component_appid,String component_access_token){
+		HttpUriRequest httpUriRequest = RequestBuilder.get()
+			.setUri(BASE_URI + "/sns/component/jscode2session")
+			.addParameter("appid",appid)
+			.addParameter("js_code",js_code)
+			.addParameter("grant_type","authorization_code")
+			.addParameter("component_appid",component_appid)
+			.addParameter("component_access_token",API.componentAccessToken(component_access_token))
+			.build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest,Jscode2sessionResult.class);
+	}
+	
 
 }

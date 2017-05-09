@@ -11,7 +11,7 @@ import weixin.popular.bean.AdaptorCDATA;
 /**
  * 统一支付请求参数
  * 
- * @author SLYH
+ * @author LiYi
  *
  */
 

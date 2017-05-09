@@ -20,6 +20,11 @@ import weixin.popular.bean.datacube.interfaces.InterfacesummaryResult;
 import weixin.popular.bean.datacube.upstreammsg.UpstreammsgResult;
 import weixin.popular.bean.datacube.user.UsercumulateResult;
 import weixin.popular.bean.datacube.user.UsersummaryResult;
+import weixin.popular.bean.datacube.wxapp.RetaininfoResult;
+import weixin.popular.bean.datacube.wxapp.SummarytrendResult;
+import weixin.popular.bean.datacube.wxapp.VisitdistributionResult;
+import weixin.popular.bean.datacube.wxapp.VisitpageResult;
+import weixin.popular.bean.datacube.wxapp.VisittrendResult;
 import weixin.popular.client.LocalHttpClient;
 import weixin.popular.util.JsonUtil;
 
@@ -459,4 +464,184 @@ public class DataCubeAPI extends BaseAPI {
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,InterfacesummaryResult.class);
 	}
+	
+	//-------------------------- 小程序
+	
+	/**
+	 * 概况趋势	(小程序)
+	 * @param access_token access_token
+	 * @param begin_date begin_date
+	 * @param end_date end_date
+	 * @return result
+	 * @since 2.8.9
+	 */
+	public static SummarytrendResult getweanalysisappiddailysummarytrend(String access_token, String begin_date,String end_date) {
+		String requestJson = String.format("{\"begin_date\":\"%s\",\"end_date\":\"%s\"}", begin_date,end_date);
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+				.setHeader(jsonHeader)
+				.setUri(BASE_URI+"/datacube/getweanalysisappiddailysummarytrend")
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
+				.setEntity(new StringEntity(requestJson,Charset.forName("utf-8")))
+				.build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest,SummarytrendResult.class);
+	}
+	
+	/**
+	 * 访问趋势 (小程序)<br>
+	 * 日趋势
+	 * @param access_token access_token
+	 * @param begin_date begin_date
+	 * @param end_date end_date
+	 * @return result
+	 * @since 2.8.9
+	 */
+	public static VisittrendResult getweanalysisappiddailyvisittrend(String access_token, String begin_date,String end_date) {
+		String requestJson = String.format("{\"begin_date\":\"%s\",\"end_date\":\"%s\"}", begin_date,end_date);
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+				.setHeader(jsonHeader)
+				.setUri(BASE_URI+"/datacube/getweanalysisappiddailyvisittrend")
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
+				.setEntity(new StringEntity(requestJson,Charset.forName("utf-8")))
+				.build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest,VisittrendResult.class);
+	}
+	
+	/**
+	 * 访问趋势 (小程序)<br>
+	 * 周趋势
+	 * @param access_token access_token
+	 * @param begin_date begin_date
+	 * @param end_date end_date
+	 * @return result
+	 * @since 2.8.9
+	 */
+	public static VisittrendResult getweanalysisappidweeklyvisittrend(String access_token, String begin_date,String end_date) {
+		String requestJson = String.format("{\"begin_date\":\"%s\",\"end_date\":\"%s\"}", begin_date,end_date);
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+				.setHeader(jsonHeader)
+				.setUri(BASE_URI+"/datacube/getweanalysisappidweeklyvisittrend")
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
+				.setEntity(new StringEntity(requestJson,Charset.forName("utf-8")))
+				.build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest,VisittrendResult.class);
+	}
+	
+	/**
+	 * 访问趋势 (小程序)<br>
+	 * 月趋势
+	 * @param access_token access_token
+	 * @param begin_date begin_date
+	 * @param end_date end_date
+	 * @return result
+	 * @since 2.8.9
+	 */
+	public static VisittrendResult getweanalysisappidmonthlyvisittrend(String access_token, String begin_date,String end_date) {
+		String requestJson = String.format("{\"begin_date\":\"%s\",\"end_date\":\"%s\"}", begin_date,end_date);
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+				.setHeader(jsonHeader)
+				.setUri(BASE_URI+"/datacube/getweanalysisappidmonthlyvisittrend")
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
+				.setEntity(new StringEntity(requestJson,Charset.forName("utf-8")))
+				.build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest,VisittrendResult.class);
+	}
+	
+	/**
+	 * 访问分布 (小程序)<br>
+	 * @param access_token access_token
+	 * @param begin_date begin_date
+	 * @param end_date end_date
+	 * @return result
+	 * @since 2.8.9
+	 */
+	public static VisitdistributionResult getweanalysisappidvisitdistribution(String access_token, String begin_date,String end_date) {
+		String requestJson = String.format("{\"begin_date\":\"%s\",\"end_date\":\"%s\"}", begin_date,end_date);
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+				.setHeader(jsonHeader)
+				.setUri(BASE_URI+"/datacube/getweanalysisappidvisitdistribution")
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
+				.setEntity(new StringEntity(requestJson,Charset.forName("utf-8")))
+				.build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest,VisitdistributionResult.class);
+	}
+	
+	/**
+	 * 访问留存 (小程序)<br>
+	 * 日留存
+	 * @param access_token access_token
+	 * @param begin_date begin_date
+	 * @param end_date end_date
+	 * @return result
+	 * @since 2.8.9
+	 */
+	public static RetaininfoResult getweanalysisappiddailyretaininfo(String access_token, String begin_date,String end_date) {
+		String requestJson = String.format("{\"begin_date\":\"%s\",\"end_date\":\"%s\"}", begin_date,end_date);
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+				.setHeader(jsonHeader)
+				.setUri(BASE_URI+"/datacube/getweanalysisappiddailyretaininfo")
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
+				.setEntity(new StringEntity(requestJson,Charset.forName("utf-8")))
+				.build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest,RetaininfoResult.class);
+	}
+	
+	/**
+	 * 访问留存 (小程序)<br>
+	 * 周留存
+	 * @param access_token access_token
+	 * @param begin_date begin_date
+	 * @param end_date end_date
+	 * @return result
+	 * @since 2.8.9
+	 */
+	public static RetaininfoResult getweanalysisappidweeklyretaininfo(String access_token, String begin_date,String end_date) {
+		String requestJson = String.format("{\"begin_date\":\"%s\",\"end_date\":\"%s\"}", begin_date,end_date);
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+				.setHeader(jsonHeader)
+				.setUri(BASE_URI+"/datacube/getweanalysisappidweeklyretaininfo")
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
+				.setEntity(new StringEntity(requestJson,Charset.forName("utf-8")))
+				.build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest,RetaininfoResult.class);
+	}
+	
+	/**
+	 * 访问留存 (小程序)<br>
+	 * 月留存
+	 * @param access_token access_token
+	 * @param begin_date begin_date
+	 * @param end_date end_date
+	 * @return result
+	 * @since 2.8.9
+	 */
+	public static RetaininfoResult getweanalysisappidmonthlyretaininfo(String access_token, String begin_date,String end_date) {
+		String requestJson = String.format("{\"begin_date\":\"%s\",\"end_date\":\"%s\"}", begin_date,end_date);
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+				.setHeader(jsonHeader)
+				.setUri(BASE_URI+"/datacube/getweanalysisappidmonthlyretaininfo")
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
+				.setEntity(new StringEntity(requestJson,Charset.forName("utf-8")))
+				.build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest,RetaininfoResult.class);
+	}
+	
+	/**
+	 * 访问页面 (小程序)
+	 * @param access_token access_token
+	 * @param begin_date begin_date
+	 * @param end_date end_date
+	 * @return result
+	 * @since 2.8.9
+	 */
+	public static VisitpageResult getweanalysisappidvisitpage(String access_token, String begin_date,String end_date) {
+		String requestJson = String.format("{\"begin_date\":\"%s\",\"end_date\":\"%s\"}", begin_date,end_date);
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+				.setHeader(jsonHeader)
+				.setUri(BASE_URI+"/datacube/getweanalysisappidvisitpage")
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
+				.setEntity(new StringEntity(requestJson,Charset.forName("utf-8")))
+				.build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest,VisitpageResult.class);
+	}
+	
 }

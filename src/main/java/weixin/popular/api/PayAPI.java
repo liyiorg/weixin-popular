@@ -20,7 +20,7 @@ import weixin.popular.util.SignatureUtil;
 
 /**
  * 老版本支付，新版本使用PayMchAPI。
- * @author SLYH
+ * @author LiYi
  */
 public class PayAPI extends BaseAPI{
 

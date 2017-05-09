@@ -7,11 +7,13 @@ public class Button {
 
 	private String name;
 
-	private String type;	//click|view|news_info|img|text|voice|video
+	private String type;	//click|view|news_info|img|text|voice|video|miniprogram
 	private String key;
 	private String url;
 	private String value;
 	private NewsInfo news_info;
+	private String appid; // 小程序的appid
+	private String pagepath;// 小程序的页面路径
 
 	private List<Button> list;
 
@@ -97,5 +99,24 @@ public class Button {
 		this.value = value;
 	}
 
+
+	public String getAppid() {
+		return appid;
+	}
+
+
+	public void setAppid(String appid) {
+		this.appid = appid;
+	}
+
+
+	public String getPagepath() {
+		return pagepath;
+	}
+
+
+	public void setPagepath(String pagepath) {
+		this.pagepath = pagepath;
+	}
 
 }

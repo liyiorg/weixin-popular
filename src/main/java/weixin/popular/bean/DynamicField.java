@@ -4,7 +4,7 @@ import java.util.Map;
 
 /**
  * 用于XML 返回不定element
- * @author SLYH
+ * @author LiYi
  * @since 2.8.5
  */
 public interface DynamicField {

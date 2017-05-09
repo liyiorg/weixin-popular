@@ -2,7 +2,7 @@ package weixin.popular.bean.message.message;
 
 /**
  * 发送卡券
- * @author SLYH
+ * @author LiYi
  *
  */
 public class WxcardMessage extends Message {

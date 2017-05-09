@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * 统一下单detail json 数据对象<br>
  * 注意：单品总金额应<=订单总金额total_fee，否则会无法享受优惠。
- * @author SLYH
+ * @author LiYi
  *
  */
 public class Detail {

@@ -24,7 +24,7 @@ weixin-popular 已支持的微信平台
 <dependency>
   <groupId>com.github.liyiorg</groupId>
   <artifactId>weixin-popular</artifactId>
-  <version>2.8.8</version>
+  <version>2.8.9</version>
 </dependency>
 ```
 * [升级注意事项](https://github.com/liyiorg/weixin-popular/wiki/jar_update)
@@ -50,6 +50,7 @@ weixin-popular 已支持的微信平台
 * [ShakearoundAPI](https://github.com/liyiorg/weixin-popular/wiki/ShakearoundAPI) 微信摇一摇周边 @Moyq5 (贡献)
 * [DatacubeAPI](https://github.com/liyiorg/weixin-popular/wiki/DataCubeAPI) 数据统计 @Moyq5 (贡献)
 * [CustomserviceAPI](https://github.com/liyiorg/weixin-popular/wiki/CustomserviceAPI) 客服功能  @ConciseA (贡献)
+* [WxaAPI](https://github.com/liyiorg/weixin-popular/wiki/WxaAPI) 微信小程序第三方平台
 
 ### 待开发API
 * [BizwifiAPI](https://github.com/liyiorg/weixin-popular/wiki/BizwifiAPI) 微信连Wi-Fi

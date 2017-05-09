@@ -2,13 +2,15 @@ package weixin.popular.bean.menu;
 
 import java.util.List;
 
-public class Button{
+public class Button {
 
-	private String type;	//click|view|scancode_waitmsg|scancode_push|pic_sysphoto|pic_photo_or_album|pic_weixin|location_select|media_id|view_limited
+	private String type; // click|view|scancode_waitmsg|scancode_push|pic_sysphoto|pic_photo_or_album|pic_weixin|location_select|media_id|view_limited|miniprogram
 	private String name;
 	private String key;
 	private String url;
 	private String media_id;
+	private String appid; // 小程序的appid
+	private String pagepath;// 小程序的页面路径
 
 	private List<Button> sub_button;
 
@@ -58,6 +60,22 @@ public class Button{
 
 	public void setMedia_id(String media_id) {
 		this.media_id = media_id;
+	}
+
+	public String getAppid() {
+		return appid;
+	}
+
+	public void setAppid(String appid) {
+		this.appid = appid;
+	}
+
+	public String getPagepath() {
+		return pagepath;
+	}
+
+	public void setPagepath(String pagepath) {
+		this.pagepath = pagepath;
 	}
 
 }

@@ -21,6 +21,8 @@ public class MicropayResult extends MchBase{
 	private String out_trade_no;
 	private String attach;
 	private String time_end;
+	private String sub_openid;
+	private String sub_is_subscribe;
 
 	public String getOpenid() {
 		return openid;
@@ -99,6 +101,18 @@ public class MicropayResult extends MchBase{
 	}
 	public void setTime_end(String time_end) {
 		this.time_end = time_end;
+	}
+	public String getSub_openid() {
+		return sub_openid;
+	}
+	public void setSub_openid(String sub_openid) {
+		this.sub_openid = sub_openid;
+	}
+	public String getSub_is_subscribe() {
+		return sub_is_subscribe;
+	}
+	public void setSub_is_subscribe(String sub_is_subscribe) {
+		this.sub_is_subscribe = sub_is_subscribe;
 	}
 
 

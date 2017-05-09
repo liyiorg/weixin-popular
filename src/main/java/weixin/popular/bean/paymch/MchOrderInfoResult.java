@@ -59,6 +59,12 @@ public class MchOrderInfoResult extends MchBase{
 
 	@XmlElement
 	private String trade_state_desc;
+	
+	@XmlElement
+	private String sub_openid;
+	
+	@XmlElement
+	private String sub_is_subscribe;
 
 	public String getTrade_state() {
 		return trade_state;
@@ -196,5 +202,20 @@ public class MchOrderInfoResult extends MchBase{
 		this.trade_state_desc = trade_state_desc;
 	}
 
+	public String getSub_is_subscribe() {
+		return sub_is_subscribe;
+	}
+
+	public void setSub_is_subscribe(String sub_is_subscribe) {
+		this.sub_is_subscribe = sub_is_subscribe;
+	}
+
+	public String getSub_openid() {
+		return sub_openid;
+	}
+
+	public void setSub_openid(String sub_openid) {
+		this.sub_openid = sub_openid;
+	}
 
 }

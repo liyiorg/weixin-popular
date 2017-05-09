@@ -2,7 +2,7 @@ package weixin.popular.support;
 
 /**
  * key 过期
- * @author SLYH
+ * @author LiYi
  *
  */
 public interface ExpireKey {

@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * native 回复
- * @author Administrator
+ * @author LiYi
  *
  */
 @XmlRootElement(name="xml")

@@ -354,7 +354,7 @@ public class UserAPI extends BaseAPI{
 	 */
 	public static UserTagGetResult userTagGet(String access_token,Integer tagid,String next_openid){
 		String json = String.format("{\"tagid\":%d,\"next_openid\":\"%s\"}",tagid,next_openid==null?"":next_openid);
-		HttpUriRequest httpUriRequest = RequestBuilder.get()
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
 										.setHeader(jsonHeader)
 										.setUri(BASE_URI+"/cgi-bin/user/tag/get")
 										.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))

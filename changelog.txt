@@ -2,6 +2,15 @@ WEIXIN-POPULAR CHANGELOG
 ===========================
 https://github.com/liyiorg/weixin-popular
 
+Changes in version 2.8.10 (2017-06-08)
+-------------------------------------
+* #79 改进网页授权access_token 返回添加unionid 字段
+* #80 MassMessage 添加 clientmsgid 字段
+* 添加 删除群发接口参数  article_idx 
+* 修复 UserAPI.userTagGet 接口请求方式问题
+* 添加图文消息评论留言接口 CommentAPI
+* 添加小程序码接口
+
 Changes in version 2.8.9 (2017-05-08)
 -------------------------------------
 * 添加微信小程序第三方平台接口WxaAPI

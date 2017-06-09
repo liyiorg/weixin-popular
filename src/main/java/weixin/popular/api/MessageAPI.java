@@ -171,16 +171,33 @@ public class MessageAPI extends BaseAPI{
 
 
 	/**
-	 * 高级群发接口	删除群发
-	 * 请注意，只有已经发送成功的消息才能删除删除消息只是将消息的图文详情页失效，
-	 * 已经收到的用户，还是能在其本地看到消息卡片。
-	 * 另外，删除群发消息只能删除图文消息和视频消息，其他类型的消息一经发送，无法删除。
+	 * 高级群发接口	删除群发 <br>
+	 * 1、只有已经发送成功的消息才能删除<br>
+	 * 2、删除消息是将消息的图文详情页失效，已经收到的用户，还是能在其本地看到消息卡片。<br>
+     * 3、删除群发消息只能删除图文消息和视频消息，其他类型的消息一经发送，无法删除。<br>
+	 * 4、如果多次群发发送的是一个图文消息，那么删除其中一次群发，就会删除掉这个图文消息也，导致所有群发都失效<br>
 	 * @param access_token access_token
 	 * @param msg_id msg_id
 	 * @return BaseResult
 	 */
 	public static BaseResult messageMassDelete(String access_token,String msg_id){
-		String messageJson = String.format("{\"msg_id\":\"%s\"}",msg_id);
+		return messageMassDelete(access_token, msg_id, 0);
+	}
+	
+	/**
+	 * 高级群发接口	删除群发 <br>
+	 * 1、只有已经发送成功的消息才能删除<br>
+	 * 2、删除消息是将消息的图文详情页失效，已经收到的用户，还是能在其本地看到消息卡片。<br>
+     * 3、删除群发消息只能删除图文消息和视频消息，其他类型的消息一经发送，无法删除。<br>
+	 * 4、如果多次群发发送的是一个图文消息，那么删除其中一次群发，就会删除掉这个图文消息也，导致所有群发都失效<br>
+	 * @since 2.8.10
+	 * @param access_token access_token
+	 * @param msg_id msg_id
+	 * @param article_idx 要删除的文章在图文消息中的位置，第一篇编号为1，该字段不填或填0会删除全部文章
+	 * @return BaseResult
+	 */
+	public static BaseResult messageMassDelete(String access_token,String msg_id,Integer article_idx){
+		String messageJson = String.format("{\"msg_id\":\"%s\",\"article_idx\":%d}",msg_id,article_idx);
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 										.setHeader(jsonHeader)
 										.setUri(BASE_URI+"/cgi-bin/message/mass/delete")

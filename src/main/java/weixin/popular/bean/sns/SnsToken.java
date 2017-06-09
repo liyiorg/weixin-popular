@@ -13,6 +13,8 @@ public class SnsToken extends BaseResult{
 	private String openid;
 
 	private String scope;
+	
+	private String unionid;
 
 	public String getAccess_token() {
 		return access_token;
@@ -54,5 +56,12 @@ public class SnsToken extends BaseResult{
 		this.scope = scope;
 	}
 
+	public String getUnionid() {
+		return unionid;
+	}
+
+	public void setUnionid(String unionid) {
+		this.unionid = unionid;
+	}
 
 }

@@ -1,5 +1,6 @@
 package weixin.popular.api;
 
+import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -19,6 +20,8 @@ import weixin.popular.bean.wxa.GetAuditstatusResult;
 import weixin.popular.bean.wxa.GetCategoryResult;
 import weixin.popular.bean.wxa.GetPageResult;
 import weixin.popular.bean.wxa.GetQrcodeResult;
+import weixin.popular.bean.wxa.Getwxacode;
+import weixin.popular.bean.wxa.Getwxacodeunlimit;
 import weixin.popular.bean.wxa.ModifyDomain;
 import weixin.popular.bean.wxa.ModifyDomainResult;
 import weixin.popular.bean.wxa.SubmitAudit;
@@ -251,4 +254,77 @@ public class WxaAPI extends BaseAPI {
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,BaseResult.class);
 	}
+	
+	/**
+	 * 获取小程序码 A<br>
+	 * 适用于需要的码数量较少的业务场景 <br>
+	 * 注意：通过该接口生成的小程序码，永久有效，数量限制见文末说明，请谨慎使用。用户扫描该码进入小程序后，将直接进入 path 对应的页面。
+	 * @since 2.8.10
+	 * @param access_token access_token
+	 * @param getwxacode getwxacode
+	 * @return BufferedImage BufferedImage
+	 */
+	public static BufferedImage getwxacode(String access_token,Getwxacode getwxacode){
+		String json = JsonUtil.toJSONString(getwxacode);
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+				.setHeader(jsonHeader)
+				.setUri(BASE_URI+"/wxa/getwxacode")
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
+				.setEntity(new StringEntity(json,Charset.forName("utf-8")))
+				.build();
+		CloseableHttpResponse httpResponse = LocalHttpClient.execute(httpUriRequest);
+		try {
+			int status = httpResponse.getStatusLine().getStatusCode();
+            if (status == 200) {
+				byte[] bytes = EntityUtils.toByteArray(httpResponse.getEntity());
+				return ImageIO.read(new ByteArrayInputStream(bytes));
+            }
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				httpResponse.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return null;
+	}
+	
+	/**
+	 * 获取小程序码 B<br>
+	 * 适用于需要的码数量极多，或仅临时使用的业务场景<br>
+	 * 注意：通过该接口生成的小程序码，永久有效，数量暂无限制。用户扫描该码进入小程序后，将统一打开首页，开发者需在首页根据获取的码中 scene 字段的值，再做处理逻辑。
+	 * @since 2.8.10
+	 * @param access_token access_token
+	 * @param getwxacodeunlimit getwxacodeunlimit
+	 * @return BufferedImage BufferedImage
+	 */
+	public static BufferedImage getwxacodeunlimit(String access_token,Getwxacodeunlimit getwxacodeunlimit){
+		String json = JsonUtil.toJSONString(getwxacodeunlimit);
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+				.setHeader(jsonHeader)
+				.setUri(BASE_URI+"/wxa/getwxacode")
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
+				.setEntity(new StringEntity(json,Charset.forName("utf-8")))
+				.build();
+		CloseableHttpResponse httpResponse = LocalHttpClient.execute(httpUriRequest);
+		try {
+			int status = httpResponse.getStatusLine().getStatusCode();
+            if (status == 200) {
+				byte[] bytes = EntityUtils.toByteArray(httpResponse.getEntity());
+				return ImageIO.read(new ByteArrayInputStream(bytes));
+            }
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				httpResponse.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return null;
+	}
+	
 }

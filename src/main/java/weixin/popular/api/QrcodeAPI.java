@@ -106,7 +106,8 @@ public class QrcodeAPI extends BaseAPI{
 	}
 	
 	/**
-	 * 获取小程序页面二维码
+	 * 获取小程序页面二维码 <br>
+	 * 小程序码使用 使用 WxaAPI.getwxacode　或　WxaAPI.getwxacodeunlimit
 	 * @since 2.8.8
 	 * @param access_token access_token
 	 * @param wxaqrcode wxaqrcode

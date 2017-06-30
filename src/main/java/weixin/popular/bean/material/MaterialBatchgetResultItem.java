@@ -44,7 +44,7 @@ public class MaterialBatchgetResultItem {
 		this.update_time = update_time;
 	}
 	
-	public void setUrl(){
+	public void setUrl(String url){
 		this.url = url;
 	}
 

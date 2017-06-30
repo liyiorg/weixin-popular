@@ -9,6 +9,8 @@ public class MaterialBatchgetResultItem {
 	private String name;
 
 	private String update_time;
+	
+	private String url;
 
 	public String getMedia_id() {
 		return media_id;
@@ -41,6 +43,13 @@ public class MaterialBatchgetResultItem {
 	public void setUpdate_time(String update_time) {
 		this.update_time = update_time;
 	}
-
+	
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	
+	public String getUrl(String url) {
+		return url;
+	}
 
 }

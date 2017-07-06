@@ -2,6 +2,12 @@ WEIXIN-POPULAR CHANGELOG
 ===========================
 https://github.com/liyiorg/weixin-popular
 
+Changes in version 2.8.11 (2017-07-06)
+-------------------------------------
+* #83 小程序获取第三方提交的审核版本的审核状态，添加原因返回字段
+* #85 修复批量为用户取消标签接口地址错误
+* #88 素材列表获取接口新增url字段
+
 Changes in version 2.8.10 (2017-06-08)
 -------------------------------------
 * #79 改进网页授权access_token 返回添加unionid 字段

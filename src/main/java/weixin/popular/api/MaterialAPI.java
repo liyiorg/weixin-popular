@@ -218,6 +218,26 @@ public class MaterialAPI extends BaseAPI{
 										.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,BaseResult.class);
 	}
+	
+		
+ 	/**
+ 	 * 修改永久图文素材(通过json字符串)
+ 	 * @param access_token access_token
+ 	 * @param media_id 	要修改的图文消息的id
+ 	 * @param index 	要更新的文章在图文消息中的位置（多图文消息时，此字段才有意义），第一篇为0
+ 	 * @param articlesJson articlesJson
+ 	 * @return BaseResult
+ 	 */
+ 	public static BaseResult update_news(String access_token,String media_id,int index,String articlesJson){
+ 		String messageJson = "{\"media_id\":\""+media_id+"\",\"index\":"+index+",\"articles\":"+articlesJson+"}";
+ 		HttpUriRequest httpUriRequest = RequestBuilder.post()
+ 										.setHeader(jsonHeader)
+ 										.setUri(BASE_URI+"/cgi-bin/material/update_news")
+ 										.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
+ 										.setEntity(new StringEntity(messageJson,Charset.forName("utf-8")))
+ 										.build();
+ 		return LocalHttpClient.executeJsonResult(httpUriRequest,BaseResult.class);
+ 	}
 
 
 	/**

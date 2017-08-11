@@ -83,7 +83,7 @@ public class WxaAPI extends BaseAPI {
 	 */
 	public static BaseResult unbind_tester(String access_token,String wechatid){
 		String json = String.format("{\"wechatid\":\"%s\"}",wechatid);
-		HttpUriRequest httpUriRequest = RequestBuilder.get()
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI+"/wxa/unbind_tester")
 				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))

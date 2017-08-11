@@ -13,7 +13,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import org.apache.http.Header;
 import org.apache.http.HttpEntity;
+import org.apache.http.HttpHeaders;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpEntityEnclosingRequestBase;
@@ -21,9 +23,12 @@ import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.client.protocol.HttpClientContext;
 import org.apache.http.entity.ContentType;
 import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.message.BasicHeader;
 import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import weixin.popular.Version;
 
 public class LocalHttpClient {
 	
@@ -38,6 +43,8 @@ public class LocalHttpClient {
 	private static Map<String,CloseableHttpClient> httpClient_mchKeyStore = new HashMap<String, CloseableHttpClient>();
 	
 	private static ResultErrorHandler resultErrorHandler;
+	
+	protected static final Header userAgentHeader = new BasicHeader(HttpHeaders.USER_AGENT,"weixin-popular sdk java v" + Version.VERSION);
 	
 	/**
 	 * @since 2.7.0
@@ -119,6 +126,7 @@ public class LocalHttpClient {
 
 	public static CloseableHttpResponse execute(HttpUriRequest request){
 		loggerRequest(request);
+		userAgent(request);
 		try {
 			return httpClient.execute(request,HttpClientContext.create());
 		} catch (Exception e) {
@@ -130,6 +138,7 @@ public class LocalHttpClient {
 
 	public static <T> T execute(HttpUriRequest request,ResponseHandler<T> responseHandler){
 		String uriId = loggerRequest(request);
+		userAgent(request);
 		if(responseHandler instanceof LocalResponseHandler){
 			LocalResponseHandler lrh = (LocalResponseHandler) responseHandler;
 			lrh.setUriId(uriId);
@@ -194,9 +203,10 @@ public class LocalHttpClient {
 	}
 	
 	/**
-	 * MCH keyStore 请求 数据返回自动XML对象解析
+	 * 
 	 * @param mch_id mch_id
 	 * @param request request
+	 * @param clazz clazz
 	 * @param sign_type 数据返回验证签名类型
 	 * @param key 数据返回验证签名key
 	 * @since 2.8.5
@@ -204,6 +214,7 @@ public class LocalHttpClient {
 	 */
 	public static <T> T keyStoreExecuteXmlResult(String mch_id,HttpUriRequest request,Class<T> clazz,String sign_type,String key){
 		String uriId = loggerRequest(request);
+		userAgent(request);
 		ResponseHandler<T> responseHandler = XmlResponseHandler.createResponseHandler(clazz,sign_type,key);
 		if(responseHandler instanceof LocalResponseHandler){
 			LocalResponseHandler lrh = (LocalResponseHandler) responseHandler;
@@ -258,4 +269,7 @@ public class LocalHttpClient {
 		return id;
 	}
 	
+	private static void userAgent(HttpUriRequest httpUriRequest){
+		httpUriRequest.addHeader(userAgentHeader);
+	}
 }

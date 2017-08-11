@@ -82,7 +82,7 @@ public class TicketManager {
 	 * 初始化ticket 刷新，每119分钟刷新一次。<br>
 	 * 依赖TokenManager
 	 * @since 2.8.2 
-	 * @param appid
+	 * @param appid appid
 	 * @param types [jsapi,wx_card]
 	 */
 	public static void init(final String appid,String types){
@@ -119,21 +119,29 @@ public class TicketManager {
 			if(futureMap.containsKey(key)){
 				futureMap.get(key).cancel(true);
 			}
+			//立即执行一次
+			if(initialDelay == 0){
+				doRun(appid, type, key);
+			}
 			ScheduledFuture<?> scheduledFuture =  scheduledExecutorService.scheduleWithFixedDelay(new Runnable() {
 				@Override
 				public void run() {
-					try {
-						String access_token = TokenManager.getToken(appid);
-						Ticket ticket = TicketAPI.ticketGetticket(access_token,type);
-						ticketMap.put(key,ticket.getTicket());
-						logger.info("TICKET refurbish with appid:{} type:{}",appid,type);
-					} catch (Exception e) {
-						logger.error("TICKET refurbish error with appid:{} type:{}",appid,type);
-						e.printStackTrace();
-					}
+					doRun(appid, type, key);
 				}
-			},initialDelay,delay,TimeUnit.SECONDS);
+			},initialDelay == 0 ? delay : initialDelay,delay,TimeUnit.SECONDS);
 			futureMap.put(key,scheduledFuture);
+		}
+	}
+	
+	private static void doRun(final String appid, final String type, final String key) {
+		try {
+			String access_token = TokenManager.getToken(appid);
+			Ticket ticket = TicketAPI.ticketGetticket(access_token,type);
+			ticketMap.put(key,ticket.getTicket());
+			logger.info("TICKET refurbish with appid:{} type:{}",appid,type);
+		} catch (Exception e) {
+			logger.error("TICKET refurbish error with appid:{} type:{}",appid,type);
+			e.printStackTrace();
 		}
 	}
 
@@ -180,9 +188,9 @@ public class TicketManager {
 	
 	/**
 	 * 获取 ticket
-	 * @param appid
+	 * @param appid appid
 	 * @param type jsapi or wx_card
-	 * @return
+	 * @return ticket
 	 */
 	public static String getTicket(final String appid,String type){
 		return ticketMap.get(appid + KEY_JOIN + type);

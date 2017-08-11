@@ -6,8 +6,10 @@ import java.util.Map;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import weixin.popular.bean.DynamicField;
 
@@ -61,12 +63,21 @@ public class MchPayNotify extends MchBase implements DynamicField{
 
 	private String trade_state;
 	
-	// 代金券或立减优惠
-	// @since 2.8.5
-	// 使用  getCoupons() 获取 List.
-	// List.size() = coupon_count
+	/** 代金券或立减优惠
+	 * @since 2.8.5
+	 * 使用  getCoupons() 获取 List.
+	 * List.size() = coupon_count
+	 */
 	@XmlTransient
 	private List<Coupon> coupons;
+
+	/**
+	 * 单品优惠 ,请求参数 version=1.0
+	 * @since 2.8.12
+	 */
+	@XmlElement
+	@XmlJavaTypeAdapter(value = PromotionDetailXmlAdapter.class)
+	private List<PromotionDetail> promotion_detail;
 	
 	public String getDevice_info() {
 		return device_info;
@@ -235,6 +246,15 @@ public class MchPayNotify extends MchBase implements DynamicField{
 	public void setCoupons(List<Coupon> coupons) {
 		this.coupons = coupons;
 	}
+	
+	public List<PromotionDetail> getPromotion_detail() {
+		return promotion_detail;
+	}
+
+	public void setPromotion_detail(List<PromotionDetail> promotion_detail) {
+		this.promotion_detail = promotion_detail;
+	}
+	
 
 	@Override
 	public void buildDynamicField(Map<String, String> dataMap) {

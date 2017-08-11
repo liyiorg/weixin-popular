@@ -4,111 +4,11 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.UUID;
 
-import weixin.popular.bean.pay.PayJsRequest;
-import weixin.popular.bean.pay.PayNativeReply;
-import weixin.popular.bean.pay.PayNativeRequest;
-import weixin.popular.bean.pay.PayPackage;
 import weixin.popular.bean.paymch.MchPayApp;
 import weixin.popular.bean.paymch.MchPayNativeReply;
 import weixin.popular.bean.paymch.PapayEntrustweb;
 
 public class PayUtil {
-
-
-	/**
-	 * 生成支付JS请求JSON
-	 * @param payPackage payPackage
-	 * @param appId appId
-	 * @param paternerKey paternerKey
-	 * @param paySignkey	appkey
-	 * @return json
-	 */
-	public static String generatePayJsRequestJson(PayPackage payPackage,
-				String appId,
-				String paternerKey,
-				String paySignkey){
-		Map<String, String> mapP = MapUtil.objectToMap(payPackage);
-		String package_ = SignatureUtil.generatePackage(mapP, paternerKey);
-		PayJsRequest payJsRequest = new PayJsRequest();
-		payJsRequest.setAppId(appId);
-		payJsRequest.setNonceStr(UUID.randomUUID().toString());
-		payJsRequest.setPackage_(package_);
-		payJsRequest.setSignType("sha1");
-		payJsRequest.setTimeStamp(System.currentTimeMillis()/1000+"");
-		Map<String, String> mapS = MapUtil.objectToMap(payJsRequest,"signType","paySign");
-		String paySign = SignatureUtil.generatePaySign(mapS,paySignkey);
-		payJsRequest.setPaySign(paySign);
-		return JsonUtil.toJSONString(payJsRequest);
-	}
-
-
-
-	/**
-	 * 生成Native支付JS请求URL
-	 * @param appid appid
-	 * @param productid productid
-	 * @param paySignkey paySignkey
-	 * @return url
-	 */
-	public static String generatePayNativeRequestURL(
-			String appid,
-			String productid,
-			String paySignkey){
-
-		PayNativeRequest payNativeRequest = new PayNativeRequest();
-		payNativeRequest.setAppid(appid);
-		payNativeRequest.setNoncestr(UUID.randomUUID().toString());
-		payNativeRequest.setProductid(productid);
-		payNativeRequest.setTimestamp(System.currentTimeMillis()/1000+"");
-		Map<String, String> mapS = MapUtil.objectToMap(payNativeRequest,"sign");
-		String sign = SignatureUtil.generatePaySign(mapS,paySignkey);
-		payNativeRequest.setSign(sign);
-
-		Map<String, String> map = MapUtil.objectToMap(payNativeRequest);
-		return "weixin://wxpay/bizpayurl?" + MapUtil.mapJoin(map, false, false);
-	}
-
-	/**
-	 * 生成 native 支付回复XML
-	 * @param payPackage payPackage
-	 * @param appId appId
-	 * @param retCode 0 正确
-	 * @param retErrMsg retErrMsg
-	 * @param paternerKey paternerKey
-	 * @return xml
-	 */
-	public static String generatePayNativeReplyXML(PayPackage payPackage,
-			String appId,
-			String retCode,
-			String retErrMsg,
-			String paternerKey){
-
-		PayNativeReply payNativeReply = new PayNativeReply();
-		payNativeReply.setAppid(appId);
-		payNativeReply.setNoncestr(UUID.randomUUID().toString());
-		payNativeReply.setRetcode(retCode);
-		payNativeReply.setReterrmsg(retErrMsg);
-		payNativeReply.setTimestamp(System.currentTimeMillis()+"");
-		String package_ = SignatureUtil.generatePackage(MapUtil.objectToMap(payPackage),paternerKey);
-		payNativeReply.setPackage_(package_);
-		payNativeReply.setSignmethod("sha1");
-		String appSignature = SignatureUtil.generatePackage(
-									MapUtil.objectToMap(payNativeReply,"appsignature","signmethod"),
-									paternerKey);
-		payNativeReply.setAppsignature(appSignature);
-
-		return XMLConverUtil.convertToXML(payNativeReply);
-	}
-
-
-
-
-
-
-
-
-
-	//MCH -------------------------------------------------
 
 
 	/**
@@ -120,18 +20,15 @@ public class PayUtil {
 	 */
 	public static String generateMchPayJsRequestJson(String prepay_id,String appId,String key){
 		String package_ = "prepay_id="+prepay_id;
-		PayJsRequest payJsRequest = new PayJsRequest();
-		payJsRequest.setAppId(appId);
-		payJsRequest.setNonceStr(UUID.randomUUID().toString().replace("-", ""));
-		payJsRequest.setPackage_(package_);
-		payJsRequest.setSignType("MD5");
-		payJsRequest.setTimeStamp(System.currentTimeMillis()/1000+"");
-		//@fantycool 提交修正bug
-		//Map<String, String> mapS = MapUtil.objectToMap(payJsRequest,"signType","paySign");
-		Map<String, String> mapS = MapUtil.objectToMap(payJsRequest);
-		String paySign = SignatureUtil.generateSign(mapS,key);
-		payJsRequest.setPaySign(paySign);
-		return JsonUtil.toJSONString(payJsRequest);
+		Map<String,String> map = new LinkedHashMap<String,String>();
+		map.put("appId",appId);
+		map.put("nonceStr",UUID.randomUUID().toString().replace("-", ""));
+		map.put("package",package_);
+		map.put("signType","MD5");
+		map.put("timeStamp",System.currentTimeMillis()/1000+"");
+		String paySign = SignatureUtil.generateSign(map,key);
+		map.put("paySign",paySign);
+		return JsonUtil.toJSONString(map);
 	}
 
 

@@ -17,7 +17,7 @@ import weixin.popular.bean.AdaptorCDATA;
 
 @XmlRootElement(name = "xml")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Unifiedorder {
+public class Unifiedorder extends MchVersion{
 
 	@XmlElement
 	private String appid;
@@ -106,6 +106,7 @@ public class Unifiedorder {
 	 */
 	@XmlElement
 	private String sub_openid;
+	
 
 	public String getAppid() {
 		return appid;

@@ -208,15 +208,7 @@ public class MaterialAPI extends BaseAPI{
 	 * @return BaseResult
 	 */
 	public static BaseResult update_news(String access_token,String media_id,int index,List<Article> articles){
-		String str = JsonUtil.toJSONString(articles);
-		String messageJson = "{\"media_id\":\""+media_id+"\",\"index\":"+index+",\"articles\":"+str+"}";
-		HttpUriRequest httpUriRequest = RequestBuilder.post()
-										.setHeader(jsonHeader)
-										.setUri(BASE_URI+"/cgi-bin/material/update_news")
-										.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
-										.setEntity(new StringEntity(messageJson,Charset.forName("utf-8")))
-										.build();
-		return LocalHttpClient.executeJsonResult(httpUriRequest,BaseResult.class);
+		return update_news(access_token, media_id, index, JsonUtil.toJSONString(articles));
 	}
 	
 		

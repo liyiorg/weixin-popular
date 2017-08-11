@@ -2,6 +2,15 @@ WEIXIN-POPULAR CHANGELOG
 ===========================
 https://github.com/liyiorg/weixin-popular
 
+Changes in version 2.8.12 (2017-08-10)
+-------------------------------------
+* 添加OpenAPI 微信开放平台帐号管理
+* 删除PayAPI 支付老版本API
+* #97 wxa api 修复请求方法错误
+* #99 XMLConverUtil convertToObject 添加charset 重载方法
+* #100 微信支付单品优惠api 支持
+* TicketManager,TokenManager 改进
+
 Changes in version 2.8.11 (2017-07-06)
 -------------------------------------
 * #83 小程序获取第三方提交的审核版本的审核状态，添加原因返回字段

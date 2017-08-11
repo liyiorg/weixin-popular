@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import org.apache.commons.codec.digest.DigestUtils;
+
 public class JsUtil {
 	
 	//2.5.3  2.8.2 更新
@@ -76,7 +78,10 @@ public class JsUtil {
 		map.put("jsapi_ticket", jsapi_ticket);
 		map.put("timestamp", timestamp);
 		map.put("url", url);
-		return SignatureUtil.generatePaySign(map, null);
+		
+		Map<String, String> tmap = MapUtil.order(map);
+		String str = MapUtil.mapJoin(tmap,true,false);
+		return DigestUtils.shaHex(str);
 	}
 
 	/**

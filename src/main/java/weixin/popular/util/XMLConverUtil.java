@@ -7,6 +7,7 @@ import java.io.Reader;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.io.Writer;
+import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -70,6 +71,18 @@ public class XMLConverUtil{
 	 */
 	public static <T> T convertToObject(Class<T> clazz,InputStream inputStream){
 		return convertToObject(clazz,new InputStreamReader(inputStream));
+	}
+	
+	/**
+	 * XML to Object
+	 * @param <T> T
+	 * @param clazz clazz
+	 * @param inputStream  inputStream
+	 * @param charset charset
+	 * @return T
+	 */
+	public static <T> T convertToObject(Class<T> clazz,InputStream inputStream,Charset charset){
+		return convertToObject(clazz,new InputStreamReader(inputStream, charset));
 	}
 
 	/**

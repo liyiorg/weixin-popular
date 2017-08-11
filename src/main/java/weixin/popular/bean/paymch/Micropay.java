@@ -6,7 +6,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name="xml")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Micropay {
+public class Micropay extends MchVersion{
 
 	private String appid;
 	private String mch_id;

@@ -1,8 +1,12 @@
 package weixin.popular.bean.paymch;
 
+import java.util.List;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 @XmlRootElement(name="xml")
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -23,6 +27,15 @@ public class MicropayResult extends MchBase{
 	private String time_end;
 	private String sub_openid;
 	private String sub_is_subscribe;
+	private Integer settlement_total_fee;
+	
+	/**
+	 * 单品优惠 ,请求参数 version=1.0
+	 * @since 2.8.12
+	 */
+	@XmlElement
+	@XmlJavaTypeAdapter(value = MicropayPromotionDetailXmlAdapter.class)
+	private List<MicropayPromotionDetail> promotion_detail;
 
 	public String getOpenid() {
 		return openid;
@@ -114,6 +127,17 @@ public class MicropayResult extends MchBase{
 	public void setSub_is_subscribe(String sub_is_subscribe) {
 		this.sub_is_subscribe = sub_is_subscribe;
 	}
-
+	public Integer getSettlement_total_fee() {
+		return settlement_total_fee;
+	}
+	public void setSettlement_total_fee(Integer settlement_total_fee) {
+		this.settlement_total_fee = settlement_total_fee;
+	}
+	public List<MicropayPromotionDetail> getPromotion_detail() {
+		return promotion_detail;
+	}
+	public void setPromotion_detail(List<MicropayPromotionDetail> promotion_detail) {
+		this.promotion_detail = promotion_detail;
+	}
 
 }

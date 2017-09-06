@@ -2,6 +2,14 @@ WEIXIN-POPULAR CHANGELOG
 ===========================
 https://github.com/liyiorg/weixin-popular
 
+Changes in version 2.8.13 (2017-09-06)
+-------------------------------------
+* #102 PayMchAPI.secapiPayReverse方法增加服务商字段
+* #103 微信支付 PayMchAPI 添加获取仿真测试验签秘钥API sandboxnewPayGetsignkey
+* #105 EventMessage XML 解析MsgId MsgID 字段处理
+* 改进EventMessage ,EventMessage 中未定义的字段可以通过 otherElementsToMap() 方法获取
+
+
 Changes in version 2.8.12 (2017-08-10)
 -------------------------------------
 * 添加OpenAPI 微信开放平台帐号管理

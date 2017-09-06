@@ -3,6 +3,7 @@ package weixin.popular.api;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.Map;
+import java.util.UUID;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -46,6 +47,7 @@ import weixin.popular.bean.paymch.QueryCouponStockResult;
 import weixin.popular.bean.paymch.Refundquery;
 import weixin.popular.bean.paymch.RefundqueryResult;
 import weixin.popular.bean.paymch.Report;
+import weixin.popular.bean.paymch.SandboxSignkey;
 import weixin.popular.bean.paymch.SecapiPayRefund;
 import weixin.popular.bean.paymch.SecapiPayRefundResult;
 import weixin.popular.bean.paymch.SendCoupon;
@@ -73,12 +75,6 @@ public class PayMchAPI extends BaseAPI{
 	private static ThreadLocal<Boolean> sandboxnew = new ThreadLocal<Boolean>();
 	
 	/**
-	 * 仿真测试  KEY
-	 * @since 2.8.6
-	 */
-	public static String SANDBOXNEW_KEY = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456";
-	
-	/**
 	 * 仿真测试 开始
 	 * @since 2.8.6
 	 */
@@ -104,6 +100,29 @@ public class PayMchAPI extends BaseAPI{
 		}else{
 			return MCH_URI + "/sandboxnew";
 		}
+	}
+	
+	/**
+	 * 获取仿真测试验签秘钥
+	 * @param mch_id mch_id
+	 * @param key key
+	 * @return sandbox_signkey
+	 * @since 2.8.13
+	 */
+	public static SandboxSignkey sandboxnewPayGetsignkey(String mch_id,String key){
+		MchBaseResult mchBaseResult = new MchBaseResult();
+		mchBaseResult.setMch_id(mch_id);
+		mchBaseResult.setNonce_str(UUID.randomUUID().toString().replace("-", ""));
+		Map<String,String> map = MapUtil.objectToMap(mchBaseResult);
+		String sign = SignatureUtil.generateSign(map,mchBaseResult.getSign_type(),key);
+		mchBaseResult.setSign(sign);
+		String closeorderXML = XMLConverUtil.convertToXML(mchBaseResult);
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+				.setHeader(xmlHeader)
+				.setUri(MCH_URI + "/sandboxnew/pay/getsignkey")
+				.setEntity(new StringEntity(closeorderXML,Charset.forName("utf-8")))
+				.build();
+		return LocalHttpClient.executeXmlResult(httpUriRequest, SandboxSignkey.class, mchBaseResult.getSign_type(), key);
 	}
 
 	/**
@@ -217,12 +236,11 @@ public class PayMchAPI extends BaseAPI{
 	/**
 	 * 撤销订单
 	 * 7天以内的交易单可调用撤销，其他正常支付的单如需实现相同功能请调用申请退款API。提交支付交易后调用【查询订单API】，没有明确的支付结果再调用【撤销订单API】。<br>
-	 * 官方技术文档已撤销
+	 * 调用支付接口后请勿立即调用撤销订单API，建议支付后至少15s后再调用撤销订单接口。
 	 * @param mchReverse mchReverse
 	 * @param key key
 	 * @return MchReverseResult
 	 */
-	@Deprecated
 	public static MchReverseResult secapiPayReverse(MchReverse mchReverse,String key){
 		Map<String,String> map = MapUtil.objectToMap( mchReverse);
 		String sign = SignatureUtil.generateSign(map,mchReverse.getSign_type(),key);
@@ -649,5 +667,5 @@ public class PayMchAPI extends BaseAPI{
 			}
 		});
 	}
-	
+
 }

@@ -7,10 +7,10 @@ public class Button {
 
 	private String name;
 
-	private String type;	//click|view|news_info|img|text|voice|video|miniprogram
-	private String key;
-	private String url;
-	private String value;
+	private String type;	// click|view|scancode_waitmsg|scancode_push|pic_sysphoto|pic_photo_or_album|pic_weixin|location_select|media_id|view_limited|miniprogram
+	private String key;		// click、scancode_push、scancode_waitmsg、pic_sysphoto、pic_photo_or_album、	pic_weixin、location_select：保存值到key；
+	private String url;		//View：保存链接到url。
+	private String value;	//保存文字到value； Img、voice：保存mediaID到value； Video：保存视频下载链接到value； News：保存图文消息到news_info，同时保存mediaID到value； 
 	private NewsInfo news_info;
 	private String appid; // 小程序的appid
 	private String pagepath;// 小程序的页面路径

@@ -1,11 +1,17 @@
 package weixin.popular.bean.message;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAnyElement;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElements;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import org.w3c.dom.Node;
 
 @XmlRootElement(name="xml")
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -32,14 +38,9 @@ public class EventMessage {
 	private String eventKey;		//事件KEY值，qrscene_为前缀，后面为二维码的参数值
 	
 	
-
-	
-
-	
-	
 	
 	//接收普通消息------------------------------------ START
-	@XmlElement(name="MsgId")
+	@XmlElements({@XmlElement(name="MsgId"),@XmlElement(name="MsgID")})
 	private String msgId;			//消息ID号
 	//文本
 	@XmlElement(name="Content")
@@ -138,6 +139,9 @@ public class EventMessage {
 
 	@XmlElement(name="ErrorCount")
 	private Integer errorCount;//发送失败的粉丝数
+	
+	@XmlElement(name="CopyrightCheckResult")
+	private CopyrightCheckResult copyrightCheckResult;	//群发消息通知结果
 	
 	//群发消息通知------------------------------------ END
 	
@@ -253,6 +257,41 @@ public class EventMessage {
 	//扫一扫事件推送-------------------------------- END
 	
 	
+	/**
+	 * 其它未定义XML字段 
+	 * @since 2.8.13
+	 */
+	@XmlAnyElement
+	private List<org.w3c.dom.Element> otherElements;	//com.sun.org.apache.xerces.internal.dom.ElementNSImpl
+
+	public List<org.w3c.dom.Element> getOtherElements() {
+		return otherElements;
+	}
+
+	public void setOtherElements(List<org.w3c.dom.Element> otherElements) {
+		this.otherElements = otherElements;
+	}
+	
+	/**
+	 * 转换 未定义XML 字段为 Map
+	 * @since 2.8.13
+	 * @return MAP
+	 */
+	public Map<String, String> otherElementsToMap() {
+		Map<String, String> map = new LinkedHashMap<String, String>();
+		if (otherElements != null) {
+			for (org.w3c.dom.Element e : otherElements) {
+				if (e.hasChildNodes()) {
+					if (e.getChildNodes().getLength() == 1
+							&& e.getChildNodes().item(0).getNodeType() == Node.TEXT_NODE) {
+						map.put(e.getTagName(), e.getTextContent());
+					}
+				}
+			}
+		}
+		return map;
+	}
+
 	public String getToUserName() {
 		return toUserName;
 	}
@@ -691,6 +730,14 @@ public class EventMessage {
 
 	public void setReasonMsg(Integer reasonMsg) {
 		this.reasonMsg = reasonMsg;
+	}
+	
+	public CopyrightCheckResult getCopyrightCheckResult() {
+		return copyrightCheckResult;
+	}
+
+	public void setCopyrightCheckResult(CopyrightCheckResult copyrightCheckResult) {
+		this.copyrightCheckResult = copyrightCheckResult;
 	}
 	
 }

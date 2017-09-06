@@ -28,6 +28,18 @@ public class MchReverse {
 	private String sign;
 	
 	private String sign_type;
+	
+	/**
+	 * @since 2.8.13
+	 */
+	@XmlElement
+	private String sub_appid;
+
+	/**
+	 * @since 2.8.13
+	 */
+	@XmlElement
+	private String sub_mch_id;
 
 	public String getAppid() {
 		return appid;

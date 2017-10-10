@@ -5,6 +5,8 @@ import weixin.popular.bean.message.message.TextMessage;
 
 public class XMLTextMessage extends XMLMessage {
 
+	private static final long serialVersionUID = 2457998440521370652L;
+
 	private String content;
 
 	public XMLTextMessage(String toUserName, String fromUserName, String content) {

@@ -6,6 +6,8 @@ import weixin.popular.bean.message.message.MusicMessage.Music;
 
 public class XMLMusicMessage extends XMLMessage {
 
+	private static final long serialVersionUID = 4423743864197488630L;
+
 	private String title;
 
 	private String description;

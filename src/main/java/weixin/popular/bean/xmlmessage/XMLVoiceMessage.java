@@ -5,6 +5,8 @@ import weixin.popular.bean.message.message.VoiceMessage;
 
 public class XMLVoiceMessage extends XMLMessage {
 
+	private static final long serialVersionUID = 2372031664279510333L;
+
 	private String mediaId;
 
 	public XMLVoiceMessage(String toUserName, String fromUserName, String mediaId) {

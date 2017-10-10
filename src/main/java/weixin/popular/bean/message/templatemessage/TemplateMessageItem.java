@@ -5,6 +5,8 @@ public class TemplateMessageItem{
 
 	private String color;
 
+	public TemplateMessageItem() {
+	}
 
 	public TemplateMessageItem(String value, String color) {
 		super();

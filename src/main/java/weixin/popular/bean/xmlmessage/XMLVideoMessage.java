@@ -6,6 +6,8 @@ import weixin.popular.bean.message.message.VideoMessage.Video;
 
 public class XMLVideoMessage extends XMLMessage {
 
+	private static final long serialVersionUID = 3858730703846989272L;
+
 	private String mediaId;
 
 	private String title;

@@ -8,6 +8,8 @@ import weixin.popular.bean.message.message.NewsMessage;
 
 public class XMLNewsMessage extends XMLMessage {
 
+	private static final long serialVersionUID = -3297287142409782906L;
+
 	private List<Article> articles;
 
 	/**

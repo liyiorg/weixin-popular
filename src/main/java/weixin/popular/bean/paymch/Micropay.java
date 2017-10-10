@@ -2,7 +2,9 @@ package weixin.popular.bean.paymch;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 @XmlRootElement(name="xml")
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -15,7 +17,12 @@ public class Micropay extends MchVersion{
 	private String sign;
 	private String sign_type;
 	private String body;
-	private String detail;
+	/**
+	 * @since 2.8.14
+	 */
+	@XmlElement
+	@XmlJavaTypeAdapter(value = DetailXmlAdapter.class)
+	private Detail detail;
 	private String attach;
 	private String out_trade_no;
 	private Integer total_fee;
@@ -71,10 +78,10 @@ public class Micropay extends MchVersion{
 	public void setBody(String body) {
 		this.body = body;
 	}
-	public String getDetail() {
+	public Detail getDetail() {
 		return detail;
 	}
-	public void setDetail(String detail) {
+	public void setDetail(Detail detail) {
 		this.detail = detail;
 	}
 	public String getAttach() {

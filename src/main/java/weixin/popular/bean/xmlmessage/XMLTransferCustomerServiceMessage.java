@@ -11,6 +11,8 @@ import weixin.popular.bean.message.message.Message;
  */
 public class XMLTransferCustomerServiceMessage extends XMLMessage {
 
+	private static final long serialVersionUID = -4192054456072285008L;
+
 	private String kfAccount;
 
 	/**

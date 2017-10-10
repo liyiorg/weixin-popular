@@ -2,6 +2,7 @@ package weixin.popular.bean.xmlmessage;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.util.UUID;
 
@@ -10,7 +11,9 @@ import com.qq.weixin.mp.aes.WXBizMsgCrypt;
 
 import weixin.popular.bean.message.message.Message;
 
-public abstract class XMLMessage {
+public abstract class XMLMessage implements Serializable{
+
+	private static final long serialVersionUID = 8901661274548077509L;
 
 	protected String toUserName;
 	protected String fromUserName;

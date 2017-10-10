@@ -3,7 +3,9 @@ package weixin.popular.bean.xmlmessage;
 import weixin.popular.bean.message.message.ImageMessage;
 import weixin.popular.bean.message.message.Message;
 
-public class XMLImageMessage extends XMLMessage {
+public class XMLImageMessage extends XMLMessage{
+
+	private static final long serialVersionUID = 5972200803798750987L;
 
 	private String mediaId;
 

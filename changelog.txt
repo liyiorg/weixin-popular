@@ -2,6 +2,15 @@ WEIXIN-POPULAR CHANGELOG
 ===========================
 https://github.com/liyiorg/weixin-popular
 
+Changes in version 2.8.14 (2017-10-10)
+-------------------------------------
+* #112 PromotionDetailXmlAdapter XML 解析适配器修改
+* #111 Micropay类中的detail成员变量改用Detail 对象类型
+* #102 MchReverse 类中的sub_mch_id和sub_appid成员变量添加get,set 方法
+* #109 TemplateMessageItem 类添加无参数的构造函数
+* #106 XMLMessage类及子类添加序列化 java.io.Serializable
+
+
 Changes in version 2.8.13 (2017-09-06)
 -------------------------------------
 * #102 PayMchAPI.secapiPayReverse方法增加服务商字段

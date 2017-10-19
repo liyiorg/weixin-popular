@@ -14,56 +14,14 @@ import org.apache.http.client.methods.RequestBuilder;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.util.EntityUtils;
 
-import weixin.popular.bean.paymch.Authcodetoopenid;
-import weixin.popular.bean.paymch.AuthcodetoopenidResult;
-import weixin.popular.bean.paymch.Closeorder;
-import weixin.popular.bean.paymch.DownloadbillResult;
-import weixin.popular.bean.paymch.Gethbinfo;
-import weixin.popular.bean.paymch.GethbinfoResult;
-import weixin.popular.bean.paymch.Gettransferinfo;
-import weixin.popular.bean.paymch.GettransferinfoResult;
-import weixin.popular.bean.paymch.MchBaseResult;
-import weixin.popular.bean.paymch.MchDownloadbill;
-import weixin.popular.bean.paymch.MchOrderInfoResult;
-import weixin.popular.bean.paymch.MchOrderquery;
-import weixin.popular.bean.paymch.MchReverse;
-import weixin.popular.bean.paymch.MchReverseResult;
-import weixin.popular.bean.paymch.MchShorturl;
-import weixin.popular.bean.paymch.MchShorturlResult;
-import weixin.popular.bean.paymch.Micropay;
-import weixin.popular.bean.paymch.MicropayResult;
-import weixin.popular.bean.paymch.PapayContractbill;
-import weixin.popular.bean.paymch.PapayContractbillResult;
-import weixin.popular.bean.paymch.PapayDeletecontract;
-import weixin.popular.bean.paymch.PapayDeletecontractResult;
-import weixin.popular.bean.paymch.PapayQuerycontract;
-import weixin.popular.bean.paymch.PapayQuerycontractResult;
-import weixin.popular.bean.paymch.Pappayapply;
-import weixin.popular.bean.paymch.PappayapplyResult;
-import weixin.popular.bean.paymch.QueryCoupon;
-import weixin.popular.bean.paymch.QueryCouponResult;
-import weixin.popular.bean.paymch.QueryCouponStock;
-import weixin.popular.bean.paymch.QueryCouponStockResult;
-import weixin.popular.bean.paymch.Refundquery;
-import weixin.popular.bean.paymch.RefundqueryResult;
-import weixin.popular.bean.paymch.Report;
-import weixin.popular.bean.paymch.SandboxSignkey;
-import weixin.popular.bean.paymch.SecapiPayRefund;
-import weixin.popular.bean.paymch.SecapiPayRefundResult;
-import weixin.popular.bean.paymch.SendCoupon;
-import weixin.popular.bean.paymch.SendCouponResult;
-import weixin.popular.bean.paymch.Sendgroupredpack;
-import weixin.popular.bean.paymch.Sendredpack;
-import weixin.popular.bean.paymch.SendredpackResult;
-import weixin.popular.bean.paymch.Transfers;
-import weixin.popular.bean.paymch.TransfersResult;
-import weixin.popular.bean.paymch.Unifiedorder;
-import weixin.popular.bean.paymch.UnifiedorderResult;
+import weixin.popular.bean.paymch.*;
 import weixin.popular.client.LocalHttpClient;
 import weixin.popular.util.JsonUtil;
 import weixin.popular.util.MapUtil;
 import weixin.popular.util.SignatureUtil;
 import weixin.popular.util.XMLConverUtil;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * 微信支付 基于V3.X 版本
@@ -672,4 +630,23 @@ public class PayMchAPI extends BaseAPI{
 		});
 	}
 
+	/**
+	 * 支付回调处理
+	 * @param request HttpServletRequest
+	 * @return String
+	 */
+	public static String wechatPayNotify(HttpServletRequest request) {
+		String res = "<xml>" + "<return_code><![CDATA[SUCCESS]]></return_code>"
+				+ "<return_msg><![CDATA[OK]]></return_msg>" + "</xml> ";
+		try {
+			PayCallBackResult callbackResult = XMLConverUtil.convertToObject(PayCallBackResult.class, request.getInputStream());
+			if (callbackResult.getResult_code() != null && callbackResult.getResult_code().equals("FAIL"))
+				res = "<xml>" + "<return_code><![CDATA[FAIL]]></return_code>"
+						+ "<return_msg><![CDATA[报文为空]]></return_msg>" + "</xml> ";
+		} catch (IOException e) {
+			res = "<xml>" + "<return_code><![CDATA[FAIL]]></return_code>"
+					+ "<return_msg><![CDATA[报文为空]]></return_msg>" + "</xml> ";
+		}
+		return res;
+	}
 }

@@ -2,6 +2,12 @@ WEIXIN-POPULAR CHANGELOG
 ===========================
 https://github.com/liyiorg/weixin-popular
 
+Changes in version 2.8.15 (2017-11-15)
+-------------------------------------
+* #112 PromotionDetailXmlAdapter XML 解析适配器修改
+* #117 CustomserviceAPI JSON 解析问题修复
+* 
+
 Changes in version 2.8.14 (2017-10-10)
 -------------------------------------
 * #112 PromotionDetailXmlAdapter XML 解析适配器修改

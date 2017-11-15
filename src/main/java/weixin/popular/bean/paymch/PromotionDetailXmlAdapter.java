@@ -10,7 +10,8 @@ public class PromotionDetailXmlAdapter extends XmlAdapter<String, List<Promotion
 
 	@Override
 	public List<PromotionDetail> unmarshal(String v) throws Exception {
-		return JSON.parseArray(v, PromotionDetail.class);
+		String a = JSON.parseObject(v).getString("promotion_detail");
+		return JSON.parseArray(a, PromotionDetail.class);
 	}
 
 	@Override

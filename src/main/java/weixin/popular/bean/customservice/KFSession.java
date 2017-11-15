@@ -19,7 +19,7 @@ public class KFSession extends BaseResult {
 		this.sessionlist = sessionlist;
 	}
 
-	public class SessionList {
+	public static class SessionList {
 		private Integer createtime; // 会话创建时间，UNIX时间戳
 		private String openid; // 客户openid
 

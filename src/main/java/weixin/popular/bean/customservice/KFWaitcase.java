@@ -28,10 +28,11 @@ public class KFWaitcase extends BaseResult {
 		this.waitcaselist = waitcaselist;
 	}
 
-	public class WaitcaseList {
+	public static class WaitcaseList {
 		private Integer createtime; // 用户来访时间，UNIX时间戳
 		private String kf_account; // 指定接待的客服，为空表示未指定客服
 		private String openid; // 客户openid
+		private Integer latest_time;//粉丝的最后一条消息的时间
 
 		public Integer getCreatetime() {
 			return createtime;
@@ -56,5 +57,14 @@ public class KFWaitcase extends BaseResult {
 		public void setOpenid(String openid) {
 			this.openid = openid;
 		}
+
+		public Integer getLatest_time() {
+			return latest_time;
+		}
+
+		public void setLatest_time(Integer latest_time) {
+			this.latest_time = latest_time;
+		}
+		
 	}
 }

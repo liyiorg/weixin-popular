@@ -6,7 +6,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "xml")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class GethbinfoResult extends MchBase {
+public class GethbinfoResult extends MchBase{
 	
 	private String mch_billno;
 	private String detail_id;

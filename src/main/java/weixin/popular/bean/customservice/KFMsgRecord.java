@@ -28,7 +28,7 @@ public class KFMsgRecord extends BaseResult {
 		this.recordlist = recordlist;
 	}
 
-	public class RecordList {
+	public static class RecordList {
 		private String openid; // 用户的openid
 		private String opercode; // 操作ID（会话状态）
 		private String text; // 聊天记录

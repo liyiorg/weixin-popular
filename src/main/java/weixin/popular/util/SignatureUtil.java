@@ -37,6 +37,9 @@ public class SignatureUtil {
 		if(sign_type == null){
 			sign_type = tmap.get("sign_type");
 		}
+		if (tmap.containsKey("sign_type")) {
+			tmap.remove("sign_type");
+		}
 		if("HMAC-SHA256".equalsIgnoreCase(sign_type)){
 			try {
 				  Mac sha256_HMAC = Mac.getInstance("HmacSHA256");

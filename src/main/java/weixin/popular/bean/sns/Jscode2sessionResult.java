@@ -2,13 +2,15 @@ package weixin.popular.bean.sns;
 
 import weixin.popular.bean.BaseResult;
 
-public class Jscode2sessionResult extends BaseResult{
+public class Jscode2sessionResult extends BaseResult {
 
 	private String openid;
-	
+
 	private String session_key;
-	
+
 	private Integer expires_in;
+
+	private String unionid; // 2.8.16
 
 	public String getOpenid() {
 		return openid;
@@ -33,5 +35,13 @@ public class Jscode2sessionResult extends BaseResult{
 	public void setExpires_in(Integer expires_in) {
 		this.expires_in = expires_in;
 	}
-	
+
+	public String getUnionid() {
+		return unionid;
+	}
+
+	public void setUnionid(String unionid) {
+		this.unionid = unionid;
+	}
+
 }

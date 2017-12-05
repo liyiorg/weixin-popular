@@ -2,6 +2,12 @@ WEIXIN-POPULAR CHANGELOG
 ===========================
 https://github.com/liyiorg/weixin-popular
 
+Changes in version 2.8.16 (2017-12-?)
+-------------------------------------
+* #124 Jscode2sessionResult 中添加unionid
+* #121 QrcodeAPI 添加带字符串参数的临时二维码生成
+* 
+
 Changes in version 2.8.15 (2017-11-15)
 -------------------------------------
 * #112 PromotionDetailXmlAdapter XML 解析适配器修改

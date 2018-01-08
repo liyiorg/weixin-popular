@@ -63,7 +63,7 @@ public class QrcodeAPI extends BaseAPI{
 	 * @return QrcodeTicket
 	 */
 	public static QrcodeTicket qrcodeCreateTemp(String access_token,int expire_seconds,String scene_str){
-		String json = String.format("{\"expire_seconds\": %d, \"action_name\": \"QR_SCENE\", \"action_info\": {\"scene\": {\"scene_str\": %s}}}",expire_seconds,scene_str);
+		String json = String.format("{\"expire_seconds\": %d, \"action_name\": \"QR_STR_SCENE\", \"action_info\": {\"scene\": {\"scene_str\": %s}}}", expire_seconds, scene_str);
 		return qrcodeCreate(access_token,json);
 	}
 

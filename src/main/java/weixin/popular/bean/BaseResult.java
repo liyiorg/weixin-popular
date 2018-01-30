@@ -12,6 +12,14 @@ public class BaseResult {
   private String errcode;
   private String errmsg;
 
+  public BaseResult() {
+  }
+
+  public BaseResult(String errcode, String errmsg) {
+    this.errcode = errcode;
+    this.errmsg = errmsg;
+  }
+
   public String getErrcode() {
     return errcode;
   }

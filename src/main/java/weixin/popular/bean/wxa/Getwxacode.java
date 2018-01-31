@@ -10,6 +10,16 @@ public class Getwxacode {
 	
 	private LineColor line_color;
 
+	public Getwxacode() {
+	}
+
+	public Getwxacode(String path, Integer width, Boolean auto_color, LineColor line_color) {
+		this.path = path;
+		this.width = width;
+		this.auto_color = auto_color;
+		this.line_color = line_color;
+	}
+
 	public String getPath() {
 		return path;
 	}

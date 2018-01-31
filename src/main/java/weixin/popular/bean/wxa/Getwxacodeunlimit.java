@@ -10,6 +10,16 @@ public class Getwxacodeunlimit {
 	
 	private LineColor line_color;
 
+	public Getwxacodeunlimit() {
+	}
+
+	public Getwxacodeunlimit(String scene, Integer width, Boolean auto_color, LineColor line_color) {
+		this.scene = scene;
+		this.width = width;
+		this.auto_color = auto_color;
+		this.line_color = line_color;
+	}
+
 	public String getScene() {
 		return scene;
 	}

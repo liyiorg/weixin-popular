@@ -6,6 +6,14 @@ public class Wxaqrcode {
 
 	private Integer width;
 
+	public Wxaqrcode() {
+	}
+
+	public Wxaqrcode(String path, Integer width) {
+		this.path = path;
+		this.width = width;
+	}
+
 	public String getPath() {
 		return path;
 	}

@@ -36,6 +36,16 @@ public class UserGetShakeInfoResultData {
 	@JSONField(name = "poi_id")
 	private Integer poiId;
 
+	public UserGetShakeInfoResultData() {
+	}
+
+	public UserGetShakeInfoResultData(Integer pageId, UserGetShakeInfoResultDataBeaconInfo beaconInfo, String openId, Integer poiId) {
+		this.pageId = pageId;
+		this.beaconInfo = beaconInfo;
+		this.openId = openId;
+		this.poiId = poiId;
+	}
+
 	/**
 	 * @return 摇周边页面唯一ID
 	 */

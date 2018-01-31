@@ -13,6 +13,13 @@ public class Photo {
 	@JSONField(name = "photo_url")
 	private String photoUrl;
 
+	public Photo() {
+	}
+
+	public Photo(String photoUrl) {
+		this.photoUrl = photoUrl;
+	}
+
 	public String getPhotoUrl() {
 		return photoUrl;
 	}

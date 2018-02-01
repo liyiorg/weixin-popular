@@ -7,6 +7,16 @@ public class Commit {
 	private String user_version;
 	private String user_desc;
 
+	public Commit() {
+	}
+
+	public Commit(String template_id, String ext_json, String user_version, String user_desc) {
+		this.template_id = template_id;
+		this.ext_json = ext_json;
+		this.user_version = user_version;
+		this.user_desc = user_desc;
+	}
+
 	public String getTemplate_id() {
 		return template_id;
 	}

@@ -18,6 +18,20 @@ public class Matchrule {
 	
 	private String language;
 
+	public Matchrule() {
+	}
+
+	public Matchrule(String tag_id, Integer group_id, Integer sex, String country, String province, String city, String client_platform_type, String language) {
+		this.tag_id = tag_id;
+		this.group_id = group_id;
+		this.sex = sex;
+		this.country = country;
+		this.province = province;
+		this.city = city;
+		this.client_platform_type = client_platform_type;
+		this.language = language;
+	}
+
 	public Integer getGroup_id() {
 		return group_id;
 	}

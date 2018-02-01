@@ -11,6 +11,14 @@ public class Description {
 
 	private String introduction;
 
+	public Description() {
+	}
+
+	public Description(String title, String introduction) {
+		this.title = title;
+		this.introduction = introduction;
+	}
+
 	public String getTitle() {
 		return title;
 	}

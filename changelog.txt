@@ -2,6 +2,14 @@ WEIXIN-POPULAR CHANGELOG
 ===========================
 https://github.com/liyiorg/weixin-popular
 
+Changes in version 2.8.17 (2018-02-13)
+-------------------------------------
+* #132 微信模板消息支持小程序跳转
+* #126 fix sign bug for PayMchAPI - issue #125
+* #137 增加构造参数,方便使用 
+* #133 weixin.popular.bean.message.Article 添加字段 thumb_url （封面图片地址）
+* #138 #136 小程序码接口调整
+
 Changes in version 2.8.16 (2018-01-06)
 -------------------------------------
 * #129 GethbinfoResult hblist xml字段解析错误

@@ -304,7 +304,7 @@ public class WxaAPI extends BaseAPI {
 		String json = JsonUtil.toJSONString(getwxacodeunlimit);
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 				.setHeader(jsonHeader)
-				.setUri(BASE_URI+"/wxa/getwxacode")
+				.setUri(BASE_URI+"/wxa/getwxacodeunlimit")
 				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
 				.setEntity(new StringEntity(json,Charset.forName("utf-8")))
 				.build();

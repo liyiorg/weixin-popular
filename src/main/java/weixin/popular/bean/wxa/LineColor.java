@@ -6,6 +6,15 @@ public class LineColor {
 	private String g;
 	private String b;
 
+	public LineColor() {
+	}
+
+	public LineColor(String r, String g, String b) {
+		this.r = r;
+		this.g = g;
+		this.b = b;
+	}
+
 	public String getR() {
 		return r;
 	}
@@ -30,4 +39,7 @@ public class LineColor {
 		this.b = b;
 	}
 
+	public static LineColor newLineColor(String r,String g,String b){
+		return new LineColor(r,g,b);
+	}
 }

@@ -1,5 +1,6 @@
 package weixin.popular.bean.wxa;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SubmitAudit {
@@ -14,6 +15,23 @@ public class SubmitAudit {
 		this.item_list = item_list;
 	}
 
+	public SubmitAudit() {
+		item_list = new ArrayList<Item>();
+	}
+
+	public SubmitAudit(List<Item> item_list) {
+		this.item_list = item_list;
+	}
+	public void addItem(String address,String tag,String first_class,String second_class,String title){
+		Item item = new Item(address,tag,first_class,second_class,title);
+		item_list.add(item);
+	}
+	public void removeItem(Item item){
+		item_list.remove(item);
+	}
+	public void removeItem(int index){
+		item_list.remove(index);
+	}
 	public static class Item {
 
 		private String address;
@@ -21,6 +39,17 @@ public class SubmitAudit {
 		private String first_class;
 		private String second_class;
 		private String title;
+
+		public Item() {
+		}
+
+		public Item(String address, String tag, String first_class, String second_class, String title) {
+			this.address = address;
+			this.tag = tag;
+			this.first_class = first_class;
+			this.second_class = second_class;
+			this.title = title;
+		}
 
 		public String getAddress() {
 			return address;

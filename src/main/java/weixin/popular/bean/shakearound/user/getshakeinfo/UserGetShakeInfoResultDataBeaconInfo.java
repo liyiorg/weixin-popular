@@ -17,7 +17,17 @@ public class UserGetShakeInfoResultDataBeaconInfo {
 	private Integer major;
 	private Integer minor;
 	private String uuid;
-	
+
+	public UserGetShakeInfoResultDataBeaconInfo() {
+	}
+
+	public UserGetShakeInfoResultDataBeaconInfo(Double distance, Integer major, Integer minor, String uuid) {
+		this.distance = distance;
+		this.major = major;
+		this.minor = minor;
+		this.uuid = uuid;
+	}
+
 	/**
 	 * Beacon信号与手机的距离，单位为米
 	 * @return Beacon信号与手机的距离

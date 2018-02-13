@@ -10,6 +10,13 @@ public class Poi {
 
 	private Business business;
 
+	public Poi() {
+	}
+
+	public Poi(Business business) {
+		this.business = business;
+	}
+
 	public Business getBusiness() {
 		return business;
 	}

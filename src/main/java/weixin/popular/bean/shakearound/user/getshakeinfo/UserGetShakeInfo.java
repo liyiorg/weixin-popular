@@ -25,6 +25,14 @@ public class UserGetShakeInfo {
 	@JSONField(name = "need_poi")
 	private Integer needPoi;
 
+	public UserGetShakeInfo() {
+	}
+
+	public UserGetShakeInfo(String ticket, Integer needPoi) {
+		this.ticket = ticket;
+		this.needPoi = needPoi;
+	}
+
 	/**
 	 * @return 摇周边业务的ticket
 	 */

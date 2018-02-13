@@ -14,6 +14,19 @@ public class Button {
 
 	private List<Button> sub_button;
 
+	public Button() {
+	}
+
+	public Button(String type, String name, String key, String url, String media_id, String appid, String pagepath) {
+		this.type = type;
+		this.name = name;
+		this.key = key;
+		this.url = url;
+		this.media_id = media_id;
+		this.appid = appid;
+		this.pagepath = pagepath;
+	}
+
 	public String getType() {
 		return type;
 	}

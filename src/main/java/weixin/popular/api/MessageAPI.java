@@ -246,6 +246,8 @@ public class MessageAPI extends BaseAPI{
 
 	/**
 	 * 模板消息发送
+	 * <p>
+	 *<a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1433751277">微信模板消息文档</a>
 	 * @param access_token access_token
 	 * @param templateMessage templateMessage
 	 * @return TemplateMessageResult

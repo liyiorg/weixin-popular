@@ -8,6 +8,11 @@ public class TemplateMessage {
 
 	private String template_id;
 
+	/**
+	* 跳小程序所需数据，不需跳小程序可不用传该数据
+	*/
+	private TemplateMessageMiniProgram miniprogram;
+
 	private String url;
 
 	private LinkedHashMap<String, TemplateMessageItem> data;
@@ -44,4 +49,11 @@ public class TemplateMessage {
 		this.data = data;
 	}
 
+	public TemplateMessageMiniProgram getMiniprogram() {
+	    return miniprogram;
+	}
+
+	public void setMiniprogram(TemplateMessageMiniProgram miniprogram) {
+		this.miniprogram = miniprogram;
+	}
 }

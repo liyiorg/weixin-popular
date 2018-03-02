@@ -15,11 +15,14 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.util.EntityUtils;
 
 import weixin.popular.bean.BaseResult;
+import weixin.popular.bean.wxa.Addnearbypoi;
+import weixin.popular.bean.wxa.AddnearbypoiResult;
 import weixin.popular.bean.wxa.Commit;
 import weixin.popular.bean.wxa.GetAuditstatusResult;
 import weixin.popular.bean.wxa.GetCategoryResult;
 import weixin.popular.bean.wxa.GetPageResult;
 import weixin.popular.bean.wxa.GetQrcodeResult;
+import weixin.popular.bean.wxa.GetnearbypoilistResult;
 import weixin.popular.bean.wxa.Getwxacode;
 import weixin.popular.bean.wxa.Getwxacodeunlimit;
 import weixin.popular.bean.wxa.ModifyDomain;
@@ -327,4 +330,77 @@ public class WxaAPI extends BaseAPI {
 		return null;
 	}
 	
+	/**
+	 * 附近 添加地点
+	 * @since 2.8.18
+	 * @param access_token access_token
+	 * @param addnearbypoi addnearbypoi
+	 * @return result
+	 */
+	public static AddnearbypoiResult addnearbypoi(String access_token, Addnearbypoi addnearbypoi){
+		String json = JsonUtil.toJSONString(addnearbypoi);
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+				.setHeader(jsonHeader)
+				.setUri(BASE_URI+"/wxa/addnearbypoi")
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
+				.setEntity(new StringEntity(json,Charset.forName("utf-8")))
+				.build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest,AddnearbypoiResult.class);
+	}
+	
+	/**
+	 * 附近 查看地点列表
+	 * @since 2.8.18
+	 * @param access_token access_token
+	 * @param page 起始页id（从1开始计数）
+	 * @param page_rows 每页展示个数（最多1000个）
+	 * @return result
+	 */
+	public static GetnearbypoilistResult getnearbypoilist(String access_token, int page, int page_rows){
+		HttpUriRequest httpUriRequest = RequestBuilder.get()
+				.setHeader(jsonHeader)
+				.setUri(BASE_URI+"/wxa/getnearbypoilist")
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
+				.addParameter("page", String.valueOf(page))
+				.addParameter("page_rows", String.valueOf(page_rows))
+				.build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest,GetnearbypoilistResult.class);
+	}
+	
+	/**
+	 * 附近 删除地点
+	 * @since 2.8.18
+	 * @param access_token access_token
+	 * @param poi_id 附近地点ID
+	 * @return result
+	 */
+	public static BaseResult delnearbypoi(String access_token, String poi_id){
+		String json = String.format("{\"poi_id\":\"%s\"}", poi_id);
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+				.setHeader(jsonHeader)
+				.setUri(BASE_URI+"/wxa/delnearbypoi")
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
+				.setEntity(new StringEntity(json,Charset.forName("utf-8")))
+				.build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest,BaseResult.class);
+	}
+	
+	/**
+	 * 附近 展示/取消展示附近小程序
+	 * @since 2.8.18
+	 * @param access_token access_token
+	 * @param poi_id 附近地点ID
+	 * @param status 0：取消展示；1：展示
+	 * @return result
+	 */
+	public static BaseResult setnearbypoishowstatus(String access_token, String poi_id, int status){
+		String json = String.format("{\"poi_id\":\"%s\",\"status\":%d}", poi_id, status);
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+				.setHeader(jsonHeader)
+				.setUri(BASE_URI+"/wxa/setnearbypoishowstatus")
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
+				.setEntity(new StringEntity(json,Charset.forName("utf-8")))
+				.build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest,BaseResult.class);
+	}
 }

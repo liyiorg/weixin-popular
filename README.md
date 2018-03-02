@@ -26,7 +26,7 @@ weixin-popular 已支持的微信平台
 <dependency>
   <groupId>com.github.liyiorg</groupId>
   <artifactId>weixin-popular</artifactId>
-  <version>2.8.17</version>
+  <version>2.8.18-SNAPSHOT</version>
 </dependency>
 ```
 * [升级注意事项](https://github.com/liyiorg/weixin-popular/wiki/jar_update)
@@ -52,6 +52,7 @@ weixin-popular 已支持的微信平台
 * [DatacubeAPI](https://github.com/liyiorg/weixin-popular/wiki/DataCubeAPI) 数据统计 @Moyq5 (贡献)
 * [CustomserviceAPI](https://github.com/liyiorg/weixin-popular/wiki/CustomserviceAPI) 客服功能  @ConciseA (贡献)
 * [WxaAPI](https://github.com/liyiorg/weixin-popular/wiki/WxaAPI) 微信小程序
+* [WxopenAPI](https://github.com/liyiorg/weixin-popular/wiki/WxopenAPI) 微信小程序
 * [CommentAPI](https://github.com/liyiorg/weixin-popular/wiki/CommentAPI) 文章评论留言
 * [OpenAPI](https://github.com/liyiorg/weixin-popular/wiki/OpenAPI) 微信开放平台帐号管理
 

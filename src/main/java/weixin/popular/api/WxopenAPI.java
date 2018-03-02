@@ -12,15 +12,68 @@ import weixin.popular.bean.wxopen.TemplateAddResult;
 import weixin.popular.bean.wxopen.TemplateLibraryGetResult;
 import weixin.popular.bean.wxopen.TemplateLibraryListResult;
 import weixin.popular.bean.wxopen.TemplateListResult;
+import weixin.popular.bean.wxopen.Wxamplink;
+import weixin.popular.bean.wxopen.WxamplinkgetResult;
 import weixin.popular.client.LocalHttpClient;
 import weixin.popular.util.JsonUtil;
 
 /**
- * 微信小程序模板接口
+ * 微信小程序
  * @author LiYi
  * @since 2.8.18
  */
 public class WxopenAPI extends BaseAPI {
+	
+	/**
+	 * 获取公众号关联的小程序
+	 * @since 2.8.18
+	 * @param access_token access_token
+	 * @return result
+	 */
+	public static WxamplinkgetResult wxamplinkget(String access_token){
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+				.setHeader(jsonHeader)
+				.setUri(BASE_URI+"/cgi-bin/wxopen/wxamplinkget")
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
+				.build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest,WxamplinkgetResult.class);
+	}
+	
+	/**
+	 * 关联小程序
+	 * @since 2.8.18
+	 * @param access_token access_token
+	 * @param wxamplink wxamplink
+	 * @return result
+	 */
+	public static BaseResult wxamplink(String access_token,Wxamplink wxamplink){
+		String json = JsonUtil.toJSONString(wxamplink);
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+				.setHeader(jsonHeader)
+				.setUri(BASE_URI+"/cgi-bin/wxopen/wxamplink")
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
+				.setEntity(new StringEntity(json,Charset.forName("utf-8")))
+				.build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest,BaseResult.class);
+	}
+	
+	/**
+	 * 解除已关联的小程序
+	 * @since 2.8.18
+	 * @param access_token access_token
+	 * @param appid appid
+	 * @return result
+	 */
+	public static BaseResult wxampunlink(String access_token,String appid){
+		String json = String.format("{\"appid\":\"%s\"}", appid);
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+				.setHeader(jsonHeader)
+				.setUri(BASE_URI+"/cgi-bin/wxopen/wxampunlink")
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
+				.setEntity(new StringEntity(json,Charset.forName("utf-8")))
+				.build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest,BaseResult.class);
+	}
 
 	/**
 	 * 获取小程序模板库标题列表

@@ -23,8 +23,11 @@ import weixin.popular.bean.wxa.GetCategoryResult;
 import weixin.popular.bean.wxa.GetPageResult;
 import weixin.popular.bean.wxa.GetQrcodeResult;
 import weixin.popular.bean.wxa.GetnearbypoilistResult;
+import weixin.popular.bean.wxa.GettemplatedraftlistResult;
+import weixin.popular.bean.wxa.GettemplatelistResult;
 import weixin.popular.bean.wxa.Getwxacode;
 import weixin.popular.bean.wxa.Getwxacodeunlimit;
+import weixin.popular.bean.wxa.GetwxasearchstatusResult;
 import weixin.popular.bean.wxa.ModifyDomain;
 import weixin.popular.bean.wxa.ModifyDomainResult;
 import weixin.popular.bean.wxa.SubmitAudit;
@@ -402,5 +405,110 @@ public class WxaAPI extends BaseAPI {
 				.setEntity(new StringEntity(json,Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,BaseResult.class);
+	}
+	
+	/**
+	 * <strong>小程序代码模版库管理</strong><br>
+	 * 获取草稿箱内的所有临时代码草稿
+	 * @since 2.8.18
+	 * @param access_token access_token
+	 * @return result
+	 */
+	public static GettemplatedraftlistResult gettemplatedraftlist(String access_token){
+		HttpUriRequest httpUriRequest = RequestBuilder.get()
+				.setHeader(jsonHeader)
+				.setUri(BASE_URI+"/wxa/gettemplatedraftlist")
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
+				.build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest,GettemplatedraftlistResult.class);
+	}
+	
+	/**
+	 * <strong>小程序代码模版库管理</strong><br>
+	 * 获取代码模版库中的所有小程序代码模版
+	 * @since 2.8.18
+	 * @param access_token access_token
+	 * @return result
+	 */
+	public static GettemplatelistResult gettemplatelist(String access_token){
+		HttpUriRequest httpUriRequest = RequestBuilder.get()
+				.setHeader(jsonHeader)
+				.setUri(BASE_URI+"/wxa/gettemplatelist")
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
+				.build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest,GettemplatelistResult.class);
+	}
+	
+	/**
+	 * <strong>小程序代码模版库管理</strong><br>
+	 * 将草稿箱的草稿选为小程序代码模版
+	 * @since 2.8.18
+	 * @param access_token access_token
+	 * @param draft_id draft_id
+	 * @return result
+	 */
+	public static BaseResult addtotemplate(String access_token,long draft_id){
+		String json = String.format("{\"draft_id\":%d}", draft_id);
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+				.setHeader(jsonHeader)
+				.setUri(BASE_URI+"/wxa/addtotemplate")
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
+				.setEntity(new StringEntity(json,Charset.forName("utf-8")))
+				.build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest,BaseResult.class);
+	}
+	
+	/**
+	 * <strong>小程序代码模版库管理</strong><br>
+	 * 删除指定小程序代码模版
+	 * @since 2.8.18
+	 * @param access_token access_token
+	 * @param template_id template_id
+	 * @return result
+	 */
+	public static BaseResult deletetemplate(String access_token,long template_id){
+		String json = String.format("{\"template_id\":%d}", template_id);
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+				.setHeader(jsonHeader)
+				.setUri(BASE_URI+"/wxa/deletetemplate")
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
+				.setEntity(new StringEntity(json,Charset.forName("utf-8")))
+				.build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest,BaseResult.class);
+	}
+	
+	/**
+	 * <strong>基础信息设置</strong><br>
+	 * 设置小程序隐私设置（是否可被搜索）
+	 * @since 2.8.18
+	 * @param access_token access_token
+	 * @param status 1表示不可搜索，0表示可搜索
+	 * @return result
+	 */
+	public static BaseResult changewxasearchtustas(String access_token,int status){
+		String json = String.format("{\"status\":%d}", status);
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+				.setHeader(jsonHeader)
+				.setUri(BASE_URI+"/wxa/changewxasearchtustas")
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
+				.setEntity(new StringEntity(json,Charset.forName("utf-8")))
+				.build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest,BaseResult.class);
+	}
+	
+	/**
+	 * <strong>基础信息设置</strong><br>
+	 * 查询小程序当前隐私设置（是否可被搜索）
+	 * @since 2.8.18
+	 * @param access_token access_token
+	 * @return result
+	 */
+	public static GetwxasearchstatusResult getwxasearchstatus(String access_token){
+		HttpUriRequest httpUriRequest = RequestBuilder.get()
+				.setHeader(jsonHeader)
+				.setUri(BASE_URI+"/wxa/getwxasearchstatus")
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
+				.build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest,GetwxasearchstatusResult.class);
 	}
 }

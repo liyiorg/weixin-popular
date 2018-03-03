@@ -2,5 +2,5 @@ package weixin.popular;
 
 public interface Version {
 	
-	String VERSION = "2.8.17";
+	String VERSION = "2.8.18";
 }

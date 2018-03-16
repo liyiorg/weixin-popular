@@ -685,7 +685,10 @@ public class PayMchAPI extends BaseAPI{
 	 * @since 2.8.18
 	 * @param payDownloadfundflow payDownloadfundflow
 	 * @param key key
-	 * @return PayDownloadfundflowResult
+	 * @return PayDownloadfundflowResult 对象，请求成功时包含以下数据：<br>
+	 * data 文本表格数据 <br>
+	 * sign_type 签名类型 <br>
+	 * sign 签名
 	 */
 	public static PayDownloadfundflowResult payDownloadfundflow(PayDownloadfundflow payDownloadfundflow,String key){
 		Map<String,String> map = MapUtil.objectToMap(payDownloadfundflow);

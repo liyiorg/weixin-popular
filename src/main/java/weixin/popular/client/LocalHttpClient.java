@@ -213,9 +213,12 @@ public class LocalHttpClient {
 	 * @return result
 	 */
 	public static <T> T keyStoreExecuteXmlResult(String mch_id,HttpUriRequest request,Class<T> clazz,String sign_type,String key){
+		return keyStoreExecute(mch_id, request, XmlResponseHandler.createResponseHandler(clazz, sign_type, key));
+	}
+	
+	public static <T> T keyStoreExecute(String mch_id,HttpUriRequest request,ResponseHandler<T> responseHandler){
 		String uriId = loggerRequest(request);
 		userAgent(request);
-		ResponseHandler<T> responseHandler = XmlResponseHandler.createResponseHandler(clazz,sign_type,key);
 		if(responseHandler instanceof LocalResponseHandler){
 			LocalResponseHandler lrh = (LocalResponseHandler) responseHandler;
 			lrh.setUriId(uriId);
@@ -232,8 +235,6 @@ public class LocalHttpClient {
 		}
 		return null;
 	}
-	
-	
 	
 	/**
 	 * 日志记录

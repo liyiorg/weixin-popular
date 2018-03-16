@@ -136,5 +136,9 @@ public abstract class MchBase {
 	public void setSign_status(Boolean sign_status) {
 		this.sign_status = sign_status;
 	}
+
+	public void setSign_type(String sign_type) {
+		this.sign_type = sign_type;
+	}
 	
 }

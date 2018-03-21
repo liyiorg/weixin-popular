@@ -81,6 +81,7 @@ weixin-popular 已支持的微信平台
 * SignatureUtil   签权生成、验证
 * XMLConverUtil   XML 对象转换（JAXB）
 * JsUtil          JsAPI config,chooseWXPay JSON生成
+* WxaUtil		     小程序用户信息解密、校验
 
 ## example
 * [消息事件接收](https://github.com/liyiorg/weixin-popular/wiki/消息事件接收)

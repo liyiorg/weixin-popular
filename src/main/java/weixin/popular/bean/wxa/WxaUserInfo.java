@@ -4,6 +4,8 @@ public class WxaUserInfo {
 
 	private String nickName;
 
+	private String avatarUrl;
+
 	private String gender;
 
 	private String city;
@@ -12,7 +14,7 @@ public class WxaUserInfo {
 
 	private String country;
 
-	private String avatarUrl;
+	private String language;
 
 	public String getNickName() {
 		return nickName;
@@ -20,6 +22,14 @@ public class WxaUserInfo {
 
 	public void setNickName(String nickName) {
 		this.nickName = nickName;
+	}
+
+	public String getAvatarUrl() {
+		return avatarUrl;
+	}
+
+	public void setAvatarUrl(String avatarUrl) {
+		this.avatarUrl = avatarUrl;
 	}
 
 	public String getGender() {
@@ -54,12 +64,12 @@ public class WxaUserInfo {
 		this.country = country;
 	}
 
-	public String getAvatarUrl() {
-		return avatarUrl;
+	public String getLanguage() {
+		return language;
 	}
 
-	public void setAvatarUrl(String avatarUrl) {
-		this.avatarUrl = avatarUrl;
+	public void setLanguage(String language) {
+		this.language = language;
 	}
 
 }

@@ -36,14 +36,8 @@ public class WxaUtil {
 	 */
 	public static WxaDUserInfo decryptUserInfo(String session_key, String encryptedData, String iv) {
 		try {
-			Cipher cipher = Cipher.getInstance("AES/CBC/PKCS7Padding");
+			Cipher cipher = Cipher.getInstance("AES/CBC/NoPadding");
 			Key sKeySpec = new SecretKeySpec(Base64.decodeBase64(session_key), "AES");
-
-			/*
-			 * AlgorithmParameters params =
-			 * AlgorithmParameters.getInstance("AES"); params.init(new
-			 * IvParameterSpec(iv));
-			 */
 			cipher.init(Cipher.DECRYPT_MODE, sKeySpec, new IvParameterSpec(Base64.decodeBase64(iv)));
 			byte[] resultByte = cipher.doFinal(Base64.decodeBase64(encryptedData));
 			String data = new String(PKCS7Encoder.decode(resultByte));

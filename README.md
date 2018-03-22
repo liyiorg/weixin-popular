@@ -108,3 +108,4 @@ weixin-popular 已支持的微信平台
 * [微信支付服务商平台开发者文档](https://pay.weixin.qq.com/wiki/doc/api/sl.html)
 * [微信支付单品优惠](https://pay.weixin.qq.com/wiki/doc/api/danpin.php?chapter=9_201&index=3)
 * [微信开放平台（公众号第三方平台开发）](https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&t=resource/res_list&verify=1&lang=zh_CN)
+* [微信小程序开发文档](https://mp.weixin.qq.com/debug/wxadoc/dev/index.html)

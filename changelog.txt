@@ -2,7 +2,7 @@ WEIXIN-POPULAR CHANGELOG
 ===========================
 https://github.com/liyiorg/weixin-popular
 
-Changes in version 2.8.18 (2018-03-?)
+Changes in version 2.8.18 (2018-03-22)
 -------------------------------------
 * 添加WxopenAPI 小程序模板,公众号关联小程序
 * 添加WxaAPI 接口,小程序附近,小程序代码模版库管理,基础信息设置

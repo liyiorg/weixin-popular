@@ -56,8 +56,12 @@ public class WxaUtil {
 	 * @return WxaUserInfo 签名校验失败时，返回null
 	 */
 	public static WxaUserInfo validateUserInfo(String session_key, String rawData, String signature) {
-		if (DigestUtils.shaHex(rawData + session_key).equals(signature)) {
-			return JsonUtil.parseObject(rawData, WxaUserInfo.class);
+		try {
+			if (DigestUtils.shaHex(rawData + session_key).equals(signature)) {
+				return JsonUtil.parseObject(rawData, WxaUserInfo.class);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		return null;
 	}

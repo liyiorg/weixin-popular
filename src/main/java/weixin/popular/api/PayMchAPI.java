@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.Map;
 import java.util.UUID;
+import java.util.zip.GZIPInputStream;
 
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
@@ -66,6 +67,7 @@ import weixin.popular.client.LocalHttpClient;
 import weixin.popular.util.JsonUtil;
 import weixin.popular.util.MapUtil;
 import weixin.popular.util.SignatureUtil;
+import weixin.popular.util.StreamUtils;
 import weixin.popular.util.XMLConverUtil;
 
 /**
@@ -307,12 +309,27 @@ public class PayMchAPI extends BaseAPI{
 				int status = response.getStatusLine().getStatusCode();
                 if (status >= 200 && status < 300) {
                     HttpEntity entity = response.getEntity();
-                    String str = EntityUtils.toString(entity,"utf-8");
+					String str;
+					//GZIP
+					if (entity.getContentType().getValue().matches("(?i).*gzip.*")) {
+						str = StreamUtils.copyToString(new GZIPInputStream(entity.getContent()),
+								Charset.forName("UTF-8"));
+					} else {
+						str = EntityUtils.toString(entity, "utf-8");
+					}
+					EntityUtils.consume(entity);
                     if(str.matches("\\s*<xml>.*</xml>\\s*")){
                     	return XMLConverUtil.convertToObject(DownloadbillResult.class,str);
                     }else{
                     	DownloadbillResult dr = new DownloadbillResult();
                     	dr.setData(str);
+                    	// 获取返回头数据 签名信息
+						Header headerDigest = response.getFirstHeader("Digest");
+						if (headerDigest != null) {
+							String[] hkv = headerDigest.getValue().split("=");
+							dr.setSign_type(hkv[0]);
+							dr.setSign(hkv[1]);
+						}
                     	return dr;
                     }
                 } else {
@@ -354,31 +371,39 @@ public class PayMchAPI extends BaseAPI{
 				.build();
 		return LocalHttpClient.keyStoreExecute(payDownloadfundflow.getMch_id(),httpUriRequest,new ResponseHandler<PayDownloadfundflowResult>() {
 	
-			@Override
-			public PayDownloadfundflowResult handleResponse(HttpResponse response)
-					throws ClientProtocolException, IOException {
-				int status = response.getStatusLine().getStatusCode();
-	            if (status >= 200 && status < 300) {
-	                HttpEntity entity = response.getEntity();
-	                String str = EntityUtils.toString(entity,"utf-8");
-	                if(str.matches("\\s*<xml>.*</xml>\\s*")){
-	                	return XMLConverUtil.convertToObject(PayDownloadfundflowResult.class,str);
-	                }else{
-	                	PayDownloadfundflowResult dr = new PayDownloadfundflowResult();
-	                	dr.setData(str);
-	                	//获取返回头数据  签名信息
-	                	Header headerDigest = response.getFirstHeader("Digest");
-	                	if(headerDigest != null){
-	                		String[] hkv = headerDigest.getValue().split("=");
-	                		dr.setSign_type(hkv[0]);
-	                		dr.setSign(hkv[1]);
-	                	}
-	                	return dr;
-	                }
-	            } else {
-	                throw new ClientProtocolException("Unexpected response status: " + status);
-	            }
-			}
+					@Override
+					public PayDownloadfundflowResult handleResponse(HttpResponse response)
+							throws ClientProtocolException, IOException {
+						int status = response.getStatusLine().getStatusCode();
+						if (status >= 200 && status < 300) {
+							HttpEntity entity = response.getEntity();
+							String str;
+							//GZIP
+							if (entity.getContentType().getValue().matches("(?i).*gzip.*")) {
+								str = StreamUtils.copyToString(new GZIPInputStream(entity.getContent()),
+										Charset.forName("UTF-8"));
+							} else {
+								str = EntityUtils.toString(entity, "utf-8");
+							}
+							EntityUtils.consume(entity);
+							if (str.matches("\\s*<xml>.*</xml>\\s*")) {
+								return XMLConverUtil.convertToObject(PayDownloadfundflowResult.class, str);
+							} else {
+								PayDownloadfundflowResult dr = new PayDownloadfundflowResult();
+								dr.setData(str);
+								// 获取返回头数据 签名信息
+								Header headerDigest = response.getFirstHeader("Digest");
+								if (headerDigest != null) {
+									String[] hkv = headerDigest.getValue().split("=");
+									dr.setSign_type(hkv[0]);
+									dr.setSign(hkv[1]);
+								}
+								return dr;
+							}
+						} else {
+							throw new ClientProtocolException("Unexpected response status: " + status);
+						}
+					}
 		});
 	}
 

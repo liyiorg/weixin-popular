@@ -2,6 +2,10 @@ WEIXIN-POPULAR CHANGELOG
 ===========================
 https://github.com/liyiorg/weixin-popular
 
+Changes in version 2.8.19 (2018-04-?)
+-------------------------------------
+* #142 下载对账单添加压缩账单tar_type参数
+
 Changes in version 2.8.18 (2018-03-22)
 -------------------------------------
 * 添加WxopenAPI 小程序模板,公众号关联小程序

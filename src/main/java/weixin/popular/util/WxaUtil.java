@@ -17,7 +17,7 @@ import weixin.popular.bean.wxa.WxaUserInfo;
 /**
  * 小程序 工具类
  * @author liyi
- *
+ * @since 2.8.18
  */
 public class WxaUtil {
 

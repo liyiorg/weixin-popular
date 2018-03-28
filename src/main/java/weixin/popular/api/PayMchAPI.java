@@ -323,6 +323,66 @@ public class PayMchAPI extends BaseAPI{
 	}
 
 	/**
+	 * 下载资金账单<br>
+	 * 商户可以通过该接口下载自2017年6月1日起 的历史资金流水账单。<br>
+	 * 说明：<br>
+	 * 1、资金账单中的数据反映的是商户微信账户资金变动情况；<br>
+	 * 2、当日账单在次日上午9点开始生成，建议商户在上午10点以后获取；<br>
+	 * 3、资金账单中涉及金额的字段单位为“元”。<br>
+	 * @since 2.8.18
+	 * @param payDownloadfundflow payDownloadfundflow
+	 * @param key key
+	 * @return PayDownloadfundflowResult 对象，请求成功时包含以下数据：<br>
+	 * data 文本表格数据 <br>
+	 * sign_type 签名类型 <br>
+	 * sign 签名
+	 */
+	public static PayDownloadfundflowResult payDownloadfundflow(PayDownloadfundflow payDownloadfundflow,String key){
+		Map<String,String> map = MapUtil.objectToMap(payDownloadfundflow);
+		String sign_type = map.get("sign_type");
+		//设置默认签名类型HMAC-SHA256
+		if(sign_type == null || "".equals(sign_type)){
+			sign_type = "HMAC-SHA256";
+		}
+		String sign = SignatureUtil.generateSign(map,sign_type,key);
+		payDownloadfundflow.setSign(sign);
+		String xmlData = XMLConverUtil.convertToXML(payDownloadfundflow);
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+				.setHeader(xmlHeader)
+				.setUri(baseURI()+ "/pay/downloadfundflow")
+				.setEntity(new StringEntity(xmlData,Charset.forName("utf-8")))
+				.build();
+		return LocalHttpClient.keyStoreExecute(payDownloadfundflow.getMch_id(),httpUriRequest,new ResponseHandler<PayDownloadfundflowResult>() {
+	
+			@Override
+			public PayDownloadfundflowResult handleResponse(HttpResponse response)
+					throws ClientProtocolException, IOException {
+				int status = response.getStatusLine().getStatusCode();
+	            if (status >= 200 && status < 300) {
+	                HttpEntity entity = response.getEntity();
+	                String str = EntityUtils.toString(entity,"utf-8");
+	                if(str.matches("\\s*<xml>.*</xml>\\s*")){
+	                	return XMLConverUtil.convertToObject(PayDownloadfundflowResult.class,str);
+	                }else{
+	                	PayDownloadfundflowResult dr = new PayDownloadfundflowResult();
+	                	dr.setData(str);
+	                	//获取返回头数据  签名信息
+	                	Header headerDigest = response.getFirstHeader("Digest");
+	                	if(headerDigest != null){
+	                		String[] hkv = headerDigest.getValue().split("=");
+	                		dr.setSign_type(hkv[0]);
+	                		dr.setSign(hkv[1]);
+	                	}
+	                	return dr;
+	                }
+	            } else {
+	                throw new ClientProtocolException("Unexpected response status: " + status);
+	            }
+			}
+		});
+	}
+
+	/**
 	 * 短链接转换
 	 * @param shorturl shorturl
 	 * @param key 商户支付密钥
@@ -666,66 +726,6 @@ public class PayMchAPI extends BaseAPI{
                     }else{
                     	PapayContractbillResult dr = new PapayContractbillResult();
                     	dr.setData(str);
-                    	return dr;
-                    }
-                } else {
-                    throw new ClientProtocolException("Unexpected response status: " + status);
-                }
-			}
-		});
-	}
-
-	/**
-	 * 下载资金账单<br>
-	 * 商户可以通过该接口下载自2017年6月1日起 的历史资金流水账单。<br>
-	 * 说明：<br>
-	 * 1、资金账单中的数据反映的是商户微信账户资金变动情况；<br>
-	 * 2、当日账单在次日上午9点开始生成，建议商户在上午10点以后获取；<br>
-	 * 3、资金账单中涉及金额的字段单位为“元”。<br>
-	 * @since 2.8.18
-	 * @param payDownloadfundflow payDownloadfundflow
-	 * @param key key
-	 * @return PayDownloadfundflowResult 对象，请求成功时包含以下数据：<br>
-	 * data 文本表格数据 <br>
-	 * sign_type 签名类型 <br>
-	 * sign 签名
-	 */
-	public static PayDownloadfundflowResult payDownloadfundflow(PayDownloadfundflow payDownloadfundflow,String key){
-		Map<String,String> map = MapUtil.objectToMap(payDownloadfundflow);
-		String sign_type = map.get("sign_type");
-		//设置默认签名类型HMAC-SHA256
-		if(sign_type == null || "".equals(sign_type)){
-			sign_type = "HMAC-SHA256";
-		}
-		String sign = SignatureUtil.generateSign(map,sign_type,key);
-		payDownloadfundflow.setSign(sign);
-		String xmlData = XMLConverUtil.convertToXML(payDownloadfundflow);
-		HttpUriRequest httpUriRequest = RequestBuilder.post()
-				.setHeader(xmlHeader)
-				.setUri(baseURI()+ "/pay/downloadfundflow")
-				.setEntity(new StringEntity(xmlData,Charset.forName("utf-8")))
-				.build();
-		return LocalHttpClient.keyStoreExecute(payDownloadfundflow.getMch_id(),httpUriRequest,new ResponseHandler<PayDownloadfundflowResult>() {
-
-			@Override
-			public PayDownloadfundflowResult handleResponse(HttpResponse response)
-					throws ClientProtocolException, IOException {
-				int status = response.getStatusLine().getStatusCode();
-                if (status >= 200 && status < 300) {
-                    HttpEntity entity = response.getEntity();
-                    String str = EntityUtils.toString(entity,"utf-8");
-                    if(str.matches("\\s*<xml>.*</xml>\\s*")){
-                    	return XMLConverUtil.convertToObject(PayDownloadfundflowResult.class,str);
-                    }else{
-                    	PayDownloadfundflowResult dr = new PayDownloadfundflowResult();
-                    	dr.setData(str);
-                    	//获取返回头数据  签名信息
-                    	Header headerDigest = response.getFirstHeader("Digest");
-                    	if(headerDigest != null){
-                    		String[] hkv = headerDigest.getValue().split("=");
-                    		dr.setSign_type(hkv[0]);
-                    		dr.setSign(hkv[1]);
-                    	}
                     	return dr;
                     }
                 } else {

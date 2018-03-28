@@ -26,6 +26,11 @@ public class MchDownloadbill {
 	private String bill_date;
 
 	private String bill_type;
+	
+	/**
+	 * @since 2.8.19
+	 */
+	private String tar_type;
 
 	/**
 	 * @since 2.8.5
@@ -131,4 +136,13 @@ public class MchDownloadbill {
 	public void setSign_type(String sign_type) {
 		this.sign_type = sign_type;
 	}
+
+	public String getTar_type() {
+		return tar_type;
+	}
+
+	public void setTar_type(String tar_type) {
+		this.tar_type = tar_type;
+	}
+	
 }

@@ -74,7 +74,11 @@ public class SecapiPayRefund {
 	private String refund_account;		//退款资金来源
 										//REFUND_SOURCE_UNSETTLED_FUNDS ---未结算资金退款（默认使用未结算资金退款）
 										//REFUND_SOURCE_RECHARGE_FUNDS  ---可用余额退款
-
+	/**
+	 * @since 2.8.19
+	 */
+	private String notify_url;
+	
 	public String getAppid() {
 		return appid;
 	}
@@ -208,4 +212,12 @@ public class SecapiPayRefund {
 		this.sign_type = sign_type;
 	}
 
+	public String getNotify_url() {
+		return notify_url;
+	}
+
+	public void setNotify_url(String notify_url) {
+		this.notify_url = notify_url;
+	}
+	
 }

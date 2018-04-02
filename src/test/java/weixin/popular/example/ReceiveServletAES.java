@@ -30,7 +30,7 @@ import weixin.popular.util.XMLConverUtil;
  * @author Yi
  *
  */
-public class ReceiveServlet2 extends HttpServlet{
+public class ReceiveServletAES extends HttpServlet{
 
     /**
 	 *

@@ -102,7 +102,7 @@ public class UserportraitResult {
 
 		private String name;
 
-		private String value;
+		private Integer value;
 
 		public Integer getId() {
 			return id;
@@ -120,11 +120,11 @@ public class UserportraitResult {
 			this.name = name;
 		}
 
-		public String getValue() {
+		public Integer getValue() {
 			return value;
 		}
 
-		public void setValue(String value) {
+		public void setValue(Integer value) {
 			this.value = value;
 		}
 

@@ -22,6 +22,7 @@ import weixin.popular.bean.datacube.user.UsercumulateResult;
 import weixin.popular.bean.datacube.user.UsersummaryResult;
 import weixin.popular.bean.datacube.wxapp.RetaininfoResult;
 import weixin.popular.bean.datacube.wxapp.SummarytrendResult;
+import weixin.popular.bean.datacube.wxapp.UserportraitResult;
 import weixin.popular.bean.datacube.wxapp.VisitdistributionResult;
 import weixin.popular.bean.datacube.wxapp.VisitpageResult;
 import weixin.popular.bean.datacube.wxapp.VisittrendResult;
@@ -642,6 +643,25 @@ public class DataCubeAPI extends BaseAPI {
 				.setEntity(new StringEntity(requestJson,Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,VisitpageResult.class);
+	}
+	
+	/**
+	 * 用户画像 (小程序)
+	 * @param access_token access_token
+	 * @param begin_date begin_date
+	 * @param end_date end_date
+	 * @return result
+	 * @since 2.8.19
+	 */
+	public static UserportraitResult getweanalysisappiduserportrait(String access_token, String begin_date,String end_date) {
+		String requestJson = String.format("{\"begin_date\":\"%s\",\"end_date\":\"%s\"}", begin_date,end_date);
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+				.setHeader(jsonHeader)
+				.setUri(BASE_URI+"/datacube/getweanalysisappiduserportrait")
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
+				.setEntity(new StringEntity(requestJson,Charset.forName("utf-8")))
+				.build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest,UserportraitResult.class);
 	}
 	
 }

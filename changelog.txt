@@ -4,6 +4,7 @@ https://github.com/liyiorg/weixin-popular
 
 Changes in version 2.8.19 (2018-04-?)
 -------------------------------------
+* #145 小程序添加用户画像接口
 * #142 下载对账单添加压缩账单tar_type参数
 * #96 PayUtil 添加退款通知数据解密
 

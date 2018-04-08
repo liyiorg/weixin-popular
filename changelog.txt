@@ -2,7 +2,7 @@ WEIXIN-POPULAR CHANGELOG
 ===========================
 https://github.com/liyiorg/weixin-popular
 
-Changes in version 2.8.19 (2018-04-?)
+Changes in version 2.8.19 (2018-04-08)
 -------------------------------------
 * #145 小程序添加用户画像接口
 * #142 下载对账单添加压缩账单tar_type参数

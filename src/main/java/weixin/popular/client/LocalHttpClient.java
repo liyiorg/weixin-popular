@@ -6,9 +6,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.KeyStore;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-import java.security.cert.CertificateException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -79,7 +76,7 @@ public class LocalHttpClient {
 		try {
 			httpClient.close();
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error("init error", e);
 		}
 		httpClient = HttpClientFactory.createHttpClient(maxTotal,maxPerRoute,timeout,retryExecutionCount);
 	}
@@ -93,7 +90,7 @@ public class LocalHttpClient {
 		try {
 			initMchKeyStore(mch_id, new FileInputStream(new File(keyStoreFilePath)));
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			logger.error("init error", e);
 		}
 	}
 	
@@ -110,16 +107,8 @@ public class LocalHttpClient {
 			 inputStream.close();
 			 CloseableHttpClient httpClient = HttpClientFactory.createKeyMaterialHttpClient(keyStore, mch_id,timeout,retryExecutionCount);
 			 httpClient_mchKeyStore.put(mch_id, httpClient);
-		} catch (KeyStoreException e) {
-			e.printStackTrace();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		} catch (CertificateException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			logger.error("init mch error", e);
 		}
 	}
 
@@ -130,8 +119,7 @@ public class LocalHttpClient {
 		try {
 			return httpClient.execute(request,HttpClientContext.create());
 		} catch (Exception e) {
-			e.printStackTrace();
-			logger.error(e.getMessage());
+			logger.error("execute error", e);
 		}
 		return null;
 	}
@@ -150,8 +138,7 @@ public class LocalHttpClient {
 			}
 			return t;
 		} catch (Exception e) {
-			e.printStackTrace();
-			logger.error(e.getMessage());
+			logger.error("execute error", e);
 		}
 		return null;
 	}
@@ -230,8 +217,7 @@ public class LocalHttpClient {
 			}
 			return t;
 		} catch (Exception e) {
-			e.printStackTrace();
-			logger.error(e.getMessage());
+			logger.error("execute error", e);
 		}
 		return null;
 	}
@@ -253,8 +239,7 @@ public class LocalHttpClient {
 					try {
 						content = EntityUtils.toString(entity);
 					} catch (Exception e) {
-						e.printStackTrace();
-						logger.error(e.getMessage());
+						logger.error("logger content data get error", e);
 					}
 				}
 				logger.info("URI[{}] {} {} ContentLength:{} Content:{}",

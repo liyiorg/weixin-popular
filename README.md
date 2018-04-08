@@ -26,7 +26,7 @@ weixin-popular 已支持的微信平台
 <dependency>
   <groupId>com.github.liyiorg</groupId>
   <artifactId>weixin-popular</artifactId>
-  <version>2.8.19-SNAPSHOT</version>
+  <version>2.8.19</version>
 </dependency>
 ```
 * [升级注意事项](https://github.com/liyiorg/weixin-popular/wiki/jar_update)
@@ -86,7 +86,8 @@ weixin-popular 已支持的微信平台
 ## example
 * [消息事件接收](https://github.com/liyiorg/weixin-popular/wiki/消息事件接收)
 * [消息事件接收(加密)](https://github.com/liyiorg/weixin-popular/wiki/消息事件接收(加密))
-* [微信支付MCH](https://github.com/liyiorg/weixin-popular/wiki/微信支付MCH)
+* [微信支付](https://github.com/liyiorg/weixin-popular/wiki/微信支付MCH)
+* [微信退款](https://github.com/liyiorg/weixin-popular/wiki/微信退款MCH)
 
 ## support
 * [TokenManager token 自动刷新](https://github.com/liyiorg/weixin-popular/wiki/TokenManager-token-自动刷新)

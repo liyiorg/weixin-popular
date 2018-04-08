@@ -136,7 +136,16 @@ public class PayUtil {
 	}
 
 	/**
-	 * 解密退款结果通知数据
+	 * 解密退款结果通知数据 <br>
+	 * 
+	 * <i>
+	 * 解密失败解决方案：在官方网站下载JCE无限制权限策略文件（请到官网下载对应的版本) ,下载后解压。<br>
+	 * 可以看到local_policy.jar和US_export_policy.jar以及readme.txt，<br>
+	 * 将两个jar文件放到%JDK_HOME%\jre\lib\security目录下覆盖原来文件<br>
+	 * 
+	 * JCE7 http://www.oracle.com/technetwork/java/javase/downloads/jce-7-download-432124.html<br>
+	 * JCE8 http://www.oracle.com/technetwork/java/javase/downloads/jce8-download-2133166.html
+	 * </i>
 	 * 
 	 * @since 2.8.19
 	 * 

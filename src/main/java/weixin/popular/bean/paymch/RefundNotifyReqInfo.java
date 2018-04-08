@@ -1,12 +1,16 @@
 package weixin.popular.bean.paymch;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "root")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class RefundNotifyReqInfo {
 
 	private String transaction_id;
 
 	private String out_trade_no;
-
-	private String refund_id;
 
 	private String out_refund_no;
 
@@ -14,19 +18,21 @@ public class RefundNotifyReqInfo {
 
 	private Integer settlement_total_fee;
 
-	private Integer refund_fee;
-
 	private Integer settlement_refund_fee;
 
-	private String refund_status;
-
 	private String success_time;
+
+	private String refund_id;
+
+	private Integer refund_fee;
 
 	private String refund_recv_accout;
 
 	private String refund_account;
 
 	private String refund_request_source;
+
+	private String refund_status;
 
 	public String getTransaction_id() {
 		return transaction_id;
@@ -42,14 +48,6 @@ public class RefundNotifyReqInfo {
 
 	public void setOut_trade_no(String out_trade_no) {
 		this.out_trade_no = out_trade_no;
-	}
-
-	public String getRefund_id() {
-		return refund_id;
-	}
-
-	public void setRefund_id(String refund_id) {
-		this.refund_id = refund_id;
 	}
 
 	public String getOut_refund_no() {
@@ -76,14 +74,6 @@ public class RefundNotifyReqInfo {
 		this.settlement_total_fee = settlement_total_fee;
 	}
 
-	public Integer getRefund_fee() {
-		return refund_fee;
-	}
-
-	public void setRefund_fee(Integer refund_fee) {
-		this.refund_fee = refund_fee;
-	}
-
 	public Integer getSettlement_refund_fee() {
 		return settlement_refund_fee;
 	}
@@ -92,20 +82,28 @@ public class RefundNotifyReqInfo {
 		this.settlement_refund_fee = settlement_refund_fee;
 	}
 
-	public String getRefund_status() {
-		return refund_status;
-	}
-
-	public void setRefund_status(String refund_status) {
-		this.refund_status = refund_status;
-	}
-
 	public String getSuccess_time() {
 		return success_time;
 	}
 
 	public void setSuccess_time(String success_time) {
 		this.success_time = success_time;
+	}
+
+	public String getRefund_id() {
+		return refund_id;
+	}
+
+	public void setRefund_id(String refund_id) {
+		this.refund_id = refund_id;
+	}
+
+	public Integer getRefund_fee() {
+		return refund_fee;
+	}
+
+	public void setRefund_fee(Integer refund_fee) {
+		this.refund_fee = refund_fee;
 	}
 
 	public String getRefund_recv_accout() {
@@ -130,6 +128,14 @@ public class RefundNotifyReqInfo {
 
 	public void setRefund_request_source(String refund_request_source) {
 		this.refund_request_source = refund_request_source;
+	}
+
+	public String getRefund_status() {
+		return refund_status;
+	}
+
+	public void setRefund_status(String refund_status) {
+		this.refund_status = refund_status;
 	}
 
 }

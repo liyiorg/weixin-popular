@@ -153,7 +153,7 @@ public class PayUtil {
 			cipher.init(Cipher.DECRYPT_MODE, sKeySpec);
 			byte[] resultByte = cipher.doFinal(Base64.decodeBase64(req_info));
 			String data = new String(PKCS7Encoder.decode(resultByte));
-			return JsonUtil.parseObject(data, RefundNotifyReqInfo.class);
+			return XMLConverUtil.convertToObject(RefundNotifyReqInfo.class, data);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

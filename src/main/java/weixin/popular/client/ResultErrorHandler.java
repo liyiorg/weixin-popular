@@ -55,7 +55,7 @@ public abstract class ResultErrorHandler {
 					try {
 						content = EntityUtils.toString(entity);
 					} catch (Exception e) {
-						e.printStackTrace();
+						logger.error("", e);
 					}
 				}
 				if(logger.isErrorEnabled()){

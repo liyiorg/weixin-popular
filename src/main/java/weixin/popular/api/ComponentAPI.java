@@ -7,6 +7,8 @@ import java.nio.charset.Charset;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.client.methods.RequestBuilder;
 import org.apache.http.entity.StringEntity;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import weixin.popular.bean.BaseResult;
 import weixin.popular.bean.component.ApiGetAuthorizerInfoResult;
@@ -24,6 +26,8 @@ import weixin.popular.client.LocalHttpClient;
  */
 public class ComponentAPI extends BaseAPI{
 	
+	private static Logger logger = LoggerFactory.getLogger(CommentAPI.class); 
+	
 	/**
 	 * 生成授权页 URL 
 	 * @param component_appid 第三方平台ID
@@ -32,15 +36,35 @@ public class ComponentAPI extends BaseAPI{
 	 * @return URL
 	 */
 	public static String componentloginpage(String component_appid,String pre_auth_code,String redirect_uri){
+		return componentloginpage(component_appid, pre_auth_code, redirect_uri, null);
+	}
+	
+	/**
+	 * 生成授权页 URL 
+	 * @param component_appid 第三方平台ID
+	 * @param pre_auth_code 预授权码
+	 * @param redirect_uri 重定向URI
+	 * @param auth_type 要授权的帐号类型 <br>
+	 *  	1 则商户扫码后，手机端仅展示公众号 <br>
+	 *  	2 表示仅展示小程序 <br>
+	 *  	3 表示公众号和小程序都展示。<br>
+	 *  	如果为未制定，则默认小程序和公众号都展示。第三方平台开发者可以使用本字段来控制授权的帐号类型。
+	 * @return URL
+	 * @since 2.8.20
+	 */
+	public static String componentloginpage(String component_appid,String pre_auth_code,String redirect_uri,String auth_type){
 		try {
 			StringBuilder sb = new StringBuilder();
 			sb.append(MP_URI + "/cgi-bin/componentloginpage?")
 			.append("component_appid=").append(component_appid)
 			.append("&pre_auth_code=").append(pre_auth_code)
 			.append("&redirect_uri=").append(URLEncoder.encode(redirect_uri, "utf-8"));
+			if(auth_type != null){
+				sb.append("&auth_type=").append(auth_type);
+			}
 			return sb.toString();
 		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
+			logger.error("", e);
 		}
 		return null;
 	}

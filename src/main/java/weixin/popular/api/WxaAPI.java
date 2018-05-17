@@ -13,6 +13,8 @@ import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.client.methods.RequestBuilder;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.util.EntityUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import weixin.popular.bean.BaseResult;
 import weixin.popular.bean.wxa.Addnearbypoi;
@@ -41,6 +43,8 @@ import weixin.popular.util.JsonUtil;
  * @since 2.8.9
  */
 public class WxaAPI extends BaseAPI {
+	
+	private static Logger logger = LoggerFactory.getLogger(WxaAPI.class);
 
 	/**
 	 * 修改服务器地址
@@ -146,12 +150,12 @@ public class WxaAPI extends BaseAPI {
 				return JsonUtil.parseObject(body, GetQrcodeResult.class);
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error("", e);
 		} finally {
 			try {
 				httpResponse.close();
 			} catch (IOException e) {
-				e.printStackTrace();
+				logger.error("", e);
 			}
 		}
 		return null;
@@ -286,12 +290,12 @@ public class WxaAPI extends BaseAPI {
 				return ImageIO.read(new ByteArrayInputStream(bytes));
             }
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error("", e);
 		} finally {
 			try {
 				httpResponse.close();
 			} catch (IOException e) {
-				e.printStackTrace();
+				logger.error("", e);
 			}
 		}
 		return null;
@@ -322,12 +326,12 @@ public class WxaAPI extends BaseAPI {
 				return ImageIO.read(new ByteArrayInputStream(bytes));
             }
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error("", e);
 		} finally {
 			try {
 				httpResponse.close();
 			} catch (IOException e) {
-				e.printStackTrace();
+				logger.error("", e);
 			}
 		}
 		return null;

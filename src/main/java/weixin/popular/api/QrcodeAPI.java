@@ -12,6 +12,8 @@ import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.client.methods.RequestBuilder;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.util.EntityUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import weixin.popular.bean.qrcode.QrcodeTicket;
 import weixin.popular.bean.qrcode.Wxaqrcode;
@@ -25,6 +27,7 @@ import weixin.popular.util.JsonUtil;
  */
 public class QrcodeAPI extends BaseAPI{
 
+	private static Logger logger = LoggerFactory.getLogger(QrcodeAPI.class);
 
 	/**
 	 * 创建二维码
@@ -131,12 +134,12 @@ public class QrcodeAPI extends BaseAPI{
 				return ImageIO.read(new ByteArrayInputStream(bytes));
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error("", e);
 		} finally {
 			try {
 				httpResponse.close();
 			} catch (IOException e) {
-				e.printStackTrace();
+				logger.error("", e);
 			}
 		}
 		return null;

@@ -10,6 +10,8 @@ import javax.crypto.spec.SecretKeySpec;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.qq.weixin.mp.aes.PKCS7Encoder;
 
@@ -19,6 +21,8 @@ import weixin.popular.bean.paymch.PapayEntrustweb;
 import weixin.popular.bean.paymch.RefundNotifyReqInfo;
 
 public class PayUtil {
+	
+	private static Logger logger = LoggerFactory.getLogger(PayUtil.class);
 
 	/**
 	 * (MCH)生成支付JS请求对象
@@ -164,7 +168,7 @@ public class PayUtil {
 			String data = new String(PKCS7Encoder.decode(resultByte));
 			return XMLConverUtil.convertToObject(RefundNotifyReqInfo.class, data);
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("", e);
 		}
 		return null;
 	}

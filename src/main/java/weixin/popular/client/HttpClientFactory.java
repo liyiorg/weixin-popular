@@ -24,6 +24,8 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.protocol.HttpContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * httpclient 4.3.x
@@ -31,6 +33,8 @@ import org.apache.http.protocol.HttpContext;
  *
  */
 public class HttpClientFactory{
+	
+	private static Logger logger = LoggerFactory.getLogger(HttpClientFactory.class);
 	
 	private static final String[] supportedProtocols = new String[]{"TLSv1"};
 	
@@ -61,9 +65,9 @@ public class HttpClientFactory{
 									.setRetryHandler(new HttpRequestRetryHandlerImpl(retryExecutionCount))
 									.build();
 		} catch (KeyManagementException e) {
-			e.printStackTrace();
+			logger.error("", e);
 		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
+			logger.error("", e);
 		}
 		return null;
 	}
@@ -101,13 +105,13 @@ public class HttpClientFactory{
 									.setRetryHandler(new HttpRequestRetryHandlerImpl(retryExecutionCount))
 									.build();
 		} catch (KeyManagementException e) {
-			e.printStackTrace();
+			logger.error("", e);
 		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
+			logger.error("", e);
 		} catch (UnrecoverableKeyException e) {
-			e.printStackTrace();
+			logger.error("", e);
 		} catch (KeyStoreException e) {
-			e.printStackTrace();
+			logger.error("", e);
 		}
 		return null;
 	}

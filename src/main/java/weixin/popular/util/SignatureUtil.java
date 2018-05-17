@@ -8,9 +8,13 @@ import javax.crypto.spec.SecretKeySpec;
 
 import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class SignatureUtil {
 
+	private static Logger logger = LoggerFactory.getLogger(SignatureUtil.class);
+	
 	/**
 	 * 生成sign HMAC-SHA256 或 MD5 签名
 	 * @param map map
@@ -44,7 +48,7 @@ public class SignatureUtil {
 				  sha256_HMAC.init(secret_key);
 				  return Hex.encodeHexString(sha256_HMAC.doFinal((str+"&key="+paternerKey).getBytes("UTF-8"))).toUpperCase();
 			} catch (Exception e) {
-				e.printStackTrace();
+				logger.error("", e);
 			}
 			return null;
 		}else{//default MD5

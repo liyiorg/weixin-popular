@@ -111,7 +111,7 @@ public class TokenManager{
 			logger.info("ACCESS_TOKEN refurbish with appid:{}",appid);
 		} catch (Exception e) {
 			logger.error("ACCESS_TOKEN refurbish error with appid:{}",appid);
-			e.printStackTrace();
+			logger.error("", e);
 		}
 	}
 

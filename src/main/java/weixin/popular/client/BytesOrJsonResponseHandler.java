@@ -69,10 +69,10 @@ public class BytesOrJsonResponseHandler{
 						return t;
 					} catch (InstantiationException e) {
 						// TODO Auto-generated catch block
-						e.printStackTrace();
+						logger.error("", e);
 					} catch (IllegalAccessException e) {
 						// TODO Auto-generated catch block
-						e.printStackTrace();
+						logger.error("", e);
 					}
     			}
             } else {

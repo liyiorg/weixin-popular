@@ -21,6 +21,8 @@ import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import weixin.popular.bean.BaseResult;
 import weixin.popular.bean.material.Description;
@@ -41,6 +43,8 @@ import weixin.popular.util.StreamUtils;
  *
  */
 public class MaterialAPI extends BaseAPI{
+	
+	private static Logger logger = LoggerFactory.getLogger(MaterialAPI.class);
 
 	/**
 	 * 新增永久图文素材
@@ -106,7 +110,7 @@ public class MaterialAPI extends BaseAPI{
 		try {
 			data = StreamUtils.copyToByteArray(inputStream);
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error("", e);
 		}
         MultipartEntityBuilder multipartEntityBuilder = MultipartEntityBuilder.create()
         		.addBinaryBody("media",data,ContentType.DEFAULT_BINARY,"temp."+mediaType.fileSuffix());
@@ -149,18 +153,18 @@ public class MaterialAPI extends BaseAPI{
 			httpPost.setEntity(reqEntity);
 			return LocalHttpClient.executeJsonResult(httpPost,Media.class);
 		} catch (UnsupportedCharsetException e) {
-			e.printStackTrace();
+			logger.error("", e);
 		} catch (ClientProtocolException e) {
-			e.printStackTrace();
+			logger.error("", e);
 		} catch (ParseException e) {
-			e.printStackTrace();
+			logger.error("", e);
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error("", e);
 		} finally{
 			try {
 				tempHttpClient.close();
 			} catch (IOException e) {
-				e.printStackTrace();
+				logger.error("", e);
 			}
 		}
 		return null;

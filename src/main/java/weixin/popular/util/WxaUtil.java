@@ -8,6 +8,8 @@ import javax.crypto.spec.SecretKeySpec;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.qq.weixin.mp.aes.PKCS7Encoder;
 
@@ -21,6 +23,8 @@ import weixin.popular.bean.wxa.WxaUserInfo;
  */
 public class WxaUtil {
 
+	private static Logger logger = LoggerFactory.getLogger(WxaUtil.class);
+	
 	/**
 	 * 解密用户数据
 	 * 
@@ -43,7 +47,7 @@ public class WxaUtil {
 			String data = new String(PKCS7Encoder.decode(resultByte));
 			return JsonUtil.parseObject(data, WxaDUserInfo.class);
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("", e);
 		}
 		return null;
 	}
@@ -61,7 +65,7 @@ public class WxaUtil {
 				return JsonUtil.parseObject(rawData, WxaUserInfo.class);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("", e);
 		}
 		return null;
 	}

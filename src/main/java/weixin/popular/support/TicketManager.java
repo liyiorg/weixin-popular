@@ -141,7 +141,7 @@ public class TicketManager {
 			logger.info("TICKET refurbish with appid:{} type:{}",appid,type);
 		} catch (Exception e) {
 			logger.error("TICKET refurbish error with appid:{} type:{}",appid,type);
-			e.printStackTrace();
+			logger.error("", e);
 		}
 	}
 

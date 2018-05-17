@@ -5,6 +5,8 @@ import java.net.URLEncoder;
 
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.client.methods.RequestBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import weixin.popular.bean.BaseResult;
 import weixin.popular.bean.sns.Jscode2sessionResult;
@@ -20,6 +22,8 @@ import weixin.popular.util.EmojiUtil;
  */
 public class SnsAPI extends BaseAPI{
 
+	private static Logger logger = LoggerFactory.getLogger(SnsAPI.class);
+	
 	/**
 	 * 通过code换取网页授权access_token
 	 * @param appid appid
@@ -190,7 +194,7 @@ public class SnsAPI extends BaseAPI{
 			 sb.append("#wechat_redirect");
 			return sb.toString();
 		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
+			logger.error("", e);
 		}
 		return null;
 	}
@@ -215,7 +219,7 @@ public class SnsAPI extends BaseAPI{
 			.append("#wechat_redirect");
 			return sb.toString();
 		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
+			logger.error("", e);
 		}
 		return null;
 	}

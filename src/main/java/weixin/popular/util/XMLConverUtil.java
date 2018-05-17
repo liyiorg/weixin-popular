@@ -20,6 +20,8 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.w3c.dom.DOMException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -36,21 +38,18 @@ import com.sun.xml.bind.marshaller.CharacterEscapeHandler;
  *
  */
 public class XMLConverUtil{
+	
+	private static Logger logger = LoggerFactory.getLogger(XMLConverUtil.class);
 
-	private static final ThreadLocal<Map<Class<?>,Marshaller>> mMapLocal = new ThreadLocal<Map<Class<?>,Marshaller>>() {
-		@Override
-		protected Map<Class<?>, Marshaller> initialValue() {
-			return new HashMap<Class<?>, Marshaller>();
-		}
-	};
+	private static Map<Class<?>, Marshaller> M_MAP;
 
-	private static final ThreadLocal<Map<Class<?>,Unmarshaller>> uMapLocal = new ThreadLocal<Map<Class<?>,Unmarshaller>>(){
-		@Override
-		protected Map<Class<?>, Unmarshaller> initialValue() {
-			return new HashMap<Class<?>, Unmarshaller>();
-		}
-	};
+	private static Map<Class<?>, Unmarshaller> U_MAP;
 
+	static {
+		M_MAP = new HashMap<Class<?>, Marshaller>();
+		U_MAP = new HashMap<Class<?>, Unmarshaller>();
+	}
+	
 	/**
 	 * XML to Object
 	 * @param <T> T
@@ -95,15 +94,14 @@ public class XMLConverUtil{
 	@SuppressWarnings("unchecked")
 	public static <T> T convertToObject(Class<T> clazz,Reader reader){
 		try {
-			Map<Class<?>, Unmarshaller> uMap = uMapLocal.get();
-			if(!uMap.containsKey(clazz)){
+			if(!U_MAP.containsKey(clazz)){
 				JAXBContext jaxbContext = JAXBContext.newInstance(clazz);
 				Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-				uMap.put(clazz, unmarshaller);
+				U_MAP.put(clazz, unmarshaller);
 			}
-			return (T) uMap.get(clazz).unmarshal(reader);
+			return (T) U_MAP.get(clazz).unmarshal(reader);
 		} catch (JAXBException e) {
-			e.printStackTrace();
+			logger.error("", e);
 		}
 		return null;
 	}
@@ -115,8 +113,7 @@ public class XMLConverUtil{
 	 */
 	public static String convertToXML(Object object){
 		try {
-			Map<Class<?>, Marshaller> mMap = mMapLocal.get();
-			if(!mMap.containsKey(object.getClass())){
+			if(!M_MAP.containsKey(object.getClass())){
 				JAXBContext jaxbContext = JAXBContext.newInstance(object.getClass());
 				Marshaller marshaller = jaxbContext.createMarshaller();
 				marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
@@ -126,13 +123,13 @@ public class XMLConverUtil{
 						writer.write(ac, i, j);
 					}
 				});
-				mMap.put(object.getClass(), marshaller);
+				M_MAP.put(object.getClass(), marshaller);
 			}
 			StringWriter stringWriter = new StringWriter();
-			mMap.get(object.getClass()).marshal(object,stringWriter);
+			M_MAP.get(object.getClass()).marshal(object,stringWriter);
 			return stringWriter.getBuffer().toString();
 		} catch (JAXBException e) {
-			e.printStackTrace();
+			logger.error("", e);
 		}
 		return null;
 	}
@@ -164,13 +161,13 @@ public class XMLConverUtil{
 				}
 			}
 		} catch (DOMException e) {
-			e.printStackTrace();
+			logger.error("", e);
 		} catch (ParserConfigurationException e) {
-			e.printStackTrace();
+			logger.error("", e);
 		} catch (SAXException e) {
-			e.printStackTrace();
+			logger.error("", e);
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error("", e);
 		}
 		return map;
 	}

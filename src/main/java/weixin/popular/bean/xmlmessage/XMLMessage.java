@@ -6,12 +6,17 @@ import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.util.UUID;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.qq.weixin.mp.aes.AesException;
 import com.qq.weixin.mp.aes.WXBizMsgCrypt;
 
 import weixin.popular.bean.message.message.Message;
 
 public abstract class XMLMessage implements Serializable{
+	
+	private static Logger logger = LoggerFactory.getLogger(XMLMessage.class);
 
 	private static final long serialVersionUID = 8901661274548077509L;
 
@@ -55,10 +60,10 @@ public abstract class XMLMessage implements Serializable{
 			outputStream.write(toXML().getBytes("utf-8"));
 			outputStream.flush();
 		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
+			logger.error("", e);
 			return false;
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error("", e);
 			return false;
 		}
 		return true;
@@ -71,13 +76,13 @@ public abstract class XMLMessage implements Serializable{
 				outputStream.write(outputStr.getBytes("utf-8"));
 				outputStream.flush();
 			} catch (UnsupportedEncodingException e) {
-				e.printStackTrace();
+				logger.error("", e);
 				return false;
 			} catch (IOException e) {
-				e.printStackTrace();
+				logger.error("", e);
 				return false;
 			} catch (AesException e) {
-				e.printStackTrace();
+				logger.error("", e);
 				return false;
 			}
 			return true;

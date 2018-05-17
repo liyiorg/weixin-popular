@@ -12,7 +12,12 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class MapUtil {
+	
+	private static Logger logger = LoggerFactory.getLogger(MapUtil.class);
 
 	/**
 	 * Map key 排序
@@ -65,9 +70,9 @@ public class MapUtil {
 				try {
 					o = f.get(object);
 				} catch (IllegalArgumentException e) {
-					e.printStackTrace();
+					logger.error("", e);
 				} catch (IllegalAccessException e) {
-					e.printStackTrace();
+					logger.error("", e);
 				}
 				tempMap.put(f.getName(), o==null?"":o.toString());
 			}
@@ -111,7 +116,7 @@ public class MapUtil {
 								 .append(valueUrlencode?URLEncoder.encode(map.get(key),"utf-8").replace("+", "%20"):map.get(key))
 								 .append("&");
 				} catch (UnsupportedEncodingException e) {
-					e.printStackTrace();
+					logger.error("", e);
 				}
 			}
 		}

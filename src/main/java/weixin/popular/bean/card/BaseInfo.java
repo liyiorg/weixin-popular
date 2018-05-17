@@ -187,6 +187,12 @@ public class BaseInfo {
 	 * 不支持修改
 	 */
 	private String source;
+	
+	/**
+	 * 会员卡是否支持全部门店，填写后商户门店更新时会自动同步至卡券
+	 */
+	@JSONField(name = "use_all_locations")
+	private Boolean useAllLocations;				//2.8.20
 
 	/**
 	 * 卡券的商户logo。
@@ -592,4 +598,12 @@ public class BaseInfo {
 		this.source = source;
 	}
 
+	public Boolean getUseAllLocations() {
+		return useAllLocations;
+	}
+
+	public void setUseAllLocations(Boolean useAllLocations) {
+		this.useAllLocations = useAllLocations;
+	}
+	
 }

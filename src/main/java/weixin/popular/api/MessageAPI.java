@@ -106,7 +106,8 @@ public class MessageAPI extends BaseAPI{
 		String messageJson = JsonUtil.toJSONString(uploadvideo);
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 										.setHeader(jsonHeader)
-										.setUri(MEDIA_URI+"/cgi-bin/media/uploadvideo")
+										//2.8.20 修改URI  原URI MEDIA_URI+"/cgi-bin/media/uploadvideo"
+										.setUri(BASE_URI+"/cgi-bin/media/uploadvideo")
 										.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
 										.setEntity(new StringEntity(messageJson,Charset.forName("utf-8")))
 										.build();

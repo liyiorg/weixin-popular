@@ -2,16 +2,23 @@ package weixin.popular.api;
 
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.charset.Charset;
 
 import javax.imageio.ImageIO;
 
 import org.apache.http.Header;
+import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.client.methods.RequestBuilder;
+import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
+import org.apache.http.entity.mime.MultipartEntityBuilder;
+import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,6 +43,7 @@ import weixin.popular.bean.wxa.SubmitAudit;
 import weixin.popular.bean.wxa.SubmitAuditResult;
 import weixin.popular.client.LocalHttpClient;
 import weixin.popular.util.JsonUtil;
+import weixin.popular.util.StreamUtils;
 
 /**
  * 微信小程序接口
@@ -57,7 +65,7 @@ public class WxaAPI extends BaseAPI {
 		String json = JsonUtil.toJSONString(modifyDomain);
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 				.setHeader(jsonHeader)
-				.setUri(BASE_URI+"/wxa/modify_domain")
+				.setUri(BASE_URI + "/wxa/modify_domain")
 				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
 				.setEntity(new StringEntity(json,Charset.forName("utf-8")))
 				.build();
@@ -76,7 +84,7 @@ public class WxaAPI extends BaseAPI {
 		String json = String.format("{\"wechatid\":\"%s\"}",wechatid);
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 				.setHeader(jsonHeader)
-				.setUri(BASE_URI+"/wxa/bind_tester")
+				.setUri(BASE_URI + "/wxa/bind_tester")
 				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
 				.setEntity(new StringEntity(json,Charset.forName("utf-8")))
 				.build();
@@ -95,7 +103,7 @@ public class WxaAPI extends BaseAPI {
 		String json = String.format("{\"wechatid\":\"%s\"}",wechatid);
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 				.setHeader(jsonHeader)
-				.setUri(BASE_URI+"/wxa/unbind_tester")
+				.setUri(BASE_URI + "/wxa/unbind_tester")
 				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
 				.setEntity(new StringEntity(json,Charset.forName("utf-8")))
 				.build();
@@ -114,7 +122,7 @@ public class WxaAPI extends BaseAPI {
 		String json = JsonUtil.toJSONString(commit);
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 				.setHeader(jsonHeader)
-				.setUri(BASE_URI+"/wxa/commit")
+				.setUri(BASE_URI + "/wxa/commit")
 				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
 				.setEntity(new StringEntity(json,Charset.forName("utf-8")))
 				.build();
@@ -170,7 +178,7 @@ public class WxaAPI extends BaseAPI {
 	 */
 	public static GetCategoryResult get_category(String access_token){
 		HttpUriRequest httpUriRequest = RequestBuilder.get()
-				.setUri(BASE_URI+"/wxa/get_category")
+				.setUri(BASE_URI + "/wxa/get_category")
 				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,GetCategoryResult.class);
@@ -185,7 +193,7 @@ public class WxaAPI extends BaseAPI {
 	 */
 	public static GetPageResult get_page(String access_token){
 		HttpUriRequest httpUriRequest = RequestBuilder.get()
-				.setUri(BASE_URI+"/wxa/get_page")
+				.setUri(BASE_URI + "/wxa/get_page")
 				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,GetPageResult.class);
@@ -203,7 +211,7 @@ public class WxaAPI extends BaseAPI {
 		String json = JsonUtil.toJSONString(submitAudit);
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 				.setHeader(jsonHeader)
-				.setUri(BASE_URI+"/wxa/submit_audit")
+				.setUri(BASE_URI + "/wxa/submit_audit")
 				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
 				.setEntity(new StringEntity(json,Charset.forName("utf-8")))
 				.build();
@@ -222,7 +230,7 @@ public class WxaAPI extends BaseAPI {
 		String json = String.format("{\"auditid\":\"%s\"}",auditid);
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 				.setHeader(jsonHeader)
-				.setUri(BASE_URI+"/wxa/get_auditstatus")
+				.setUri(BASE_URI + "/wxa/get_auditstatus")
 				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
 				.setEntity(new StringEntity(json,Charset.forName("utf-8")))
 				.build();
@@ -239,7 +247,7 @@ public class WxaAPI extends BaseAPI {
 	public static BaseResult release(String access_token){
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 				.setHeader(jsonHeader)
-				.setUri(BASE_URI+"/wxa/release")
+				.setUri(BASE_URI + "/wxa/release")
 				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
 				.setEntity(new StringEntity("{}",Charset.forName("utf-8")))
 				.build();
@@ -258,7 +266,7 @@ public class WxaAPI extends BaseAPI {
 		String json = String.format("{\"action\":\"%s\"}",action);
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 				.setHeader(jsonHeader)
-				.setUri(BASE_URI+"/wxa/change_visitstatus")
+				.setUri(BASE_URI + "/wxa/change_visitstatus")
 				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
 				.setEntity(new StringEntity(json,Charset.forName("utf-8")))
 				.build();
@@ -278,7 +286,7 @@ public class WxaAPI extends BaseAPI {
 		String json = JsonUtil.toJSONString(getwxacode);
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 				.setHeader(jsonHeader)
-				.setUri(BASE_URI+"/wxa/getwxacode")
+				.setUri(BASE_URI + "/wxa/getwxacode")
 				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
 				.setEntity(new StringEntity(json,Charset.forName("utf-8")))
 				.build();
@@ -314,7 +322,7 @@ public class WxaAPI extends BaseAPI {
 		String json = JsonUtil.toJSONString(getwxacodeunlimit);
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 				.setHeader(jsonHeader)
-				.setUri(BASE_URI+"/wxa/getwxacodeunlimit")
+				.setUri(BASE_URI + "/wxa/getwxacodeunlimit")
 				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
 				.setEntity(new StringEntity(json,Charset.forName("utf-8")))
 				.build();
@@ -348,7 +356,7 @@ public class WxaAPI extends BaseAPI {
 		String json = JsonUtil.toJSONString(addnearbypoi);
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 				.setHeader(jsonHeader)
-				.setUri(BASE_URI+"/wxa/addnearbypoi")
+				.setUri(BASE_URI + "/wxa/addnearbypoi")
 				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
 				.setEntity(new StringEntity(json,Charset.forName("utf-8")))
 				.build();
@@ -366,7 +374,7 @@ public class WxaAPI extends BaseAPI {
 	public static GetnearbypoilistResult getnearbypoilist(String access_token, int page, int page_rows){
 		HttpUriRequest httpUriRequest = RequestBuilder.get()
 				.setHeader(jsonHeader)
-				.setUri(BASE_URI+"/wxa/getnearbypoilist")
+				.setUri(BASE_URI + "/wxa/getnearbypoilist")
 				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
 				.addParameter("page", String.valueOf(page))
 				.addParameter("page_rows", String.valueOf(page_rows))
@@ -385,7 +393,7 @@ public class WxaAPI extends BaseAPI {
 		String json = String.format("{\"poi_id\":\"%s\"}", poi_id);
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 				.setHeader(jsonHeader)
-				.setUri(BASE_URI+"/wxa/delnearbypoi")
+				.setUri(BASE_URI + "/wxa/delnearbypoi")
 				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
 				.setEntity(new StringEntity(json,Charset.forName("utf-8")))
 				.build();
@@ -404,7 +412,7 @@ public class WxaAPI extends BaseAPI {
 		String json = String.format("{\"poi_id\":\"%s\",\"status\":%d}", poi_id, status);
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 				.setHeader(jsonHeader)
-				.setUri(BASE_URI+"/wxa/setnearbypoishowstatus")
+				.setUri(BASE_URI + "/wxa/setnearbypoishowstatus")
 				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
 				.setEntity(new StringEntity(json,Charset.forName("utf-8")))
 				.build();
@@ -421,7 +429,7 @@ public class WxaAPI extends BaseAPI {
 	public static GettemplatedraftlistResult gettemplatedraftlist(String access_token){
 		HttpUriRequest httpUriRequest = RequestBuilder.get()
 				.setHeader(jsonHeader)
-				.setUri(BASE_URI+"/wxa/gettemplatedraftlist")
+				.setUri(BASE_URI + "/wxa/gettemplatedraftlist")
 				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,GettemplatedraftlistResult.class);
@@ -437,7 +445,7 @@ public class WxaAPI extends BaseAPI {
 	public static GettemplatelistResult gettemplatelist(String access_token){
 		HttpUriRequest httpUriRequest = RequestBuilder.get()
 				.setHeader(jsonHeader)
-				.setUri(BASE_URI+"/wxa/gettemplatelist")
+				.setUri(BASE_URI + "/wxa/gettemplatelist")
 				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,GettemplatelistResult.class);
@@ -455,7 +463,7 @@ public class WxaAPI extends BaseAPI {
 		String json = String.format("{\"draft_id\":%d}", draft_id);
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 				.setHeader(jsonHeader)
-				.setUri(BASE_URI+"/wxa/addtotemplate")
+				.setUri(BASE_URI + "/wxa/addtotemplate")
 				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
 				.setEntity(new StringEntity(json,Charset.forName("utf-8")))
 				.build();
@@ -474,7 +482,7 @@ public class WxaAPI extends BaseAPI {
 		String json = String.format("{\"template_id\":%d}", template_id);
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 				.setHeader(jsonHeader)
-				.setUri(BASE_URI+"/wxa/deletetemplate")
+				.setUri(BASE_URI + "/wxa/deletetemplate")
 				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
 				.setEntity(new StringEntity(json,Charset.forName("utf-8")))
 				.build();
@@ -493,7 +501,7 @@ public class WxaAPI extends BaseAPI {
 		String json = String.format("{\"status\":%d}", status);
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 				.setHeader(jsonHeader)
-				.setUri(BASE_URI+"/wxa/changewxasearchtustas")
+				.setUri(BASE_URI + "/wxa/changewxasearchtustas")
 				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
 				.setEntity(new StringEntity(json,Charset.forName("utf-8")))
 				.build();
@@ -510,9 +518,87 @@ public class WxaAPI extends BaseAPI {
 	public static GetwxasearchstatusResult getwxasearchstatus(String access_token){
 		HttpUriRequest httpUriRequest = RequestBuilder.get()
 				.setHeader(jsonHeader)
-				.setUri(BASE_URI+"/wxa/getwxasearchstatus")
+				.setUri(BASE_URI + "/wxa/getwxasearchstatus")
 				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,GetwxasearchstatusResult.class);
+	}
+	
+	/**
+	 * <strong>文本检查</strong><br>
+	 * 检查一段文本是否含有违法违规内容。 <br>
+	 * 应用场景举例：<br>
+	 * 用户个人资料违规文字检测；<br>
+	 * 媒体新闻类用户发表文章，评论内容检测；<br>
+	 * 游戏类用户编辑上传的素材(如答题类小游戏用户上传的问题及答案)检测等。<br>
+	 * <br>
+	 * 频率限制：单个 appId 调用上限为 2000 次/分钟，1,000,000 次/天
+	 * @since 2.8.20
+	 * @param access_token access_token
+	 * @param content 要检测的文本内容，长度不超过 500KB
+	 * @return result
+	 */
+	public static BaseResult msg_sec_check(String access_token,String content){
+		String json = String.format("{\"content\":\"%s\"}", content);
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+				.setHeader(jsonHeader)
+				.setUri(BASE_URI + "/wxa/msg_sec_check")
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
+				.setEntity(new StringEntity(json,Charset.forName("utf-8")))
+				.build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest,GetwxasearchstatusResult.class);
+	}
+	
+	/**
+	 * <strong>图片检查</strong><br>
+	 * 校验一张图片是否含有违法违规内容。<br>
+	 * 应用场景举例：<br>
+	 * 1）图片智能鉴黄：涉及拍照的工具类应用(如美拍，识图类应用)用户拍照上传检测；电商类商品上架图片检测；媒体类用户文章里的图片检测等；<br>
+	 * 2）敏感人脸识别：用户头像；媒体类用户文章里的图片检测；社交类用户上传的图片检测等<br>
+	 * <br>
+	 * 频率限制：单个 appId 调用上限为 1000 次/分钟，100,000 次/天
+	 * @since 2.8.20
+	 * @param access_token access_token
+	 * @param media 要检测的图片文件，格式支持PNG、JPEG、JPG、GIF，图片尺寸不超过 750px * 1334px
+	 * @return result
+	 */
+	public static BaseResult img_sec_check(String access_token,InputStream media){
+		HttpPost httpPost = new HttpPost(BASE_URI + "/wxa/img_sec_check");
+		byte[] data = null;
+		try {
+			data = StreamUtils.copyToByteArray(media);
+		} catch (IOException e) {
+			logger.error("", e);
+		}
+		HttpEntity reqEntity = MultipartEntityBuilder.create()
+				 .addBinaryBody("media", data, ContentType.DEFAULT_BINARY, "temp.jpg")
+                 .addTextBody(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
+                 .build();
+        httpPost.setEntity(reqEntity);
+		return LocalHttpClient.executeJsonResult(httpPost, BaseResult.class);
+	}
+	
+	/**
+	 * <strong>图片检查</strong><br>
+	 * 校验一张图片是否含有违法违规内容。<br>
+	 * 应用场景举例：<br>
+	 * 1）图片智能鉴黄：涉及拍照的工具类应用(如美拍，识图类应用)用户拍照上传检测；电商类商品上架图片检测；媒体类用户文章里的图片检测等；<br>
+	 * 2）敏感人脸识别：用户头像；媒体类用户文章里的图片检测；社交类用户上传的图片检测等<br>
+	 * <br>
+	 * 频率限制：单个 appId 调用上限为 1000 次/分钟，100,000 次/天
+	 * @since 2.8.20
+	 * @param access_token access_token
+	 * @param media 要检测的图片文件，格式支持PNG、JPEG、JPG、GIF，图片尺寸不超过 750px * 1334px
+	 * @return result
+	 */
+	public static BaseResult img_sec_check(String access_token,File media){
+		HttpPost httpPost = new HttpPost(BASE_URI + "/wxa/img_sec_check");
+		FileBody bin = new FileBody(media);
+        HttpEntity reqEntity = MultipartEntityBuilder.create()
+        		 .addPart("media", bin)
+                 .addTextBody(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
+                 .build();
+        httpPost.setEntity(reqEntity);
+		return LocalHttpClient.executeJsonResult(httpPost,BaseResult.class);
 	}
 }

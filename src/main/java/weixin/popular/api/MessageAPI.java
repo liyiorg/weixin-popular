@@ -75,9 +75,7 @@ public class MessageAPI extends BaseAPI{
 	 * @return Media
 	 */
 	public static Media mediaUploadnews(String access_token,List<Article> articles){
-		String str = JsonUtil.toJSONString(articles);
-		String messageJson = "{\"articles\":"+str+"}";
-		return mediaUploadnews(access_token, messageJson);
+		return MediaAPI.mediaUploadnews(access_token, articles);
 	}
 	
 	/**
@@ -87,13 +85,7 @@ public class MessageAPI extends BaseAPI{
 	 * @return result
 	 */
 	public static Media mediaUploadnews(String access_token,String messageJson){
-		HttpUriRequest httpUriRequest = RequestBuilder.post()
-										.setHeader(jsonHeader)
-										.setUri(BASE_URI+"/cgi-bin/media/uploadnews")
-										.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
-										.setEntity(new StringEntity(messageJson,Charset.forName("utf-8")))
-										.build();
-		return LocalHttpClient.executeJsonResult(httpUriRequest,Media.class);
+		return MediaAPI.mediaUploadnews(access_token, messageJson);
 	}
 
 	/**
@@ -103,17 +95,8 @@ public class MessageAPI extends BaseAPI{
 	 * @return Media
 	 */
 	public static Media mediaUploadvideo(String access_token,Uploadvideo uploadvideo){
-		String messageJson = JsonUtil.toJSONString(uploadvideo);
-		HttpUriRequest httpUriRequest = RequestBuilder.post()
-										.setHeader(jsonHeader)
-										//2.8.20 修改URI  原URI MEDIA_URI+"/cgi-bin/media/uploadvideo"
-										.setUri(BASE_URI+"/cgi-bin/media/uploadvideo")
-										.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
-										.setEntity(new StringEntity(messageJson,Charset.forName("utf-8")))
-										.build();
-		return LocalHttpClient.executeJsonResult(httpUriRequest,Media.class);
+		return MediaAPI.mediaUploadvideo(access_token, uploadvideo);
 	}
-
 
 	/**
 	 * 高级群发接口 根据 分组或标签 进行群发

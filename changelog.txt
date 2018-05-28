@@ -6,6 +6,7 @@ Changes in version 2.8.20 (2018-05-*)
 -------------------------------------
 * #101 #150 card模块中的BaseInfo对象添加 use_all_locations 字段
 * #146 ComponentAPI.componentloginpage增加auth_type参数
+* #154 获取用户信息接口添加字段
 * WxaAPI 添加内容安全检查接口 msgSecCheck imgSecCheck
 * MessageAPI.mediaUploadvideo 接口修改 uri 地址
 

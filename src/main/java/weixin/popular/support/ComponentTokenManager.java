@@ -4,6 +4,7 @@ import weixin.popular.bean.component.ApiQueryAuthResult;
 
 /**
  * ComponentTokenManager 第三方平台token 管理
+ * 
  * @author LiYi
  * @since 2.8.20
  */
@@ -37,6 +38,7 @@ public interface ComponentTokenManager {
 	/**
 	 * 获取 authorizer_access_token<br>
 	 * 适用于单一第三方平台环境
+	 * 
 	 * @param authorizer_appid
 	 * @return
 	 */
@@ -48,8 +50,8 @@ public interface ComponentTokenManager {
 	 * @param component_appid
 	 * @param component_verify_ticket
 	 */
-	void component_verify_ticket(String component_appid, String component_appsecret,
-			String component_verify_ticket);
+	void component_verify_ticket(String component_appid, String component_appsecret, String component_verify_ticket);
+
 	/**
 	 * 授权事件
 	 * 

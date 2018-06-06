@@ -2,7 +2,6 @@ package weixin.popular.bean.paymch;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -16,61 +15,50 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class SecapiPayRefund {
 
-	@XmlElement
 	private String appid;
-
-	@XmlElement
+	
 	private String mch_id;
-
-	@XmlElement
+	
 	private String device_info;
-
-	@XmlElement
+	
 	private String nonce_str;
-
-	@XmlElement
+	
 	private String sign;
 	
-	@XmlElement
 	private String sign_type;
-
-	@XmlElement
+	
 	private String transaction_id;
 
-	@XmlElement
 	private String out_trade_no;
 
-	@XmlElement
 	private String out_refund_no;
 
-	@XmlElement
 	private Integer total_fee;
 
-	@XmlElement
 	private Integer refund_fee;
 
-	@XmlElement
 	private String refund_fee_type;
+	
+	/**
+	 * @since 2.8.21
+	 */
+	private String refund_desc;
 
-	@XmlElement
 	private String op_user_id;
 	
 	/**
 	 * @since 2.8.5
 	 */
-	@XmlElement
 	private String sub_appid;
 
 	/**
 	 * @since 2.8.5
 	 */
-	@XmlElement
 	private String sub_mch_id;
 	
 	/**
 	 * @since 2.8.5
 	 */
-	@XmlElement
 	private String refund_account;		//退款资金来源
 										//REFUND_SOURCE_UNSETTLED_FUNDS ---未结算资金退款（默认使用未结算资金退款）
 										//REFUND_SOURCE_RECHARGE_FUNDS  ---可用余额退款
@@ -218,6 +206,14 @@ public class SecapiPayRefund {
 
 	public void setNotify_url(String notify_url) {
 		this.notify_url = notify_url;
+	}
+
+	public String getRefund_desc() {
+		return refund_desc;
+	}
+
+	public void setRefund_desc(String refund_desc) {
+		this.refund_desc = refund_desc;
 	}
 	
 }

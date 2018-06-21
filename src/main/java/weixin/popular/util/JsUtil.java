@@ -1,6 +1,7 @@
 package weixin.popular.util;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.UUID;
 
@@ -143,21 +144,20 @@ public class JsUtil {
 	 *openCard					查看微信卡包中的卡券<br>
  								微信支付<br>
 	 *chooseWXPay				发起一个微信支付<br>
-	 * @return javascript 对象数据
+	 * @return 配置JSON数据
 	 */
 	public static String generateConfigJson(String jsapi_ticket,boolean debug,String appId,String url,String... jsApiList){
 		long timestamp = System.currentTimeMillis()/1000;
 		String nonceStr = UUID.randomUUID().toString();
-		String signature = generateConfigSignature(nonceStr, jsapi_ticket,timestamp+"",url);
-		return new StringBuilder()
-			.append("{")
-			.append("debug:").append(debug).append(",")
-			.append("appId:").append("'").append(appId).append("'").append(",")
-			.append("timestamp:").append(timestamp).append(",")
-			.append("nonceStr:").append("'").append(nonceStr).append("'").append(",")
-			.append("signature:").append("'").append(signature).append("'").append(",")
-			.append("jsApiList:").append(JsonUtil.toJSONString(jsApiList==null?ALL_JS_API_LIST:jsApiList))
-			.append("}").toString();
+		String signature = generateConfigSignature(nonceStr, jsapi_ticket, timestamp + "", url);
+		Map<String,Object> map = new LinkedHashMap<>();
+		map.put("debug", debug);
+		map.put("appId", appId);
+		map.put("timestamp", timestamp);
+		map.put("nonceStr", nonceStr);
+		map.put("signature", signature);
+		map.put("jsApiList", jsApiList == null ? ALL_JS_API_LIST : jsApiList);
+		return JsonUtil.toJSONString(map);
 	}
 
 	/**

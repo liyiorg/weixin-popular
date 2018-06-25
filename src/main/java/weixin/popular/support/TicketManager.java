@@ -1,8 +1,7 @@
 package weixin.popular.support;
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
@@ -26,13 +25,15 @@ public class TicketManager {
 
 	private static ScheduledExecutorService scheduledExecutorService;
 
-	private static Map<String,String> ticketMap = new LinkedHashMap<String,String>();
+	private static Map<String,String> ticketMap = new ConcurrentHashMap<String,String>();
 
-	private static Map<String,ScheduledFuture<?>> futureMap = new HashMap<String, ScheduledFuture<?>>();
+	private static Map<String,ScheduledFuture<?>> futureMap = new ConcurrentHashMap<String, ScheduledFuture<?>>();
 
 	private static int poolSize = 2;
 	
 	private static boolean daemon = Boolean.TRUE;
+	
+	private static String firestAppid;
 	
 	private static final String KEY_JOIN = "__";
 	
@@ -111,6 +112,9 @@ public class TicketManager {
 	 * @param types ticket 类型  [jsapi,wx_card]
 	 */
 	public static void init(final String appid,int initialDelay,int delay,String... types){
+		if(firestAppid == null){
+			firestAppid = appid;
+		}
 		for(final String type : types){
 			final String key = appid + KEY_JOIN + type;
 			if(scheduledExecutorService == null){
@@ -203,8 +207,7 @@ public class TicketManager {
 	 * @return ticket
 	 */
 	public static String getDefaultTicket(){
-		Object[] objs = ticketMap.values().toArray();
-		return objs.length>0?objs[0].toString():null;
+		return ticketMap.get(firestAppid);
 	}
 
 }

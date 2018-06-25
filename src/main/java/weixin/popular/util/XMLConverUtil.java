@@ -8,9 +8,9 @@ import java.io.StringReader;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.nio.charset.Charset;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -18,17 +18,14 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.w3c.dom.DOMException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
 
 import com.sun.xml.bind.marshaller.CharacterEscapeHandler;
 
@@ -46,8 +43,8 @@ public class XMLConverUtil{
 	private static Map<Class<?>, Unmarshaller> U_MAP;
 
 	static {
-		M_MAP = new HashMap<Class<?>, Marshaller>();
-		U_MAP = new HashMap<Class<?>, Unmarshaller>();
+		M_MAP = new ConcurrentHashMap<Class<?>, Marshaller>();
+		U_MAP = new ConcurrentHashMap<Class<?>, Unmarshaller>();
 	}
 	
 	/**
@@ -128,7 +125,7 @@ public class XMLConverUtil{
 			StringWriter stringWriter = new StringWriter();
 			M_MAP.get(object.getClass()).marshal(object,stringWriter);
 			return stringWriter.getBuffer().toString();
-		} catch (JAXBException e) {
+		} catch (Exception e) {
 			logger.error("", e);
 		}
 		return null;
@@ -160,13 +157,7 @@ public class XMLConverUtil{
 					}
 				}
 			}
-		} catch (DOMException e) {
-			logger.error("", e);
-		} catch (ParserConfigurationException e) {
-			logger.error("", e);
-		} catch (SAXException e) {
-			logger.error("", e);
-		} catch (IOException e) {
+		} catch (Exception e) {
 			logger.error("", e);
 		}
 		return map;

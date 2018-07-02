@@ -2,9 +2,14 @@ package weixin.popular.bean.paymch;
 
 import java.util.List;
 
+import javax.xml.bind.annotation.adapters.XmlAdapter;
+
+import com.alibaba.fastjson.JSON;
+
 /**
  * 统一下单detail json 数据对象<br>
  * 注意：单品总金额应<=订单总金额total_fee，否则会无法享受优惠。
+ * 
  * @author LiYi
  *
  */
@@ -41,4 +46,17 @@ public class Detail {
 		this.goods_detail = goods_detail;
 	}
 
+	static class JsonXmlAdapter extends XmlAdapter<String, Detail> {
+
+		@Override
+		public String marshal(Detail v) throws Exception {
+			return "<![CDATA[" + JSON.toJSONString(v) + "]]>";
+		}
+
+		@Override
+		public Detail unmarshal(String v) throws Exception {
+			return JSON.parseObject(v, Detail.class);
+		}
+
+	}
 }

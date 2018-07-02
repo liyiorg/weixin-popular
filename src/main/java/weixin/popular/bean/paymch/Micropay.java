@@ -21,7 +21,7 @@ public class Micropay extends MchVersion{
 	 * @since 2.8.14
 	 */
 	@XmlElement
-	@XmlJavaTypeAdapter(value = DetailXmlAdapter.class)
+	@XmlJavaTypeAdapter(value = Detail.JsonXmlAdapter.class)
 	private Detail detail;
 	private String attach;
 	private String out_trade_no;

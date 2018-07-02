@@ -137,7 +137,7 @@ public class PayMchAPI extends BaseAPI{
 	 * @return UnifiedorderResult
 	 */
 	public static UnifiedorderResult payUnifiedorder(Unifiedorder unifiedorder,String key){
-		Map<String,String> map = MapUtil.objectToMap(unifiedorder,"detail");
+		Map<String,String> map = MapUtil.objectToMap(unifiedorder, "detail", "scene_info");
 		//@since 2.8.8 detail 字段签名处理
 		if(unifiedorder.getDetail() != null){
 			map.put("detail",JsonUtil.toJSONString(unifiedorder.getDetail()));

@@ -10,6 +10,7 @@ package com.qq.weixin.mp.aes;
 
 import java.io.StringReader;
 
+import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
@@ -35,6 +36,10 @@ class XMLParse {
 		Object[] result = new Object[3];
 		try {
 			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+			//XXE漏洞修复
+			dbf.setExpandEntityReferences(false);
+			dbf.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
+			
 			DocumentBuilder db = dbf.newDocumentBuilder();
 			StringReader sr = new StringReader(xmltext);
 			InputSource is = new InputSource(sr);

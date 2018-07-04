@@ -60,6 +60,10 @@ import weixin.popular.bean.paymch.Sendgroupredpack;
 import weixin.popular.bean.paymch.Sendredpack;
 import weixin.popular.bean.paymch.SendredpackResult;
 import weixin.popular.bean.paymch.Transfers;
+import weixin.popular.bean.paymch.TransfersBank;
+import weixin.popular.bean.paymch.TransfersBankResult;
+import weixin.popular.bean.paymch.TransfersRSA;
+import weixin.popular.bean.paymch.TransfersRSAResult;
 import weixin.popular.bean.paymch.TransfersResult;
 import weixin.popular.bean.paymch.Unifiedorder;
 import weixin.popular.bean.paymch.UnifiedorderResult;
@@ -644,6 +648,53 @@ public class PayMchAPI extends BaseAPI{
 				.build();
 		return LocalHttpClient.keyStoreExecuteXmlResult(gettransferinfo.getMch_id(),httpUriRequest,GettransferinfoResult.class,gettransferinfo.getSign_type(),key);
 	}
+	
+	/**
+	 * 企业付款到银行卡获取RSA公钥
+	 * <br>
+	 * 使用前需要初始化证书: LocalHttpClient.initMchKeyStore(mchId, certPath);
+	 * @param transfersRSA
+	 * @param key 支付秘钥
+	 * @return
+	 */
+	public static TransfersRSAResult mmpaybankRASKey(TransfersRSA transfersRSA,String key){
+		Map<String,String> map = MapUtil.objectToMap(transfersRSA);
+		String sign = SignatureUtil.generateSign(map,transfersRSA.getSign_type(),key);
+		transfersRSA.setSign(sign);
+		String getRSAXML = XMLConverUtil.convertToXML(transfersRSA);
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+				.setHeader(xmlHeader)
+				.setUri(BaseAPI.MCH_RSA_URI + "/risk/getpublickey")
+				.setEntity(new StringEntity(getRSAXML,Charset.forName("utf-8")))
+				.build();
+		return LocalHttpClient.keyStoreExecuteXmlResult(transfersRSA.getMch_id(),httpUriRequest,TransfersRSAResult.class,transfersRSA.getSign_type(),key);
+	}
+	
+	
+	
+	/**
+	 * 企业付款到银行卡
+	 * <br>
+	 * 使用前需要初始化证书: LocalHttpClient.initMchKeyStore(mchId, certPath);
+	 * @param transfersRSA
+	 * @param key 支付秘钥
+	 * @return
+	 */
+	public static TransfersBankResult mmpaybankTransfers(TransfersBank transfersBank,String key){
+		Map<String,String> map = MapUtil.objectToMap(transfersBank);
+		String sign = SignatureUtil.generateSign(map, null ,key);
+		transfersBank.setSign(sign);
+		String paybankXML = XMLConverUtil.convertToXML(transfersBank);
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+				.setHeader(xmlHeader)
+				.setUri(baseURI() + "/mmpaysptrans/pay_bank")
+				.setEntity(new StringEntity(paybankXML,Charset.forName("utf-8")))
+				.build();
+		return LocalHttpClient.keyStoreExecuteXmlResult(transfersBank.getMch_id(),httpUriRequest,TransfersBankResult.class,null,key);
+	}
+	
+	
+	
 
 	/**
 	 * 委托代扣-扣款

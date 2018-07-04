@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import javax.xml.XMLConstants;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -146,6 +147,10 @@ public class XMLConverUtil{
 		Map<String, String> map = new LinkedHashMap<String,String>();
 		try {
 			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+			//XXE漏洞修复
+			dbf.setExpandEntityReferences(false);
+			dbf.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
+
 			DocumentBuilder db = dbf.newDocumentBuilder();
 			StringReader sr = new StringReader(xml);
 			InputSource is = new InputSource(sr);

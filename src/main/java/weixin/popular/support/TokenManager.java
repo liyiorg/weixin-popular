@@ -1,8 +1,7 @@
 package weixin.popular.support;
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
@@ -26,13 +25,15 @@ public class TokenManager{
 	
 	private static ScheduledExecutorService scheduledExecutorService;
 
-	private static Map<String,String> tokenMap = new LinkedHashMap<String,String>();
+	private static Map<String,String> tokenMap = new ConcurrentHashMap<String,String>();
 
-	private static Map<String,ScheduledFuture<?>> futureMap = new HashMap<String, ScheduledFuture<?>>();
+	private static Map<String,ScheduledFuture<?>> futureMap = new ConcurrentHashMap<String, ScheduledFuture<?>>();
 
 	private static int poolSize = 2;
 	
 	private static boolean daemon = Boolean.TRUE;
+	
+	private static String firestAppid;
 
 	/**
 	 * 初始化 scheduledExecutorService
@@ -86,6 +87,9 @@ public class TokenManager{
 	public static void init(final String appid,final String secret,int initialDelay,int delay){
 		if(scheduledExecutorService == null){
 			initScheduledExecutorService();
+		}
+		if(firestAppid == null){
+			firestAppid = appid;
 		}
 		if(futureMap.containsKey(appid)){
 			futureMap.get(appid).cancel(true);
@@ -149,8 +153,7 @@ public class TokenManager{
 	 * @return token
 	 */
 	public static String getDefaultToken(){
-		Object[] objs = tokenMap.values().toArray();
-		return objs.length>0?objs[0].toString():null;
+		return tokenMap.get(firestAppid);
 	}
 
 }

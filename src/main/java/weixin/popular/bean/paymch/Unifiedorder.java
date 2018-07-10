@@ -2,7 +2,6 @@ package weixin.popular.bean.paymch;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
@@ -19,94 +18,75 @@ import weixin.popular.bean.AdaptorCDATA;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Unifiedorder extends MchVersion{
 
-	@XmlElement
 	private String appid;
 
-	@XmlElement
 	private String mch_id;
 
-	@XmlElement
 	private String device_info;
 
-	@XmlElement
 	private String nonce_str;
 
 	/**
 	 * @since 2.8.5
 	 */
-	@XmlElement
-	@XmlJavaTypeAdapter(value = DetailXmlAdapter.class)
+	@XmlJavaTypeAdapter(value = Detail.JsonXmlAdapter.class)
 	private Detail detail;
 
-	@XmlElement
 	@XmlJavaTypeAdapter(value = AdaptorCDATA.class)
 	private String sign;
 	
-	@XmlElement
 	private String sign_type;
 
-	@XmlElement
 	@XmlJavaTypeAdapter(value = AdaptorCDATA.class)
 	private String body;
 
-	@XmlElement
 	@XmlJavaTypeAdapter(value = AdaptorCDATA.class)
 	private String attach;
 
-	@XmlElement
 	private String out_trade_no;
 
-	@XmlElement
 	private String fee_type;
 
-	@XmlElement
 	private String total_fee;
 
-	@XmlElement
 	private String spbill_create_ip;
 
-	@XmlElement
 	private String time_start;
 
-	@XmlElement
 	private String time_expire;
 
-	@XmlElement
 	private String goods_tag;
 
-	@XmlElement
 	private String notify_url;
 
-	@XmlElement
 	private String trade_type;
 
-	@XmlElement
 	private String product_id;
 
-	@XmlElement
 	private String limit_pay;
 
-	@XmlElement
 	private String openid;
 
 	/**
 	 * @since 2.8.5
 	 */
-	@XmlElement
 	private String sub_appid;
 
 	/**
 	 * @since 2.8.5
 	 */
-	@XmlElement
 	private String sub_mch_id;
 
 	/**
 	 * @since 2.8.5
 	 */
-	@XmlElement
 	private String sub_openid;
 	
+	/**
+	 * @since 2.8.21
+	 */
+	@XmlJavaTypeAdapter(value= SceneInfo.JsonXmlAdapter.class)
+	private SceneInfo scene_info;
 
 	public String getAppid() {
 		return appid;
@@ -316,4 +296,12 @@ public class Unifiedorder extends MchVersion{
 		this.sign_type = sign_type;
 	}
 
+	public SceneInfo getScene_info() {
+		return scene_info;
+	}
+
+	public void setScene_info(SceneInfo scene_info) {
+		this.scene_info = scene_info;
+	}
+	
 }

@@ -1,9 +1,9 @@
 package weixin.popular.support.expirekey;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ThreadFactory;
@@ -18,7 +18,7 @@ public class DefaultExpireKey implements ExpireKey{
 	
 	private static final Logger logger = LoggerFactory.getLogger(DefaultExpireKey.class);
 
-	private Map<String,Integer> map = new HashMap<String,Integer>();
+	private Map<String,Integer> map = new ConcurrentHashMap<String,Integer>();
 
 	private Integer period = 60;
 

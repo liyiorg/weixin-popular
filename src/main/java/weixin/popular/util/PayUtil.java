@@ -24,6 +24,8 @@ public class PayUtil {
 	
 	private static Logger logger = LoggerFactory.getLogger(PayUtil.class);
 
+	private PayUtil(){}
+	
 	/**
 	 * (MCH)生成支付JS请求对象
 	 * 

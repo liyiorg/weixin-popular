@@ -25,6 +25,8 @@ public class WxaUtil {
 
 	private static Logger logger = LoggerFactory.getLogger(WxaUtil.class);
 	
+	private WxaUtil(){}
+	
 	/**
 	 * 解密用户数据
 	 * 

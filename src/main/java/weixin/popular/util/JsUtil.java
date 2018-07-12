@@ -9,6 +9,8 @@ import org.apache.commons.codec.digest.DigestUtils;
 
 public class JsUtil {
 	
+	private JsUtil(){}
+	
 	//2.5.3  2.8.2 更新
 	public static final String[] ALL_JS_API_LIST = {
 									//基础接口--------------------

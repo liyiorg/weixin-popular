@@ -1,6 +1,8 @@
 package weixin.popular.util;
 
 public class StringUtils {
+	
+	private StringUtils(){}
 
 	public static String arrayToDelimitedString(Object[] arr, String delim) {
 		if (arr == null || arr.length == 0) {

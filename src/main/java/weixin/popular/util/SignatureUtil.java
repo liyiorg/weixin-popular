@@ -15,6 +15,7 @@ public class SignatureUtil {
 
 	private static Logger logger = LoggerFactory.getLogger(SignatureUtil.class);
 	
+	private SignatureUtil(){}
 	/**
 	 * 生成sign HMAC-SHA256 或 MD5 签名
 	 * @param map map

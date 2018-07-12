@@ -4,6 +4,8 @@ import com.vdurmont.emoji.EmojiParser;
 
 public class EmojiUtil {
 	
+	private EmojiUtil(){}
+	
 	/**
 	 * 转换emoji <br>
 	 * Example: <code>🍀</code> 将转变为

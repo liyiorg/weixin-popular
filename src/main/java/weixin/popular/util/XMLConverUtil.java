@@ -46,8 +46,8 @@ public class XMLConverUtil{
 	private XMLConverUtil(){}
 
 	static {
-		M_MAP = new ConcurrentHashMap<Class<?>, Marshaller>();
-		U_MAP = new ConcurrentHashMap<Class<?>, Unmarshaller>();
+		M_MAP = new ConcurrentHashMap<Class<?>, Marshaller>(200);
+		U_MAP = new ConcurrentHashMap<Class<?>, Unmarshaller>(200);
 	}
 	
 	/**

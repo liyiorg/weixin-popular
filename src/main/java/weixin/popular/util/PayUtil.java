@@ -20,12 +20,10 @@ import weixin.popular.bean.paymch.MchPayNativeReply;
 import weixin.popular.bean.paymch.PapayEntrustweb;
 import weixin.popular.bean.paymch.RefundNotifyReqInfo;
 
-public class PayUtil {
+public abstract class PayUtil {
 	
 	private static Logger logger = LoggerFactory.getLogger(PayUtil.class);
 
-	private PayUtil(){}
-	
 	/**
 	 * (MCH)生成支付JS请求对象
 	 * 

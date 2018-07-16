@@ -15,12 +15,10 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class MapUtil {
+public abstract class MapUtil {
 	
 	private static Logger logger = LoggerFactory.getLogger(MapUtil.class);
 
-	private MapUtil(){}
-	
 	/**
 	 * Map key 排序
 	 * @param map map

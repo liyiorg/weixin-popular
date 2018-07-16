@@ -35,7 +35,7 @@ import com.sun.xml.bind.marshaller.CharacterEscapeHandler;
  * @author LiYi
  *
  */
-public class XMLConverUtil{
+public abstract class XMLConverUtil{
 	
 	private static Logger logger = LoggerFactory.getLogger(XMLConverUtil.class);
 
@@ -43,8 +43,6 @@ public class XMLConverUtil{
 
 	private static Map<Class<?>, Unmarshaller> U_MAP;
 	
-	private XMLConverUtil(){}
-
 	static {
 		M_MAP = new ConcurrentHashMap<Class<?>, Marshaller>(200);
 		U_MAP = new ConcurrentHashMap<Class<?>, Unmarshaller>(200);

@@ -12,6 +12,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import javax.xml.XMLConstants;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -34,17 +35,17 @@ import com.sun.xml.bind.marshaller.CharacterEscapeHandler;
  * @author LiYi
  *
  */
-public class XMLConverUtil{
+public abstract class XMLConverUtil{
 	
 	private static Logger logger = LoggerFactory.getLogger(XMLConverUtil.class);
 
 	private static Map<Class<?>, Marshaller> M_MAP;
 
 	private static Map<Class<?>, Unmarshaller> U_MAP;
-
+	
 	static {
-		M_MAP = new ConcurrentHashMap<Class<?>, Marshaller>();
-		U_MAP = new ConcurrentHashMap<Class<?>, Unmarshaller>();
+		M_MAP = new ConcurrentHashMap<Class<?>, Marshaller>(200);
+		U_MAP = new ConcurrentHashMap<Class<?>, Unmarshaller>(200);
 	}
 	
 	/**
@@ -146,8 +147,12 @@ public class XMLConverUtil{
 			 * @since 2.8.21 
 			 */
 			dbf.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
-			dbf.setXIncludeAware(false);
-			dbf.setExpandEntityReferences(false);
+			dbf.setFeature("http://xml.org/sax/features/external-general-entities", false);
+	        dbf.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
+	        dbf.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
+	        dbf.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
+	        dbf.setXIncludeAware(false);
+	        dbf.setExpandEntityReferences(false);
 			
 			DocumentBuilder db = dbf.newDocumentBuilder();
 			StringReader sr = new StringReader(xml);

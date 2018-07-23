@@ -21,7 +21,7 @@ import weixin.popular.bean.wxa.WxaUserInfo;
  * @author liyi
  * @since 2.8.18
  */
-public class WxaUtil {
+public abstract class WxaUtil {
 
 	private static Logger logger = LoggerFactory.getLogger(WxaUtil.class);
 	

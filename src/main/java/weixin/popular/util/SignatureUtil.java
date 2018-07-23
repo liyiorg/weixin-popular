@@ -11,7 +11,7 @@ import org.apache.commons.codec.digest.DigestUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class SignatureUtil {
+public abstract class SignatureUtil {
 
 	private static Logger logger = LoggerFactory.getLogger(SignatureUtil.class);
 	

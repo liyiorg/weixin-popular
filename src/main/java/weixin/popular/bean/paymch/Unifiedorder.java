@@ -7,6 +7,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import weixin.popular.bean.AdaptorCDATA;
 
+import java.math.BigDecimal;
+
 /**
  * 统一支付请求参数
  * 
@@ -48,6 +50,8 @@ public class Unifiedorder extends MchVersion{
 	private String fee_type;
 
 	private String total_fee;
+
+	private BigDecimal order_amount;
 
 	private String spbill_create_ip;
 
@@ -158,6 +162,14 @@ public class Unifiedorder extends MchVersion{
 
 	public void setTotal_fee(String total_fee) {
 		this.total_fee = total_fee;
+	}
+
+	public BigDecimal getOrder_amount() {
+		return order_amount;
+	}
+
+	public void setOrder_amount(BigDecimal order_amount) {
+		this.order_amount = order_amount;
 	}
 
 	public String getSpbill_create_ip() {

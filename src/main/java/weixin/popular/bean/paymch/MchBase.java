@@ -140,5 +140,5 @@ public abstract class MchBase {
 	public void setSign_type(String sign_type) {
 		this.sign_type = sign_type;
 	}
-	
+
 }

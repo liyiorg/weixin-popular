@@ -109,7 +109,7 @@ public class BizwifiAPI extends BaseAPI {
      * @param finishPageSet finishPageSet
      * @return BaseResult
      */
-    public static BaseResult businessFinishPageSet(String accessToken, FinishPageSet finishPageSet) {
+    public static BaseResult businessfinishPageSet(String accessToken, FinishPageSet finishPageSet) {
         return finishpageSet(accessToken, JsonUtil.toJSONString(finishPageSet));
     }
 
@@ -154,7 +154,7 @@ public class BizwifiAPI extends BaseAPI {
      * @param homePageSet homePageSet
      * @return BaseResult
      */
-    public static BaseResult businessHomePageSet(String accessToken, HomePageSet homePageSet) {
+    public static BaseResult businesshomePageSet(String accessToken, HomePageSet homePageSet) {
         return homepageSet(accessToken, JsonUtil.toJSONString(homePageSet));
     }
 

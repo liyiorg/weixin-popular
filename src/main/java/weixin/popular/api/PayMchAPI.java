@@ -322,7 +322,7 @@ public class PayMchAPI extends BaseAPI{
 						str = EntityUtils.toString(entity, "utf-8");
 					}
 					EntityUtils.consume(entity);
-                    if(str.matches("<xml>(.*|\\n)+</xml>")){
+                    if(str.matches(".*<xml>(.*|\\n)+</xml>.*")){
                     	return XMLConverUtil.convertToObject(DownloadbillResult.class,str);
                     }else{
                     	DownloadbillResult dr = new DownloadbillResult();
@@ -390,7 +390,7 @@ public class PayMchAPI extends BaseAPI{
 								str = EntityUtils.toString(entity, "utf-8");
 							}
 							EntityUtils.consume(entity);
-							if (str.matches("<xml>(.*|\\n)+</xml>")) {
+							if (str.matches(".*<xml>(.*|\\n)+</xml>.*")) {
 								return XMLConverUtil.convertToObject(PayDownloadfundflowResult.class, str);
 							} else {
 								PayDownloadfundflowResult dr = new PayDownloadfundflowResult();
@@ -750,7 +750,7 @@ public class PayMchAPI extends BaseAPI{
                 if (status >= 200 && status < 300) {
                     HttpEntity entity = response.getEntity();
                     String str = EntityUtils.toString(entity,"utf-8");
-                    if(str.matches("<xml>(.*|\\n)+</xml>")){
+                    if(str.matches(".*<xml>(.*|\\n)+</xml>.*")){
                     	return XMLConverUtil.convertToObject(PapayContractbillResult.class,str);
                     }else{
                     	PapayContractbillResult dr = new PapayContractbillResult();

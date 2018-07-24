@@ -69,17 +69,20 @@ public class ComponentAPI extends BaseAPI {
     /**
      * 生成移动端快速授权URL
      *
-     * @return
+     * @return String
      */
-    public static String componentlinkpage(String component_appid, String pre_auth_code, String redirect_uri, String auth_type) {
+    public static String safeBindcomponent(String component_appid, String pre_auth_code, String redirect_uri, String auth_type) {
         try {
-            return (MP_URI + "/safe/bindcomponent?") +
-                    "action=" + "bindcomponent" +
-                    "&auth_type=" + auth_type +
-                    "&no_scan=" + "1" +
-                    "&component_appid=" + component_appid +
-                    "&pre_auth_code=" + pre_auth_code +
-                    "&redirect_uri=" + URLEncoder.encode(redirect_uri, "utf-8");
+            StringBuilder sb = new StringBuilder();
+            sb.append(MP_URI + "/safe/bindcomponent?")
+                    .append("action=").append("bindcomponent")
+                    .append("&auth_type=").append(auth_type)
+                    .append("&no_scan=").append("1")
+                    .append("&component_appid=").append(component_appid)
+                    .append("&pre_auth_code=").append(pre_auth_code)
+                    .append("&redirect_uri=").append(URLEncoder.encode(redirect_uri, "utf-8"));
+
+            return sb.toString();
         } catch (UnsupportedEncodingException e) {
             logger.error("", e);
             throw new RuntimeException(e);

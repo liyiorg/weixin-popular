@@ -1,4 +1,4 @@
-package weixin.popular.bean.bizwifi;
+package weixin.popular.bean.bizwifi.shop.list;
 
 /**
  * @ProjectName weixin-popular

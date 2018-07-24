@@ -1,6 +1,6 @@
-package weixin.popular.bean.bizwifi;
+package weixin.popular.bean.bizwifi.shop.update;
 
-import weixin.popular.bean.bizwifi.base.Shop;
+import weixin.popular.bean.bizwifi.base.ShopInfo;
 
 /**
  * @ProjectName weixin-popular
@@ -8,7 +8,7 @@ import weixin.popular.bean.bizwifi.base.Shop;
  * @Date: 2018/7/24 12:04
  * @Description:
  */
-public class ShopUpdate extends Shop {
+public class ShopUpdate extends ShopInfo {
     private String old_ssid;
 
     public String getOld_ssid() {

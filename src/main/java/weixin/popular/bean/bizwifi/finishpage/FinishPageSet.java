@@ -1,6 +1,6 @@
-package weixin.popular.bean.bizwifi;
+package weixin.popular.bean.bizwifi.finishpage;
 
-import weixin.popular.bean.bizwifi.base.Shop;
+import weixin.popular.bean.bizwifi.base.ShopInfo;
 
 /**
  * @ProjectName weixin-popular
@@ -8,7 +8,7 @@ import weixin.popular.bean.bizwifi.base.Shop;
  * @Date: 2018/7/24 10:55
  * @Description:
  */
-public class FinishPageSet extends Shop {
+public class FinishPageSet extends ShopInfo {
 
     private String finishpage_url;
     private String wxa_user_name;

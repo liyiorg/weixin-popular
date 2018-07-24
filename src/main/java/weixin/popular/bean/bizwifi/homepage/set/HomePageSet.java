@@ -1,6 +1,6 @@
-package weixin.popular.bean.bizwifi;
+package weixin.popular.bean.bizwifi.homepage.set;
 
-import weixin.popular.bean.bizwifi.base.Shop;
+import weixin.popular.bean.bizwifi.base.ShopInfo;
 
 /**
  * @ProjectName weixin-popular
@@ -8,7 +8,7 @@ import weixin.popular.bean.bizwifi.base.Shop;
  * @Date: 2018/7/24 11:11
  * @Description:
  */
-public class HomePageSet extends Shop {
+public class HomePageSet extends ShopInfo {
 
     private Integer template_id;
     private Struct struct;
@@ -32,6 +32,7 @@ public class HomePageSet extends Shop {
     private class Struct {
         private String wxa_user_name;
         private String wxa_path;
+        private String url;
 
         public String getWxa_user_name() {
             return wxa_user_name;
@@ -47,6 +48,14 @@ public class HomePageSet extends Shop {
 
         public void setWxa_path(String wxa_path) {
             this.wxa_path = wxa_path;
+        }
+
+        public String getUrl() {
+            return url;
+        }
+
+        public void setUrl(String url) {
+            this.url = url;
         }
     }
 }

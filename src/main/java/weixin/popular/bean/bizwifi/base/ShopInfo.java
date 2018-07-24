@@ -6,7 +6,7 @@ package weixin.popular.bean.bizwifi.base;
  * @Date: 2018/7/24 11:44
  * @Description:
  */
-public class Shop {
+public class ShopInfo {
     private Integer shop_id;
     private String ssid;
     private String password;

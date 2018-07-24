@@ -6,6 +6,9 @@ public class VideoPreview extends Preview {
 
 	private Uploadvideo video;
 
+	public VideoPreview(){
+
+	}
 	public VideoPreview(Uploadvideo video) {
 		super();
 		this.setMsgtype("video");

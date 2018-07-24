@@ -4,36 +4,38 @@ package weixin.popular.bean.message.message;
  * 语音
  *
  * @author LiYi
- *
  */
 public class VoiceMessage extends Message {
 
-	public VoiceMessage(String touser,String mediaId) {
-		super(touser,"voice");
-		this.voice = new Voice();
-		this.voice.setMedia_id(mediaId);
-	}
+    public VoiceMessage() {
+    }
 
-	public Voice voice;
+    public VoiceMessage(String touser, String mediaId) {
+        super(touser, "voice");
+        this.voice = new Voice();
+        this.voice.setMedia_id(mediaId);
+    }
 
-	public Voice getVoice() {
-		return voice;
-	}
+    public Voice voice;
 
-	public void setVoice(Voice voice) {
-		this.voice = voice;
-	}
+    public Voice getVoice() {
+        return voice;
+    }
 
-	public static class Voice {
-		private String media_id;
+    public void setVoice(Voice voice) {
+        this.voice = voice;
+    }
 
-		public String getMedia_id() {
-			return media_id;
-		}
+    public static class Voice {
+        private String media_id;
 
-		public void setMedia_id(String mediaId) {
-			media_id = mediaId;
-		}
-	}
+        public String getMedia_id() {
+            return media_id;
+        }
+
+        public void setMedia_id(String mediaId) {
+            media_id = mediaId;
+        }
+    }
 
 }

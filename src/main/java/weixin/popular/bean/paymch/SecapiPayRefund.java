@@ -3,6 +3,7 @@ package weixin.popular.bean.paymch;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.math.BigDecimal;
 
 /**
  * 退款申请
@@ -34,6 +35,8 @@ public class SecapiPayRefund {
 	private String out_refund_no;
 
 	private Integer total_fee;
+
+	private BigDecimal order_amount;
 
 	private Integer refund_fee;
 
@@ -145,6 +148,14 @@ public class SecapiPayRefund {
 
 	public void setRefund_fee(Integer refund_fee) {
 		this.refund_fee = refund_fee;
+	}
+
+	public BigDecimal getOrder_amount() {
+		return order_amount;
+	}
+
+	public void setOrder_amount(BigDecimal order_amount) {
+		this.order_amount = order_amount;
 	}
 
 	public String getOp_user_id() {

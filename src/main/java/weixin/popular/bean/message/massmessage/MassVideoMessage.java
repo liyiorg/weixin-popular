@@ -6,34 +6,34 @@ import weixin.popular.bean.message.preview.VideoPreview;
 
 /**
  * 仅适用于对 openid 发送接口
- * @author LiYi
  *
+ * @author LiYi
  */
-public class MassVideoMessage extends MassMessage{
+public class MassVideoMessage extends MassMessage {
 
-	private Uploadvideo video;
+    private Uploadvideo mpvideo;
 
-	public MassVideoMessage(Uploadvideo uploadvideo) {
-		super();
-		video = uploadvideo;
-		super.msgtype = "video";
-	}
+    public MassVideoMessage(Uploadvideo uploadvideo) {
+        super();
+        mpvideo = uploadvideo;
+        super.msgtype = "mpvideo";
+    }
 
-	public Uploadvideo getVideo() {
-		return video;
-	}
+    public Uploadvideo getMpvideo() {
+        return mpvideo;
+    }
 
-	public void setVideo(Uploadvideo video) {
-		this.video = video;
-	}
+    public void setMpvideo(Uploadvideo mpvideo) {
+        this.mpvideo = mpvideo;
+    }
 
-	@Override
-	public Preview convert() {
-		//转为 Preview，官方未说明该类型
-		Preview preview = new VideoPreview(video);
-		if(this.getTouser()!=null && this.getTouser().size()>0){
-			preview.setTouser(this.getTouser().iterator().next());
-		}
-		return preview;
-	}
+    @Override
+    public Preview convert() {
+        //转为 Preview，官方未说明该类型
+        Preview preview = new VideoPreview(mpvideo);
+        if (this.getTouser() != null && this.getTouser().size() > 0) {
+            preview.setTouser(this.getTouser().iterator().next());
+        }
+        return preview;
+    }
 }

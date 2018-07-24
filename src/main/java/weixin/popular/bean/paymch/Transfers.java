@@ -3,139 +3,150 @@ package weixin.popular.bean.paymch;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.math.BigDecimal;
 
-@XmlRootElement(name="xml")
+@XmlRootElement(name = "xml")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Transfers {
 
-	private String mch_appid;
+    private String mch_appid;
 
-	private String mchid;
+    private String mchid;
 
-	private String device_info;
+    private String device_info;
 
-	private String nonce_str;
+    private String nonce_str;
 
-	private String sign;
+    private String sign;
 
-	private String partner_trade_no;
+    private String partner_trade_no;
 
-	private String openid;
+    private String openid;
 
-	private String check_name;
+    private String check_name;
 
-	private String re_user_name;
+    private String re_user_name;
 
-	private String amount;
+    private Integer amount;
 
-	private String desc;
+    private BigDecimal yuan_amount;
 
-	private String spbill_create_ip;
-	
-	private String sign_type;
+    private String desc;
 
-	public String getMch_appid() {
-		return mch_appid;
-	}
+    private String spbill_create_ip;
 
-	public void setMch_appid(String mch_appid) {
-		this.mch_appid = mch_appid;
-	}
+    private String sign_type;
 
-	public String getMchid() {
-		return mchid;
-	}
+    public String getMch_appid() {
+        return mch_appid;
+    }
 
-	public void setMchid(String mchid) {
-		this.mchid = mchid;
-	}
+    public void setMch_appid(String mch_appid) {
+        this.mch_appid = mch_appid;
+    }
 
-	public String getDevice_info() {
-		return device_info;
-	}
+    public String getMchid() {
+        return mchid;
+    }
 
-	public void setDevice_info(String device_info) {
-		this.device_info = device_info;
-	}
+    public void setMchid(String mchid) {
+        this.mchid = mchid;
+    }
 
-	public String getNonce_str() {
-		return nonce_str;
-	}
+    public String getDevice_info() {
+        return device_info;
+    }
 
-	public void setNonce_str(String nonce_str) {
-		this.nonce_str = nonce_str;
-	}
+    public void setDevice_info(String device_info) {
+        this.device_info = device_info;
+    }
 
-	public String getSign() {
-		return sign;
-	}
+    public String getNonce_str() {
+        return nonce_str;
+    }
 
-	public void setSign(String sign) {
-		this.sign = sign;
-	}
+    public void setNonce_str(String nonce_str) {
+        this.nonce_str = nonce_str;
+    }
 
-	public String getPartner_trade_no() {
-		return partner_trade_no;
-	}
+    public String getSign() {
+        return sign;
+    }
 
-	public void setPartner_trade_no(String partner_trade_no) {
-		this.partner_trade_no = partner_trade_no;
-	}
+    public void setSign(String sign) {
+        this.sign = sign;
+    }
 
-	public String getOpenid() {
-		return openid;
-	}
+    public String getPartner_trade_no() {
+        return partner_trade_no;
+    }
 
-	public void setOpenid(String openid) {
-		this.openid = openid;
-	}
+    public void setPartner_trade_no(String partner_trade_no) {
+        this.partner_trade_no = partner_trade_no;
+    }
 
-	public String getCheck_name() {
-		return check_name;
-	}
+    public String getOpenid() {
+        return openid;
+    }
 
-	public void setCheck_name(String check_name) {
-		this.check_name = check_name;
-	}
+    public void setOpenid(String openid) {
+        this.openid = openid;
+    }
 
-	public String getRe_user_name() {
-		return re_user_name;
-	}
+    public String getCheck_name() {
+        return check_name;
+    }
 
-	public void setRe_user_name(String re_user_name) {
-		this.re_user_name = re_user_name;
-	}
+    public void setCheck_name(String check_name) {
+        this.check_name = check_name;
+    }
 
-	public String getAmount() {
-		return amount;
-	}
+    public String getRe_user_name() {
+        return re_user_name;
+    }
 
-	public void setAmount(String amount) {
-		this.amount = amount;
-	}
+    public void setRe_user_name(String re_user_name) {
+        this.re_user_name = re_user_name;
+    }
 
-	public String getDesc() {
-		return desc;
-	}
+    public Integer getAmount() {
+        return amount;
+    }
 
-	public void setDesc(String desc) {
-		this.desc = desc;
-	}
+    public void setAmount(Integer amount) {
+        this.amount = amount;
+    }
 
-	public String getSpbill_create_ip() {
-		return spbill_create_ip;
-	}
+    public BigDecimal getYuan_amount() {
+        return yuan_amount;
+    }
 
-	public void setSpbill_create_ip(String spbill_create_ip) {
-		this.spbill_create_ip = spbill_create_ip;
-	}
+    public void setYuan_amount(BigDecimal yuan_amount) {
+        this.yuan_amount = yuan_amount;
+    }
 
-	public String getSign_type() {
-		return sign_type;
-	}
+    public String getDesc() {
+        return desc;
+    }
 
-	public void setSign_type(String sign_type) {
-		this.sign_type = sign_type;
-	}
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public String getSpbill_create_ip() {
+        return spbill_create_ip;
+    }
+
+    public void setSpbill_create_ip(String spbill_create_ip) {
+        this.spbill_create_ip = spbill_create_ip;
+    }
+
+    public String getSign_type() {
+        return sign_type;
+    }
+
+    public void setSign_type(String sign_type) {
+        this.sign_type = sign_type;
+    }
 
 }

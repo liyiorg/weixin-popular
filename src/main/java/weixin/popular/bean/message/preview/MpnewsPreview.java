@@ -7,6 +7,9 @@ public class MpnewsPreview extends Preview{
 
 	private Map<String,String> mpnews = new HashMap<String,String>();
 
+	public MpnewsPreview(){
+
+	}
 	public MpnewsPreview(String media_id) {
 		super();
 		this.setMsgtype("mpnews");

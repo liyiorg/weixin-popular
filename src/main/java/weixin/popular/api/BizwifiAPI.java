@@ -97,8 +97,8 @@ public class BizwifiAPI extends BaseAPI {
      * @param accessToken   accessToken
      * @param finishPageSet finishPageSet
      */
-    public static BaseResult finishPageSet(String accessToken, FinishPageSet finishPageSet) {
-        return finishPageSet(accessToken, JsonUtil.toJSONString(finishPageSet));
+    public static BaseResult finishpageSet(String accessToken, FinishPageSet finishPageSet) {
+        return finishpageSet(accessToken, JsonUtil.toJSONString(finishPageSet));
     }
 
     /**
@@ -110,7 +110,7 @@ public class BizwifiAPI extends BaseAPI {
      * @return BaseResult
      */
     public static BaseResult businessFinishPageSet(String accessToken, FinishPageSet finishPageSet) {
-        return finishPageSet(accessToken, JsonUtil.toJSONString(finishPageSet));
+        return finishpageSet(accessToken, JsonUtil.toJSONString(finishPageSet));
     }
 
     /**
@@ -119,7 +119,7 @@ public class BizwifiAPI extends BaseAPI {
      * @param accessToken accessToken
      * @param postData    postData
      */
-    public static BaseResult finishPageSet(String accessToken, String postData) {
+    public static BaseResult finishpageSet(String accessToken, String postData) {
         HttpUriRequest httpUriRequest = RequestBuilder
                 .post()
                 .setHeader(jsonHeader)
@@ -142,8 +142,8 @@ public class BizwifiAPI extends BaseAPI {
      * @param homePageSet homePageSet
      * @return BaseResult
      */
-    public static BaseResult homePageSet(String accessToken, HomePageSet homePageSet) {
-        return homePageSet(accessToken, JsonUtil.toJSONString(homePageSet));
+    public static BaseResult homepageSet(String accessToken, HomePageSet homePageSet) {
+        return homepageSet(accessToken, JsonUtil.toJSONString(homePageSet));
     }
 
     /**
@@ -155,7 +155,7 @@ public class BizwifiAPI extends BaseAPI {
      * @return BaseResult
      */
     public static BaseResult businessHomePageSet(String accessToken, HomePageSet homePageSet) {
-        return homePageSet(accessToken, JsonUtil.toJSONString(homePageSet));
+        return homepageSet(accessToken, JsonUtil.toJSONString(homePageSet));
     }
 
     /**
@@ -165,7 +165,7 @@ public class BizwifiAPI extends BaseAPI {
      * @param postData    postData
      * @return BaseResult
      */
-    public static BaseResult homePageSet(String accessToken, String postData) {
+    public static BaseResult homepageSet(String accessToken, String postData) {
         HttpUriRequest httpUriRequest = RequestBuilder
                 .post()
                 .setHeader(jsonHeader)

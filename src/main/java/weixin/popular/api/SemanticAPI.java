@@ -41,7 +41,7 @@ public class SemanticAPI extends BaseAPI {
     /**
      * 语义理解
      *
-     * @param accessToken    accessToken
+     * @param accessToken    access_token
      * @param semproxySearch semproxySearch
      * @return SemproxySearchResult
      */
@@ -52,7 +52,7 @@ public class SemanticAPI extends BaseAPI {
     /**
      * 语义理解
      *
-     * @param accessToken accessToken
+     * @param accessToken access_token
      * @param postData    postData
      * @return SemproxySearchResult
      */

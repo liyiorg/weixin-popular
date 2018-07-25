@@ -6,7 +6,7 @@ package weixin.popular.bean.scan.crud;
  * @Date: 2018/7/24 15:38
  * @Description:
  */
-public class ScanProductGetlist {
+public class ProductGetlist {
     private String offset;
     private String limit;
     private String status;

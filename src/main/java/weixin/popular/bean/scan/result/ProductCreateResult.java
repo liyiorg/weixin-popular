@@ -8,10 +8,10 @@ import weixin.popular.bean.BaseResult;
  * @Date: 2018/7/24 11:22
  * @Description:
  */
-public class ScanProductCreateResult extends BaseResult {
+public class ProductCreateResult extends BaseResult {
     private Integer pid;
 
-    public ScanProductCreateResult(Integer pid) {
+    public ProductCreateResult(Integer pid) {
         this.pid = pid;
     }
 

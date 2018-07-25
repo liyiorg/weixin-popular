@@ -1,7 +1,7 @@
 package weixin.popular.bean.scan.infolist;
 
 
-import weixin.popular.bean.scan.base.ScanProductGet;
+import weixin.popular.bean.scan.base.ProductGet;
 
 /**
  * @ProjectName: platform
@@ -9,7 +9,7 @@ import weixin.popular.bean.scan.base.ScanProductGet;
  * @Date: 2018/7/24 15:40
  * @Description:
  */
-public class KeyList extends ScanProductGet {
+public class KeyList extends ProductGet {
     private String category_id;
     private String category_name;
     private Long update_time;

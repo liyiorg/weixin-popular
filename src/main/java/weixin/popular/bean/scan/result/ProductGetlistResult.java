@@ -11,7 +11,7 @@ import java.util.List;
  * @Date: 2018/7/24 15:39
  * @Description:
  */
-public class ScanProductGetlistResult extends BaseResult {
+public class ProductGetlistResult extends BaseResult {
 
     private Integer total;
     private List<KeyList> key_list;

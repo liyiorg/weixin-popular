@@ -1,7 +1,7 @@
 package weixin.popular.bean.scan.result;
 
 
-import weixin.popular.bean.scan.crud.ScanScanProductCreate;
+import weixin.popular.bean.scan.crud.ProductCreate;
 
 /**
  * @ProjectName: platform
@@ -9,5 +9,5 @@ import weixin.popular.bean.scan.crud.ScanScanProductCreate;
  * @Date: 2018/7/24 15:26
  * @Description:
  */
-public class ScanScanProductGetResult extends ScanScanProductCreate {
+public class ProductGetResult extends ProductCreate {
 }

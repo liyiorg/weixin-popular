@@ -3,7 +3,7 @@ package weixin.popular.bean.scan.result;
 import weixin.popular.bean.scan.infolist.VerifiedList;
 import java.util.List;
 
-public class ScanMerchantinfoGetResult {
+public class MerchantinfoGetResult {
     private String[] brand_tag_list;
     private List<VerifiedList> verified_list;
 

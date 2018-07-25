@@ -1,7 +1,7 @@
 package weixin.popular.bean.scan.crud;
 
 
-import weixin.popular.bean.scan.base.ScanProductGet;
+import weixin.popular.bean.scan.base.ProductGet;
 
 /**
  * @ProjectName: platform
@@ -9,7 +9,7 @@ import weixin.popular.bean.scan.base.ScanProductGet;
  * @Date: 2018/7/24 16:27
  * @Description:
  */
-public class ScanticketCheck extends ScanProductGet {
+public class TicketCheck extends ProductGet {
     private String extinfo;
 
     public String getExtinfo() {

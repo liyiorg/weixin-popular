@@ -6,7 +6,7 @@ package weixin.popular.bean.scan.base;
  * @Date: 2018/7/24 14:52
  * @Description:
  */
-public class ScanProductGet {
+public class ProductGet {
     private String keystandard;
     private String keystr;
 

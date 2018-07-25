@@ -8,7 +8,7 @@ import weixin.popular.bean.BaseResult;
  * @Date: 2018/7/24 14:59
  * @Description:
  */
-public class ScanProductGetqrcodeResult extends BaseResult {
+public class ProductGetqrcodeResult extends BaseResult {
     private String pic_url;
     private String qrcode_url;
 }

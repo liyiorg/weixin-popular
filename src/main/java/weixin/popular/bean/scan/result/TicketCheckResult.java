@@ -1,7 +1,7 @@
 package weixin.popular.bean.scan.result;
 
 import weixin.popular.bean.BaseResult;
-import weixin.popular.bean.scan.base.ScanProductGet;
+import weixin.popular.bean.scan.base.ProductGet;
 
 /**
  * @ProjectName: platform
@@ -9,19 +9,19 @@ import weixin.popular.bean.scan.base.ScanProductGet;
  * @Date: 2018/7/24 16:09
  * @Description:
  */
-public class ScanticketCheckResult extends BaseResult {
-    private ScanProductGet scanProductGet;
+public class TicketCheckResult extends BaseResult {
+    private ProductGet productGet;
     private String openid;
     private String scene;
     private Boolean is_check;
     private Boolean is_contact;
 
-    public ScanProductGet getScanProductGet() {
-        return scanProductGet;
+    public ProductGet getProductGet() {
+        return productGet;
     }
 
-    public void setScanProductGet(ScanProductGet scanProductGet) {
-        this.scanProductGet = scanProductGet;
+    public void setProductGet(ProductGet productGet) {
+        this.productGet = productGet;
     }
 
     public String getOpenid() {

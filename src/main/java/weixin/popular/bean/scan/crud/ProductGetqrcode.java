@@ -1,7 +1,7 @@
 package weixin.popular.bean.scan.crud;
 
 
-import weixin.popular.bean.scan.base.ScanProductGet;
+import weixin.popular.bean.scan.base.ProductGet;
 
 /**
  * @ProjectName: platform
@@ -9,7 +9,7 @@ import weixin.popular.bean.scan.base.ScanProductGet;
  * @Date: 2018/7/24 14:56
  * @Description:
  */
-public class ScanScanProductGetqrcode extends ScanProductGet {
+public class ProductGetqrcode extends ProductGet {
     private String extinfo;
     private String qrcode_size;
 

@@ -1,10 +1,10 @@
 package weixin.popular.bean.scan.crud;
 
 
-import weixin.popular.bean.scan.base.ScanProductGet;
+import weixin.popular.bean.scan.base.ProductGet;
 import weixin.popular.bean.scan.info.BrandInfo;
 
-public class ScanScanProductCreate extends ScanProductGet {
+public class ProductCreate extends ProductGet {
     private BrandInfo brand_info;
 
     public BrandInfo getBrand_info() {

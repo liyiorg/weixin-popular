@@ -4,127 +4,137 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name="xml")
+@XmlRootElement(name = "xml")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class PapayContractbill {
 
-	private String mch_id;
+    private String mch_id;
 
-	private String appid;
+    private String appid;
 
-	private String plan_id;
+    private String plan_id;
 
-	private String bill_type;
+    private String bill_type;
 
-	private String nonce_str;
+    private String bill_date;
 
-	private String start_time;
+    private String nonce_str;
 
-	private String end_time;
+    private String start_time;
 
-	private Integer page_num;
+    private String end_time;
 
-	private Integer page_size;
+    private Integer page_num;
 
-	private String version;
+    private Integer page_size;
 
-	private String sign;
-	
-	private String sign_type;
+    private String version;
 
-	public String getMch_id() {
-		return mch_id;
-	}
+    private String sign;
 
-	public void setMch_id(String mch_id) {
-		this.mch_id = mch_id;
-	}
+    private String sign_type;
 
-	public String getAppid() {
-		return appid;
-	}
+    public String getMch_id() {
+        return mch_id;
+    }
 
-	public void setAppid(String appid) {
-		this.appid = appid;
-	}
+    public void setMch_id(String mch_id) {
+        this.mch_id = mch_id;
+    }
 
-	public String getPlan_id() {
-		return plan_id;
-	}
+    public String getAppid() {
+        return appid;
+    }
 
-	public void setPlan_id(String plan_id) {
-		this.plan_id = plan_id;
-	}
+    public void setAppid(String appid) {
+        this.appid = appid;
+    }
 
-	public String getBill_type() {
-		return bill_type;
-	}
+    public String getPlan_id() {
+        return plan_id;
+    }
 
-	public void setBill_type(String bill_type) {
-		this.bill_type = bill_type;
-	}
+    public void setPlan_id(String plan_id) {
+        this.plan_id = plan_id;
+    }
 
-	public String getNonce_str() {
-		return nonce_str;
-	}
+    public String getBill_type() {
+        return bill_type;
+    }
 
-	public void setNonce_str(String nonce_str) {
-		this.nonce_str = nonce_str;
-	}
+    public void setBill_type(String bill_type) {
+        this.bill_type = bill_type;
+    }
 
-	public String getStart_time() {
-		return start_time;
-	}
+    public String getBill_date() {
+        return bill_date;
+    }
 
-	public void setStart_time(String start_time) {
-		this.start_time = start_time;
-	}
+    public void setBill_date(String bill_date) {
+        this.bill_date = bill_date;
+    }
 
-	public String getEnd_time() {
-		return end_time;
-	}
+    public String getNonce_str() {
+        return nonce_str;
+    }
 
-	public void setEnd_time(String end_time) {
-		this.end_time = end_time;
-	}
+    public void setNonce_str(String nonce_str) {
+        this.nonce_str = nonce_str;
+    }
 
-	public Integer getPage_num() {
-		return page_num;
-	}
+    public String getStart_time() {
+        return start_time;
+    }
 
-	public void setPage_num(Integer page_num) {
-		this.page_num = page_num;
-	}
+    public void setStart_time(String start_time) {
+        this.start_time = start_time;
+    }
 
-	public Integer getPage_size() {
-		return page_size;
-	}
+    public String getEnd_time() {
+        return end_time;
+    }
 
-	public void setPage_size(Integer page_size) {
-		this.page_size = page_size;
-	}
+    public void setEnd_time(String end_time) {
+        this.end_time = end_time;
+    }
 
-	public String getVersion() {
-		return version;
-	}
+    public Integer getPage_num() {
+        return page_num;
+    }
 
-	public void setVersion(String version) {
-		this.version = version;
-	}
+    public void setPage_num(Integer page_num) {
+        this.page_num = page_num;
+    }
 
-	public String getSign() {
-		return sign;
-	}
+    public Integer getPage_size() {
+        return page_size;
+    }
 
-	public void setSign(String sign) {
-		this.sign = sign;
-	}
+    public void setPage_size(Integer page_size) {
+        this.page_size = page_size;
+    }
 
-	public String getSign_type() {
-		return sign_type;
-	}
+    public String getVersion() {
+        return version;
+    }
 
-	public void setSign_type(String sign_type) {
-		this.sign_type = sign_type;
-	}
+    public void setVersion(String version) {
+        this.version = version;
+    }
+
+    public String getSign() {
+        return sign;
+    }
+
+    public void setSign(String sign) {
+        this.sign = sign;
+    }
+
+    public String getSign_type() {
+        return sign_type;
+    }
+
+    public void setSign_type(String sign_type) {
+        this.sign_type = sign_type;
+    }
 }

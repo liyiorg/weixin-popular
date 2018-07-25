@@ -2,42 +2,45 @@ package weixin.popular.bean.message.message;
 
 /**
  * 发送卡券
- * @author LiYi
  *
+ * @author LiYi
  */
 public class WxcardMessage extends Message {
 
-	public WxcardMessage(String touser) {
-		super(touser, "wxcard");
-	}
+    public WxcardMessage() {
+    }
 
-	public WxcardMessage(String touser, String card_id) {
-		this(touser);
-		this.wxcard = new Wxcard();
-		this.wxcard.setCard_id(card_id);
-	}
+    public WxcardMessage(String touser) {
+        super(touser, "wxcard");
+    }
 
-	private Wxcard wxcard;
+    public WxcardMessage(String touser, String card_id) {
+        this(touser);
+        this.wxcard = new Wxcard();
+        this.wxcard.setCard_id(card_id);
+    }
 
-	public Wxcard getWxcard() {
-		return wxcard;
-	}
+    private Wxcard wxcard;
 
-	public void setWxcard(Wxcard wxcard) {
-		this.wxcard = wxcard;
-	}
+    public Wxcard getWxcard() {
+        return wxcard;
+    }
 
-	public static class Wxcard {
+    public void setWxcard(Wxcard wxcard) {
+        this.wxcard = wxcard;
+    }
 
-		private String card_id;
+    public static class Wxcard {
 
-		public String getCard_id() {
-			return card_id;
-		}
+        private String card_id;
 
-		public void setCard_id(String card_id) {
-			this.card_id = card_id;
-		}
+        public String getCard_id() {
+            return card_id;
+        }
 
-	}
+        public void setCard_id(String card_id) {
+            this.card_id = card_id;
+        }
+
+    }
 }

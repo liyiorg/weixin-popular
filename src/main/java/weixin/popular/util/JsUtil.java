@@ -7,7 +7,7 @@ import java.util.UUID;
 
 import org.apache.commons.codec.digest.DigestUtils;
 
-public class JsUtil {
+public abstract class JsUtil {
 	
 	//2.5.3  2.8.2 更新
 	public static final String[] ALL_JS_API_LIST = {

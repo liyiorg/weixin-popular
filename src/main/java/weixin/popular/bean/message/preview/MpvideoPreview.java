@@ -7,6 +7,9 @@ public class MpvideoPreview extends Preview{
 
 	private Map<String,String> mpvideo = new HashMap<String,String>();
 
+	public MpvideoPreview(){
+
+	}
 	public MpvideoPreview(String media_id) {
 		super();
 		this.setMsgtype("mpvideo");

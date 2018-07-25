@@ -7,6 +7,9 @@ public class ImagePreview extends Preview{
 
 	private Map<String,String> image = new HashMap<String,String>();
 
+	public ImagePreview(){
+
+	}
 	public ImagePreview(String media_id) {
 		super();
 		this.setMsgtype("image");

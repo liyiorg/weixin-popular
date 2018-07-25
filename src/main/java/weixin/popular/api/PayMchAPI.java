@@ -322,7 +322,7 @@ public class PayMchAPI extends BaseAPI{
 						str = EntityUtils.toString(entity, "utf-8");
 					}
 					EntityUtils.consume(entity);
-                    if(str.matches("\\s*<xml>.*</xml>\\s*")){
+                    if(str.matches(".*<xml>(.*|\\n)+</xml>.*")){
                     	return XMLConverUtil.convertToObject(DownloadbillResult.class,str);
                     }else{
                     	DownloadbillResult dr = new DownloadbillResult();
@@ -390,7 +390,7 @@ public class PayMchAPI extends BaseAPI{
 								str = EntityUtils.toString(entity, "utf-8");
 							}
 							EntityUtils.consume(entity);
-							if (str.matches("\\s*<xml>.*</xml>\\s*")) {
+							if (str.matches(".*<xml>(.*|\\n)+</xml>.*")) {
 								return XMLConverUtil.convertToObject(PayDownloadfundflowResult.class, str);
 							} else {
 								PayDownloadfundflowResult dr = new PayDownloadfundflowResult();
@@ -520,7 +520,7 @@ public class PayMchAPI extends BaseAPI{
 		String secapiPayRefundXML = XMLConverUtil.convertToXML( queryCoupon);
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 				.setHeader(xmlHeader)
-				.setUri(baseURI()+ "/promotion/query_coupon")
+				.setUri(baseURI()+ "/mmpaymkttransfers/querycouponsinfo")
 				.setEntity(new StringEntity(secapiPayRefundXML,Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.executeXmlResult(httpUriRequest,QueryCouponResult.class,queryCoupon.getSign_type(),key);
@@ -738,7 +738,7 @@ public class PayMchAPI extends BaseAPI{
 		String closeorderXML = XMLConverUtil.convertToXML(papayContractbill);
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 				.setHeader(xmlHeader)
-				.setUri(baseURI()+ "/papay/contractbill")
+				.setUri(baseURI()+ "/pay/downloadbill")
 				.setEntity(new StringEntity(closeorderXML,Charset.forName("utf-8")))
 				.build();
 		return LocalHttpClient.execute(httpUriRequest,new ResponseHandler<PapayContractbillResult>() {
@@ -750,7 +750,7 @@ public class PayMchAPI extends BaseAPI{
                 if (status >= 200 && status < 300) {
                     HttpEntity entity = response.getEntity();
                     String str = EntityUtils.toString(entity,"utf-8");
-                    if(str.matches("\\s*<xml>.*</xml>\\s*")){
+                    if(str.matches(".*<xml>(.*|\\n)+</xml>.*")){
                     	return XMLConverUtil.convertToObject(PapayContractbillResult.class,str);
                     }else{
                     	PapayContractbillResult dr = new PapayContractbillResult();

@@ -5,88 +5,93 @@ import java.util.List;
 /**
  * 图文消息
  * 图文消息条数限制在10条以内，注意，如果图文数超过10，则将会无响应。
- * @author LiYi
  *
+ * @author LiYi
  */
 public class NewsMessage extends Message {
 
-	public NewsMessage(String touser,List<Article> articles) {
-		super(touser,"news");
-		this.news = new News();
-		this.news.setArticles(articles);
-	}
+    public NewsMessage() {
+    }
 
-	private News news;
+    public NewsMessage(String touser, List<Article> articles) {
+        super(touser, "news");
+        this.news = new News();
+        this.news.setArticles(articles);
+    }
 
-	public News getNews() {
-		return news;
-	}
+    private News news;
 
-	public void setNews(News news) {
-		this.news = news;
-	}
+    public News getNews() {
+        return news;
+    }
 
-	public static class News {
+    public void setNews(News news) {
+        this.news = news;
+    }
 
-		private List<Article> articles;
+    public static class News {
 
-		public List<Article> getArticles() {
-			return articles;
-		}
+        private List<Article> articles;
 
-		public void setArticles(List<Article> articles) {
-			this.articles = articles;
-		}
-	}
+        public List<Article> getArticles() {
+            return articles;
+        }
 
-	public static class Article {
-		private String title;
-		private String description;
-		private String url;
-		private String picurl;
+        public void setArticles(List<Article> articles) {
+            this.articles = articles;
+        }
+    }
 
+    public static class Article {
+        private String title;
+        private String description;
+        private String url;
+        private String picurl;
 
+        public Article(){
 
-		public Article(String title, String description, String url,
-				String picurl) {
-			super();
-			this.title = title;
-			this.description = description;
-			this.url = url;
-			this.picurl = picurl;
-		}
+        }
 
-		public String getTitle() {
-			return title;
-		}
+        public Article(String title, String description, String url,
+                       String picurl) {
+            super();
+            this.title = title;
+            this.description = description;
+            this.url = url;
+            this.picurl = picurl;
+        }
 
-		public void setTitle(String title) {
-			this.title = title;
-		}
+        public String getTitle() {
+            return title;
+        }
 
-		public String getDescription() {
-			return description;
-		}
+        public void setTitle(String title) {
+            this.title = title;
+        }
 
-		public void setDescription(String description) {
-			this.description = description;
-		}
+        public String getDescription() {
+            return description;
+        }
 
-		public String getUrl() {
-			return url;
-		}
+        public void setDescription(String description) {
+            this.description = description;
+        }
 
-		public void setUrl(String url) {
-			this.url = url;
-		}
+        public String getUrl() {
+            return url;
+        }
 
-		public String getPicurl() {
-			return picurl;
-		}
+        public void setUrl(String url) {
+            this.url = url;
+        }
 
-		public void setPicurl(String picurl) {
-			this.picurl = picurl;
-		}
+        public String getPicurl() {
+            return picurl;
+        }
 
-	}
+        public void setPicurl(String picurl) {
+            this.picurl = picurl;
+        }
+
+    }
 }

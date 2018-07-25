@@ -244,7 +244,7 @@ public class SnsAPI extends BaseAPI{
 	}
 	
 	/**
-	 *  code 换取 session_key（微信小程序   第三方平台）
+	 *
 	 * @since 2.8.9
 	 * @param appid appid
 	 * @param js_code js_code

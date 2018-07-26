@@ -33,6 +33,7 @@ import java.nio.charset.UnsupportedCharsetException;
  * 微信智能
  *
  * @author zeroJun
+ * @since 2.8.22
  */
 public class SemanticAPI extends BaseAPI {
 
@@ -44,6 +45,7 @@ public class SemanticAPI extends BaseAPI {
      * @param accessToken    access_token
      * @param semproxySearch semproxySearch
      * @return SemproxySearchResult
+     * @since 2.8.22
      */
     public static SemproxySearchResult semproxySearch(String accessToken, SemproxySearch semproxySearch) {
         return semproxySearch(accessToken, JsonUtil.toJSONString(semproxySearch));
@@ -55,6 +57,7 @@ public class SemanticAPI extends BaseAPI {
      * @param accessToken access_token
      * @param postData    postData
      * @return SemproxySearchResult
+     * @since 2.8.22
      */
     public static SemproxySearchResult semproxySearch(String accessToken, String postData) {
         HttpUriRequest httpUriRequest = RequestBuilder
@@ -76,6 +79,7 @@ public class SemanticAPI extends BaseAPI {
      * @param voiceId     语音唯一标识
      * @param voice       文件格式 只支持mp3，16k，单声道，最大1M
      * @return BaseResult
+     * @since 2.8.22
      */
     public static BaseResult addvoicetorecofortext(String accessToken, String voiceId, File voice) {
         return addvoicetorecofortext(accessToken, voiceId, null, voice);
@@ -88,6 +92,7 @@ public class SemanticAPI extends BaseAPI {
      * @param voiceId     语音唯一标识
      * @param inputStream 文件格式 只支持mp3，16k，单声道，最大1M
      * @return BaseResult
+     * @since 2.8.22
      */
     public static BaseResult addvoicetorecofortext(String accessToken, String voiceId, InputStream inputStream) {
         return addvoicetorecofortext(accessToken, voiceId, null, inputStream);
@@ -100,6 +105,7 @@ public class SemanticAPI extends BaseAPI {
      * @param voiceId     语音唯一标识
      * @param uri         文件格式 只支持mp3，16k，单声道，最大1M
      * @return BaseResult
+     * @since 2.8.22
      */
     public static BaseResult addvoicetorecofortext(String accessToken, String voiceId, URI uri) {
         return addvoicetorecofortext(accessToken, voiceId, null, uri);
@@ -113,6 +119,7 @@ public class SemanticAPI extends BaseAPI {
      * @param lang        语言，zh_CN 或 en_US，默认中文
      * @param voice       文件格式 只支持mp3，16k，单声道，最大1M
      * @return BaseResult
+     * @since 2.8.22
      */
     public static BaseResult addvoicetorecofortext(String accessToken, String voiceId, String lang, File voice) {
         HttpPost httpPost = new HttpPost(BASE_URI + "/cgi-bin/media/voice/addvoicetorecofortext");
@@ -137,6 +144,7 @@ public class SemanticAPI extends BaseAPI {
      * @param lang        语言，zh_CN 或 en_US，默认中文
      * @param inputStream 文件格式 只支持mp3，16k，单声道，最大1M
      * @return BaseResult
+     * @since 2.8.22
      */
     public static BaseResult addvoicetorecofortext(String accessToken, String voiceId, String lang, InputStream inputStream) {
         HttpPost httpPost = new HttpPost(BASE_URI + "/cgi-bin/media/voice/addvoicetorecofortext");
@@ -168,6 +176,7 @@ public class SemanticAPI extends BaseAPI {
      * @param lang        语言，zh_CN 或 en_US，默认中文
      * @param uri         文件格式 只支持mp3，16k，单声道，最大1M
      * @return BaseResult
+     * @since 2.8.22
      */
     public static BaseResult addvoicetorecofortext(String accessToken, String voiceId, String lang, URI uri) {
         HttpPost httpPost = new HttpPost(BASE_URI + "/cgi-bin/media/voice/addvoicetorecofortext");
@@ -202,6 +211,7 @@ public class SemanticAPI extends BaseAPI {
      * @param accessToken 接口调用凭证
      * @param voiceId     音唯一标识
      * @return QueryrecoresultfortextResult
+     * @since 2.8.22
      */
     public static QueryrecoresultfortextResult queryrecoresultfortext(String accessToken, String voiceId) {
         return queryrecoresultfortext(accessToken, voiceId, null);
@@ -214,6 +224,7 @@ public class SemanticAPI extends BaseAPI {
      * @param voiceId     语音唯一标识
      * @param lang        语言，zh_CN 或 en_US，默认中文
      * @return QueryrecoresultfortextResult
+     * @since 2.8.22
      */
     public static QueryrecoresultfortextResult queryrecoresultfortext(String accessToken, String voiceId, String lang) {
         HttpUriRequest httpUriRequest = RequestBuilder.post()
@@ -236,6 +247,7 @@ public class SemanticAPI extends BaseAPI {
      * @param content     源内容放body里或者上传文件的形式（utf8格式，最大600Byte)
      * @param charsetName 文件字符的编码格式
      * @return TranslatecontentResult
+     * @since 2.8.22
      */
     public static TranslatecontentResult translatecontent(String accessToken, String lfrom, String lto, File content, String charsetName) {
         HttpPost httpPost = new HttpPost(BASE_URI + "/cgi-bin/media/voice/translatecontent");
@@ -275,6 +287,7 @@ public class SemanticAPI extends BaseAPI {
      * @param inputStream 源内容放body里或者上传文件的形式（utf8格式，最大600Byte)
      * @param charsetName 文件字符的编码格式
      * @return TranslatecontentResult
+     * @since 2.8.22
      */
     public static TranslatecontentResult translatecontent(String accessToken, String lfrom, String lto, InputStream inputStream, String charsetName) {
         HttpPost httpPost = new HttpPost(BASE_URI + "/cgi-bin/media/voice/translatecontent");
@@ -312,6 +325,7 @@ public class SemanticAPI extends BaseAPI {
      * @param lto         目标语言，zh_CN 或 en_US
      * @param content     源内容放body里或者上传文件的形式（utf8格式，最大600Byte)
      * @return TranslatecontentResult
+     * @since 2.8.22
      */
     public static TranslatecontentResult translatecontent(String accessToken, String lfrom, String lto, String content) {
         HttpPost httpPost = new HttpPost(BASE_URI + "/cgi-bin/media/voice/translatecontent");

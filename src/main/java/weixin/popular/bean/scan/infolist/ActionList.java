@@ -1,11 +1,5 @@
 package weixin.popular.bean.scan.infolist;
 
-/**
- * @ProjectName: platform
- * @Author: swang
- * @Date: 2018/7/24 11:53
- * @Description:
- */
 public class ActionList {
     private String  type;
     private String  retail_price;

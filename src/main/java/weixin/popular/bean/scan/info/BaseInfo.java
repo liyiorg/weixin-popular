@@ -1,11 +1,6 @@
 package weixin.popular.bean.scan.info;
 
-/**
- * @ProjectName: platform
- * @Author: swang
- * @Date: 2018/7/12 17:09
- * @Description:
- */
+
 public class BaseInfo {
     private String  base_info;
     private String  title;

@@ -5,12 +5,6 @@ import weixin.popular.bean.scan.infolist.ActionList;
 
 import java.util.List;
 
-/**
- * @ProjectName: platform
- * @Author: swang
- * @Date: 2018/7/12 17:03
- * @Description:
- */
 public class ActionInfo {
     private List<ActionList> action_list;
 

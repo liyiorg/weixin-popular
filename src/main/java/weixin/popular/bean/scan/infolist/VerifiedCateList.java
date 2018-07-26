@@ -1,7 +1,5 @@
 package weixin.popular.bean.scan.infolist;
 
-
-
 public class VerifiedCateList {
     private String verified_cate_id;
     private String verified_cate_name;

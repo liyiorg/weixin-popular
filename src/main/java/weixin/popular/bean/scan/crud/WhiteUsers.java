@@ -2,12 +2,6 @@ package weixin.popular.bean.scan.crud;
 
 import java.util.List;
 
-/**
- * @ProjectName: platform
- * @Author: swang
- * @Date: 2018/7/24 14:48
- * @Description:
- */
 public class WhiteUsers {
     private List <String> openid;
     private List <String> username;

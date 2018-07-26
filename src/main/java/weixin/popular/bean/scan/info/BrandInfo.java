@@ -1,11 +1,6 @@
 package weixin.popular.bean.scan.info;
 
-/**
- * @ProjectName: platform
- * @Author: swang
- * @Date: 2018/7/24 11:37
- * @Description:
- */
+
 public class BrandInfo {
     private BaseInfo base_info;
     private DetailInfo detail_info;

@@ -1,11 +1,5 @@
 package weixin.popular.bean.scan.infolist;
 
-/**
- * @ProjectName: platform
- * @Author: swang
- * @Date: 2018/7/24 11:45
- * @Description:
- */
 public class DetailList {
     private String  title;
     private String  desc;

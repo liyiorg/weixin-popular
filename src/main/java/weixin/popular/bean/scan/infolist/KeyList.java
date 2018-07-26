@@ -1,14 +1,6 @@
 package weixin.popular.bean.scan.infolist;
-
-
 import weixin.popular.bean.scan.base.ProductGet;
 
-/**
- * @ProjectName: platform
- * @Author: swang
- * @Date: 2018/7/24 15:40
- * @Description:
- */
 public class KeyList extends ProductGet {
     private String category_id;
     private String category_name;

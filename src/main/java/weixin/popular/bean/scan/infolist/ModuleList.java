@@ -1,11 +1,5 @@
 package weixin.popular.bean.scan.infolist;
 
-/**
- * @ProjectName: platform
- * @Author: swang
- * @Date: 2018/7/24 12:13
- * @Description:
- */
 public class ModuleList {
     private String type;
     private String native_show;

@@ -1,11 +1,5 @@
 package weixin.popular.bean.scan.infolist;
 
-/**
- * @ProjectName: platform
- * @Author: swang
- * @Date: 2018/7/24 11:44
- * @Description:
- */
 public class BannerList {
     private String link;
     private String desc;

@@ -6,12 +6,6 @@ import weixin.popular.bean.scan.infolist.DetailList;
 
 import java.util.List;
 
-/**
- * @ProjectName: platform
- * @Author: swang
- * @Date: 2018/7/12 16:54
- * @Description:
- */
 public class DetailInfo {
     private List<BannerList> banner_list;
     private List<DetailList> detail_list;

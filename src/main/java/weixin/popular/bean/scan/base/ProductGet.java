@@ -1,11 +1,6 @@
 package weixin.popular.bean.scan.base;
 
-/**
- * @ProjectName: platform
- * @Author: swang
- * @Date: 2018/7/24 14:52
- * @Description:
- */
+
 public class ProductGet {
     private String keystandard;
     private String keystr;

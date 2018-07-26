@@ -16,6 +16,7 @@ import java.nio.charset.Charset;
  * 微信扫一扫
  *
  * @author swang
+ * @ since 2.8.22
  */
 public class ScanAPI extends BaseAPI {
 

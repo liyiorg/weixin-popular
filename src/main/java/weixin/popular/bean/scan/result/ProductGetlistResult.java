@@ -2,15 +2,9 @@ package weixin.popular.bean.scan.result;
 
 import weixin.popular.bean.BaseResult;
 import weixin.popular.bean.scan.infolist.KeyList;
+
 import java.util.List;
 
-
-/**
- * @ProjectName: platform
- * @Author: swang
- * @Date: 2018/7/24 15:39
- * @Description:
- */
 public class ProductGetlistResult extends BaseResult {
 
     private Integer total;

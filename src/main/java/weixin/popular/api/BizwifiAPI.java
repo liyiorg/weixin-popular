@@ -1,10 +1,11 @@
 package weixin.popular.api;
 
+import java.nio.charset.Charset;
+
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.client.methods.RequestBuilder;
 import org.apache.http.entity.StringEntity;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 import weixin.popular.bean.BaseResult;
 import weixin.popular.bean.bizwifi.apportal.ApportalRegister;
 import weixin.popular.bean.bizwifi.apportal.ApportalRegisterResult;
@@ -31,8 +32,6 @@ import weixin.popular.bean.bizwifi.statistics.StatisticsListResult;
 import weixin.popular.client.LocalHttpClient;
 import weixin.popular.util.JsonUtil;
 
-import java.nio.charset.Charset;
-
 /**
  * 微信连Wi-Fi
  *
@@ -40,7 +39,6 @@ import java.nio.charset.Charset;
  */
 public class BizwifiAPI extends BaseAPI {
 
-    private static Logger logger = LoggerFactory.getLogger(BizwifiAPI.class);
 
     /**
      * 第三方平台获取插件wifi_token

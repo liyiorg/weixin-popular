@@ -29,7 +29,7 @@ public class HomePageSet extends ShopInfo {
         this.struct = struct;
     }
 
-    private class Struct {
+    public static class Struct {
         private String wxa_user_name;
         private String wxa_path;
         private String url;

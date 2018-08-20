@@ -12,7 +12,6 @@ public class DeviceListResultData {
     private Integer totalcount;
     private Integer pageindex;
     private Integer pagecount;
-
     private List<Records> records;
 
     public Integer getTotalcount() {
@@ -47,7 +46,7 @@ public class DeviceListResultData {
         this.records = records;
     }
 
-    private class Records {
+    public static class Records {
         private Integer shop_id;
         private String ssid;
         private String bssid;

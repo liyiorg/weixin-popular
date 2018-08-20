@@ -46,7 +46,7 @@ public class ShopListResultData {
         this.records = records;
     }
 
-    private class Records {
+    public static class Records {
         private Integer shop_id;
         private String shop_name;
         private String ssid;

@@ -7,6 +7,10 @@ public class MusicPreview extends Preview {
 
 	private Map<String, String> music = new HashMap<String, String>();
 
+	public MusicPreview(){
+
+	}
+
 	public MusicPreview(String media_id) {
 		super();
 		this.setMsgtype("music");

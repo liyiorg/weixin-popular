@@ -12,9 +12,8 @@ import java.io.Writer;
 import java.nio.charset.Charset;
 
 
-public class StreamUtils {
+public abstract class StreamUtils {
 	public static final int BUFFER_SIZE = 4096;
-
 
 	/**
 	 * Copy the contents of the given InputStream into a new byte array.

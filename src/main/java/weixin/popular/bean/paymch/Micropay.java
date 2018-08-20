@@ -5,6 +5,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import java.math.BigDecimal;
 
 @XmlRootElement(name="xml")
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -26,6 +27,7 @@ public class Micropay extends MchVersion{
 	private String attach;
 	private String out_trade_no;
 	private Integer total_fee;
+	private BigDecimal order_amount;
 	private String fee_type;
 	private String spbill_create_ip;
 	private String goods_tag;
@@ -102,6 +104,15 @@ public class Micropay extends MchVersion{
 	public void setTotal_fee(Integer total_fee) {
 		this.total_fee = total_fee;
 	}
+
+	public BigDecimal getOrder_amount() {
+		return order_amount;
+	}
+
+	public void setOrder_amount(BigDecimal order_amount) {
+		this.order_amount = order_amount;
+	}
+
 	public String getFee_type() {
 		return fee_type;
 	}

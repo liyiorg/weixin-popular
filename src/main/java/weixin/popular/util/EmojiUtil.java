@@ -2,7 +2,7 @@ package weixin.popular.util;
 
 import com.vdurmont.emoji.EmojiParser;
 
-public class EmojiUtil {
+public abstract class EmojiUtil {
 	
 	/**
 	 * 转换emoji <br>

@@ -7,6 +7,9 @@ public class VoicePreview extends Preview{
 
 	private Map<String,String> voice = new HashMap<String,String>();
 
+	public VoicePreview(){
+
+	}
 	public VoicePreview(String media_id) {
 		super();
 		this.setMsgtype("voice");

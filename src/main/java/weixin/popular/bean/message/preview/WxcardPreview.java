@@ -7,6 +7,9 @@ public class WxcardPreview extends Preview{
 
 	private Map<String,Object> wxcard = new HashMap<String,Object>();
 
+	public WxcardPreview(){
+
+	}
 	public WxcardPreview(String card_id,Map<String,String> card_ext) {
 		super();
 		this.setMsgtype("wxcard");

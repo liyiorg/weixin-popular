@@ -15,7 +15,7 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class MapUtil {
+public abstract class MapUtil {
 	
 	private static Logger logger = LoggerFactory.getLogger(MapUtil.class);
 
@@ -81,24 +81,6 @@ public class MapUtil {
 	}
 
 	/**
-	 * 获取所有Fields,包含父类field
-	 * @param clazz clazz
-	 * @return list
-	 */
-	private static List<Field> getAllFields(Class<?> clazz){
-		if(!clazz.equals(Object.class)){
-			List<Field> fields = new ArrayList<Field>(Arrays.asList(clazz.getDeclaredFields()));
-			List<Field> fields2 = getAllFields(clazz.getSuperclass());
-			if(fields2!=null){
-				fields.addAll(fields2);
-			}
-			return fields;
-		}else{
-			return null;
-		}
-	}
-
-	/**
 	 * url 参数串连
 	 * @param map map
 	 * @param keyLower keyLower
@@ -124,6 +106,24 @@ public class MapUtil {
 			stringBuilder.deleteCharAt(stringBuilder.length()-1);
 		}
 		return stringBuilder.toString();
+	}
+
+	/**
+	 * 获取所有Fields,包含父类field
+	 * @param clazz clazz
+	 * @return list
+	 */
+	private static List<Field> getAllFields(Class<?> clazz){
+		if(!clazz.equals(Object.class)){
+			List<Field> fields = new ArrayList<Field>(Arrays.asList(clazz.getDeclaredFields()));
+			List<Field> fields2 = getAllFields(clazz.getSuperclass());
+			if(fields2!=null){
+				fields.addAll(fields2);
+			}
+			return fields;
+		}else{
+			return null;
+		}
 	}
 
 }

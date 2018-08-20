@@ -21,6 +21,8 @@ public class QueryCoupon {
 
 	private String mch_id;
 
+	private String stock_id;
+
 	private String sub_mch_id;
 
 	private String op_user_id;
@@ -67,6 +69,14 @@ public class QueryCoupon {
 
 	public void setMch_id(String mch_id) {
 		this.mch_id = mch_id;
+	}
+
+	public String getStock_id() {
+		return stock_id;
+	}
+
+	public void setStock_id(String stock_id) {
+		this.stock_id = stock_id;
 	}
 
 	public String getSub_mch_id() {

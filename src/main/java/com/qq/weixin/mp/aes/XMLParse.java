@@ -10,6 +10,7 @@ package com.qq.weixin.mp.aes;
 
 import java.io.StringReader;
 
+import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
@@ -41,8 +42,12 @@ class XMLParse {
 			 * @since 2.8.21 
 			 */
 			dbf.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
-			dbf.setXIncludeAware(false);
-			dbf.setExpandEntityReferences(false);
+			dbf.setFeature("http://xml.org/sax/features/external-general-entities", false);
+	        dbf.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
+	        dbf.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
+	        dbf.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
+	        dbf.setXIncludeAware(false);
+	        dbf.setExpandEntityReferences(false);
 			
 			DocumentBuilder db = dbf.newDocumentBuilder();
 			StringReader sr = new StringReader(xmltext);

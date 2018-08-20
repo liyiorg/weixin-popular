@@ -7,6 +7,9 @@ public class TextPreview extends Preview{
 
 	private Map<String,String> text = new HashMap<String,String>();
 
+	public TextPreview(){
+
+	}
 	public TextPreview(String content) {
 		super();
 		this.setMsgtype("text");

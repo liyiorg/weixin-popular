@@ -94,6 +94,7 @@ public class BizwifiAPI extends BaseAPI {
      *
      * @param accessToken   accessToken
      * @param finishPageSet finishPageSet
+     * @return BaseResult
      */
     public static BaseResult finishpageSet(String accessToken, FinishPageSet finishPageSet) {
         return finishpageSet(accessToken, JsonUtil.toJSONString(finishPageSet));
@@ -112,10 +113,11 @@ public class BizwifiAPI extends BaseAPI {
     }
 
     /**
-     * 连Wi-Fi小程序-连Wi-Fi完成页跳转小程序 & 商家主页管理-设置连网完成页
+     * 连Wi-Fi小程序-连Wi-Fi完成页跳转小程序  商家主页管理-设置连网完成页
      *
      * @param accessToken accessToken
      * @param postData    postData
+     * @return BaseResult
      */
     public static BaseResult finishpageSet(String accessToken, String postData) {
         HttpUriRequest httpUriRequest = RequestBuilder
@@ -157,7 +159,7 @@ public class BizwifiAPI extends BaseAPI {
     }
 
     /**
-     * 连Wi-Fi小程序-设置顶部banner跳转小程序接口 & 商家主页管理-设置商家主页
+     * 连Wi-Fi小程序-设置顶部banner跳转小程序接口  商家主页管理-设置商家主页
      *
      * @param accessToken accessToken
      * @param postData    postData

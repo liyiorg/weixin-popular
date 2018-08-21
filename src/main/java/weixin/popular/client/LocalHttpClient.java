@@ -149,6 +149,7 @@ public class LocalHttpClient {
 	 * 数据返回自动JSON对象解析
 	 * @param request request
 	 * @param clazz clazz
+	 * @param <T> T
 	 * @return result
 	 */
 	public static <T> T executeJsonResult(HttpUriRequest request,Class<T> clazz){
@@ -159,6 +160,7 @@ public class LocalHttpClient {
 	 * 数据返回自动XML对象解析
 	 * @param request request
 	 * @param clazz clazz
+	 * @param <T> T
 	 * @return result
 	 */
 	public static <T> T executeXmlResult(HttpUriRequest request,Class<T> clazz){
@@ -171,6 +173,7 @@ public class LocalHttpClient {
 	 * @param clazz clazz
 	 * @param sign_type 数据返回验证签名类型
 	 * @param key 数据返回验证签名key
+	 * @param <T> T
 	 * @return result
 	 * @since 2.8.5
 	 */
@@ -183,6 +186,7 @@ public class LocalHttpClient {
 	 * @param mch_id mch_id
 	 * @param request request
 	 * @param clazz clazz
+	 * @param <T> T
 	 * @return result
 	 */
 	public static <T> T keyStoreExecuteXmlResult(String mch_id,HttpUriRequest request,Class<T> clazz){
@@ -196,6 +200,7 @@ public class LocalHttpClient {
 	 * @param clazz clazz
 	 * @param sign_type 数据返回验证签名类型
 	 * @param key 数据返回验证签名key
+	 * @param <T> T
 	 * @since 2.8.5
 	 * @return result
 	 */

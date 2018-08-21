@@ -632,8 +632,8 @@ public class PayMchAPI extends BaseAPI{
 	/**
 	 * 查询企业付款
 	 * @since 2.8.5
-	 * @param gettransferinfo
-	 * @param key
+	 * @param gettransferinfo gettransferinfo
+	 * @param key key
 	 * @return GettransferinfoResult
 	 */
 	public static GettransferinfoResult mmpaymkttransfersGettransferinfo(Gettransferinfo gettransferinfo,String key){

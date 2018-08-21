@@ -68,8 +68,16 @@ public class ComponentAPI extends BaseAPI {
 
     /**
      * 生成移动端快速授权URL
-     *
-     * @return String
+     * @since 2.8.22
+     * @param component_appid 第三方平台ID
+     * @param pre_auth_code   预授权码
+     * @param redirect_uri    重定向URI
+     * @param auth_type       要授权的帐号类型 <br>
+     *                        1 则商户扫码后，手机端仅展示公众号 <br>
+     *                        2 表示仅展示小程序 <br>
+     *                        3 表示公众号和小程序都展示。<br>
+     *                        如果为未制定，则默认小程序和公众号都展示。第三方平台开发者可以使用本字段来控制授权的帐号类型。
+     * @return URL
      */
     public static String safeBindcomponent(String component_appid, String pre_auth_code, String redirect_uri, String auth_type) {
         try {
@@ -280,7 +288,7 @@ public class ComponentAPI extends BaseAPI {
      * @param component_appid        第三方平台APPID
      * @param offset                 偏移位置/起始位置
      * @param count                  拉取数量，最大为500
-     * @return
+     * @return ApiGetAuthorizerListResult
      */
     public static ApiGetAuthorizerListResult api_get_authorizer_list(String component_access_token, String component_appid, String offset, String count) {
         String postJsonData = String.format("{\"component_appid\":\"%1$s\",\"offset\":\"%2$s\",\"count\":\"%3$s\"}",

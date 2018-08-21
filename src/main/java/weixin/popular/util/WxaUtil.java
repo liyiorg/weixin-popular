@@ -54,9 +54,9 @@ public abstract class WxaUtil {
 
 	/**
 	 * 校验wx.getUserInfo rawData 签名,同时返回 userinfo
-	 * @param session_key
-	 * @param rawData
-	 * @param signature
+	 * @param session_key session_key
+	 * @param rawData rawData
+	 * @param signature signature
 	 * @return WxaUserInfo 签名校验失败时，返回null
 	 */
 	public static WxaUserInfo validateUserInfo(String session_key, String rawData, String signature) {

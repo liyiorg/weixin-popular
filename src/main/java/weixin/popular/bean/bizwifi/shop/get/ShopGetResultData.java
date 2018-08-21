@@ -46,7 +46,7 @@ public class ShopGetResultData {
         this.ssid_password_list = ssid_password_list;
     }
 
-    private class SsidPassword {
+    public static class SsidPassword {
         private String ssid;
         private String password;
 

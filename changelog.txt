@@ -2,6 +2,11 @@ WEIXIN-POPULAR CHANGELOG
 ===========================
 https://github.com/liyiorg/weixin-popular
 
+Changes in version 2.8.23 (2018-09-?)
+-------------------------------------
+* #175 XMLConverUtil 多线程问题修复
+
+
 Changes in version 2.8.22 (2018-08-22)
 -------------------------------------
 * 改进XML XXE 处理

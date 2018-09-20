@@ -653,7 +653,7 @@ public class PayMchAPI extends BaseAPI{
 	 * 委托代扣-支付中签约
 	 * @param payContractorder payContractorder
 	 * @param key key
-	 * @return PappayapplyResult
+	 * @return PayContractorderResult
 	 */
 	public static PayContractorderResult payContractorder(PayContractorder payContractorder,String key){
 		Map<String,String> map = MapUtil.objectToMap(payContractorder);

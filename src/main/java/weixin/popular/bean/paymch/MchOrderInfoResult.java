@@ -17,64 +17,44 @@ import weixin.popular.bean.DynamicField;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class MchOrderInfoResult extends MchBase implements DynamicField{
 
-	@XmlElement
 	private String trade_state;
 
-	@XmlElement
 	private String device_info;
 
-	@XmlElement
 	private String openid;
 
-	@XmlElement
 	private String is_subscribe;
 
-	@XmlElement
 	private String trade_type;
 
-	@XmlElement
 	private String bank_type;
 
-	@XmlElement
 	private Integer total_fee;
 
-	@XmlElement
 	private String fee_type;
 
-	@XmlElement
 	private Integer cash_fee;
 
-	@XmlElement
 	private String cash_fee_type;
 
-	@XmlElement
 	private Integer coupon_fee;
 
-	@XmlElement
 	private Integer coupon_count;
 
-	@XmlElement
 	private String transaction_id;
 
-	@XmlElement
 	private String out_trade_no;
 
-	@XmlElement
 	private String attach;
 
-	@XmlElement
 	private String time_end;
 
-	@XmlElement
 	private String trade_state_desc;
 	
-	@XmlElement
 	private String sub_openid;
 	
-	@XmlElement
 	private String sub_is_subscribe;
 	
-	@XmlElement
 	private Integer settlement_total_fee;
 	
 	
@@ -94,6 +74,11 @@ public class MchOrderInfoResult extends MchBase implements DynamicField{
 	@XmlJavaTypeAdapter(value = PromotionDetailXmlAdapter.class)
 	private List<PromotionDetail> promotion_detail;
 	
+	/**
+	 * 委托代扣协议id
+	 * @since 2.8.24
+	 */
+	private String contract_id;
 	
 	public String getTrade_state() {
 		return trade_state;
@@ -269,6 +254,14 @@ public class MchOrderInfoResult extends MchBase implements DynamicField{
 
 	public void setPromotion_detail(List<PromotionDetail> promotion_detail) {
 		this.promotion_detail = promotion_detail;
+	}
+	
+	public String getContract_id() {
+		return contract_id;
+	}
+
+	public void setContract_id(String contract_id) {
+		this.contract_id = contract_id;
 	}
 
 	@Override

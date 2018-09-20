@@ -34,14 +34,14 @@ import weixin.popular.bean.paymch.MchShorturl;
 import weixin.popular.bean.paymch.MchShorturlResult;
 import weixin.popular.bean.paymch.Micropay;
 import weixin.popular.bean.paymch.MicropayResult;
-import weixin.popular.bean.paymch.PapayContractbill;
-import weixin.popular.bean.paymch.PapayContractbillResult;
 import weixin.popular.bean.paymch.PapayDeletecontract;
 import weixin.popular.bean.paymch.PapayDeletecontractResult;
 import weixin.popular.bean.paymch.PapayQuerycontract;
 import weixin.popular.bean.paymch.PapayQuerycontractResult;
 import weixin.popular.bean.paymch.Pappayapply;
 import weixin.popular.bean.paymch.PappayapplyResult;
+import weixin.popular.bean.paymch.PayContractorder;
+import weixin.popular.bean.paymch.PayContractorderResult;
 import weixin.popular.bean.paymch.PayDownloadfundflow;
 import weixin.popular.bean.paymch.PayDownloadfundflowResult;
 import weixin.popular.bean.paymch.QueryCoupon;
@@ -650,6 +650,25 @@ public class PayMchAPI extends BaseAPI{
 	}
 
 	/**
+	 * 委托代扣-支付中签约
+	 * @param payContractorder payContractorder
+	 * @param key key
+	 * @return PappayapplyResult
+	 */
+	public static PayContractorderResult payContractorder(PayContractorder payContractorder,String key){
+		Map<String,String> map = MapUtil.objectToMap(payContractorder);
+		String sign = SignatureUtil.generateSign(map,payContractorder.getSign_type(),key);
+		payContractorder.setSign(sign);
+		String secapiPayRefundXML = XMLConverUtil.convertToXML( payContractorder);
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+				.setHeader(xmlHeader)
+				.setUri(baseURI()+ "/pay/contractorder")
+				.setEntity(new StringEntity(secapiPayRefundXML,Charset.forName("utf-8")))
+				.build();
+		return LocalHttpClient.executeXmlResult(httpUriRequest,PayContractorderResult.class,payContractorder.getSign_type(),key);
+	}
+
+	/**
 	 * 委托代扣-扣款
 	 * @param pappayapply pappayapply
 	 * @param key key
@@ -667,7 +686,7 @@ public class PayMchAPI extends BaseAPI{
 				.build();
 		return LocalHttpClient.executeXmlResult(httpUriRequest,PappayapplyResult.class,pappayapply.getSign_type(),key);
 	}
-
+	
 	/**
 	 * 委托代扣-订单查询
 	 * @param mchOrderquery mchOrderquery
@@ -724,43 +743,5 @@ public class PayMchAPI extends BaseAPI{
 				.build();
 		return LocalHttpClient.executeXmlResult(httpUriRequest,PapayDeletecontractResult.class,papayDeletecontract.getSign_type(),key);
 	}
-
-	/**
-	 * 委托代扣-对账单查询
-	 * @param papayContractbill papayContractbill
-	 * @param key key
-	 * @return PapayContractbillResult
-	 */
-	public static PapayContractbillResult papayContractbill(PapayContractbill papayContractbill,String key){
-		Map<String,String> map = MapUtil.objectToMap(papayContractbill);
-		String sign = SignatureUtil.generateSign(map,papayContractbill.getSign_type(),key);
-		papayContractbill.setSign(sign);
-		String closeorderXML = XMLConverUtil.convertToXML(papayContractbill);
-		HttpUriRequest httpUriRequest = RequestBuilder.post()
-				.setHeader(xmlHeader)
-				.setUri(baseURI()+ "/pay/downloadbill")
-				.setEntity(new StringEntity(closeorderXML,Charset.forName("utf-8")))
-				.build();
-		return LocalHttpClient.execute(httpUriRequest,new ResponseHandler<PapayContractbillResult>() {
-
-			@Override
-			public PapayContractbillResult handleResponse(HttpResponse response)
-					throws ClientProtocolException, IOException {
-				int status = response.getStatusLine().getStatusCode();
-                if (status >= 200 && status < 300) {
-                    HttpEntity entity = response.getEntity();
-                    String str = EntityUtils.toString(entity,"utf-8");
-                    if(str.matches(".*<xml>(.*|\\n)+</xml>.*")){
-                    	return XMLConverUtil.convertToObject(PapayContractbillResult.class,str);
-                    }else{
-                    	PapayContractbillResult dr = new PapayContractbillResult();
-                    	dr.setData(str);
-                    	return dr;
-                    }
-                } else {
-                    throw new ClientProtocolException("Unexpected response status: " + status);
-                }
-			}
-		});
-	}
+	
 }

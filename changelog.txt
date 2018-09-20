@@ -2,6 +2,10 @@ WEIXIN-POPULAR CHANGELOG
 ===========================
 https://github.com/liyiorg/weixin-popular
 
+Changes in version 2.8.24 (2018-10-?)
+-------------------------------------
+* 委托代扣 添加支付中签约接口
+
 Changes in version 2.8.23 (2018-09-12)
 -------------------------------------
 * #175 XMLConverUtil 多线程问题修复

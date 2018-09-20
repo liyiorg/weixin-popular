@@ -13,11 +13,13 @@ import org.apache.commons.codec.digest.DigestUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.alibaba.fastjson.JSON;
 import com.qq.weixin.mp.aes.PKCS7Encoder;
 
 import weixin.popular.bean.paymch.MchPayApp;
 import weixin.popular.bean.paymch.MchPayNativeReply;
 import weixin.popular.bean.paymch.PapayEntrustweb;
+import weixin.popular.bean.paymch.PapayH5Entrustweb;
 import weixin.popular.bean.paymch.RefundNotifyReqInfo;
 
 public abstract class PayUtil {
@@ -123,7 +125,7 @@ public abstract class PayUtil {
 	}
 
 	/**
-	 * 生成代扣签约URL
+	 * 生成委托代扣-公众号、APP 纯签约
 	 * 
 	 * @param papayEntrustweb
 	 *            papayEntrustweb
@@ -137,6 +139,43 @@ public abstract class PayUtil {
 		map.put("sign", sign);
 		String params = MapUtil.mapJoin(map, false, true);
 		return "https://api.mch.weixin.qq.com/papay/entrustweb?" + params;
+	}
+	
+	/**
+	 * 生成委托代扣-H5 纯签约
+	 * @since 2.8.24
+	 * @param papayH5Entrustweb
+	 *            papayH5Entrustweb
+	 * @param key
+	 *            key
+	 * @return url
+	 */
+	public static String generatePapayH5EntrustwebURL(PapayH5Entrustweb papayH5Entrustweb, String key) {
+		Map<String, String> map = MapUtil.objectToMap(papayH5Entrustweb);
+		String sign = SignatureUtil.generateSign(map, "HMAC-SHA256", key);
+		map.put("sign", sign);
+		String params = MapUtil.mapJoin(map, false, true);
+		return "https://api.mch.weixin.qq.com/papay/h5entrustweb?" + params;
+	}
+	
+	/**
+	 * 生成委托代扣-小程序 纯签约
+	 * @since 2.8.24
+	 * @param papayEntrustweb
+	 *            papayEntrustweb
+	 * @param key
+	 *            key
+	 * @return url
+	 */
+	public static String generatePapayWxaEntrustweb(PapayEntrustweb papayEntrustweb, String key) {
+		Map<String, String> map = MapUtil.objectToMap(papayEntrustweb);
+		String sign = SignatureUtil.generateSign(map, "HMAC-SHA256", key);
+		map.put("sign", sign);
+		Map<String,Object> result = new LinkedHashMap<>();
+		result.put("appId", papayEntrustweb.getAppid());
+		result.put("extraData", map);
+		result.put("path", "pages/index/index");
+		return JSON.toJSONString(map);
 	}
 
 	/**

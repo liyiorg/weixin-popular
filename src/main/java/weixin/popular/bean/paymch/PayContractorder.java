@@ -5,6 +5,8 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import weixin.popular.bean.AdaptorCDATA;
+
 /**
  * 支付中签约参数对象
  * 
@@ -22,11 +24,11 @@ public class PayContractorder {
 	private String out_trade_no;
 	private String device_info;
 	private String nonce_str;
-	@XmlJavaTypeAdapter(value = Detail.JsonXmlAdapter.class)
+	@XmlJavaTypeAdapter(value = AdaptorCDATA.class)
 	private String body;
-	@XmlJavaTypeAdapter(value = Detail.JsonXmlAdapter.class)
+	@XmlJavaTypeAdapter(value = AdaptorCDATA.class)
 	private String detail;
-	@XmlJavaTypeAdapter(value = Detail.JsonXmlAdapter.class)
+	@XmlJavaTypeAdapter(value = AdaptorCDATA.class)
 	private String attach;
 	private String notify_url;
 	private String total_fee;
@@ -41,7 +43,7 @@ public class PayContractorder {
 	private String plan_id;
 	private String contract_code;
 	private String request_serial;
-	@XmlJavaTypeAdapter(value = Detail.JsonXmlAdapter.class)
+	@XmlJavaTypeAdapter(value = AdaptorCDATA.class)
 	private String contract_display_account;
 	private String contract_notify_url;
 	private String sign_type;

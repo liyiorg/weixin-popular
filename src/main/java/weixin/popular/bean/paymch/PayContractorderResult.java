@@ -5,6 +5,8 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import weixin.popular.bean.AdaptorCDATA;
+
 @XmlRootElement(name="xml")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class PayContractorderResult extends MchBase{
@@ -27,7 +29,7 @@ public class PayContractorderResult extends MchBase{
 	
 	private String contract_code;
 
-	@XmlJavaTypeAdapter(value = Detail.JsonXmlAdapter.class)
+	@XmlJavaTypeAdapter(value = AdaptorCDATA.class)
 	private String contract_display_account;
 	
 	private String mweb_url;

@@ -9,11 +9,14 @@ import org.apache.commons.codec.digest.DigestUtils;
 
 public abstract class JsUtil {
 	
-	//2.5.3  2.8.2 更新
+	//2.5.3  2.8.2  2.8.24 更新
 	public static final String[] ALL_JS_API_LIST = {
 									//基础接口--------------------
 		"checkJsApi",				//判断当前客户端版本是否支持指定JS接口                         	
 									//分享接口--------------------
+		"updateAppMessageShareData",//分享到朋友及QQ
+		"updateTimelineShareData",	//分享到朋友圈及QQ空间
+		
 		"onMenuShareTimeline",		//分享到朋友圈
 		"onMenuShareAppMessage",	//分享给朋友
 		"onMenuShareQQ",			//分享到QQ
@@ -62,7 +65,8 @@ public abstract class JsUtil {
 		"addCard",					//批量添加卡券
 		"openCard",					//查看微信卡包中的卡券
 									//微信支付-------------------
-		"chooseWXPay"				//发起一个微信支付
+		"chooseWXPay",				//发起一个微信支付
+		"openAddress"				//共享收货地址接口
 	}; 
 
 	/**
@@ -95,6 +99,9 @@ public abstract class JsUtil {
 	 *							基础接口<br>
 	 *checkJsApi				判断当前客户端版本是否支持指定JS接口<br>                         	
 	 *							分享接口<br>
+	 *updateAppMessageShareData 分享到朋友及QQ<br>
+	 *updateTimelineShareData	分享到朋友圈及QQ空间<br>
+	 *
 	 *onMenuShareTimeline		分享到朋友圈<br>
 	 *onMenuShareAppMessage		分享给朋友<br>
 	 *onMenuShareQQ				分享到QQ<br>
@@ -144,6 +151,8 @@ public abstract class JsUtil {
 	 *openCard					查看微信卡包中的卡券<br>
  								微信支付<br>
 	 *chooseWXPay				发起一个微信支付<br>
+	 *openAddress				共享收货地址接口<br>
+	 *
 	 * @return 配置JSON数据
 	 */
 	public static String generateConfigJson(String jsapi_ticket,boolean debug,String appId,String url,String... jsApiList){

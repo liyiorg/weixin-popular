@@ -19,6 +19,9 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.SAXParserFactory;
+import javax.xml.transform.Source;
+import javax.xml.transform.sax.SAXSource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -107,11 +110,22 @@ public abstract class XMLConverUtil {
 	@SuppressWarnings("unchecked")
 	public static <T> T convertToObject(Class<T> clazz, Reader reader) {
 		try {
+			/**
+			 * XXE 漏洞
+			 * https://www.owasp.org/index.php/XML_External_Entity_(XXE)_Prevention_Cheat_Sheet#JAXB_Unmarshaller
+			 */
+			SAXParserFactory spf = SAXParserFactory.newInstance();
+			spf.setFeature("http://xml.org/sax/features/external-general-entities", false);
+			spf.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
+			spf.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
+
 			if (!JAXB_CONTEXT_MAP.containsKey(clazz)) {
 				JAXB_CONTEXT_MAP.put(clazz, JAXBContext.newInstance(clazz));
 			}
+
+			Source xmlSource = new SAXSource(spf.newSAXParser().getXMLReader(), new InputSource(reader));
 			Unmarshaller unmarshaller = JAXB_CONTEXT_MAP.get(clazz).createUnmarshaller();
-			return (T) unmarshaller.unmarshal(reader);
+			return (T) unmarshaller.unmarshal(xmlSource);
 		} catch (JAXBException e) {
 			logger.error("", e);
 		}

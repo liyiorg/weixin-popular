@@ -13,14 +13,15 @@ import org.apache.commons.codec.digest.DigestUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.alibaba.fastjson.JSON;
 import com.qq.weixin.mp.aes.PKCS7Encoder;
 
+import weixin.popular.api.PayMchAPI;
 import weixin.popular.bean.paymch.MchPayApp;
 import weixin.popular.bean.paymch.MchPayNativeReply;
 import weixin.popular.bean.paymch.PapayEntrustweb;
-import weixin.popular.bean.paymch.PapayH5Entrustweb;
+import weixin.popular.bean.paymch.PapayH5entrustwebResult;
 import weixin.popular.bean.paymch.RefundNotifyReqInfo;
+import weixin.popular.bean.paymch.WxaEntrustwebData;
 
 public abstract class PayUtil {
 	
@@ -150,12 +151,12 @@ public abstract class PayUtil {
 	 *            key
 	 * @return url
 	 */
-	public static String generatePapayH5EntrustwebURL(PapayH5Entrustweb papayH5Entrustweb, String key) {
-		Map<String, String> map = MapUtil.objectToMap(papayH5Entrustweb);
-		String sign = SignatureUtil.generateSign(map, "HMAC-SHA256", key);
-		map.put("sign", sign);
-		String params = MapUtil.mapJoin(map, false, true);
-		return "https://api.mch.weixin.qq.com/papay/h5entrustweb?" + params;
+	public static String generatePapayH5EntrustwebURL(PapayEntrustweb papayEntrustweb, String key) {
+		PapayH5entrustwebResult result = PayMchAPI.papayH5entrustweb(papayEntrustweb, key);
+		if (result != null && "SUCCESS".equals(result.getResult_code())) {
+			return result.getRedirect_url();
+		}
+		return null;
 	}
 	
 	/**
@@ -167,17 +168,17 @@ public abstract class PayUtil {
 	 *            key
 	 * @return url
 	 */
-	public static String generatePapayWxaEntrustweb(PapayEntrustweb papayEntrustweb, String key) {
+	public static WxaEntrustwebData generatePapayWxaEntrustweb(PapayEntrustweb papayEntrustweb, String key) {
 		Map<String, String> map = MapUtil.objectToMap(papayEntrustweb);
 		String sign = SignatureUtil.generateSign(map, "HMAC-SHA256", key);
-		map.put("sign", sign);
-		Map<String,Object> result = new LinkedHashMap<>();
-		result.put("appId", papayEntrustweb.getAppid());
-		result.put("extraData", map);
-		result.put("path", "pages/index/index");
-		return JSON.toJSONString(map);
+		papayEntrustweb.setSign(sign);
+		WxaEntrustwebData wxaEntrustwebData = new WxaEntrustwebData();
+		wxaEntrustwebData.setAppId(papayEntrustweb.getAppid());
+		wxaEntrustwebData.setExtraData(papayEntrustweb);
+		wxaEntrustwebData.setPath("pages/index/index");
+		return wxaEntrustwebData;
 	}
-
+	
 	/**
 	 * 解密退款结果通知数据 <br>
 	 * 

@@ -14,7 +14,6 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import javax.xml.XMLConstants;
 import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.parsers.DocumentBuilder;
@@ -126,7 +125,7 @@ public abstract class XMLConverUtil {
 			Source xmlSource = new SAXSource(spf.newSAXParser().getXMLReader(), new InputSource(reader));
 			Unmarshaller unmarshaller = JAXB_CONTEXT_MAP.get(clazz).createUnmarshaller();
 			return (T) unmarshaller.unmarshal(xmlSource);
-		} catch (JAXBException e) {
+		} catch (Exception e) {
 			logger.error("", e);
 		}
 		return null;

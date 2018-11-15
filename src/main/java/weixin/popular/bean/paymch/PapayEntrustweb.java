@@ -19,10 +19,22 @@ public class PapayEntrustweb {
 	private String version;
 
 	private String timestamp;
-
-	//以下字段为非必填项风控参数，建议商户填写，提高风险控制能力
-
+	
+	private String outerid;
+	
 	private String clientip;
+	
+	private String return_app;
+	
+	private String return_web;
+	
+	private String return_appid;
+	
+	private String sign;
+	
+	/*
+	 * 以下字段为非必填项风控参数，建议商户填写，提高风险控制能力
+	 * 2.8.25 版本中移除
 
 	private String deviceid;
 
@@ -36,7 +48,8 @@ public class PapayEntrustweb {
 
 	private String creid;
 
-	private String outerid;
+	*/
+
 
 	public String getMch_id() {
 		return mch_id;
@@ -110,62 +123,6 @@ public class PapayEntrustweb {
 		this.timestamp = timestamp;
 	}
 
-	public String getClientip() {
-		return clientip;
-	}
-
-	public void setClientip(String clientip) {
-		this.clientip = clientip;
-	}
-
-	public String getDeviceid() {
-		return deviceid;
-	}
-
-	public void setDeviceid(String deviceid) {
-		this.deviceid = deviceid;
-	}
-
-	public String getMobile() {
-		return mobile;
-	}
-
-	public void setMobile(String mobile) {
-		this.mobile = mobile;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getQq() {
-		return qq;
-	}
-
-	public void setQq(String qq) {
-		this.qq = qq;
-	}
-
-	public String getOpenid() {
-		return openid;
-	}
-
-	public void setOpenid(String openid) {
-		this.openid = openid;
-	}
-
-	public String getCreid() {
-		return creid;
-	}
-
-	public void setCreid(String creid) {
-		this.creid = creid;
-	}
-
 	public String getOuterid() {
 		return outerid;
 	}
@@ -174,6 +131,61 @@ public class PapayEntrustweb {
 		this.outerid = outerid;
 	}
 
+	public String getClientip() {
+		return clientip;
+	}
 
+	/**
+	 * H5 签约填写
+	 * @param clientip IP 必填
+	 */
+	public void setClientip(String clientip) {
+		this.clientip = clientip;
+	}
 
+	public String getReturn_app() {
+		return return_app;
+	}
+
+	/**
+	 * APP 签约时填写
+	 * @param return_app 3表示返回app, 不填则不返
+	 */
+	public void setReturn_app(String return_app) {
+		this.return_app = return_app;
+	}
+
+	
+	public String getReturn_web() {
+		return return_web;
+	}
+
+	/**
+	 * 公众号 签约时填写
+	 * @param return_web 1表示返回签约页面的referrer url, 不填或获取不到referrer则不返回; 跳转referrer url时会自动带上参数from_wxpay=1
+	 */
+	public void setReturn_web(String return_web) {
+		this.return_web = return_web;
+	}
+
+	public String getReturn_appid() {
+		return return_appid;
+	}
+
+	/**
+	 * H5 签约时填写
+	 * @param return_appid 当指定该字段时，且商户模版标注商户具有指定返回app的权限时，签约成功将返回return_appid指定的app应用，如果不填且签约发起时的浏览器UA可被微信识别，则跳转到浏览器，否则留在微信
+	 */
+	public void setReturn_appid(String return_appid) {
+		this.return_appid = return_appid;
+	}
+
+	public String getSign() {
+		return sign;
+	}
+
+	public void setSign(String sign) {
+		this.sign = sign;
+	}
+	
 }

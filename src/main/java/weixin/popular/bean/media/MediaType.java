@@ -23,7 +23,7 @@ public enum MediaType{
 		public String uploadType() {
 			return "voice";
 		}
-	},voice_arm {
+	},voice_amr {
 
 		@Override
 		public String fileSuffix() {

@@ -91,6 +91,12 @@ public class BaseInfo {
 	 */
 	@JSONField(name = "get_limit")
 	private Integer getLimit;
+	
+	/**
+	 * 每人可核销的数量限制,不填写默认为50。
+	 */
+	@JSONField(name = "use_limit")
+	private Integer useLimit;
 
 	/**
 	 * 是否自定义Code码。 填写true或false，默认为false。 <br>
@@ -99,6 +105,12 @@ public class BaseInfo {
 	 */
 	@JSONField(name = "use_custom_code")
 	private Boolean useCustomCode;
+	
+	/**
+	 * 填入 GET_CUSTOM_CODE_MODE_DEPOSIT 表示该卡券为预存code模式卡券， 须导入超过库存数目的自定义code后方可投放， 填入该字段后，quantity字段须为0,须导入code 后再增加库存
+	 */
+	@JSONField(name = "get_custom_code_mode")
+	private String getCustomCodeMode;
 
 	/**
 	 * 是否指定用户领取，填写true或false。默认为false。 <br>
@@ -605,5 +617,22 @@ public class BaseInfo {
 	public void setUseAllLocations(Boolean useAllLocations) {
 		this.useAllLocations = useAllLocations;
 	}
+
+	public Integer getUseLimit() {
+		return useLimit;
+	}
+
+	public void setUseLimit(Integer useLimit) {
+		this.useLimit = useLimit;
+	}
+
+	public String getGetCustomCodeMode() {
+		return getCustomCodeMode;
+	}
+
+	public void setGetCustomCodeMode(String getCustomCodeMode) {
+		this.getCustomCodeMode = getCustomCodeMode;
+	}
+	
 	
 }

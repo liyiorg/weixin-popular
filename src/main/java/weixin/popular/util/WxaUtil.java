@@ -1,5 +1,6 @@
 package weixin.popular.util;
 
+import java.nio.charset.StandardCharsets;
 import java.security.Key;
 
 import javax.crypto.Cipher;
@@ -44,7 +45,7 @@ public abstract class WxaUtil {
 			Key sKeySpec = new SecretKeySpec(Base64.decodeBase64(session_key), "AES");
 			cipher.init(Cipher.DECRYPT_MODE, sKeySpec, new IvParameterSpec(Base64.decodeBase64(iv)));
 			byte[] resultByte = cipher.doFinal(Base64.decodeBase64(encryptedData));
-			String data = new String(PKCS7Encoder.decode(resultByte));
+			String data = new String(PKCS7Encoder.decode(resultByte), StandardCharsets.UTF_8);
 			return JsonUtil.parseObject(data, WxaDUserInfo.class);
 		} catch (Exception e) {
 			logger.error("", e);

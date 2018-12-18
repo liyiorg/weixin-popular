@@ -145,8 +145,8 @@ public abstract class PayUtil {
 	/**
 	 * 生成委托代扣-H5 纯签约
 	 * @since 2.8.24
-	 * @param papayH5Entrustweb
-	 *            papayH5Entrustweb
+	 * @param papayEntrustweb
+	 *            papayEntrustweb
 	 * @param key
 	 *            key
 	 * @return url

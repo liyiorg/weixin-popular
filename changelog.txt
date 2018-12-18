@@ -2,11 +2,14 @@ WEIXIN-POPULAR CHANGELOG
 ===========================
 https://github.com/liyiorg/weixin-popular
 
-Changes in version 2.8.25 (2018-12-?)
+Changes in version 2.8.25 (2018-12-18)
 -------------------------------------
 * 委托代扣  参数补充
+* #183 XMLConverUtil XXE 处理
 * #186 添加服务商分账接口
 * #187 卡券基础信息添加字段 get_custom_code_mode,use_limit
+* #188 MediaType 拼写错误修改
+* #190 修复WxaUtil的decryptUserInfo方法中文乱码问题
 
 Changes in version 2.8.24 (2018-10-12)
 -------------------------------------

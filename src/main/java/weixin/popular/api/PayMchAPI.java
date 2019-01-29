@@ -817,7 +817,10 @@ public class PayMchAPI extends BaseAPI{
 	 * @return MchBaseResult
 	 */
 	public static MchBaseResult payProfitsharingaddreceiver(PayProfitsharingOperation payProfitsharingOperation,String key){
-		Map<String,String> map = MapUtil.objectToMap(payProfitsharingOperation);
+		Map<String,String> map = MapUtil.objectToMap(payProfitsharingOperation, "receiver");
+		if(payProfitsharingOperation.getReceiver() != null){
+			map.put("receiver", JsonUtil.toJSONString(payProfitsharingOperation.getReceiver()));
+		}
 		String sign = SignatureUtil.generateSign(map,payProfitsharingOperation.getSign_type() == null? "HMAC-SHA256": payProfitsharingOperation.getSign_type(),key);
 		payProfitsharingOperation.setSign(sign);
 		String xml = XMLConverUtil.convertToXML(payProfitsharingOperation);
@@ -837,7 +840,10 @@ public class PayMchAPI extends BaseAPI{
 	 * @return MchBaseResult
 	 */
 	public static MchBaseResult payProfitsharingremovereceiver(PayProfitsharingOperation payProfitsharingOperation,String key){
-		Map<String,String> map = MapUtil.objectToMap(payProfitsharingOperation);
+		Map<String,String> map = MapUtil.objectToMap(payProfitsharingOperation, "receiver");
+		if(payProfitsharingOperation.getReceiver() != null){
+			map.put("receiver", JsonUtil.toJSONString(payProfitsharingOperation.getReceiver()));
+		}
 		String sign = SignatureUtil.generateSign(map,payProfitsharingOperation.getSign_type() == null? "HMAC-SHA256": payProfitsharingOperation.getSign_type(),key);
 		payProfitsharingOperation.setSign(sign);
 		String xml = XMLConverUtil.convertToXML(payProfitsharingOperation);

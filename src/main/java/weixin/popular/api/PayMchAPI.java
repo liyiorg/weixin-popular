@@ -16,60 +16,7 @@ import org.apache.http.client.methods.RequestBuilder;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.util.EntityUtils;
 
-import weixin.popular.bean.paymch.Authcodetoopenid;
-import weixin.popular.bean.paymch.AuthcodetoopenidResult;
-import weixin.popular.bean.paymch.Closeorder;
-import weixin.popular.bean.paymch.DownloadbillResult;
-import weixin.popular.bean.paymch.Gethbinfo;
-import weixin.popular.bean.paymch.GethbinfoResult;
-import weixin.popular.bean.paymch.Gettransferinfo;
-import weixin.popular.bean.paymch.GettransferinfoResult;
-import weixin.popular.bean.paymch.MchBaseResult;
-import weixin.popular.bean.paymch.MchDownloadbill;
-import weixin.popular.bean.paymch.MchOrderInfoResult;
-import weixin.popular.bean.paymch.MchOrderquery;
-import weixin.popular.bean.paymch.MchReverse;
-import weixin.popular.bean.paymch.MchReverseResult;
-import weixin.popular.bean.paymch.MchShorturl;
-import weixin.popular.bean.paymch.MchShorturlResult;
-import weixin.popular.bean.paymch.Micropay;
-import weixin.popular.bean.paymch.MicropayResult;
-import weixin.popular.bean.paymch.PapayDeletecontract;
-import weixin.popular.bean.paymch.PapayDeletecontractResult;
-import weixin.popular.bean.paymch.PapayEntrustweb;
-import weixin.popular.bean.paymch.PapayH5entrustwebResult;
-import weixin.popular.bean.paymch.PapayQuerycontract;
-import weixin.popular.bean.paymch.PapayQuerycontractResult;
-import weixin.popular.bean.paymch.Pappayapply;
-import weixin.popular.bean.paymch.PappayapplyResult;
-import weixin.popular.bean.paymch.PayContractorder;
-import weixin.popular.bean.paymch.PayContractorderResult;
-import weixin.popular.bean.paymch.PayDownloadfundflow;
-import weixin.popular.bean.paymch.PayDownloadfundflowResult;
-import weixin.popular.bean.paymch.PayProfitsharingOperation;
-import weixin.popular.bean.paymch.PayProfitsharingquery;
-import weixin.popular.bean.paymch.PayProfitsharingqueryResult;
-import weixin.popular.bean.paymch.QueryCoupon;
-import weixin.popular.bean.paymch.QueryCouponResult;
-import weixin.popular.bean.paymch.QueryCouponStock;
-import weixin.popular.bean.paymch.QueryCouponStockResult;
-import weixin.popular.bean.paymch.Refundquery;
-import weixin.popular.bean.paymch.RefundqueryResult;
-import weixin.popular.bean.paymch.Report;
-import weixin.popular.bean.paymch.SandboxSignkey;
-import weixin.popular.bean.paymch.SecapiPayProfitsharing;
-import weixin.popular.bean.paymch.SecapiPayProfitsharingResult;
-import weixin.popular.bean.paymch.SecapiPayRefund;
-import weixin.popular.bean.paymch.SecapiPayRefundResult;
-import weixin.popular.bean.paymch.SendCoupon;
-import weixin.popular.bean.paymch.SendCouponResult;
-import weixin.popular.bean.paymch.Sendgroupredpack;
-import weixin.popular.bean.paymch.Sendredpack;
-import weixin.popular.bean.paymch.SendredpackResult;
-import weixin.popular.bean.paymch.Transfers;
-import weixin.popular.bean.paymch.TransfersResult;
-import weixin.popular.bean.paymch.Unifiedorder;
-import weixin.popular.bean.paymch.UnifiedorderResult;
+import weixin.popular.bean.paymch.*;
 import weixin.popular.client.LocalHttpClient;
 import weixin.popular.util.JsonUtil;
 import weixin.popular.util.MapUtil;
@@ -777,7 +724,7 @@ public class PayMchAPI extends BaseAPI{
 	}
 	
 	/**
-	 * 分账-分账请求
+	 * 分账-请求单次分账
 	 * @since 2.8.25
 	 * @param secapiPayProfitsharing secapiPayProfitsharing
 	 * @param key key
@@ -796,7 +743,50 @@ public class PayMchAPI extends BaseAPI{
 				.setUri(baseURI() + "/secapi/pay/profitsharing")
 				.setEntity(new StringEntity(xml,Charset.forName("utf-8")))
 				.build();
-		return LocalHttpClient.executeXmlResult(httpUriRequest,SecapiPayProfitsharingResult.class, secapiPayProfitsharing.getSign_type() == null? "HMAC-SHA256": secapiPayProfitsharing.getSign_type(),key);
+		return LocalHttpClient.keyStoreExecuteXmlResult(secapiPayProfitsharing.getMch_id(), httpUriRequest,SecapiPayProfitsharingResult.class, secapiPayProfitsharing.getSign_type() == null? "HMAC-SHA256": secapiPayProfitsharing.getSign_type(),key);
+	}
+	
+	/**
+	 * 分账-请求多次分账
+	 * @since 2.8.26
+	 * @param secapiPayProfitsharing secapiPayProfitsharing
+	 * @param key key
+	 * @return SecapiPayProfitsharingResult
+	 */
+	public static SecapiPayProfitsharingResult secapiPayMultiprofitsharing(SecapiPayProfitsharing secapiPayProfitsharing,String key){
+		Map<String,String> map = MapUtil.objectToMap(secapiPayProfitsharing, "receivers");
+		if(secapiPayProfitsharing.getReceivers() != null){
+			map.put("receivers", JsonUtil.toJSONString(secapiPayProfitsharing.getReceivers()));
+		}
+		String sign = SignatureUtil.generateSign(map,secapiPayProfitsharing.getSign_type() == null? "HMAC-SHA256": secapiPayProfitsharing.getSign_type(),key);
+		secapiPayProfitsharing.setSign(sign);
+		String xml = XMLConverUtil.convertToXML(secapiPayProfitsharing);
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+				.setHeader(xmlHeader)
+				.setUri(baseURI() + "/secapi/pay/multiprofitsharing")
+				.setEntity(new StringEntity(xml,Charset.forName("utf-8")))
+				.build();
+		return LocalHttpClient.keyStoreExecuteXmlResult(secapiPayProfitsharing.getMch_id(), httpUriRequest,SecapiPayProfitsharingResult.class, secapiPayProfitsharing.getSign_type() == null? "HMAC-SHA256": secapiPayProfitsharing.getSign_type(),key);
+	}
+	
+	/**
+	 * 分账-完结分账
+	 * @since 2.8.26
+	 * @param profitsharingfinish profitsharingfinish
+	 * @param key key
+	 * @return SecapiPayProfitsharingfinishResult
+	 */
+	public static SecapiPayProfitsharingfinishResult secapiPayProfitsharingfinish(SecapiPayProfitsharingfinish profitsharingfinish,String key){
+		Map<String,String> map = MapUtil.objectToMap(profitsharingfinish);
+		String sign = SignatureUtil.generateSign(map,profitsharingfinish.getSign_type() == null? "HMAC-SHA256": profitsharingfinish.getSign_type(),key);
+		profitsharingfinish.setSign(sign);
+		String xml = XMLConverUtil.convertToXML(profitsharingfinish);
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+				.setHeader(xmlHeader)
+				.setUri(baseURI() + "/secapi/pay/profitsharingfinish")
+				.setEntity(new StringEntity(xml,Charset.forName("utf-8")))
+				.build();
+		return LocalHttpClient.keyStoreExecuteXmlResult(profitsharingfinish.getMch_id(), httpUriRequest,SecapiPayProfitsharingfinishResult.class, profitsharingfinish.getSign_type() == null? "HMAC-SHA256": profitsharingfinish.getSign_type(),key);
 	}
 	
 	/**

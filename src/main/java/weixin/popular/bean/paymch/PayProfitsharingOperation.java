@@ -11,4 +11,13 @@ public class PayProfitsharingOperation extends MchBase {
 
 	@XmlJavaTypeAdapter(value = ReceiverOperation.JsonXmlAdapter.class)
 	private ReceiverOperation receiver;
+
+	public ReceiverOperation getReceiver() {
+		return receiver;
+	}
+
+	public void setReceiver(ReceiverOperation receiver) {
+		this.receiver = receiver;
+	}
+	
 }

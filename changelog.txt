@@ -2,6 +2,10 @@ WEIXIN-POPULAR CHANGELOG
 ===========================
 https://github.com/liyiorg/weixin-popular
 
+Changes in version 2.8.26 (2019-02-?)
+-------------------------------------
+* #186 添加多次分账接口，添加分账完结接口
+
 Changes in version 2.8.25 (2018-12-18)
 -------------------------------------
 * 委托代扣  参数补充

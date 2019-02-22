@@ -69,6 +69,27 @@ public class MessageAPI extends BaseAPI {
         String str = JsonUtil.toJSONString(message);
         return messageCustomSend(access_token, str);
     }
+    
+    /**
+     * 客服输入状态
+     * @since 2.8.26
+     * @param access_token access_token
+     * @param touser touser
+     * @param command <br>
+     *  "Typing"：对用户下发“正在输入"状态  <br>
+     *  "CancelTyping"：取消对用户的”正在输入"状态
+     * @return BaseResult
+     */
+    public static BaseResult messageCustomTyping(String access_token, String touser, String command) {
+    	String json = String.format("{\"touser\":\"%s\",\"command\":\"%s\"}", touser, command);
+    	HttpUriRequest httpUriRequest = RequestBuilder.post()
+                .setHeader(jsonHeader)
+                .setUri(BASE_URI + "/cgi-bin/message/custom/typing")
+                .addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
+                .setEntity(new StringEntity(json, Charset.forName("utf-8")))
+                .build();
+        return LocalHttpClient.executeJsonResult(httpUriRequest, BaseResult.class);
+    }
 
     /**
      * 高级群发 构成 MassMPnewsMessage 对象的前置请求接口

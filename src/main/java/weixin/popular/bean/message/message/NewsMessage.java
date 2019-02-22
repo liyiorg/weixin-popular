@@ -1,10 +1,11 @@
 package weixin.popular.bean.message.message;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
- * 图文消息
- * 图文消息条数限制在10条以内，注意，如果图文数超过10，则将会无响应。
+ * 发送图文消息（点击跳转到外链）<br>
+ * 图文消息条数限制在1条以内，注意，如果图文数超过1，则将会返回错误码45008。
  *
  * @author LiYi
  */
@@ -17,6 +18,17 @@ public class NewsMessage extends Message {
         super(touser, "news");
         this.news = new News();
         this.news.setArticles(articles);
+    }
+    
+    /**
+     * @since 2.8.26
+     * @param touser
+     * @param article
+     */
+    public NewsMessage(String touser, Article article) {
+        super(touser, "news");
+        this.news = new News();
+        this.news.setArticles(Collections.singletonList(article));
     }
 
     private News news;

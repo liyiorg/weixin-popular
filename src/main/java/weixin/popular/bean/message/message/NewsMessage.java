@@ -19,7 +19,7 @@ public class NewsMessage extends Message {
         this.news = new News();
         this.news.setArticles(articles);
     }
-    
+
     /**
      * @since 2.8.26
      * @param touser
@@ -31,7 +31,16 @@ public class NewsMessage extends Message {
         this.news.setArticles(Collections.singletonList(article));
     }
 
+    public NewsMessage(String touser, String mediaId) {
+        super(touser, "mpnews");
+        this.mpnews = new MpNews();
+        this.mpnews.setMedia_id(mediaId);
+    }
+
     private News news;
+
+    private MpNews mpnews;
+
 
     public News getNews() {
         return news;
@@ -39,6 +48,26 @@ public class NewsMessage extends Message {
 
     public void setNews(News news) {
         this.news = news;
+    }
+
+    public MpNews getMpnews() {
+        return mpnews;
+    }
+
+    public void setMpnews(MpNews mpnews) {
+        this.mpnews = mpnews;
+    }
+
+    public static class MpNews {
+        private String media_id;
+
+        public String getMedia_id() {
+            return media_id;
+        }
+
+        public void setMedia_id(String media_id) {
+            this.media_id = media_id;
+        }
     }
 
     public static class News {

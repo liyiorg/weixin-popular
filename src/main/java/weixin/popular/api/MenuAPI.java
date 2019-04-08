@@ -8,6 +8,7 @@ import org.apache.http.entity.StringEntity;
 
 import weixin.popular.bean.BaseResult;
 import weixin.popular.bean.menu.Menu;
+import weixin.popular.bean.menu.MenuAddconditionalResult;
 import weixin.popular.bean.menu.MenuButtons;
 import weixin.popular.bean.menu.TrymatchResult;
 import weixin.popular.bean.menu.selfmenu.CurrentSelfmenuInfo;
@@ -98,7 +99,7 @@ public class MenuAPI extends BaseAPI{
 	 * @param menuButtons menuButtons
 	 * @return BaseResult
 	 */
-	public static BaseResult menuAddconditional(String access_token,MenuButtons menuButtons){
+	public static MenuAddconditionalResult menuAddconditional(String access_token,MenuButtons menuButtons){
 		String menuJson = JsonUtil.toJSONString(menuButtons);
 		return menuAddconditional(access_token,menuJson);
 	}
@@ -110,14 +111,14 @@ public class MenuAPI extends BaseAPI{
 	 * @param menuJson menuJson
 	 * @return BaseResult
 	 */
-	public static BaseResult menuAddconditional(String access_token,String menuJson){
+	public static MenuAddconditionalResult menuAddconditional(String access_token,String menuJson){
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 				.setHeader(jsonHeader)
 				.setUri(BASE_URI+"/cgi-bin/menu/addconditional")
 				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
 				.setEntity(new StringEntity(menuJson,Charset.forName("utf-8")))
 				.build();
-		return LocalHttpClient.executeJsonResult(httpUriRequest,BaseResult.class);
+		return LocalHttpClient.executeJsonResult(httpUriRequest,MenuAddconditionalResult.class);
 	}
 
 	/**

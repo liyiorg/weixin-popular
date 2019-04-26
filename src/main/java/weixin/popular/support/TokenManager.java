@@ -109,14 +109,18 @@ public class TokenManager{
 	}
 	
 	private static void doRun(final String appid, final String secret) {
-		try {
-			Token token = TokenAPI.token(appid,secret);
-			tokenMap.put(appid,token.getAccess_token());
-			logger.info("ACCESS_TOKEN refurbish with appid:{}",appid);
-		} catch (Exception e) {
-			logger.error("ACCESS_TOKEN refurbish error with appid:{}",appid);
-			logger.error("", e);
-		}
+		boolean success = false;
+		do {
+			try {
+				Token token = TokenAPI.token(appid,secret);
+				tokenMap.put(appid,token.getAccess_token());
+				success = true;
+				logger.info("ACCESS_TOKEN refurbish with appid:{}",appid);
+			} catch (Exception e) {
+				logger.error("ACCESS_TOKEN refurbish error with appid:{}",appid);
+				e.printStackTrace();
+			}
+		} while (!success);
 	}
 
 	/**

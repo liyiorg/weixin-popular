@@ -91,6 +91,16 @@ public class Unifiedorder extends MchVersion{
 	 */
 	@XmlJavaTypeAdapter(value= SceneInfo.JsonXmlAdapter.class)
 	private SceneInfo scene_info;
+	
+	/**
+	 * @since 2.8.27
+	 */
+	private String receipt;
+	
+	/**
+	 * @since 2.8.27
+	 */
+	private String profit_sharing;
 
 	public String getAppid() {
 		return appid;
@@ -315,5 +325,23 @@ public class Unifiedorder extends MchVersion{
 	public void setScene_info(SceneInfo scene_info) {
 		this.scene_info = scene_info;
 	}
+
+	public String getReceipt() {
+		return receipt;
+	}
+
+	public void setReceipt(String receipt) {
+		this.receipt = receipt;
+	}
+
+	public String getProfit_sharing() {
+		return profit_sharing;
+	}
+
+	public void setProfit_sharing(String profit_sharing) {
+		this.profit_sharing = profit_sharing;
+	}
+	
+	
 	
 }

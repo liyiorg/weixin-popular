@@ -125,6 +125,10 @@ public class PayMchAPI extends BaseAPI{
 		if(micropay.getDetail() != null){
 			map.put("detail",JsonUtil.toJSONString(micropay.getDetail()));
 		}
+		//@since 2.8.27 scene_info 字段签名处理
+		if(micropay.getScene_info() != null){
+			map.put("scene_info",JsonUtil.toJSONString(micropay.getScene_info()));
+		}
 		String sign = SignatureUtil.generateSign(map,micropay.getSign_type(),key);
 		micropay.setSign(sign);
 		String closeorderXML = XMLConverUtil.convertToXML(micropay);

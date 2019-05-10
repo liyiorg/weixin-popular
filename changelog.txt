@@ -2,9 +2,10 @@ WEIXIN-POPULAR CHANGELOG
 ===========================
 https://github.com/liyiorg/weixin-popular
 
-Changes in version 2.8.27 (2019-04-?)
+Changes in version 2.8.27 (2019-05-10)
 -------------------------------------
 * #198 MenuAPI 创建个性化菜单返回menuid
+* #200 统一下单API、付款码支付API、委托扣款API中上传新增参数profit_sharing，请求支付
 
 
 Changes in version 2.8.26 (2019-02-22)

@@ -2,6 +2,12 @@ WEIXIN-POPULAR CHANGELOG
 ===========================
 https://github.com/liyiorg/weixin-popular
 
+Changes in version 2.8.28 (2019-07-?)
+-------------------------------------
+* #199 刷卡支付 授权码查询OPENID接口 添加返回字段sub_openid
+* #207 分账接收方添加参数 relation_type,custom_relation
+* #208 第三方平台代小程序提交代码审核新增参数 third_class,first_id,second_id,third_id
+
 Changes in version 2.8.27 (2019-05-10)
 -------------------------------------
 * #198 MenuAPI 创建个性化菜单返回menuid

@@ -39,7 +39,8 @@ public class WxaAPI extends BaseAPI {
 	private static Logger logger = LoggerFactory.getLogger(WxaAPI.class);
 
 	/**
-	 * 修改服务器地址
+	 * 修改服务器地址<br>
+     * 设置小程序服务器域名
 	 * @since 2.8.9
 	 * @param access_token access_token
 	 * @param modifyDomain modifyDomain
@@ -55,7 +56,25 @@ public class WxaAPI extends BaseAPI {
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,ModifyDomainResult.class);
 	}
-	
+
+    /**
+     * 修改服务器地址<br>
+     * 设置小程序业务域名（仅供第三方代小程序调用）
+     * @since 2.8.28
+     * @param access_token access_token
+     * @return result
+     */
+    public static BaseResult setwebviewdomain(String access_token, SetWebviewDomain setWebviewDomain){
+        String json = JsonUtil.toJSONString(setWebviewDomain);
+        HttpUriRequest httpUriRequest = RequestBuilder.post()
+                .setHeader(jsonHeader)
+                .setUri(BASE_URI + "/wxa/setwebviewdomain")
+                .addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
+                .setEntity(new StringEntity(json,Charset.forName("utf-8")))
+                .build();
+        return LocalHttpClient.executeJsonResult(httpUriRequest,BaseResult.class);
+    }
+
 	/**
 	 * 成员管理 <br>
 	 * 绑定微信用户为小程序体验者

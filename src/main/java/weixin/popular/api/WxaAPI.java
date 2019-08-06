@@ -62,6 +62,7 @@ public class WxaAPI extends BaseAPI {
      * 设置小程序业务域名（仅供第三方代小程序调用）
      * @since 2.8.28
      * @param access_token access_token
+     * @param setWebviewDomain setWebviewDomain
      * @return result
      */
     public static BaseResult setwebviewdomain(String access_token, SetWebviewDomain setWebviewDomain){

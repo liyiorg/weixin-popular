@@ -11,6 +11,10 @@ public class ReceiverOperation {
 	private String account;
 
 	private String name;
+	
+	private String relation_type;
+	
+	private String custom_relation;
 
 	public String getType() {
 		return type;
@@ -35,6 +39,24 @@ public class ReceiverOperation {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	public String getRelation_type() {
+		return relation_type;
+	}
+
+	public void setRelation_type(String relation_type) {
+		this.relation_type = relation_type;
+	}
+
+	public String getCustom_relation() {
+		return custom_relation;
+	}
+
+	public void setCustom_relation(String custom_relation) {
+		this.custom_relation = custom_relation;
+	}
+
+
 
 	static class JsonXmlAdapter extends XmlAdapter<String, ReceiverOperation> {
 

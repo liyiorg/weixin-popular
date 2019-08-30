@@ -273,6 +273,38 @@ public class WxaAPI extends BaseAPI {
 				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest,BaseResult.class);
 	}
+
+	/**
+	 * 代码管理<br>
+	 * 小程序审核撤回（仅供第三方代小程序调用）
+	 * @since 2.8.29
+	 * @param access_token access_token
+	 * @return result
+	 */
+	public static BaseResult undocodeaudit(String access_token) {
+		HttpUriRequest httpUriRequest = RequestBuilder.get()
+				.setHeader(jsonHeader)
+				.setUri(BASE_URI + "/wxa/undocodeaudit")
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
+				.build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest,BaseResult.class);
+	}
+
+	/**
+	 * 代码管理<br>
+	 * 小程序版本回退（仅供第三方代小程序调用）
+	 * @since 2.8.29
+	 * @param access_token access_token
+	 * @return result
+	 */
+	public static BaseResult revertcoderelease(String access_token) {
+		HttpUriRequest httpUriRequest = RequestBuilder.get()
+				.setHeader(jsonHeader)
+				.setUri(BASE_URI + "/wxa/revertcoderelease")
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
+				.build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest,BaseResult.class);
+	}
 	
 	/**
 	 * 代码管理<br>

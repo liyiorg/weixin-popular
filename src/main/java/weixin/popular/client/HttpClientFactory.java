@@ -13,6 +13,7 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLException;
 
 import org.apache.http.HttpEntityEnclosingRequest;
+import org.apache.http.HttpHost;
 import org.apache.http.HttpRequest;
 import org.apache.http.client.HttpRequestRetryHandler;
 import org.apache.http.client.protocol.HttpClientContext;
@@ -38,8 +39,19 @@ public class HttpClientFactory{
 	
 	private static final String[] supportedProtocols = new String[]{"TLSv1"};
 	
+	private static HttpHost proxy;
+	
 	public static CloseableHttpClient createHttpClient() {
 		return createHttpClient(100,10,5000,2);
+	}
+	
+	/**
+	 * 设置代理
+	 * @since 2.8.29
+	 * @param proxy 代理
+	 */
+	public static void setProxy(HttpHost proxy){
+		HttpClientFactory.proxy = proxy;
 	}
 
 	/**
@@ -59,11 +71,14 @@ public class HttpClientFactory{
 			poolingHttpClientConnectionManager.setDefaultMaxPerRoute(maxPerRoute);
 			SocketConfig socketConfig = SocketConfig.custom().setSoTimeout(timeout).build();
 			poolingHttpClientConnectionManager.setDefaultSocketConfig(socketConfig);
-			return HttpClientBuilder.create()
-									.setConnectionManager(poolingHttpClientConnectionManager)
-									.setSSLSocketFactory(sf)
-									.setRetryHandler(new HttpRequestRetryHandlerImpl(retryExecutionCount))
-									.build();
+			HttpClientBuilder builder = HttpClientBuilder.create();
+			if(proxy != null){
+				builder.setProxy(proxy);
+			}
+			return builder.setConnectionManager(poolingHttpClientConnectionManager)
+						  .setSSLSocketFactory(sf)
+						  .setRetryHandler(new HttpRequestRetryHandlerImpl(retryExecutionCount))
+						  .build();
 		} catch (KeyManagementException e) {
 			logger.error("", e);
 		} catch (NoSuchAlgorithmException e) {
@@ -99,11 +114,14 @@ public class HttpClientFactory{
 			SSLConnectionSocketFactory sf = new SSLConnectionSocketFactory(sslContext,supportedProtocols,
 	                null,SSLConnectionSocketFactory.BROWSER_COMPATIBLE_HOSTNAME_VERIFIER);
 			SocketConfig socketConfig = SocketConfig.custom().setSoTimeout(timeout).build();
-			return HttpClientBuilder.create()
-									.setDefaultSocketConfig(socketConfig)
-									.setSSLSocketFactory(sf)
-									.setRetryHandler(new HttpRequestRetryHandlerImpl(retryExecutionCount))
-									.build();
+			HttpClientBuilder builder = HttpClientBuilder.create();
+			if(proxy != null){
+				builder.setProxy(proxy);
+			}
+			return builder.setDefaultSocketConfig(socketConfig)
+						  .setSSLSocketFactory(sf)
+						  .setRetryHandler(new HttpRequestRetryHandlerImpl(retryExecutionCount))
+						  .build();
 		} catch (KeyManagementException e) {
 			logger.error("", e);
 		} catch (NoSuchAlgorithmException e) {

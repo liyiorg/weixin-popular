@@ -2,6 +2,10 @@ WEIXIN-POPULAR CHANGELOG
 ===========================
 https://github.com/liyiorg/weixin-popular
 
+Changes in version 2.8.29 (2019-10-29)
+-------------------------------------
+* #215 添加HttpClient 代理配置
+
 Changes in version 2.8.28 (2019-07-26)
 -------------------------------------
 * #199 刷卡支付 授权码查询OPENID接口 添加返回字段sub_openid

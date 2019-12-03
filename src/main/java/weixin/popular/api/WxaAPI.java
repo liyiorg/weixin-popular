@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 import javax.imageio.ImageIO;
 
@@ -396,7 +397,55 @@ public class WxaAPI extends BaseAPI {
 		}
 		return null;
 	}
-	
+
+	/**
+	 * 获取小程序码 B<br>
+	 * 适用于需要的码数量极多，或仅临时使用的业务场景<br>
+	 * 注意：通过该接口生成的小程序码，永久有效，数量暂无限制。用户扫描该码进入小程序后，将统一打开首页，开发者需在首页根据获取的码中 scene 字段的值，再做处理逻辑。
+	 * @since 2.8.30
+	 * @param access_token access_token
+	 * @param getwxacodeunlimit getwxacodeunlimit
+	 * @return WxaCodeResult WxaCodeResult
+	 */
+	public static WxaCodeResult getwxacodeunlimitresult(String access_token,Getwxacodeunlimit getwxacodeunlimit){
+		String json = JsonUtil.toJSONString(getwxacodeunlimit);
+		HttpUriRequest httpUriRequest = RequestBuilder.post()
+				.setHeader(jsonHeader)
+				.setUri(BASE_URI + "/wxa/getwxacodeunlimit")
+				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
+				.setEntity(new StringEntity(json,Charset.forName("utf-8")))
+				.build();
+		CloseableHttpResponse httpResponse = LocalHttpClient.execute(httpUriRequest);
+		try {
+			int status = httpResponse.getStatusLine().getStatusCode();
+			WxaCodeResult wxaCodeResult;
+			byte[] bytes = null;
+			if (status == 200) {
+				bytes = EntityUtils.toByteArray(httpResponse.getEntity());
+				BufferedImage bufferedImage = ImageIO.read(new ByteArrayInputStream(bytes));
+				if(bufferedImage != null) {
+					wxaCodeResult = new WxaCodeResult();
+					wxaCodeResult.setBufferedImage(bufferedImage);
+					return wxaCodeResult;
+				}
+			}
+			if (status >= 200 && status < 300 && bytes != null) {
+				String str = new String(bytes, StandardCharsets.UTF_8);
+				wxaCodeResult = JsonUtil.parseObject(str, WxaCodeResult.class);
+				return wxaCodeResult;
+			}
+		} catch (IOException e) {
+			logger.error("", e);
+		} finally {
+			try {
+				httpResponse.close();
+			} catch (IOException e) {
+				logger.error("", e);
+			}
+		}
+		return null;
+	}
+
 	/**
 	 * 附近 添加地点
 	 * @since 2.8.18

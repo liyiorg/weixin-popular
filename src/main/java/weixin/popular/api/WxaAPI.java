@@ -277,7 +277,7 @@ public class WxaAPI extends BaseAPI {
 	/**
 	 * 代码管理<br>
 	 * 小程序审核撤回（仅供第三方代小程序调用）
-	 * @since 2.8.29
+	 * @since 2.8.30
 	 * @param access_token access_token
 	 * @return result
 	 */
@@ -293,7 +293,7 @@ public class WxaAPI extends BaseAPI {
 	/**
 	 * 代码管理<br>
 	 * 小程序版本回退（仅供第三方代小程序调用）
-	 * @since 2.8.29
+	 * @since 2.8.30
 	 * @param access_token access_token
 	 * @return result
 	 */

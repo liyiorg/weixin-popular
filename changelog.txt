@@ -2,6 +2,11 @@ WEIXIN-POPULAR CHANGELOG
 ===========================
 https://github.com/liyiorg/weixin-popular
 
+Changes in version 2.8.30 (2019-12-11)
+-------------------------------------
+* #210 SecapiPayProfitsharingfinishResult 缺少JAXB注解
+# #220 WxaAPI 新增接口， 小程序审核撤回、小程序版本回退、生成临时小程序码接口
+
 Changes in version 2.8.29 (2019-10-29)
 -------------------------------------
 * #215 添加HttpClient 代理配置

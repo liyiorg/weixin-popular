@@ -1,10 +1,10 @@
-package weixin.popular.bean.wxa;
+package weixin.popular.bean.wxaapi;
 
 import weixin.popular.bean.BaseResult;
 
 import java.util.List;
 
-public class GetNewTmplCategoryResult extends BaseResult {
+public class GetCategoryResult extends BaseResult {
 
     private List<Category> data;
 

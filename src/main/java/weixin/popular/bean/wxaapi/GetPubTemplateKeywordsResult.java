@@ -1,4 +1,4 @@
-package weixin.popular.bean.wxa;
+package weixin.popular.bean.wxaapi;
 
 import weixin.popular.bean.BaseResult;
 

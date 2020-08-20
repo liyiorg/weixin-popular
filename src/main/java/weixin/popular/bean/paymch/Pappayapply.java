@@ -64,6 +64,16 @@ public class Pappayapply {
     private String outerid;
 
     private String sign_type;
+    
+    /**
+	 * @since 2.8.27
+	 */
+	private String receipt;
+	
+	/**
+	 * @since 2.8.27
+	 */
+	private String profit_sharing;
 
     public String getAppid() {
         return appid;
@@ -265,4 +275,20 @@ public class Pappayapply {
         this.sign_type = sign_type;
     }
 
+	public String getReceipt() {
+		return receipt;
+	}
+
+	public void setReceipt(String receipt) {
+		this.receipt = receipt;
+	}
+
+	public String getProfit_sharing() {
+		return profit_sharing;
+	}
+
+	public void setProfit_sharing(String profit_sharing) {
+		this.profit_sharing = profit_sharing;
+	}
+    
 }

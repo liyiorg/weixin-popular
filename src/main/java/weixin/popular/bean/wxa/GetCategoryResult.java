@@ -21,6 +21,9 @@ public class GetCategoryResult extends BaseResult {
 		private String first_class;
 		private String second_class;
 		private String third_class;
+		private Integer first_id;
+		private Integer second_id;
+		private Integer third_id;
 
 		public String getFirst_class() {
 			return first_class;
@@ -46,5 +49,28 @@ public class GetCategoryResult extends BaseResult {
 			this.third_class = third_class;
 		}
 
+		public Integer getFirst_id() {
+			return first_id;
+		}
+
+		public void setFirst_id(Integer first_id) {
+			this.first_id = first_id;
+		}
+
+		public Integer getSecond_id() {
+			return second_id;
+		}
+
+		public void setSecond_id(Integer second_id) {
+			this.second_id = second_id;
+		}
+
+		public Integer getThird_id() {
+			return third_id;
+		}
+
+		public void setThird_id(Integer third_id) {
+			this.third_id = third_id;
+		}
 	}
 }

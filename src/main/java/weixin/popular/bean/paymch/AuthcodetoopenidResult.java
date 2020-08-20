@@ -35,5 +35,4 @@ public class AuthcodetoopenidResult extends MchBase {
 	public void setSub_openid(String sub_openid) {
 		this.sub_openid = sub_openid;
 	}
-
 }

@@ -8,12 +8,22 @@ public class SceneInfo {
 
 	private H5Info h5_info;
 
+	private StoreInfo store_info;
+
 	public H5Info getH5_info() {
 		return h5_info;
 	}
 
 	public void setH5_info(H5Info h5_info) {
 		this.h5_info = h5_info;
+	}
+
+	public StoreInfo getStore_info() {
+		return store_info;
+	}
+
+	public void setStore_info(StoreInfo store_info) {
+		this.store_info = store_info;
 	}
 
 	public static class H5Info {
@@ -67,6 +77,50 @@ public class SceneInfo {
 		public void setWap_name(String wap_name) {
 			this.wap_name = wap_name;
 		}
+	}
+
+	public static class StoreInfo {
+
+		private String id;
+
+		private String name;
+
+		private String area_code;
+
+		private String address;
+
+		public String getId() {
+			return id;
+		}
+
+		public void setId(String id) {
+			this.id = id;
+		}
+
+		public String getName() {
+			return name;
+		}
+
+		public void setName(String name) {
+			this.name = name;
+		}
+
+		public String getArea_code() {
+			return area_code;
+		}
+
+		public void setArea_code(String area_code) {
+			this.area_code = area_code;
+		}
+
+		public String getAddress() {
+			return address;
+		}
+
+		public void setAddress(String address) {
+			this.address = address;
+		}
+
 	}
 
 	static class JsonXmlAdapter extends XmlAdapter<String, SceneInfo> {

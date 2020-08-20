@@ -49,7 +49,10 @@ public class StateChangeNotification implements DynamicField {
 	private String openid;
 	private String sub_openid;
 	private String plate_number_list;// v2.0前
-	private List<PlateNumberInfo> plate_number_info;// v2.0以后返回这个
+	// v2.0以后返回这个
+	private List<PlateNumberInfo> plate_number_info;
+	// 3.0
+	private String deduct_mode;
 
 	public String getMch_id() {
 		return mch_id;
@@ -179,5 +182,13 @@ public class StateChangeNotification implements DynamicField {
 			JSONObject info = JSON.parseObject(json);
 			this.plate_number_info = JSON.parseArray(info.getString("plate_number_info"), PlateNumberInfo.class);
 		}
+	}
+
+	public String getDeduct_mode() {
+		return deduct_mode;
+	}
+
+	public void setDeduct_mode(String deduct_mode) {
+		this.deduct_mode = deduct_mode;
 	}
 }

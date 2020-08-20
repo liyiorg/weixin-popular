@@ -1,8 +1,12 @@
 package weixin.popular.bean.vehicle;
 
+import java.util.Map;
+
+import weixin.popular.util.MapUtil;
+
 /**
  * <a href=
- * "https://pay.weixin.qq.com/wiki/doc/api/pap_sl_jt_v2.php?chapter=20_932&index=10">跳转到H5，用户授权/开通接口api</a>
+ * "https://pay.weixin.qq.com/wiki/doc/api/pap_sl_jt_v2.php?chapter=20_932&index=10">跳转到小程序/H5/APP，用户授权/开通接口api</a>
  * 
  * @author around
  *
@@ -127,4 +131,7 @@ public class NavigateToAppForAuthExtraData {
 		this.channel_type = channel_type;
 	}
 
+	public Map<String,String> toMap(){
+		return MapUtil.objectToMap(this);
+	}
 }

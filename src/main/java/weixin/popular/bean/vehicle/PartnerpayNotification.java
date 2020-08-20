@@ -13,7 +13,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  */
 @XmlRootElement(name = "xml")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class EntranceNotification extends VehicleBaseReq {
+public class PartnerpayNotification extends VehicleBaseReq {
 
 	// 格式为json...
 	@XmlJavaTypeAdapter(value = SceneInfo.JsonXmlAdapter.class)

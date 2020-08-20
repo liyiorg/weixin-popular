@@ -13,7 +13,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  */
 @XmlRootElement(name = "xml")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class PayApply extends VehicleBaseReq {
+public class PartnerpayPayApply extends VehicleBaseReq {
 
 	// 商品或支付单简要描述
 	private String body;
@@ -27,6 +27,7 @@ public class PayApply extends VehicleBaseReq {
 	private String goods_tag;
 	private String notify_url;
 	private String trade_type;
+	private String openid;
 	/**
 	 * 1. PARKING：车场停车场景 2. PARKING SPACE；车位停车场景 3. GAS 加油场景 4. HIGHWAY 高速场景
 	 * 5.BRIDGE 路桥场景
@@ -129,6 +130,14 @@ public class PayApply extends VehicleBaseReq {
 
 	public void setScene_info(SceneInfo scene_info) {
 		this.scene_info = scene_info;
+	}
+
+	public String getOpenid() {
+		return openid;
+	}
+
+	public void setOpenid(String openid) {
+		this.openid = openid;
 	}
 
 }

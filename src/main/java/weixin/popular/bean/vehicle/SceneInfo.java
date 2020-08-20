@@ -34,6 +34,8 @@ public class SceneInfo {
 	private String carrying_capacity;
 	private String carrying_range;
 	private String channel_type;
+	private String deduct_mode;
+	private String support_deduct_mode;
 
 	public String getStart_time() {
 		return start_time;
@@ -211,6 +213,22 @@ public class SceneInfo {
 		this.channel_type = channel_type;
 	}
 
+	public String getDeduct_mode() {
+		return deduct_mode;
+	}
+
+	public void setDeduct_mode(String deduct_mode) {
+		this.deduct_mode = deduct_mode;
+	}
+
+	public String getSupport_deduct_mode() {
+		return support_deduct_mode;
+	}
+
+	public void setSupport_deduct_mode(String support_deduct_mode) {
+		this.support_deduct_mode = support_deduct_mode;
+	}
+
 	static class JsonXmlAdapter extends XmlAdapter<String, SceneInfo> {
 
 		@Override
@@ -220,7 +238,7 @@ public class SceneInfo {
 
 		@Override
 		public SceneInfo unmarshal(String v) throws Exception {
-			return JSON.parseObject(v, EntranceNotification.class).getScene_info();
+			return JSON.parseObject(v, PartnerpayNotification.class).getScene_info();
 		}
 
 	}

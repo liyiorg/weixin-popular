@@ -11,6 +11,8 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 
 import weixin.popular.bean.DynamicField;
+import weixin.popular.bean.vehicle.enums.DeductMode;
+import weixin.popular.bean.vehicle.enums.UserState;
 
 /**
  * 用户状态查询结果
@@ -22,7 +24,7 @@ import weixin.popular.bean.DynamicField;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class PartnerpayQueryStateResult extends VehicleBaseResult implements DynamicField {
 
-	private String user_state;
+	private UserState user_state;
 	private String openid;
 	private String sub_openid;
 
@@ -37,13 +39,13 @@ public class PartnerpayQueryStateResult extends VehicleBaseResult implements Dyn
 	private List<PlateNumberInfo> plate_number_info;// v2.0以后返回这个
 	
 	// 3.0新增
-	private String deduct_mode;
+	private DeductMode deduct_mode;
 	
-	public String getUser_state() {
+	public UserState getUser_state() {
 		return user_state;
 	}
 
-	public void setUser_state(String user_state) {
+	public void setUser_state(UserState user_state) {
 		this.user_state = user_state;
 	}
 
@@ -87,6 +89,14 @@ public class PartnerpayQueryStateResult extends VehicleBaseResult implements Dyn
 		this.plate_number_info = plate_number_info;
 	}
 
+	public DeductMode getDeduct_mode() {
+		return deduct_mode;
+	}
+
+	public void setDeduct_mode(DeductMode deduct_mode) {
+		this.deduct_mode = deduct_mode;
+	}
+
 	@Override
 	public void buildDynamicField(Map<String, String> dataMap) {
 		String json = dataMap.get("plate_number_info");
@@ -95,13 +105,5 @@ public class PartnerpayQueryStateResult extends VehicleBaseResult implements Dyn
 			JSONObject info = JSON.parseObject(json);
 			this.plate_number_info = JSON.parseArray(info.getString("plate_number_info"), PlateNumberInfo.class);
 		}
-	}
-
-	public String getDeduct_mode() {
-		return deduct_mode;
-	}
-
-	public void setDeduct_mode(String deduct_mode) {
-		this.deduct_mode = deduct_mode;
 	}
 }

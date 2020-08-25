@@ -4,6 +4,9 @@ import javax.xml.bind.annotation.adapters.XmlAdapter;
 
 import com.alibaba.fastjson.JSON;
 
+import weixin.popular.bean.vehicle.enums.DeductMode;
+import weixin.popular.bean.vehicle.enums.SupportDeductMode;
+
 /**
  * 场景信息，不同业务场景设置不同的值
  * 
@@ -34,8 +37,8 @@ public class SceneInfo {
 	private String carrying_capacity;
 	private String carrying_range;
 	private String channel_type;
-	private String deduct_mode;
-	private String support_deduct_mode;
+	private DeductMode deduct_mode;
+	private SupportDeductMode support_deduct_mode;
 
 	public String getStart_time() {
 		return start_time;
@@ -213,19 +216,19 @@ public class SceneInfo {
 		this.channel_type = channel_type;
 	}
 
-	public String getDeduct_mode() {
+	public DeductMode getDeduct_mode() {
 		return deduct_mode;
 	}
 
-	public void setDeduct_mode(String deduct_mode) {
+	public void setDeduct_mode(DeductMode deduct_mode) {
 		this.deduct_mode = deduct_mode;
 	}
 
-	public String getSupport_deduct_mode() {
+	public SupportDeductMode getSupport_deduct_mode() {
 		return support_deduct_mode;
 	}
 
-	public void setSupport_deduct_mode(String support_deduct_mode) {
+	public void setSupport_deduct_mode(SupportDeductMode support_deduct_mode) {
 		this.support_deduct_mode = support_deduct_mode;
 	}
 

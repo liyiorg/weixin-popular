@@ -4,6 +4,8 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import weixin.popular.bean.vehicle.enums.DeductMode;
+
 /**
  * 入场通知结果
  * 
@@ -20,7 +22,7 @@ public class PartnerpayNotificationResult extends VehicleBaseResult {
 	/**
 	 * 3.0新增字段, 发起扣费的方式 PROACTIVE：表示用户主动发起的免密支付 AUTOPAY：表示用户无感的支付
 	 */
-	private String deduct_mode;
+	private DeductMode deduct_mode;
 
 	public final String getUser_state() {
 		return user_state;
@@ -46,11 +48,11 @@ public class PartnerpayNotificationResult extends VehicleBaseResult {
 		this.sub_openid = sub_openid;
 	}
 
-	public String getDeduct_mode() {
+	public DeductMode getDeduct_mode() {
 		return deduct_mode;
 	}
 
-	public void setDeduct_mode(String deduct_mode) {
+	public void setDeduct_mode(DeductMode deduct_mode) {
 		this.deduct_mode = deduct_mode;
 	}
 

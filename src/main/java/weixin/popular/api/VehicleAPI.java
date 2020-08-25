@@ -7,14 +7,15 @@ import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.client.methods.RequestBuilder;
 import org.apache.http.entity.StringEntity;
 
+import weixin.popular.bean.vehicle.NavigateToOpenNoSense;
+import weixin.popular.bean.vehicle.NavigateToOpenService;
 import weixin.popular.bean.vehicle.PartnerpayNotification;
 import weixin.popular.bean.vehicle.PartnerpayNotificationResult;
-import weixin.popular.bean.vehicle.NavigateToAppForAuth;
-import weixin.popular.bean.vehicle.NavigateToAppForAuthExtraData;
 import weixin.popular.bean.vehicle.PartnerpayPayApply;
 import weixin.popular.bean.vehicle.PartnerpayPayApplyResult;
 import weixin.popular.bean.vehicle.PartnerpayQueryState;
 import weixin.popular.bean.vehicle.PartnerpayQueryStateResult;
+import weixin.popular.bean.vehicle.enums.TradeScene;
 import weixin.popular.client.LocalHttpClient;
 import weixin.popular.util.JsonUtil;
 import weixin.popular.util.MapUtil;
@@ -97,7 +98,7 @@ public class VehicleAPI extends BaseAPI {
 
 	/**
 	 * <a href=
-	 * "https://pay.weixin.qq.com/wiki/doc/api/pap_sl_jt_v2.php?chapter=20_932&index=10">跳转到小程序/H5/APP，用户授权/开通接口api</a>
+	 * "https://pay.weixin.qq.com/wiki/doc/api/pap_sl_jt_v2.php?chapter=20_932&index=10">跳转到小程序/H5/APP，用户授权/开通车主服务</a>
 	 * 
 	 * @param path
 	 * @param tradeScene
@@ -113,12 +114,12 @@ public class VehicleAPI extends BaseAPI {
 	 * @param key
 	 * @return
 	 */
-	public static NavigateToAppForAuth navigateToAppForAuth(String path, String tradeScene, String appid,
+	public static NavigateToOpenService navigateToOpenService(String path, TradeScene tradeScene, String appid,
 			String subAppid, String mchid, String subMchid, String openid, String subOpenid, String plateNumber,
 			String materialInfo, String channelType, String key) {
-		NavigateToAppForAuth nav = new NavigateToAppForAuth();
+		NavigateToOpenService nav = new NavigateToOpenService();
 		nav.setPath(path);
-		NavigateToAppForAuthExtraData extraData = new NavigateToAppForAuthExtraData();
+		NavigateToOpenService.ExtraData extraData = new NavigateToOpenService.ExtraData();
 		extraData.setAppid(appid);
 		extraData.setSub_appid(subAppid);
 		extraData.setMch_id(mchid);
@@ -132,7 +133,24 @@ public class VehicleAPI extends BaseAPI {
 		extraData.setNonce_str(String.valueOf(System.currentTimeMillis()));
 		Map<String, String> map = MapUtil.objectToMap(extraData);
 		extraData.setSign(SignatureUtil.generateSign(map, key));
-		nav.setExtra_data(extraData);
+		nav.setExtraData(extraData);
+		return nav;
+	}
+
+	public static NavigateToOpenNoSense navigateToOpenNoSense(String appid, String subAppid, String mchid,
+			String subMchid, String openid, String plateNumber, String key) {
+		NavigateToOpenNoSense nav = new NavigateToOpenNoSense();
+		NavigateToOpenNoSense.ExtraData extraData = new NavigateToOpenNoSense.ExtraData();
+		extraData.setAppid(appid);
+		extraData.setSub_appid(subAppid);
+		extraData.setMch_id(mchid);
+		extraData.setSub_mch_id(subMchid);
+		extraData.setOpenid(openid);
+		extraData.setPlate_number(plateNumber);
+		extraData.setNonce_str(String.valueOf(System.currentTimeMillis()));
+		Map<String, String> map = MapUtil.objectToMap(extraData);
+		extraData.setSign(SignatureUtil.generateSign(map, key));
+		nav.setExtraData(extraData);
 		return nav;
 	}
 

@@ -5,6 +5,8 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import weixin.popular.bean.vehicle.enums.TradeScene;
+
 /**
  * 入场通知
  * 
@@ -20,7 +22,7 @@ public class PartnerpayNotification extends VehicleBaseReq {
 	private SceneInfo scene_info;
 
 	// 委托代扣的交易场景值，目前支持 ： 1. PARKING：车场停车场景 ；2. PARKING SPACE 车位停车场景；该值催缴时会向微信用户进行展示
-	private String trade_scene;
+	private TradeScene trade_scene;
 
 	/**
 	 * @return the 场景信息
@@ -40,7 +42,7 @@ public class PartnerpayNotification extends VehicleBaseReq {
 	/**
 	 * @return 场景
 	 */
-	public final String getTrade_scene() {
+	public final TradeScene getTrade_scene() {
 		return trade_scene;
 	}
 
@@ -48,7 +50,7 @@ public class PartnerpayNotification extends VehicleBaseReq {
 	 * @param 场景
 	 *            to set
 	 */
-	public final void setTrade_scene(String trade_scene) {
+	public final void setTrade_scene(TradeScene trade_scene) {
 		this.trade_scene = trade_scene;
 	}
 }

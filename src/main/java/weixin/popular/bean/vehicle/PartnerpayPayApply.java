@@ -5,6 +5,8 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import weixin.popular.bean.vehicle.enums.TradeScene;
+
 /**
  * 申请扣款
  * 
@@ -32,7 +34,7 @@ public class PartnerpayPayApply extends VehicleBaseReq {
 	 * 1. PARKING：车场停车场景 2. PARKING SPACE；车位停车场景 3. GAS 加油场景 4. HIGHWAY 高速场景
 	 * 5.BRIDGE 路桥场景
 	 */
-	private String trade_scene;
+	private TradeScene trade_scene;
 	@XmlJavaTypeAdapter(value = SceneInfo.JsonXmlAdapter.class)
 	private SceneInfo scene_info;
 
@@ -116,11 +118,11 @@ public class PartnerpayPayApply extends VehicleBaseReq {
 		this.trade_type = trade_type;
 	}
 
-	public String getTrade_scene() {
+	public TradeScene getTrade_scene() {
 		return trade_scene;
 	}
 
-	public void setTrade_scene(String trade_scene) {
+	public void setTrade_scene(TradeScene trade_scene) {
 		this.trade_scene = trade_scene;
 	}
 

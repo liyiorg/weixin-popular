@@ -11,6 +11,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 
 import weixin.popular.bean.DynamicField;
+import weixin.popular.bean.vehicle.enums.DeductMode;
 
 /**
  * 车牌状态变更通知
@@ -52,7 +53,7 @@ public class StateChangeNotification implements DynamicField {
 	// v2.0以后返回这个
 	private List<PlateNumberInfo> plate_number_info;
 	// 3.0
-	private String deduct_mode;
+	private DeductMode deduct_mode;
 
 	public String getMch_id() {
 		return mch_id;
@@ -174,6 +175,14 @@ public class StateChangeNotification implements DynamicField {
 		this.plate_number_info = plate_number_info;
 	}
 
+	public DeductMode getDeduct_mode() {
+		return deduct_mode;
+	}
+
+	public void setDeduct_mode(DeductMode deduct_mode) {
+		this.deduct_mode = deduct_mode;
+	}
+
 	@Override
 	public void buildDynamicField(Map<String, String> dataMap) {
 		String json = dataMap.get("plate_number_info");
@@ -182,13 +191,5 @@ public class StateChangeNotification implements DynamicField {
 			JSONObject info = JSON.parseObject(json);
 			this.plate_number_info = JSON.parseArray(info.getString("plate_number_info"), PlateNumberInfo.class);
 		}
-	}
-
-	public String getDeduct_mode() {
-		return deduct_mode;
-	}
-
-	public void setDeduct_mode(String deduct_mode) {
-		this.deduct_mode = deduct_mode;
 	}
 }

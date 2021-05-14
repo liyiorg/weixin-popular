@@ -44,7 +44,7 @@ weixin-popular 已支持的微信平台
 * [ShorturlAPI](https://github.com/liyiorg/weixin-popular/wiki/ShorturlAPI) 长链接转短链接
 * [TicketAPI](https://github.com/liyiorg/weixin-popular/wiki/TicketAPI) JSAPI ticket
 * [ComponentAPI](https://github.com/liyiorg/weixin-popular/wiki/ComponentAPI) 第三方平台开发
-* [CallbackipAPI](https://github.com/liyiorg/weixin-popular/wiki/CallbackipAPI) 获取微信服务器IP地址
+* [IpAPI](https://github.com/liyiorg/weixin-popular/wiki/CallbackipAPI) 获取微信服务器IP地址
 * [ClearQuotaAPI](https://github.com/liyiorg/weixin-popular/wiki/ClearQuotaAPI) 接口调用频次清零
 * [PoiAPI](https://github.com/liyiorg/weixin-popular/wiki/PoiAPI) 微信门店 @Moyq5 (贡献)
 * [CardAPI](https://github.com/liyiorg/weixin-popular/wiki/CardAPI) 微信卡券 @Moyq5 (贡献)

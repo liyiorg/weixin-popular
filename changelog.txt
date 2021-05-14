@@ -2,10 +2,16 @@ WEIXIN-POPULAR CHANGELOG
 ===========================
 https://github.com/liyiorg/weixin-popular
 
-Changes in version 2.8.31 (2020-03-26)
+Changes in version 2.8.31 (2021-05-14)
 -------------------------------------
 * #222 WxaAPI MessageAPI 新增小程序订阅消息相关接口
 * #224 内部类问题
+* #236 下载对账单优化
+* #237 退款查询接口结果添加 total_refund_count 字段
+* User 添加序列化
+
+* 添加 IpAPI
+
 
 Changes in version 2.8.30 (2019-12-11)
 -------------------------------------

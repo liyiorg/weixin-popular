@@ -57,6 +57,12 @@ public class Refundquery {
 	 */
 	@XmlElement
 	private String sub_mch_id;
+	
+	/**
+	 * @since 2.8.31
+	 */
+	@XmlElement
+	private Integer offset;
 
 	public String getAppid() {
 		return appid;
@@ -158,4 +164,13 @@ public class Refundquery {
 	public void setSign_type(String sign_type) {
 		this.sign_type = sign_type;
 	}
+
+	public Integer getOffset() {
+		return offset;
+	}
+
+	public void setOffset(Integer offset) {
+		this.offset = offset;
+	}	
+	
 }

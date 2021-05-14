@@ -14,6 +14,7 @@ import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.client.methods.RequestBuilder;
 import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.io.SocketOutputBuffer;
 import org.apache.http.util.EntityUtils;
 
 import weixin.popular.bean.paymch.*;
@@ -280,7 +281,9 @@ public class PayMchAPI extends BaseAPI{
 						str = EntityUtils.toString(entity, "utf-8");
 					}
 					EntityUtils.consume(entity);
-                    if(str.matches(".*<xml>(.*|\\n)+</xml>.*")){
+					
+					// 失败
+                    if(str.startsWith("<xml>")){
                     	return XMLConverUtil.convertToObject(DownloadbillResult.class,str);
                     }else{
                     	DownloadbillResult dr = new DownloadbillResult();
@@ -300,7 +303,7 @@ public class PayMchAPI extends BaseAPI{
 			}
 		});
 	}
-
+	
 	/**
 	 * 下载资金账单<br>
 	 * 商户可以通过该接口下载自2017年6月1日起 的历史资金流水账单。<br>
@@ -348,7 +351,7 @@ public class PayMchAPI extends BaseAPI{
 								str = EntityUtils.toString(entity, "utf-8");
 							}
 							EntityUtils.consume(entity);
-							if (str.matches(".*<xml>(.*|\\n)+</xml>.*")) {
+							if(str.startsWith("<xml>")){
 								return XMLConverUtil.convertToObject(PayDownloadfundflowResult.class, str);
 							} else {
 								PayDownloadfundflowResult dr = new PayDownloadfundflowResult();

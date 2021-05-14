@@ -22,9 +22,10 @@ import weixin.popular.bean.message.Uploadvideo;
 import weixin.popular.bean.message.massmessage.MassMessage;
 import weixin.popular.bean.message.message.Message;
 import weixin.popular.bean.message.preview.Preview;
+import weixin.popular.bean.message.subscribe.SubscribeBizSend;
+import weixin.popular.bean.message.subscribe.SubscribeSend;
 import weixin.popular.bean.message.templatemessage.TemplateMessage;
 import weixin.popular.bean.message.templatemessage.TemplateMessageResult;
-import weixin.popular.bean.message.templatemessage.WxopenTemplateMessage;
 import weixin.popular.client.LocalHttpClient;
 import weixin.popular.util.JsonUtil;
 
@@ -284,25 +285,6 @@ public class MessageAPI extends BaseAPI {
     }
 
     /**
-     * 模板消息发送（微信小程序）
-     *
-     * @param access_token    access_token
-     * @param templateMessage templateMessage
-     * @return result
-     * @since 2.8.3
-     */
-    public static BaseResult messageWxopenTemplateSend(String access_token, WxopenTemplateMessage templateMessage) {
-        String messageJson = JsonUtil.toJSONString(templateMessage);
-        HttpUriRequest httpUriRequest = RequestBuilder.post()
-                .setHeader(jsonHeader)
-                .setUri(BASE_URI + "/cgi-bin/message/wxopen/template/send")
-                .addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
-                .setEntity(new StringEntity(messageJson, Charset.forName("utf-8")))
-                .build();
-        return LocalHttpClient.executeJsonResult(httpUriRequest, BaseResult.class);
-    }
-
-    /**
      * 模板消息 设置所属行业
      *
      * @param access_token access_token
@@ -454,15 +436,33 @@ public class MessageAPI extends BaseAPI {
     /**
      * 订阅消息发送（微信小程序）
      * @param access_token    access_token
-     * @param templateMessage templateMessage
+     * @param subscribeSend   subscribeSend
      * @return result
      * @since 2.8.30
      */
-    public static BaseResult messageSubscribeSend(String access_token, WxopenTemplateMessage templateMessage) {
-        String messageJson = JsonUtil.toJSONString(templateMessage);
+    public static BaseResult messageSubscribeSend(String access_token, SubscribeSend subscribeSend) {
+        String messageJson = JsonUtil.toJSONString(subscribeSend);
         HttpUriRequest httpUriRequest = RequestBuilder.post()
                 .setHeader(jsonHeader)
                 .setUri(BASE_URI + "/cgi-bin/message/subscribe/send")
+                .addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
+                .setEntity(new StringEntity(messageJson, StandardCharsets.UTF_8))
+                .build();
+        return LocalHttpClient.executeJsonResult(httpUriRequest, BaseResult.class);
+    }
+    
+    /**
+     * 订阅通知接口
+     * @param access_token    access_token
+     * @param subscribeBizSend   subscribeBizSend
+     * @return result
+     * @since 2.8.31
+     */
+    public static BaseResult messageSubscribeBizsend(String access_token, SubscribeBizSend subscribeBizSend) {
+        String messageJson = JsonUtil.toJSONString(subscribeBizSend);
+        HttpUriRequest httpUriRequest = RequestBuilder.post()
+                .setHeader(jsonHeader)
+                .setUri(BASE_URI + "/cgi-bin/message/subscribe/bizsend")
                 .addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
                 .setEntity(new StringEntity(messageJson, StandardCharsets.UTF_8))
                 .build();

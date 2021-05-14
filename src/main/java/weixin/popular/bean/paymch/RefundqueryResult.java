@@ -39,6 +39,12 @@ public class RefundqueryResult extends MchBase implements DynamicField{
 	private Integer refund_count;
 	
 	private String refund_account;
+	
+	/**
+	 * 订单总退款次数
+	 * @since 2.8.31
+	 */
+	private Integer total_refund_count;
 
 	@XmlTransient
 	private List<RefundqueryResultItem> refundqueryResultItems;
@@ -116,6 +122,14 @@ public class RefundqueryResult extends MchBase implements DynamicField{
 		this.refund_account = refund_account;
 	}
 	
+	public Integer getTotal_refund_count() {
+		return total_refund_count;
+	}
+
+	public void setTotal_refund_count(Integer total_refund_count) {
+		this.total_refund_count = total_refund_count;
+	}
+
 	public void setRefundqueryResultItems(List<RefundqueryResultItem> refundqueryResultItems) {
 		this.refundqueryResultItems = refundqueryResultItems;
 	}

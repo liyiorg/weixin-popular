@@ -598,11 +598,11 @@ public class WxaAPI extends BaseAPI {
 	 * @param status 1表示不可搜索，0表示可搜索
 	 * @return result
 	 */
-	public static BaseResult changewxasearchtustas(String access_token,int status){
+	public static BaseResult changewxasearchstatus(String access_token,int status){
 		String json = String.format("{\"status\":%d}", status);
 		HttpUriRequest httpUriRequest = RequestBuilder.post()
 				.setHeader(jsonHeader)
-				.setUri(BASE_URI + "/wxa/changewxasearchtustas")
+				.setUri(BASE_URI + "/wxa/changewxasearchstatus")
 				.addParameter(PARAM_ACCESS_TOKEN, API.accessToken(access_token))
 				.setEntity(new StringEntity(json,Charset.forName("utf-8")))
 				.build();

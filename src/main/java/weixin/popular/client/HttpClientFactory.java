@@ -37,7 +37,7 @@ public class HttpClientFactory{
 	
 	private static Logger logger = LoggerFactory.getLogger(HttpClientFactory.class);
 	
-	private static final String[] supportedProtocols = new String[]{"TLSv1"};
+	private static final String[] supportedProtocols = null;
 	
 	private static HttpHost proxy;
 	

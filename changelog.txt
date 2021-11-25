@@ -2,6 +2,12 @@ WEIXIN-POPULAR CHANGELOG
 ===========================
 https://github.com/liyiorg/weixin-popular
 
+Changes in version 2.8.32 (2021-11-25)
+-------------------------------------
+* #248 修改微信支付协议问题
+* #242 WxaAPI 修改
+
+
 Changes in version 2.8.31 (2021-05-14)
 -------------------------------------
 * #222 WxaAPI MessageAPI 新增小程序订阅消息相关接口

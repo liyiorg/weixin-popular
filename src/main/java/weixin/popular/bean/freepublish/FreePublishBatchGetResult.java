@@ -6,9 +6,10 @@ import weixin.popular.bean.BaseResult;
 import java.util.List;
 
 /**
- * Created by songfan on 2021/10/29.
+ * @author songfan
+ * @date 2021/10/29
  */
-public class ArticleBatchGetResult extends BaseResult {
+public class FreePublishBatchGetResult extends BaseResult {
 
     /**
      * 成功发布素材的总数
@@ -58,7 +59,7 @@ public class ArticleBatchGetResult extends BaseResult {
         /**
          * 图文消息的具体内容，支持HTML标签，必须少于2万字符，小于1M，且此处会去除JS。
          */
-        private ArticleItemResult content;
+        private FreePublishArticleResult content;
 
         public String getArticleId() {
             return articleId;
@@ -68,11 +69,11 @@ public class ArticleBatchGetResult extends BaseResult {
             this.articleId = articleId;
         }
 
-        public ArticleItemResult getContent() {
+        public FreePublishArticleResult getContent() {
             return content;
         }
 
-        public void setContent(ArticleItemResult content) {
+        public void setContent(FreePublishArticleResult content) {
             this.content = content;
         }
     }

@@ -1,14 +1,16 @@
-package weixin.popular.bean.draft;
+package weixin.popular.bean.freepublish;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import weixin.popular.bean.BaseResult;
+import weixin.popular.bean.draft.NewsItem;
 
 import java.util.List;
 
 /**
- * Created by songfan on 2021/10/29.
+ * @author songfan
+ * @date 2021/10/29
  */
-public class DraftItemResult extends BaseResult {
+public class FreePublishArticleResult extends BaseResult {
 
     @JSONField(name = "news_item")
     private List<NewsItem> newsItem;

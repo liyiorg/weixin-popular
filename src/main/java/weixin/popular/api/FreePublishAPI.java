@@ -5,11 +5,17 @@ import org.apache.http.client.methods.RequestBuilder;
 import org.apache.http.entity.StringEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import weixin.popular.bean.freepublish.ArticleBatchGetResult;
-import weixin.popular.bean.freepublish.ArticleItemResult;
+import weixin.popular.bean.BaseResult;
+import weixin.popular.bean.freepublish.FreePublishArticleResult;
+import weixin.popular.bean.freepublish.FreePublishBatchGetResult;
+import weixin.popular.bean.freepublish.FreePublishGetResult;
+import weixin.popular.bean.freepublish.FreePublishSubmitResult;
 import weixin.popular.client.LocalHttpClient;
+import weixin.popular.util.JsonUtil;
 
 import java.nio.charset.Charset;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 发布接口
@@ -19,6 +25,51 @@ import java.nio.charset.Charset;
 public class FreePublishAPI extends BaseAPI {
 
     private static Logger logger = LoggerFactory.getLogger(FreePublishAPI.class);
+
+    public static FreePublishSubmitResult submit(String accessToken, String mediaId) {
+        Map<String, String> params = new HashMap<>();
+        params.put("media_id", mediaId);
+        HttpUriRequest httpUriRequest = RequestBuilder
+                .post()
+                .setHeader(jsonHeader)
+                .setUri(BASE_URI + "/cgi-bin/freepublish/submit")
+                .addParameter(PARAM_ACCESS_TOKEN, API.accessToken(accessToken))
+                .setEntity(new StringEntity(JsonUtil.toJSONString(params), Charset.forName("UTF-8")))
+                .build();
+        return LocalHttpClient.executeJsonResult(httpUriRequest,
+                FreePublishSubmitResult.class);
+    }
+
+    public static FreePublishGetResult get(String accessToken, String publishId) {
+        Map<String, String> params = new HashMap<>();
+        params.put("publish_id", publishId);
+        HttpUriRequest httpUriRequest = RequestBuilder
+                .post()
+                .setHeader(jsonHeader)
+                .setUri(BASE_URI + "/cgi-bin/freepublish/get")
+                .addParameter(PARAM_ACCESS_TOKEN, API.accessToken(accessToken))
+                .setEntity(new StringEntity(JsonUtil.toJSONString(params), Charset.forName("UTF-8")))
+                .build();
+        return LocalHttpClient.executeJsonResult(httpUriRequest,
+                FreePublishGetResult.class);
+    }
+
+    public static BaseResult delete(String accessToken, String articleId, Integer index) {
+        Map<String, String> params = new HashMap<>();
+        params.put("article_id", articleId);
+        if (null != index) {
+            params.put("index", index.toString());
+        }
+        HttpUriRequest httpUriRequest = RequestBuilder
+                .post()
+                .setHeader(jsonHeader)
+                .setUri(BASE_URI + "/cgi-bin/freepublish/delete")
+                .addParameter(PARAM_ACCESS_TOKEN, API.accessToken(accessToken))
+                .setEntity(new StringEntity(JsonUtil.toJSONString(params), Charset.forName("UTF-8")))
+                .build();
+        return LocalHttpClient.executeJsonResult(httpUriRequest,
+                BaseResult.class);
+    }
 
     /**
      * 开发者可以获取已成功发布的消息列表
@@ -32,7 +83,7 @@ public class FreePublishAPI extends BaseAPI {
      * @param requestJson
      * @return
      */
-    public static ArticleBatchGetResult freePublishBatchGet(String accessToken, String requestJson) {
+    public static FreePublishBatchGetResult freePublishBatchGet(String accessToken, String requestJson) {
         HttpUriRequest httpUriRequest = RequestBuilder
                 .post()
                 .setHeader(jsonHeader)
@@ -41,18 +92,20 @@ public class FreePublishAPI extends BaseAPI {
                 .setEntity(new StringEntity(requestJson, Charset.forName("UTF-8")))
                 .build();
         return LocalHttpClient.executeJsonResult(httpUriRequest,
-                ArticleBatchGetResult.class);
+                FreePublishBatchGetResult.class);
     }
 
-    public static ArticleItemResult getArticle(String accessToken, String requestJson) {
+    public static FreePublishArticleResult getArticle(String accessToken, String articleId) {
+        Map<String, String> params = new HashMap<>();
+        params.put("article_id", articleId);
         HttpUriRequest httpUriRequest = RequestBuilder
                 .post()
                 .setHeader(jsonHeader)
                 .setUri(BASE_URI + "/cgi-bin/freepublish/getarticle")
                 .addParameter(PARAM_ACCESS_TOKEN, API.accessToken(accessToken))
-                .setEntity(new StringEntity(requestJson, Charset.forName("UTF-8")))
+                .setEntity(new StringEntity(JsonUtil.toJSONString(params), Charset.forName("UTF-8")))
                 .build();
         return LocalHttpClient.executeJsonResult(httpUriRequest,
-                ArticleItemResult.class);
+                FreePublishArticleResult.class);
     }
 }
